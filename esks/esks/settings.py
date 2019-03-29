@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'd_vld%wq4fpu1pn*8)x)itbt++-^dn$s60p4dg2y*dk$@^^9#+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True #Misiu wyłącz debugowanie po wrzuceniu na server w oddzielnym pliku config - wiesz gdzie. ^^
 
 ALLOWED_HOSTS = []
 
@@ -130,6 +130,12 @@ LANGUAGES = (
 )
 
 MODELTRANSLATION_FALLBACK_LANGUAGES = {'default': ('pl',), 'en': ('ge','fr','ru','ua','es','hi')} # W ten sposób zachowają sie języki jak nie znajdzie się jakiegoś w bazie. Do zmiany być może?
+
+MODELTRANSLATION_TRANSLATION_FILES = ( # Tutaj rejestruje się wszystkie trackery translacyjne translation.py, które umieszczasz w folderze apki.
+    'rekruter.translation',
+    'strona.translation',
+)
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/

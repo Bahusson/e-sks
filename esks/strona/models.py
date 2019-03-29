@@ -2,8 +2,6 @@ from django.db import models
 
 # Create your models here.
 class Pageitem(models.Model):
-    lang_id = models.IntField(max_length=2) #ID języka
-    lang_name = models.CharField(max_length=50) #Nazwa języka
     lang_flag = models.ImageField(upload_to='images') #Mały obrazek języka
     headtitle = models.CharField(max_length=200) #Nagłówek strony w tym języku
     mainpage = models.CharField(max_length=200) #Strona główna w tym języku
@@ -21,7 +19,7 @@ class Blog(models.Model):
     title = models.CharField(max_length=200)
     pubdate = models.DateTimeField()
     body = models.TextField()
-    image = models.ImageField(upload_to='images')
+    image = models.ImageField(upload_to='images', blank=True, null=True)
     video = models.CharField(max_length=500, blank=True, null=True)
 
     #Ta funkcja pokazuje tytuł postu na stronie admina. Zawsze używaj ___str___ żeby wrzucić coś w górę do adminów.
