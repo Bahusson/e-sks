@@ -31,8 +31,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'akademik.apps.AkademikConfig',
     'rekruter.apps.RekruterConfig',
     'strona.apps.StronaConfig',
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -115,6 +117,19 @@ USE_L10N = True
 
 USE_TZ = True
 
+gettext = lambda s: s
+LANGUAGES = (
+    ('pl', gettext('Polski')), #Pierwszy jest zawsze defaultem chyba, że zrobisz override.
+    ('en', gettext('Angielski')),
+    ('ge', gettext('Niemiecki')),
+    ('fr', gettext('Francuski')),
+    ('ru', gettext('Rosyjski')),
+    ('ua', gettext('Ukraiński')),
+    ('es', gettext('Hiszpański')),
+    ('hi', gettext('Hindi')),
+)
+
+MODELTRANSLATION_FALLBACK_LANGUAGES = {'default': ('pl',), 'en': ('ge','fr','ru','ua','es','hi')} # W ten sposób zachowają sie języki jak nie znajdzie się jakiegoś w bazie. Do zmiany być może?
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
