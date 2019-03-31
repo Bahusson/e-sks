@@ -9,7 +9,7 @@ class Pageitem(models.Model):
     akamap = models.CharField(max_length=200) #Mapa akademików w tym języku
     contact = models.CharField(max_length=200) #Kontakty w tym języku
     logout = models.CharField(max_length=200) #Wyloguj
-
+    news = models.CharField(max_length=200) #Aktualności
 
     #Ta funkcja pokazuje tytuł postu na stronie admina. Zawsze używaj ___str___ żeby wrzucić coś w górę do adminów.
     def __str__(self):
@@ -21,6 +21,45 @@ class Blog(models.Model):
     body = models.TextField()
     image = models.ImageField(upload_to='images', blank=True, null=True)
     video = models.CharField(max_length=500, blank=True, null=True)
+
+    #Ta funkcja pokazuje tytuł postu na stronie admina. Zawsze używaj ___str___ żeby wrzucić coś w górę do adminów.
+    def __str__(self):
+        return self.title
+
+    #Ta funkcja ogranicza długość tekstu na stronie wpisów, żeby nie było zbyt rozlegle i każdy mógł sobie wybrać...
+    def summary(self):
+        return self.body[:110]
+
+    #Funkcja formatująca datę w ludzki sposób...
+    def pubdate_short(self):
+        return self.pubdate.strftime('%a %d %b %Y')
+
+class Infos (models.Model): #Katalog "informacje" ze strony SEKS
+    title = models.CharField(max_length=200)
+#    pubdate = models.DateTimeField()
+    body = models.TextField()
+    image = models.ImageField(upload_to='images', blank=True, null=True)
+#    video = models.CharField(max_length=500, blank=True, null=True)
+
+    #Ta funkcja pokazuje tytuł postu na stronie admina. Zawsze używaj ___str___ żeby wrzucić coś w górę do adminów.
+    def __str__(self):
+        return self.title
+
+    #Ta funkcja ogranicza długość tekstu na stronie wpisów, żeby nie było zbyt rozlegle i każdy mógł sobie wybrać...
+    def summary(self):
+        return self.body[:110]
+
+    #Funkcja formatująca datę w ludzki sposób...
+    def pubdate_short(self):
+        return self.pubdate.strftime('%a %d %b %Y')
+
+class Fileserve(models.Model): #serwowanie plików statycznych
+    title = models.CharField(max_length=200)
+    pubdate = models.DateTimeField()
+    body = models.TextField()
+#?    image = models.ImageField(upload_to='images', blank=True, null=True)
+    file = models.FileField(upload_to='assets', blank=True, null=True) # Ogarnij dokładniej file storage w ramach tej klasy, bo to jeszcze trzeba skonfigurować.
+#?    link = models.CharField(max_length=500, blank=True, null=True)
 
     #Ta funkcja pokazuje tytuł postu na stronie admina. Zawsze używaj ___str___ żeby wrzucić coś w górę do adminów.
     def __str__(self):

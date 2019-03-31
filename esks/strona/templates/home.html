@@ -48,12 +48,61 @@
 
     <main role="main">
 
+      <div class="row">
+        <div class="col-md-7 blog-main">
+          <h3 class="pb-3 mb-4 font-italic border-bottom">
+            {{ item.news }}
+          </h3>
 
+          {% for blog in blogs.all %}
+            <div class="row">
+              <div class="col-md-6 order-md-0">
+                <h2 class="blog-post-title"><a href="{% url 'blogs' blog.id %}">{{ blog.title }}</a></h2>
+                <p>{{ blog.shortsum }}</p>
+              </div><!-- /.blog-post -->
+              <div class="col-md-2">
+                <a href="{% url 'blogs' blog.id %}"><img class="blog-image" src="{{blog.image.url }}" height=200 /></a>
+              </div>
+            </div>
+
+          {% endfor %}
+
+        </div><!-- Tutaj idzie boczne menu -->
+
+<!-- To idzie do przepisania na właściwe elementy. Patrz klasy.
+
+        <aside class="col-md-4 blog-sidebar">
+          <div class="p-3 mb-3 bg-light rounded">
+            <h4 class="font-italic">O stronie</h4>
+            <p class="mb-0">Strona została stworzona na bazie wzorców z Bootstrap 4.<br> Polecam Bootstrapa do nauki programowania w Django jako źródło fajnych i łatwych w obróbce wzorów.</p>
+          </div>
+
+          <div class="p-3">
+            <h4 class="font-italic">Moje umiejętności</h4>
+            <ol class="list-unstyled mb-0">
+              {% for tech in techs.all %}
+              <li><a href="{% url 'skills' tech.id %}">{{ tech.title }}</a></li>
+              {% endfor %}
+            </ol>
+          </div>
+
+          <div class="p-3">
+            <h4 class="font-italic">Inne strony</h4>
+            <ol class="list-unstyled">
+              <li><a href="https://github.com/Bahusson/">GitHub</a></li>
+              <li><a href="https://www.linkedin.com/in/jakub-kozdrowicz-8a5b5b106/">LinkedIn</a></li>
+            </ol>
+          </div>
+        </aside>  -->
+
+      </div><!-- /.row -->
 
     </main>
 
     <footer class="text-muted">
-
+      <div class="container text-center">
+        <p> &copy; Jakub Kozdrowicz {% now "Y" %}</p>
+      </div>
     </footer>
 
     <!-- Bootstrap core JavaScript

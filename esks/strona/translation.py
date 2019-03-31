@@ -2,7 +2,7 @@ from modeltranslation.translator import translator, TranslationOptions
 from strona.models import Pageitem, Blog
 
 class PageitemsTranslate(TranslationOptions):
-    fields = ('lang_flag', 'headtitle', 'mainpage', 'info', 'akamap', 'contact', 'logout')
+    fields = ('lang_flag', 'headtitle', 'mainpage', 'info', 'akamap', 'contact', 'logout', 'news')
 
 translator.register(Pageitem, PageitemsTranslate)
 
