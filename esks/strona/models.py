@@ -12,10 +12,6 @@ class Pageitem(models.Model):
     news = models.CharField(max_length=200) #Aktualności
     docs = models.CharField(max_length=200) #Ważne pliki
 
-    #Ta funkcja pokazuje tytuł postu na stronie admina. Zawsze używaj ___str___ żeby wrzucić coś w górę do adminów.
-    def __str__(self):
-        return self.title
-
 class Blog(models.Model):
     title = models.CharField(max_length=200)
     pubdate = models.DateTimeField()
