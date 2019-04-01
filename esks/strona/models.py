@@ -34,7 +34,7 @@ class Blog(models.Model):
     def pubdate_short(self):
         return self.pubdate.strftime('%a %d %b %Y')
 
-class Infos (models.Model): #Katalog "informacje" ze strony SEKS
+class Info (models.Model): #Katalog "informacje" ze strony SEKS
     title = models.CharField(max_length=200)
 #    pubdate = models.DateTimeField()
     body = models.TextField()
@@ -58,7 +58,7 @@ class Fileserve(models.Model): #serwowanie plików statycznych
     pubdate = models.DateTimeField()
     body = models.TextField()
 #?    image = models.ImageField(upload_to='images', blank=True, null=True)
-    file = models.FileField(upload_to='assets', blank=True, null=True) # Ogarnij dokładniej file storage w ramach tej klasy, bo to jeszcze trzeba skonfigurować.
+    file = models.FileField(upload_to='assets', blank=True, null=True) # Chyba się konfiguruje jak obrazki ale się nie zdziw jak wybuchnie Ci w twarz...
 #?    link = models.CharField(max_length=500, blank=True, null=True)
 
     #Ta funkcja pokazuje tytuł postu na stronie admina. Zawsze używaj ___str___ żeby wrzucić coś w górę do adminów.

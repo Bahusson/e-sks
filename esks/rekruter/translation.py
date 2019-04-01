@@ -6,7 +6,7 @@ class SitoTranslate(TranslationOptions):
 
 translator.register(Sito, SitoTranslate)
 
-class ZapisTranslate(TranslationOptions):
-    fields = ('?', '?')
+#class ZapisTranslate(TranslationOptions):
+#    fields = ('?', '?')
 
-translator.register(Zapis, ZapisTranslate)
+#translator.register(Zapis, ZapisTranslate)
