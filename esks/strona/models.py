@@ -10,6 +10,7 @@ class Pageitem(models.Model):
     contact = models.CharField(max_length=200) #Kontakty w tym języku
     logout = models.CharField(max_length=200) #Wyloguj
     news = models.CharField(max_length=200) #Aktualności
+    docs = models.CharField(max_length=200) #Ważne pliki
 
     #Ta funkcja pokazuje tytuł postu na stronie admina. Zawsze używaj ___str___ żeby wrzucić coś w górę do adminów.
     def __str__(self):
