@@ -2,9 +2,23 @@ from django.shortcuts import render, get_object_or_404
 
 from .models import Pageitem
 from .models import Blog
+from .models import Info
+from .models import Fileserve
 
+def login(request):
+    return render(request, 'login.html')
 
-def home(request, pageitem_id):
+def home(request):
+    items = Pageitem.objects
     blogs = Blog.objects
-    item = get_object_or_404(Blog, pk=pageitem_id)
-    return render(request, 'home.html', {'item': item, 'blogs': blogs})
+    infos = Info.objects
+    files = Fileserve.objects
+    return render(request, 'home.html', {'items': items, 'blogs': blogs, 'infos': infos, 'files': files})
+
+def blog(request, blogs_id):
+    blogs = get_object_or_404(Info, pk=blogs_id)
+    return render(request, 'blog.html', {'blogs':blogs})
+
+def info(request, infos_id):
+    infos = get_object_or_404(Info, pk=infos_id)
+    return render(request, 'info.html', {'infos':infos})

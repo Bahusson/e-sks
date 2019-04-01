@@ -20,9 +20,9 @@ from django.conf.urls.static import static
 import strona.views
 
 urlpatterns = [
-    path('admin/', admin.site.urls), #zmyłka dla botów próbujących się dostać do strony administracji
-#    path('', strona.views.login, name='login'),
-#    path('strona/', include('strona.urls')), #strona ogólna do komunikacji ze studentami.
-#    path('rejestracja/', include('rekruter.urls')), #strona rejestracji do systemu akademików (dla studentów)
+    path('admin/', admin.site.urls), #Zmień nazwę żeby była zmyłka dla botów próbujących się dostać do strony administracji
+    path('', strona.views.login, name='login'),
+    path('strona/', include('strona.urls')),
+#    path('rekruter/', include('rekruter.urls')), #strona rejestracji do systemu akademików (dla studentów)
 #    path('akademik/', include('akademik.urls')), #strona administracyjna dla rady studentów i administracji akademika
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #pliki statyczne ładowane tylko manualnie z poziomu serwera.

@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{{ item.headtitle }} - {{ info.title }}</title>
+    <title>{{ items.headtitle }} - {{ infos.title }}</title>
 
     <!-- Bootstrap core CSS - możemy sami ładować bootstrap z serwera ale to bardziej obciąży naszego klienta imo -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -20,26 +20,26 @@
 
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="{% url 'home' %}">{{ item.mainpage }}</a>
+        <a class="navbar-brand" href="{% url 'home' %}">{{ items.mainpage }}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'mainpage' %}">{{ item.mainpage }}</a>
+              <a class="nav-link" href="{% url 'mainpage' %}">{{ items.mainpage }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="{% url 'info' %}">{{ item.information }}</a>
+              <a class="nav-link active" href="{% url 'info' %}">{{ items.information }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'map' %}">{{ item.akamap }}</a>
+              <a class="nav-link" href="{% url 'map' %}">{{ items.akamap }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'contact' %}">{{ item.contact }}</a>
+              <a class="nav-link" href="{% url 'contact' %}">{{ items.contact }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'logout' %}">{{ item.logout }}</a>
+              <a class="nav-link" href="{% url 'logout' %}">{{ items.logout }}</a>
             </li>
           </ul>
         </div>
@@ -63,7 +63,7 @@
 
         <aside class="col-md-4 blog-sidebar">
           <div class="p-3">
-            <h4 class="font-italic">{{ item.information }}</h4>
+            <h4 class="font-italic">{{ items.information }}</h4>
             <ol class="list-unstyled mb-0">
               {% for info in infos.all %}
               <li><a href="{% url 'infos' info.id %}">{{ info.title }}</a></li>
@@ -72,7 +72,7 @@
           </div>
 
           <div class="p-3">
-            <h4 class="font-italic">{{ item.docs }}</h4>
+            <h4 class="font-italic">{{ items.docs }}</h4>
             <ol class="list-unstyled mb-0">
               {% for file in files.all %}
               <li><a href="{% url 'fileserve' fileserve.id %}">{{ file.title }}</a></li>

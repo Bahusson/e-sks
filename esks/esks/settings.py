@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+#LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
@@ -119,17 +119,17 @@ USE_TZ = True
 
 gettext = lambda s: s
 LANGUAGES = (
-    ('pl', gettext('Polski')), #Pierwszy jest zawsze defaultem chyba, że zrobisz override.
-    ('en', gettext('Angielski')),
-    ('ge', gettext('Niemiecki')),
-    ('fr', gettext('Francuski')),
-    ('ru', gettext('Rosyjski')),
-    ('ua', gettext('Ukraiński')),
-    ('es', gettext('Hiszpański')),
+    ('pl', gettext('Polish')), #Pierwszy jest zawsze defaultem chyba, że zrobisz override.
+    ('en', gettext('English')),
+    ('ge', gettext('German')),
+    ('fr', gettext('French')),
+    ('ru', gettext('Russian')),
+    ('ua', gettext('Ukrainian')),
+    ('es', gettext('Spanish')),
     ('hi', gettext('Hindi')),
 )
 
-MODELTRANSLATION_FALLBACK_LANGUAGES = {'default': ('pl',), 'en': ('ge','fr','ru','ua','es','hi')} # W ten sposób zachowają sie języki jak nie znajdzie się jakiegoś w bazie. Do zmiany być może?
+MODELTRANSLATION_FALLBACK_LANGUAGES = {'default': ('pl', 'en'), 'en': ('ge','fr','ru','ua','es','hi')} # W ten sposób zachowają sie języki jak nie znajdzie się jakiegoś w bazie. Do zmiany być może?
 
 MODELTRANSLATION_TRANSLATION_FILES = ( # Tutaj rejestruje się wszystkie trackery translacyjne translation.py, które umieszczasz w folderze apki.
     'rekruter.translation',
