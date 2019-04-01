@@ -5,7 +5,7 @@ class Pageitem(models.Model):
     lang_flag = models.ImageField(upload_to='images') #Mały obrazek języka
     headtitle = models.CharField(max_length=200) #Nagłówek strony w tym języku
     mainpage = models.CharField(max_length=200) #Strona główna w tym języku
-    info = models.CharField(max_length=200) #Informacje w tym języku
+    information = models.CharField(max_length=200) #Informacje w tym języku
     akamap = models.CharField(max_length=200) #Mapa akademików w tym języku
     contact = models.CharField(max_length=200) #Kontakty w tym języku
     logout = models.CharField(max_length=200) #Wyloguj
