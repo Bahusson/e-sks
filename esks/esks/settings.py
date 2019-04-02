@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pl'
 
 TIME_ZONE = 'UTC'
 
@@ -134,7 +134,7 @@ MODELTRANSLATION_DEFAULT_LANGUAGE = 'pl'
 MODELTRANSLATION_LANGUAGES = ('pl', 'en', 'ge', 'fr', 'ru', 'ua', 'es', 'hi')
 
 # W ten sposób zachowają sie języki jak nie znajdzie się jakiegoś w bazie. Do zmiany być może?
-MODELTRANSLATION_FALLBACK_LANGUAGES = {'default': ('en', ), 'en': ('ge', 'fr', 'ru', 'ua', 'es', 'hi')}
+MODELTRANSLATION_FALLBACK_LANGUAGES = {'default': ('en', ), 'en': ('pl')}
 
 MODELTRANSLATION_PREPOPULATE_LANGUAGE = False
 

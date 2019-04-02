@@ -9,10 +9,6 @@ i8
 
 print(i1)
 
-# Jak chcesz żeby działało to daj 
-# While True: przed każdym warunkiem
-# i będzie cacy... :3
-
 while True:
     if i1 == "y":
        i2s
@@ -56,4 +52,3 @@ while True:
                         break
                     else:
                         print("Bilateral exchange - june")
-                        break
