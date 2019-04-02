@@ -9,7 +9,8 @@ def login(request):
     return render(request, 'login.html')
 
 def home(request):
-    items = Pageitem.objects
+    locations = list(Pageitem.objects.all())
+    items = locations[0]
     blogs = Blog.objects
     infos = Info.objects
     files = Fileserve.objects

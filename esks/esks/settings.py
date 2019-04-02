@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-#LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
@@ -119,7 +119,7 @@ USE_TZ = True
 
 gettext = lambda s: s
 LANGUAGES = (
-    ('pl', gettext('Polish')), #Pierwszy jest zawsze defaultem chyba, że zrobisz override.
+    ('pl', gettext('Polish')),  # Pierwszy jest zawsze defaultem chyba, że zrobisz override.
     ('en', gettext('English')),
     ('ge', gettext('German')),
     ('fr', gettext('French')),
@@ -129,12 +129,21 @@ LANGUAGES = (
     ('hi', gettext('Hindi')),
 )
 
-MODELTRANSLATION_FALLBACK_LANGUAGES = {'default': ('pl', 'en'), 'en': ('ge','fr','ru','ua','es','hi')} # W ten sposób zachowają sie języki jak nie znajdzie się jakiegoś w bazie. Do zmiany być może?
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'pl'
 
-MODELTRANSLATION_TRANSLATION_FILES = ( # Tutaj rejestruje się wszystkie trackery translacyjne translation.py, które umieszczasz w folderze apki.
+MODELTRANSLATION_LANGUAGES = ('pl', 'en', 'ge', 'fr', 'ru', 'ua', 'es', 'hi')
+
+# W ten sposób zachowają sie języki jak nie znajdzie się jakiegoś w bazie. Do zmiany być może?
+MODELTRANSLATION_FALLBACK_LANGUAGES = {'default': ('en', ), 'en': ('ge', 'fr', 'ru', 'ua', 'es', 'hi')}
+
+MODELTRANSLATION_PREPOPULATE_LANGUAGE = False
+
+# Tutaj rejestruje się wszystkie trackery translacyjne translation.py, które umieszczasz w folderze apki.
+MODELTRANSLATION_TRANSLATION_FILES = (
     'rekruter.translation',
     'strona.translation',
 )
+
 
 
 # Static files (CSS, JavaScript, Images)

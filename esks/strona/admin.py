@@ -5,8 +5,8 @@ from .models import Pageitem, Blog, Info, Fileserve
 
 admin.site.register(Pageitem)
 
-admin.site.register(Blog)
+# admin.site.register(Blog)
 
-admin.site.register(Info)
+# admin.site.register(Info)
 
-admin.site.register(Fileserve)
+# admin.site.register(Fileserve)
