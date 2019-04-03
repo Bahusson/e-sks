@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -134,17 +135,13 @@ MODELTRANSLATION_DEFAULT_LANGUAGE = 'pl'
 MODELTRANSLATION_LANGUAGES = ('pl', 'en', 'ge', 'fr', 'ru', 'ua', 'es', 'hi')
 
 # W ten sposób zachowają sie języki jak nie znajdzie się jakiegoś w bazie. Do zmiany być może?
-MODELTRANSLATION_FALLBACK_LANGUAGES = {'default': ('en', ), 'en': ('pl')}
-
-MODELTRANSLATION_PREPOPULATE_LANGUAGE = False
+MODELTRANSLATION_FALLBACK_LANGUAGES = {'default': ('en', ), 'en': ('pl', )}
 
 # Tutaj rejestruje się wszystkie trackery translacyjne translation.py, które umieszczasz w folderze apki.
 MODELTRANSLATION_TRANSLATION_FILES = (
     'rekruter.translation',
     'strona.translation',
 )
-
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/

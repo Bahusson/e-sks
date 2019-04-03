@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.utils import translation
 
 from .models import Pageitem
 from .models import Blog
