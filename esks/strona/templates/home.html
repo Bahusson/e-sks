@@ -41,6 +41,9 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'login' %}">{{ items.logout }}</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}"><img src="{{items.lang_flag.url }}" height=20 /></a>
+            </li>
           </ul>
         </div>
       </nav>
@@ -66,7 +69,6 @@
             </div>
 
           {% endfor %}
-
         </div><!-- Tutaj idzie boczne menu -->
 
         <aside class="col-md-4 blog-sidebar">
