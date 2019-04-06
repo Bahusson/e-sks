@@ -17,10 +17,18 @@ def home(request):
     files = Fileserve.objects
     return render(request, 'home.html', {'items': items, 'blogs': blogs, 'infos': infos, 'files': files})
 
-def blog(request, blogs_id):
-    blogs = get_object_or_404(Info, pk=blogs_id)
-    return render(request, 'blog.html', {'blogs':blogs})
+def blog(request, blog_id):
+    locations = list(Pageitem.objects.all())
+    items = locations[0]
+    infos = Info.objects
+    files = Fileserve.objects
+    blog = get_object_or_404(Blog, pk=blog_id)
+    return render(request, 'blog.html', {'items': items, 'blog': blog, 'infos': infos, 'files': files})
 
-def info(request, infos_id):
-    infos = get_object_or_404(Info, pk=infos_id)
-    return render(request, 'info.html', {'infos':infos})
+def info(request, info_id):
+    locations = list(Pageitem.objects.all())
+    items = locations[0]
+    files = Fileserve.objects
+    infos = Info.objects
+    info = get_object_or_404(Info, pk=info_id)
+    return render(request, 'info.html', {'items': items, 'blog': blog, 'info': info, 'infos': infos, 'files': files})

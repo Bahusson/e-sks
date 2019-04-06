@@ -27,19 +27,22 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'mainpage' %}">{{ items.mainpage }}</a>
+              <a class="nav-link active" href="{% url 'home' %}">{{ items.mainpage }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="{% url 'info' %}">{{ items.information }}</a>
+              <a class="nav-link" href="">{{ items.information }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'map' %}">{{ items.akamap }}</a>
+              <a class="nav-link" href="">{{ items.akamap }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'contact' %}">{{ items.contact }}</a>
+              <a class="nav-link" href="">{{ items.contact }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'logout' %}">{{ items.logout }}</a>
+              <a class="nav-link" href="{% url 'login' %}">{{ items.logout }}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}"><img src="{{items.lang_flag.url }}" height=20 /></a>
             </li>
           </ul>
         </div>
@@ -76,7 +79,7 @@
             <h4 class="font-italic">{{ items.information }}</h4>
             <ol class="list-unstyled mb-0">
               {% for info in infos.all %}
-              <li><a href="{% url 'infos' info.id %}">{{ info.title }}</a></li>
+              <li><a href="{% url 'info' info.id %}">{{ info.title }}</a></li>
               {% endfor %}
             </ol>
           </div>
@@ -85,7 +88,7 @@
             <h4 class="font-italic">{{ items.docs }}</h4>
             <ol class="list-unstyled mb-0">
               {% for file in files.all %}
-              <li><a href="{% url 'fileserve' fileserve.id %}">{{ file.title }}</a></li>
+              <li><a href="">{{ file.title }}</a></li> <!-- tutaj rozwiąż problem z serwowaniem plików bezpośrednio ze strony -->
               {% endfor %}
             </ol>
           </div>
