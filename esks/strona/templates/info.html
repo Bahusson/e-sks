@@ -90,7 +90,7 @@
             <h4 class="font-italic">{{ items.docs }}</h4>
             <ol class="list-unstyled mb-0">
               {% for file in files.all %}
-              <li><a href="">{{ file.title }}</a></li> <!-- tutaj rozwiąż problem z serwowaniem plików bezpośrednio ze strony -->
+              <li><a href="{{ file.file.url }}">{{ file.title }}</a></li> <!-- tutaj rozwiąż problem z serwowaniem plików bezpośrednio ze strony -->
               {% endfor %}
             </ol>
           </div>
