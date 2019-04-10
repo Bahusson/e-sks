@@ -122,17 +122,17 @@ gettext = lambda s: s
 LANGUAGES = (
     ('pl', gettext('Polish')),  # Pierwszy jest zawsze defaultem chyba, że zrobisz override.
     ('en', gettext('English')),
-    ('ge', gettext('German')),
+    ('de', gettext('German')),
     ('fr', gettext('French')),
     ('ru', gettext('Russian')),
-    ('ua', gettext('Ukrainian')),
+    ('uk', gettext('Ukrainian')),
     ('es', gettext('Spanish')),
     ('hi', gettext('Hindi')),
 )
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'pl'
 
-MODELTRANSLATION_LANGUAGES = ('pl', 'en', 'ge', 'fr', 'ru', 'ua', 'es', 'hi')
+MODELTRANSLATION_LANGUAGES = ('pl', 'en', 'de', 'fr', 'ru', 'uk', 'es', 'hi')
 
 # W ten sposób zachowają sie języki jak nie znajdzie się jakiegoś w bazie. Do zmiany być może?
 MODELTRANSLATION_FALLBACK_LANGUAGES = {'default': ('en', ), 'en': ('pl', )}
