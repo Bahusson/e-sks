@@ -20,10 +20,9 @@
   </div>
 
   <div class="container"><!--Start container-->
-    <h1 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sito.student }}</h1><!--Czy jesteś studentem Politechniki?-->
-    <br />
-    <form id="appform" name="appform"><!--start application form-->
       <div class="py-3 row"><!--start radio selection-->
+        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sito.student }}</h1><!--Czy jesteś studentem Politechniki?-->
+        <br />
         <div class="col-md-3">
           <label class="contain">{{ sito.yes }}
             <input type="radio" class="radio" name="i1sel" Value="1">
@@ -38,140 +37,126 @@
         </div>
       </div><!--end radio-->
 
-      <h1 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sito.obywatelstwo }}</h1><!--Czy masz polskie obywatelstwo?-->
-      <br />
-      <form id="appform" name="appform"><!--start application form-->
-        <div class="py-3 row"><!--start radio selection-->
-          <div class="col-md-3">
-            <label class="contain">{{ sito.yes }}
-              <input type="radio" class="radio" name="i2sel" Value="1">
-              <span class="checkmark"></span>
-            </label>
-          </div>
-          <div class="col-md-3">
-            <label class="contain">{{ sito.no }}
-              <input type="radio" class="radio" name="i2sel" Value="2">
-              <span class="checkmark"></span>
-            </label>
-          </div>
-        </div><!--end radio-->
-
-        <h1 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sito.doktorant }}</h1><!--Czy jesteś na studiach doktorskich?-->
+      <div class="py-3 row"><!--start radio selection-->
+        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sito.obywatelstwo }}</h1><!--Czy masz polskie obywatelstwo?-->
         <br />
-        <form id="appform" name="appform"><!--start application form-->
-          <div class="py-3 row"><!--start radio selection-->
-            <div class="col-md-3">
-              <label class="contain">{{ sito.yes }}
-                <input type="radio" class="radio" name="i3sel" Value="1">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="col-md-3">
-              <label class="contain">{{ sito.no }}
-                <input type="radio" class="radio" name="i3sel" Value="2">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-          </div><!--end radio-->
-
-          <h1 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sito.zamiar }}</h1><!--Czy zamierzasz podjąć studia na Politechnice?-->
-          <br />
-          <form id="appform" name="appform"><!--start application form-->
-            <div class="py-3 row"><!--start radio selection-->
-              <div class="col-md-3">
-                <label class="contain">{{ sito.yes }}
-                  <input type="radio" class="radio" name="i4sel" Value="1">
-                  <span class="checkmark"></span>
-                </label>
-              </div>
-              <div class="col-md-3">
-                <label class="contain">{{ sito.no }}
-                  <input type="radio" class="radio" name="i4sel" Value="2">
-                  <span class="checkmark"></span>
-                </label>
-              </div>
-            </div><!--end radio-->
-
-            <h1 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sito.pierwzegosto }}</h1><!--Studia pierwszego stopnia??-->
-            <br />
-            <form id="appform" name="appform"><!--start application form-->
-              <div class="py-3 row"><!--start radio selection-->
-                <div class="col-md-3">
-                  <label class="contain">{{ sito.yes }}
-                    <input type="radio" class="radio" name="i5sel" Value="1">
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-                <div class="col-md-3">
-                  <label class="contain">{{ sito.no }}
-                    <input type="radio" class="radio" name="i5sel" Value="2">
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-              </div><!--end radio-->
-
-              <h1 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sito.pelnywym }}</h1><!--Czy zamierzasz studiować dziennie?-->
-              <br />
-              <form id="appform" name="appform"><!--start application form-->
-                <div class="py-3 row"><!--start radio selection-->
-                  <div class="col-md-3">
-                    <label class="contain">{{ sito.yes }}
-                      <input type="radio" class="radio" name="i6sel" Value="1">
-                      <span class="checkmark"></span>
-                    </label>
-                  </div>
-                  <div class="col-md-3">
-                    <label class="contain">{{ sito.no }}
-                      <input type="radio" class="radio" name="i6sel" Value="2">
-                      <span class="checkmark"></span>
-                    </label>
-                  </div>
-                </div><!--end radio-->
-
-                <h1 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sito.erazmus }}</h1><!--Czy jesteś studentem Erazmusa?-->
-                <br />
-                <form id="appform" name="appform"><!--start application form-->
-                  <div class="py-3 row"><!--start radio selection-->
-                    <div class="col-md-3">
-                      <label class="contain">{{ sito.yes }}
-                        <input type="radio" class="radio" name="i7sel" Value="1">
-                        <span class="checkmark"></span>
-                      </label>
-                    </div>
-                    <div class="col-md-3">
-                      <label class="contain">{{ sito.no }}
-                        <input type="radio" class="radio" name="i7sel" Value="2">
-                        <span class="checkmark"></span>
-                      </label>
-                    </div>
-                  </div><!--end radio-->
-
-                  <div class="py-3 row"><!--Oświadczenie, że powyższe zgadzają się ze stanem faktycznym. Bez zaznaczenia nie przejdzie dalej tylko odświeży stronę.-->
-                    <div class="col-md-9">
-                      <p class="contain">{{ sito.oswiadczenie }}</p>
-                    </div>
-                    <div class="col-md-3">
-                      <input name="checkboxG3" id="checkboxG3" class="css-checkbox" type="checkbox">
-                      <label for="checkboxG3" class="css-label"></label>
-                    </div>
-                  </div><!--end row 4-->
+        <div class="col-md-3">
+          <label class="contain">{{ sito.yes }}
+            <input type="radio" class="radio" name="i2sel" Value="1">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <div class="col-md-3">
+          <label class="contain">{{ sito.no }}
+            <input type="radio" class="radio" name="i2sel" Value="2">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div><!--end radio-->
 
 
-                  <div class="py-3 row"><!-- Przycisk "Wyślij" -->
-                    <div class="col-md-3">
-                    </div>
-                    <div class="col-md-3">
-                      <button type="input" id="send" class="btn btn-lg btn-block btn-primary">{{ sito.butondalej }} {% csrf_token %}</button>
-                    </div>
-                    <div class="col-md-3">
-                    </div>
-                    <div class="col-md-3">
-                    </div>
-                  </div><!--end row 7-->
+      <div class="py-3 row"><!--start radio selection-->
+        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sito.doktorant }}</h1><!--Czy jesteś na studiach doktorskich?-->
+        <br />
+        <div class="col-md-3">
+          <label class="contain">{{ sito.yes }}
+            <input type="radio" class="radio" name="i3sel" Value="1">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <div class="col-md-3">
+          <label class="contain">{{ sito.no }}
+            <input type="radio" class="radio" name="i3sel" Value="2">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div><!--end radio-->
+
+      <div class="py-3 row"><!--start radio selection-->
+        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sito.zamiar }}</h1><!--Czy zamierzasz podjąć studia na Politechnice?-->
+        <br />
+        <div class="col-md-3">
+          <label class="contain">{{ sito.yes }}
+            <input type="radio" class="radio" name="i4sel" Value="1">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <div class="col-md-3">
+          <label class="contain">{{ sito.no }}
+            <input type="radio" class="radio" name="i4sel" Value="2">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div><!--end radio-->
 
 
+      <div class="py-3 row"><!--start radio selection-->
+        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sito.pierwzegosto }}</h1><!--Studia pierwszego stopnia??-->
+        <br />
+        <div class="col-md-3">
+          <label class="contain">{{ sito.yes }}
+            <input type="radio" class="radio" name="i5sel" Value="1">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <div class="col-md-3">
+          <label class="contain">{{ sito.no }}
+            <input type="radio" class="radio" name="i5sel" Value="2">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div><!--end radio-->
 
 
+      <div class="py-3 row"><!--start radio selection-->
+        <h1 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sito.pelnywym }}</h1><!--Czy zamierzasz studiować dziennie?-->
+        <br />
+        <div class="col-md-3">
+          <label class="contain">{{ sito.yes }}
+            <input type="radio" class="radio" name="i6sel" Value="1">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <div class="col-md-3">
+          <label class="contain">{{ sito.no }}
+            <input type="radio" class="radio" name="i6sel" Value="2">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div><!--end radio-->
+
+
+      <div class="py-3 row"><!--start radio selection-->
+        <h1 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sito.erazmus }}</h1><!--Czy jesteś studentem Erazmusa?-->
+        <br />
+        <div class="col-md-3">
+          <label class="contain">{{ sito.yes }}
+            <input type="radio" class="radio" name="i7sel" Value="1">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <div class="col-md-3">
+          <label class="contain">{{ sito.no }}
+            <input type="radio" class="radio" name="i7sel" Value="2">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div><!--end radio-->
+
+      <div class="py-3 row"><!--Oświadczenie, że powyższe zgadzają się ze stanem faktycznym. Bez zaznaczenia nie przejdzie dalej tylko odświeży stronę.-->
+        <div class="col-md-6">
+          <p class="contain">{{ sito.oswiadczenie }}</p>
+        </div>
+        <div class="col-md-3">
+          <input name="checkboxG3" id="checkboxG3" class="css-checkbox" type="checkbox">
+          <label for="checkboxG3" class="css-label"></label>
+        </div>
+        <div class="col-md-3">
+          <button type="input" id="send" class="btn btn-lg btn-block btn-primary">{{ sito.buttondalej }} {% csrf_token %}</button>
+        </div>
+      </div><!--end row -->
+
+    </form>
   </div><!--end container-->
 
     <footer class="text-muted">
