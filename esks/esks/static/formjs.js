@@ -1,16 +1,5 @@
 $(document).ready(function(){
-
-        // Funkcja ukrywająca i pokazująca element oraz zmieniająca jego Wartość na 0
-        // w razie zmiany decyzji powodującej schowanie elementu, żeby nie było dziwnych akcji.
-        // Dla checkboxa to jedna funkcja bo śledzimy jeden element.
-        function checkbox(name) {
-          var x = document.getElementById(name);
-          if (x.style.display === "none") {
-            x.style.display = "block";
-          } else {
-            x.style.display = "none";
-          }
-        }
+        var unlock
         // Dla funkcji są w sumie cztery. Dwie dla elementów posiadających wartość.
         // Kwestia zerowania po zmianie zdania.
         function radioon(name) {
@@ -24,15 +13,27 @@ $(document).ready(function(){
             x.val("0");
         }
 
-        // I dwie dla niepisoadających wartości. Aby uniknąć błędów.
-        function novalon(name) {
-          var x = document.getElementById(name);
+        // Włącza widok zgody.
+        function checkboxon() {
+          var x = document.getElementById("#agreecheck");
             x.style.display = "block";
         }
 
-        function novaloff(name) {
-          var x = document.getElementById(name);
+        // Funkcja ukrywająca i pokazująca przycisk "send"
+        function togglesend() {
+          var x = document.getElementById("#send");
+          if (x.style.display === "none") {
+            x.style.display = "block";
+          } else {
             x.style.display = "none";
+          }
+        }
+
+        // Resetuje zgodę po zmianie zdania.
+        function checkboxoff() {
+           document.getElementById("#checkbox").checked = false;
+           document.getElementById("#send").style.display = "none";
+           document.getElementById("#agreecheck").style.display = "none";
         }
 
           //Na początku wszystkie "radia" mają wartość "0" czyli "nie",
@@ -43,11 +44,13 @@ $(document).ready(function(){
 
           // Ścieżka decyzyjna 1:
         $('#rad0A').click(function (e) {  //Student Tak
+          e.checkboxoff();
           e.togglevalue("#rad1");
-          var window.unlock === True
+          unlock === True
         });
 
         $('#rad1A').click(function (e) {  //Obywatelstwo Tak (ze switchem)
+          e.checkboxoff();
           if (unlock === True) {
           e.toggleelement("#agreecheck");
         }
@@ -58,60 +61,33 @@ $(document).ready(function(){
         });
         $('#rad1B').click(function (e) {  //Obywatelstwo Nie (ze switchem)
           if (unlock === True) {
-          e.novalon("#agreecheck"); // Włącz zgody końcowe
+            e.checkboxon(); // Włącz zgody końcowe
         }
           else {
+            e.checkboxoff();
             /////
           }
 
         });
 
         $('#rad0B').click(function (e) { //Student Nie
-          e.togglevalue("#rad2");
-          var window.unlock === False
+          e.checkboxoff();
+          e.radioon("#rad2");
+          unlock === False
         });
 
         $('#rad2A').click(function (e) { //Doktorant Tak
           e.novalon("#agreecheck"); // Włącz zgody końcowe
-          e.togglenull("#rad2")
+          e.radiooff("#rad2");
         });
 
         $('#rad2B').click(function (e) {
-          e.togglevalue("#rad2");
-          e.
+          e.checkboxoff();
+          e.radioon("#rad2");
         });
 
         $('#checkbox').click(function (e) {
-          e.checkbox("#send") // Po zaznaczeniu zgody udostępnij przycisk wyślij.
+          e.togglesend() // Po zaznaczeniu zgody udostępnij przycisk wyślij.
         });
 
-        //## Od tego momentu jest stary kod do poprawy.
-        //## Czy chcę, aby mi się wizualizowała akcja przed wysłaniem?
-
-        $('#generate').click(function(e) {
-          e.preventDefault()
-
-           $.ajax({
-                    url: "/lotto/generate/",
-                    type: "POST",
-                    data: {
-/*Numer gry*/         gamesel:$('input:radio[name=gamesel]:checked').val(),
-/*Data Od:*/          datefrom:$("#date1").val(),
-/*Data Do:*/          dateto:$("#date2").val(),
-/*Cała baza*/         dateall:$("#checkboxG1").val(),
-/*Skrajne numery*/    numhilow:$("#checkboxG2").val(),
-/*Pomiń losowania*/   norolls:$("#checkboxG3").val(),
-/*Skrajne numery*/    mostoften:$("#numinput").val(),
-/*Średnie wyników*/   avgscores:$("#checkboxG4").val(),
-/*Generuj wykres*/    graphgen:$("#checkboxG5").val(), /*Ten można by alternatywnie zrobic jako button z oddzielną funkcją*/
-                      csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
-                          },
-                    success:function(data){
-                //    var jdata = data['hilow','often',"avgsc","rolls"];
-                  //  var finaldata = jdata.join("\n\n");
-                    $('#textarea1').val(data['hilow'] + "\n\n" + data['often'] + "\n\n" + data['avgsc'] + "\n\n" + data['rolls']);
-                    console.log(data)
-                                      }
-                  });
-        });
 });
