@@ -43,48 +43,97 @@ $(document).ready(function(){
           // Tu się zaczyna drzewko zależności, które dynamicznie odblokowuje poszczególne elementy.
 
           // Ścieżka decyzyjna 1:
-        $('#rad0A').click(function (e) {  //Student Tak
+        $('#rad0A').click(function (e) { //Student Tak
           e.checkboxoff();
-          e.togglevalue("#rad1");
+          e.radioon("#rad1");
+          e.rafiooff("#rad2");
+          e.rafiooff("#rad3");
+          e.rafiooff("#rad4");
+          e.rafiooff("#rad5");
+          e.rafiooff("#rad6");
           unlock === True
         });
 
-        $('#rad1A').click(function (e) {  //Obywatelstwo Tak (ze switchem)
-          e.checkboxoff();
-          if (unlock === True) {
-          e.toggleelement("#agreecheck");
-        }
-          else {
-            ////
-          }
-
-        });
-        $('#rad1B').click(function (e) {  //Obywatelstwo Nie (ze switchem)
-          if (unlock === True) {
-            e.checkboxon(); // Włącz zgody końcowe
-        }
-          else {
-            e.checkboxoff();
-            /////
-          }
-
-        });
-
         $('#rad0B').click(function (e) { //Student Nie
-          e.checkboxoff();
+          e.checkboxoff(); // Zresetuj zgody
           e.radioon("#rad2");
+          e.radiooff("#rad1")
           unlock === False
         });
 
-        $('#rad2A').click(function (e) { //Doktorant Tak
-          e.novalon("#agreecheck"); // Włącz zgody końcowe
-          e.radiooff("#rad2");
+        $('#rad1A').click(function (e) { //Obywatelstwo Tak (switch)
+          if (unlock === True) {
+            e.chechboxon();
+            e.radiooff("#rad3");
+            e.radiooff("#rad4");
+        }
+          else {
+            e.checkboxoff();
+            e.radioon("#rad3");
+          }
         });
 
-        $('#rad2B').click(function (e) {
-          e.checkboxoff();
-          e.radioon("#rad2");
+        $('#rad1B').click(function (e) { //Obywatelstwo Nie (switch)
+          if (unlock === True) {
+            e.checkboxon(); // Włącz zgody końcowe
+            e.radiooff("#rad5");
+            e.radiooff("#rad6");
+        }
+          else {
+            e.checkboxoff(); // Zresetuj zgody
+            e.radioon("#rad5");
+          }
         });
+
+        $('#rad2A').click(function (e) { // Doktorant Tak
+          e.checkboxon(); // Włącz zgody końcowe
+          e.radiooff("#rad1");
+          e.radiooff("#rad3");
+          e.radiooff("#rad4");
+
+        });
+
+        $('#rad2B').click(function (e) { // Doktorant Nie
+          e.checkboxoff(); // Wyłącz zgody końcowe
+          e.radioon("#rad1");
+        });
+
+        $('#rad3A').click(function (e) { // Zamiar Tak
+          e.checkboxoff();
+          e.radioon("#rad4");
+        });
+
+        $('#rad3B').click(function (e) { // Zamiar Nie
+          e.checkboxon(); // Włącz zgody końcowe
+          e.radiooff("#rad4")
+        });
+
+        $('#rad4A').click(function (e) { // Pierwszy Stopień Tak
+          e.checkboxon(); // Włącz zgody końcowe
+        });
+
+        $('#rad4B').click(function (e) { // Pierwszy Stopień Nie
+          e.checkboxon(); // Włącz zgody końcowe
+        });
+
+        $('#rad5A').click(function (e) { // Pelnywymiar Tak
+          e.checkboxon(); // Włącz zgody końcowe
+          e.radiooff("rad6");
+        });
+
+        $('#rad5B').click(function (e) { // Pełnywymiar Nie
+          e.checkboxoff();
+          e.radioon("#rad6");
+        });
+
+        $('#rad6A').click(function (e) { // Erazmus Tak
+          e.checkboxon(); // Włącz zgody końcowe
+        });
+
+        $('#rad6B').click(function (e) { // Erazmus Nie
+          e.checkboxon(); // Włącz zgody końcowe
+        });
+
 
         $('#checkbox').click(function (e) {
           e.togglesend() // Po zaznaczeniu zgody udostępnij przycisk wyślij.
