@@ -1,30 +1,80 @@
 $(document).ready(function(){
-        $("#numinput").val("0");
-        $('input[type="checkbox"]').val("0");
-        $('input[type="checkbox"]').click(function () {
-          $(this).prop("checked") ? $(this).val("1") : $(this).val("0")
+
+        // Funkcja ukrywająca i pokazująca element oraz zmieniająca jego Wartość na 0
+        // w razie zmiany decyzji powodującej schowanie elementu, żeby nie było dziwnych akcji.
+        function togglevalue(name) {
+          var x = document.getElementById(name);
+          if (x.style.display === "none") {
+            x.style.display = "block";
+          } else {
+            x.style.display = "none";
+          }
+          if (x.style.display === "none") {
+            x.val("0");
+          }
+        }
+        // Funkcja po prostu ukrywa i pokazuje element.
+        // Nie zmienia wartości, żeby nie było niepotrzebnego błędu.
+        function toggleelement(name) {
+          var x = document.getElementById(name);
+          if (x.style.display === "none") {
+            x.style.display = "block";
+          } else {
+            x.style.display = "none";
+          }
+        }
+          //Na początku wszystkie "radia" mają wartość "0" czyli "nie",
+          //aby można było wysłać formularz w różnym formacie.
+        $('input[type="radio"]').val("0");
+
+          // Tu się zaczyna drzewko zależności, które dynamicznie odblokowuje poszczególne elementy.
+
+          // Ścieżka decyzyjna 1:
+        $('#rad0A').click(function (e) {  //Student
+          e.togglevalue("#rad1");
+          var unlock === True
         });
 
-            //Funkcja #play odwołuje się do randomize1.py, wywołuje wynik gry losowej z przycisku "zagraj",
-            // i zwraca dane do textarea2.
-        $('#play').click(function(e) {
-          e.preventDefault()
-           $.ajax({
-                    url: "/lotto/roll/",
-                    type: "POST",
-                    dataType: "json",
-                    data: {
-                      gamesel:$('input:radio[name=gamesel]:checked').val(),
-                      csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+        $('#rad1A').click(function (e) {  //Obywatelstwo
+          if (unlock === True) {
+          e.toggleelement("#agreecheck");
+        }
+          else {
+            ////
+          }
 
-                          },
-                    success:function(data){
-                    $('#textarea2').val(data['number']);
-                                      }
-                  });
         });
-            //Funkcja #generate odwołuje się do randomize.py, obsługuje większą częśc
-            //programu po kliknięciu w "generuj" - przesyła dane do "textarea".
+        $('#rad1B').click(function (e) {  //Obywatelstwo
+          if (unlock === True) {
+          e.toggleelement("#agreecheck");
+        }
+          else {
+            /////
+          }
+
+        });
+
+        $('#rad0B').click(function (e) {
+          e.togglevalue("#rad2");
+          var unlock === False
+        });
+
+        $('#rad2AB').click(function (e) {
+          e.togglevalue("#rad2");
+        });
+
+        $('#rad2B').click(function (e) {
+          e.togglevalue("#rad2");
+          var unlock === False
+        });
+
+        $('#checkbox').click(function (e) {
+          e.toggleelement("#send")
+        });
+
+        //## Od tego momentu jest stary kod do poprawy.
+        //## Czy chcę, aby mi się wizualizowała akcja przed wysłaniem?
+
         $('#generate').click(function(e) {
           e.preventDefault()
 
