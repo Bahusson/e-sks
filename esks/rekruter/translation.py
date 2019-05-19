@@ -2,7 +2,7 @@ from modeltranslation.translator import translator, TranslationOptions
 from rekruter.models import Sito
 
 class SitoTranslate(TranslationOptions):
-    fields = ('intro', 'oswiadczenie', 'obywatelstwo', 'student', 'doktorant', 'zamiar', 'zadnezpow', 'pelnywym', 'erasmus', 'bilateral', 'buttondalej')
+    fields = ('intro', 'yes', 'no', 'oswiadczenie', 'obywatelstwo', 'student', 'doktorant', 'zamiar', 'zamiar', 'pierwszegosto', 'pelnywym', 'erasmus', 'buttondalej')
 
 translator.register(Sito, SitoTranslate)
 
