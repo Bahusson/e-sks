@@ -2,27 +2,39 @@ $(document).ready(function(){
 
         // Funkcja ukrywająca i pokazująca element oraz zmieniająca jego Wartość na 0
         // w razie zmiany decyzji powodującej schowanie elementu, żeby nie było dziwnych akcji.
-        function togglevalue(name) {
+        // Dla checkboxa to jedna funkcja bo śledzimy jeden element.
+        function checkbox(name) {
           var x = document.getElementById(name);
           if (x.style.display === "none") {
             x.style.display = "block";
           } else {
             x.style.display = "none";
           }
-          if (x.style.display === "none") {
+        }
+        // Dla funkcji są w sumie cztery. Dwie dla elementów posiadających wartość.
+        // Kwestia zerowania po zmianie zdania.
+        function radioon(name) {
+          var x = document.getElementById(name);
+            x.style.display = "block";
+            x.val("1");
+        }
+        function radiooff(name) {
+          var x = document.getElementById(name);
+            x.style.display = "none";
             x.val("0");
-          }
         }
-        // Funkcja po prostu ukrywa i pokazuje element.
-        // Nie zmienia wartości, żeby nie było niepotrzebnego błędu.
-        function toggleelement(name) {
+
+        // I dwie dla niepisoadających wartości. Aby uniknąć błędów.
+        function novalon(name) {
           var x = document.getElementById(name);
-          if (x.style.display === "none") {
             x.style.display = "block";
-          } else {
-            x.style.display = "none";
-          }
         }
+
+        function novaloff(name) {
+          var x = document.getElementById(name);
+            x.style.display = "none";
+        }
+
           //Na początku wszystkie "radia" mają wartość "0" czyli "nie",
           //aby można było wysłać formularz w różnym formacie.
         $('input[type="radio"]').val("0");
@@ -30,12 +42,12 @@ $(document).ready(function(){
           // Tu się zaczyna drzewko zależności, które dynamicznie odblokowuje poszczególne elementy.
 
           // Ścieżka decyzyjna 1:
-        $('#rad0A').click(function (e) {  //Student
+        $('#rad0A').click(function (e) {  //Student Tak
           e.togglevalue("#rad1");
-          var unlock === True
+          var window.unlock === True
         });
 
-        $('#rad1A').click(function (e) {  //Obywatelstwo
+        $('#rad1A').click(function (e) {  //Obywatelstwo Tak (ze switchem)
           if (unlock === True) {
           e.toggleelement("#agreecheck");
         }
@@ -44,9 +56,9 @@ $(document).ready(function(){
           }
 
         });
-        $('#rad1B').click(function (e) {  //Obywatelstwo
+        $('#rad1B').click(function (e) {  //Obywatelstwo Nie (ze switchem)
           if (unlock === True) {
-          e.toggleelement("#agreecheck");
+          e.novalon("#agreecheck"); // Włącz zgody końcowe
         }
           else {
             /////
@@ -54,22 +66,23 @@ $(document).ready(function(){
 
         });
 
-        $('#rad0B').click(function (e) {
+        $('#rad0B').click(function (e) { //Student Nie
           e.togglevalue("#rad2");
-          var unlock === False
+          var window.unlock === False
         });
 
-        $('#rad2AB').click(function (e) {
-          e.togglevalue("#rad2");
+        $('#rad2A').click(function (e) { //Doktorant Tak
+          e.novalon("#agreecheck"); // Włącz zgody końcowe
+          e.togglenull("#rad2")
         });
 
         $('#rad2B').click(function (e) {
           e.togglevalue("#rad2");
-          var unlock === False
+          e.
         });
 
         $('#checkbox').click(function (e) {
-          e.toggleelement("#send")
+          e.checkbox("#send") // Po zaznaczeniu zgody udostępnij przycisk wyślij.
         });
 
         //## Od tego momentu jest stary kod do poprawy.
