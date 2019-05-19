@@ -1,10 +1,36 @@
   *
 
-  .formchecker {
-      display: none
+  #rad1 {
+      display: none;
   }
 
+  #rad2 {
+      display: none;
+  }
 
+  #rad3 {
+      display: none;
+  }
+
+  #rad4 {
+      display: none;
+  }
+
+  #rad5 {
+      display: none;
+  }
+
+  #rad6 {
+      display: none;
+  }
+
+  #agreecheck {
+      display: none;
+  }
+
+  #send {
+      display: none;    
+  }
 
   .contain {
       display: block;
