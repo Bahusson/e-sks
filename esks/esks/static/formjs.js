@@ -7,6 +7,7 @@ $(document).ready(function(){
             x.style.display = "block";
             x.val("1");
         }
+
         function radiooff(name) {
           var x = document.getElementById(name);
             x.style.display = "none";
@@ -24,7 +25,8 @@ $(document).ready(function(){
           var x = document.getElementById("#send");
           if (x.style.display === "none") {
             x.style.display = "block";
-          } else {
+          }
+          else {
             x.style.display = "none";
           }
         }
@@ -44,7 +46,7 @@ $(document).ready(function(){
 
           // Ścieżka decyzyjna 1:
         $('#rad0A').click(function (e) { //Student Tak
-          e.checkboxoff();
+          e.checkboxoff()
           e.radioon("#rad1");
           e.rafiooff("#rad2");
           e.rafiooff("#rad3");
@@ -57,7 +59,7 @@ $(document).ready(function(){
         $('#rad0B').click(function (e) { //Student Nie
           e.checkboxoff(); // Zresetuj zgody
           e.radioon("#rad2");
-          e.radiooff("#rad1")
+          e.radiooff("#rad1");
           unlock === False
         });
 
@@ -90,7 +92,6 @@ $(document).ready(function(){
           e.radiooff("#rad1");
           e.radiooff("#rad3");
           e.radiooff("#rad4");
-
         });
 
         $('#rad2B').click(function (e) { // Doktorant Nie
@@ -105,7 +106,7 @@ $(document).ready(function(){
 
         $('#rad3B').click(function (e) { // Zamiar Nie
           e.checkboxon(); // Włącz zgody końcowe
-          e.radiooff("#rad4")
+          e.radiooff("#rad4");
         });
 
         $('#rad4A').click(function (e) { // Pierwszy Stopień Tak
@@ -136,7 +137,8 @@ $(document).ready(function(){
 
 
         $('#checkbox').click(function (e) {
-          e.togglesend() // Po zaznaczeniu zgody udostępnij przycisk wyślij.
+          e.togglesend(); // Po zaznaczeniu zgody udostępnij przycisk wyślij.
         });
 
+        console.log()
 });
