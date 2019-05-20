@@ -1,4 +1,4 @@
-<!-- formularz inicjujący - tzw. "sito" wyciąga od usera na wejściu info z jakiej jest "frakcji." -->
+<!-- formularz inicjujący - tzw. "sitos" wyciąga od usera na wejściu info z jakiej jest "frakcji." -->
 <!doctype html>
 <html lang="en">
 {% load staticfiles %}
@@ -7,30 +7,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Moje Programy</title>
+  <title>{{ sitos.intro }}</title>
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <!-- Custom styles for this template-->
-  <link href="{% static 'pybrun.css' %}" rel="stylesheet">
+  <link href="{% static 'formcss.css' %}" rel="stylesheet">
 </head>
 <body>
 
   <div class="container">
-    <p>{{ sito.intro }}</p>
+    <p>{{ sitos.intro }}</p>
   </div>
 
   <div class="container"><!--Start container-->
       <div class="py-3 row"><!--start radio selection-->
-        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sito.student }}</h1><!--Czy jesteś studentem Politechniki?-->
+        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sitos.student }}</h1><!--Czy jesteś studentem Politechniki?-->
         <br />
         <div class="col-md-3">
-          <label class="contain">{{ sito.yes }}
+          <label class="contain">{{ sitos.yes }}
             <input id="rad0A" type="radio" class="radio" name="i1sel" Value="1">
             <span class="checkmark"></span>
           </label>
         </div>
         <div class="col-md-3">
-          <label class="contain">{{ sito.no }}
+          <label class="contain">{{ sitos.no }}
             <input id="rad0B" type="radio" class="radio" name="i1sel" Value="0">
             <span class="checkmark"></span>
           </label>
@@ -38,16 +38,16 @@
       </div><!--end radio-->
 
       <div id="rad1" class="py-3 row"><!--start radio selection-->
-        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sito.obywatelstwo }}</h1><!--Czy masz polskie obywatelstwo?-->
+        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sitos.obywatelstwo }}</h1><!--Czy masz polskie obywatelstwo?-->
         <br />
         <div class="col-md-3">
-          <label class="contain">{{ sito.yes }}
+          <label class="contain">{{ sitos.yes }}
             <input id="rad1A" type="radio" class="radio" name="i2sel" Value="1">
             <span class="checkmark"></span>
           </label>
         </div>
         <div class="col-md-3">
-          <label class="contain">{{ sito.no }}
+          <label class="contain">{{ sitos.no }}
             <input id="rad1B" type="radio" class="radio" name="i2sel" Value="0">
             <span class="checkmark"></span>
           </label>
@@ -56,16 +56,16 @@
 
 
       <div id="rad2" class="py-3 row"><!--start radio selection-->
-        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sito.doktorant }}</h1><!--Czy jesteś na studiach doktorskich?-->
+        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sitos.doktorant }}</h1><!--Czy jesteś na studiach doktorskich?-->
         <br />
         <div class="col-md-3">
-          <label class="contain">{{ sito.yes }}
+          <label class="contain">{{ sitos.yes }}
             <input id="rad2A" type="radio" class="radio" name="i3sel" Value="1">
             <span class="checkmark"></span>
           </label>
         </div>
         <div class="col-md-3">
-          <label class="contain">{{ sito.no }}
+          <label class="contain">{{ sitos.no }}
             <input id="rad2B" type="radio" class="radio" name="i3sel" Value="0">
             <span class="checkmark"></span>
           </label>
@@ -73,16 +73,16 @@
       </div><!--end radio-->
 
       <div id="rad3" class="py-3 row"><!--start radio selection-->
-        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sito.zamiar }}</h1><!--Czy zamierzasz podjąć studia na Politechnice?-->
+        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sitos.zamiar }}</h1><!--Czy zamierzasz podjąć studia na Politechnice?-->
         <br />
         <div class="col-md-3">
-          <label class="contain">{{ sito.yes }}
+          <label class="contain">{{ sitos.yes }}
             <input id="rad3A" type="radio" class="radio" name="i4sel" Value="1">
             <span class="checkmark"></span>
           </label>
         </div>
         <div class="col-md-3">
-          <label class="contain">{{ sito.no }}
+          <label class="contain">{{ sitos.no }}
             <input id="rad3B" type="radio" class="radio" name="i4sel" Value="0">
             <span class="checkmark"></span>
           </label>
@@ -91,16 +91,16 @@
 
 
       <div id="rad4" class="py-3 row"><!--start radio selection-->
-        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sito.pierwszegosto }}</h1><!--Studia pierwszego stopnia??-->
+        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sitos.pierwszegosto }}</h1><!--Studia pierwszego stopnia??-->
         <br />
         <div class="col-md-3">
-          <label class="contain">{{ sito.yes }}
+          <label class="contain">{{ sitos.yes }}
             <input id="rad4A" type="radio" class="radio" name="i5sel" Value="1">
             <span class="checkmark"></span>
           </label>
         </div>
         <div class="col-md-3">
-          <label class="contain">{{ sito.no }}
+          <label class="contain">{{ sitos.no }}
             <input id="rad4B" type="radio" class="radio" name="i5sel" Value="0">
             <span class="checkmark"></span>
           </label>
@@ -109,16 +109,16 @@
 
 
       <div id="rad5" class="py-3 row"><!--start radio selection-->
-        <h1 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sito.pelnywym }}</h1><!--Czy zamierzasz studiować dziennie?-->
+        <h1 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sitos.pelnywym }}</h1><!--Czy zamierzasz studiować dziennie?-->
         <br />
         <div class="col-md-3">
-          <label class="contain">{{ sito.yes }}
+          <label class="contain">{{ sitos.yes }}
             <input id="rad5A" type="radio" class="radio" name="i6sel" Value="1">
             <span class="checkmark"></span>
           </label>
         </div>
         <div class="col-md-3">
-          <label class="contain">{{ sito.no }}
+          <label class="contain">{{ sitos.no }}
             <input id="rad5B" type="radio" class="radio" name="i6sel" Value="0">
             <span class="checkmark"></span>
           </label>
@@ -127,16 +127,16 @@
 
 
       <div id="rad6" class="py-3 row"><!--start radio selection-->
-        <h1 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sito.erazmus }}</h1><!--Czy jesteś studentem Erazmusa?-->
+        <h1 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sitos.erazmus }}</h1><!--Czy jesteś studentem Erazmusa?-->
         <br />
         <div class="col-md-3">
-          <label class="contain">{{ sito.yes }}
+          <label class="contain">{{ sitos.yes }}
             <input id="rad6A" type="radio" class="radio" name="i7sel" Value="1">
             <span class="checkmark"></span>
           </label>
         </div>
         <div class="col-md-3">
-          <label class="contain">{{ sito.no }}
+          <label class="contain">{{ sitos.no }}
             <input id="rad6B" type="radio" class="radio" name="i7sel" Value="0">
             <span class="checkmark"></span>
           </label>
@@ -145,14 +145,14 @@
 
       <div id="agreecheck" class="py-3 row"><!--Oświadczenie, że powyższe zgadzają się ze stanem faktycznym. Bez zaznaczenia nie przejdzie dalej tylko odświeży stronę.-->
         <div class="col-md-6">
-          <p class="contain">{{ sito.oswiadczenie }}</p>
+          <p class="contain">{{ sitos.oswiadczenie }}</p>
         </div>
         <div class="col-md-3">
           <input name="checkbox" id="checkbox" class="css-checkbox" type="checkbox">
           <label for="checkbox" class="css-label"></label>
         </div>
         <div class="col-md-3">
-          <button type="input" id="send" class="btn btn-lg btn-block btn-primary">{{ sito.buttondalej }} {% csrf_token %}</button>
+          <button type="input" id="send" class="btn btn-lg btn-block btn-primary">{{ sitos.buttondalej }} {% csrf_token %}</button>
         </div>
       </div><!--end row -->
 
@@ -173,6 +173,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <!--My Javascript-->
-    <script src="{% static "myjs.js" %}"></script>
+    <script src="{% static "formjs.js" %}"></script>
   </body>
   </html>

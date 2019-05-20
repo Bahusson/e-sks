@@ -5,5 +5,6 @@ from .models import Sito
 
 # Create your views here.
 def initial(request):
-    sito = Sito.objects
-    return render(request, 'initial.html', {'sito': sito})
+    locations = list(Sito.objects.all())
+    sitos = locations[0]
+    return render(request, 'initial.html', {'sitos': sitos})
