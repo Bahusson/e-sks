@@ -1,6 +1,6 @@
 var unlock
-// Dla funkcji są w sumie cztery. Dwie dla elementów posiadających wartość.
-// Kwestia zerowania po zmianie zdania.
+
+//Przełącznik elementów typu radiowego.
 
 var radio = function(type)
 {
@@ -18,7 +18,8 @@ var radio = function(type)
     };
 };
 
-
+var radioon = radio("on");
+var radiooff = radio("off");
 /*function radioon(name)
 {
   var x = document.getElementById(name);
@@ -36,14 +37,14 @@ function radiooff(name)
 // Włącza widok zgody.
 function checkboxon()
 {
-  var x = document.getElementById("#agreecheck");
+  var x = document.getElementById("agreecheck");
     x.style.display = "block";
 }
 
 // Funkcja ukrywająca i pokazująca przycisk "send"
 function togglesend()
 {
-  var x = document.getElementById("#send");
+  var x = document.getElementById("send");
   if (x.style.display === "none") {
     x.style.display = "block";
   }
@@ -55,32 +56,51 @@ function togglesend()
 // Resetuje zgodę po zmianie zdania.
 function checkboxoff()
 {
-   document.getElementById("#checkbox").checked = false;
-   document.getElementById("#send").style.display = "none";
-   document.getElementById("#agreecheck").style.display = "none";
+   document.getElementById("checkbox").checked = false;
+   document.getElementById("send").style.display = "none";
+   document.getElementById("agreecheck").style.display = "none";
 }
 
 $(document).ready(function()
 {
   $('#rad0A').click(function()
  {
-    var radioon = radio("on");
+    checkboxoff();
     radioon("rad1");
-  /*  radiooff("#rad2");
-    radiooff("#rad3");
-    radiooff("#rad4");
-    radiooff("#rad5");
-    radiooff("#rad6");
-    unlock === True */
+    radiooff("rad2");
+    radiooff("rad3");
+    radiooff("rad4");
+    radiooff("rad5");
+    radiooff("rad6");
+    unlock = true;
   });
 
   $('#rad0B').click(function()
  {
-   var radiooff = radio("off");
+   checkboxoff();
    radiooff("rad1");
-   /* radioon("#rad2");
-   radiooff();
-   unlock === False */
+   radioon("rad2");
+   unlock = false;
+  });
+
+  $('#rad1A').click(function()
+ {
+   if (unlock === true)
+   {
+     checkboxon();
+     radiooff("rad3");
+     radiooff("rad4");
+   }
+   else
+   {
+     checkboxoff();
+     radioon("rad3");
+   }
+  });
+
+  $('#checkbox').click(function()
+  {
+    togglesend(); // Po zaznaczeniu zgody udostępnij przycisk wyślij.
   });
 
 });
@@ -114,7 +134,7 @@ $(document).ready(function()
         });
 
         $('#rad1A').click(function() { //Obywatelstwo Tak (switch)
-          if (unlock === True) {
+          if (unlock === true) {
             chechboxon();
             radiooff("#rad3");
             radiooff("#rad4");
