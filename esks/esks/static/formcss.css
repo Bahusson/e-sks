@@ -1,5 +1,9 @@
   *
 
+  #rad0 {
+    display: block;
+  }
+
   #rad1 {
       display: none;
   }
@@ -29,7 +33,7 @@
   }
 
   #send {
-      display: none;    
+      display: none;
   }
 
   .contain {

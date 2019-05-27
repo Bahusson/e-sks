@@ -61,9 +61,11 @@ function checkboxoff()
    document.getElementById("agreecheck").style.display = "none";
 }
 
+// Tutaj zaczyna się programowanie przycisków
+
 $(document).ready(function()
 {
-  $('#rad0A').click(function()
+  $('#rad0A').click(function() // Student Tak
  {
     checkboxoff();
     radioon("rad1");
@@ -75,7 +77,7 @@ $(document).ready(function()
     unlock = true;
   });
 
-  $('#rad0B').click(function()
+  $('#rad0B').click(function() // Student Nie
  {
    checkboxoff();
    radiooff("rad1");
@@ -83,7 +85,7 @@ $(document).ready(function()
    unlock = false;
   });
 
-  $('#rad1A').click(function()
+  $('#rad1A').click(function() // Obywatelstwo Tak (switch)
  {
    if (unlock === true)
    {
@@ -95,13 +97,91 @@ $(document).ready(function()
    {
      checkboxoff();
      radioon("rad3");
+     radiooff("rad5");
+     radiooff("rad6");
    }
   });
 
-  $('#checkbox').click(function()
-  {
-    togglesend(); // Po zaznaczeniu zgody udostępnij przycisk wyślij.
+  $('#rad1B').click(function() // Obywatelstwo Nie (switch)
+ {
+   if (unlock === true)
+   {
+     checkboxon();
+     radiooff("rad5");
+     radiooff("rad6");
+   }
+   else
+   {
+     checkboxoff();
+     radioon("rad5");
+     radiooff("rad3");
+   }
   });
+
+  $('#rad2A').click(function() // Doktorant Tak
+ {
+   checkboxon();
+   radiooff("rad1");
+   radiooff("rad3");
+   radiooff("rad4");
+  });
+
+  $('#rad2B').click(function() // Doktorant Nie
+ {
+   checkboxoff();
+   radioon("rad1");
+  });
+
+  $('#rad3A').click(function() // Zamiar Tak
+ {
+   checkboxoff();
+   radioon("rad4");
+  });
+
+  $('#rad3B').click(function() // Zamiar Nie
+ {
+   checkboxon();
+   radiooff("rad4");
+  });
+
+  $('#rad4A').click(function() // Pierwszy stopień Tak
+ {
+   checkboxon();
+  });
+
+  $('#rad4B').click(function() // Pierwszy stopień Nie
+ {
+   checkboxon();
+  });
+
+  $('#rad5A').click(function() // Pierwszy stopień Nie
+ {
+   checkboxon();
+   radiooff("rad6");
+  });
+
+  $('#rad5B').click(function() // Pierwszy stopień Nie
+ {
+   checkboxoff();
+   radioon("rad6");
+  });
+
+  $('#rad6A').click(function() // Erazmus Tak
+ {
+   checkboxon();
+  });
+
+  $('#rad6B').click(function() // Erazmus Nie
+ {
+   checkboxon();
+  });
+
+  $('#checkbox').click(function() // Po zaznaczeniu zgody udostępnij przycisk wyślij.
+  {
+    togglesend();
+  });
+
+
 
 });
 
@@ -180,7 +260,7 @@ $(document).ready(function()
         });
 
         $('#rad4A').click(function() { // Pierwszy Stopień Tak
-          chenameckboxon(); // Włącz zgody końcowe
+          checkboxon(); // Włącz zgody końcowe
         });
 
         $('#rad4B').click(function() { // Pierwszy Stopień Nie

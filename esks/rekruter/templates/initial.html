@@ -16,47 +16,31 @@
 <body>
 
   <div class="container">
-    <p>{{ sitos.intro }}</p>
+    <h1 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sitos.intro }}</h1>
+    <br />
   </div>
 
   <div class="container"><!--Start container-->
-      <div class="py-3 row"><!--start radio selection-->
-        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sitos.student }}</h1><!--Czy jesteś studentem Politechniki?-->
+
+      <div id="rad0" class="py-3 row"><!--start radio selection-->
+        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sitos.student }}</h3><!--Czy jesteś na studiach doktorskich?-->
         <br />
         <div class="col-md-3">
           <label class="contain">{{ sitos.yes }}
-            <input id="rad0A" type="radio" class="radio" name="i1sel" Value="1">
+            <input id="rad0A" type="radio" class="radio" name="i3sel" Value="1">
             <span class="checkmark"></span>
           </label>
         </div>
         <div class="col-md-3">
           <label class="contain">{{ sitos.no }}
-            <input id="rad0B" type="radio" class="radio" name="i1sel" Value="0">
+            <input id="rad0B" type="radio" class="radio" name="i3sel" Value="0">
             <span class="checkmark"></span>
           </label>
         </div>
       </div><!--end radio-->
-
-      <div id="rad1" class="py-3 row"><!--start radio selection-->
-        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sitos.obywatelstwo }}</h1><!--Czy masz polskie obywatelstwo?-->
-        <br />
-        <div class="col-md-3">
-          <label class="contain">{{ sitos.yes }}
-            <input id="rad1A" type="radio" class="radio" name="i2sel" Value="1">
-            <span class="checkmark"></span>
-          </label>
-        </div>
-        <div class="col-md-3">
-          <label class="contain">{{ sitos.no }}
-            <input id="rad1B" type="radio" class="radio" name="i2sel" Value="0">
-            <span class="checkmark"></span>
-          </label>
-        </div>
-      </div><!--end radio-->
-
 
       <div id="rad2" class="py-3 row"><!--start radio selection-->
-        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sitos.doktorant }}</h1><!--Czy jesteś na studiach doktorskich?-->
+        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sitos.doktorant }}</h3><!--Czy jesteś na studiach doktorskich?-->
         <br />
         <div class="col-md-3">
           <label class="contain">{{ sitos.yes }}
@@ -72,8 +56,25 @@
         </div>
       </div><!--end radio-->
 
+      <div id="rad1" class="py-3 row"><!--start radio selection-->
+        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sitos.obywatelstwo }}</h3><!--Czy masz polskie obywatelstwo?-->
+        <br />
+        <div class="col-md-3">
+          <label class="contain">{{ sitos.yes }}
+            <input id="rad1A" type="radio" class="radio" name="i2sel" Value="1">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <div class="col-md-3">
+          <label class="contain">{{ sitos.no }}
+            <input id="rad1B" type="radio" class="radio" name="i2sel" Value="0">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div><!--end radio-->
+
       <div id="rad3" class="py-3 row"><!--start radio selection-->
-        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sitos.zamiar }}</h1><!--Czy zamierzasz podjąć studia na Politechnice?-->
+        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sitos.zamiar }}</h3><!--Czy zamierzasz podjąć studia na Politechnice?-->
         <br />
         <div class="col-md-3">
           <label class="contain">{{ sitos.yes }}
@@ -91,7 +92,7 @@
 
 
       <div id="rad4" class="py-3 row"><!--start radio selection-->
-        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sitos.pierwszegosto }}</h1><!--Studia pierwszego stopnia??-->
+        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sitos.pierwszegosto }}</h3><!--Studia pierwszego stopnia??-->
         <br />
         <div class="col-md-3">
           <label class="contain">{{ sitos.yes }}
@@ -109,7 +110,7 @@
 
 
       <div id="rad5" class="py-3 row"><!--start radio selection-->
-        <h1 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sitos.pelnywym }}</h1><!--Czy zamierzasz studiować dziennie?-->
+        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sitos.pelnywym }}</h3><!--Czy zamierzasz studiować dziennie?-->
         <br />
         <div class="col-md-3">
           <label class="contain">{{ sitos.yes }}
@@ -127,7 +128,7 @@
 
 
       <div id="rad6" class="py-3 row"><!--start radio selection-->
-        <h1 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sitos.erazmus }}</h1><!--Czy jesteś studentem Erazmusa?-->
+        <h3 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sitos.erasmus }}</h3><!--Czy jesteś studentem Erazmusa?-->
         <br />
         <div class="col-md-3">
           <label class="contain">{{ sitos.yes }}
