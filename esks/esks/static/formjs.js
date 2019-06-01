@@ -181,8 +181,6 @@ $(document).ready(function()
     togglesend();
   });
 
-
-
 });
 
 
