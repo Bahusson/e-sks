@@ -130,7 +130,12 @@ LANGUAGES = (
     ('hi', gettext('Hindi')),
 )
 
-MODELTRANSLATION_DEFAULT_LANGUAGE = 'pl'
+LANGUAGE_COOKIE_AGE = 31449600  # Około rok ważności ustawień między logowaniami.
+# Ustaw None jeśli chcesz, żeby się zerowały po każdym wyłączeniu przeglądarki.
+
+LANGUAGE_COOKIE_NAME = 'esks_language' # Nazwa ciacha językowego, żeby się nie myliło.
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'pl' # Tu możesz zmienić default language.
 
 MODELTRANSLATION_LANGUAGES = ('pl', 'en', 'de', 'fr', 'ru', 'uk', 'es', 'hi')
 
