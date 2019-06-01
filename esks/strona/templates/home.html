@@ -25,7 +25,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
+          <ul id="level_one" class="navbar-nav ml-auto">
             <li class="nav-item">
               <a class="nav-link active" href="{% url 'home' %}">{{ items.mainpage }}</a>
             </li>
@@ -42,7 +42,12 @@
               <a class="nav-link" href="{% url 'login' %}">{{ items.logout }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'login' %}"><img src="{{items.lang_flag.url }}" height=20 /></a>
+              <img src="{{items.lang_flag.url }}" height=20 />
+              <ul class="level_two">
+                {% for lang in langs.all %}
+                  <li><a href="#"><img id="{{ lang.lang_id }}" src="{{ lang.lang_flag.url }}" height=20 /></a></li>
+                {% endfor %}
+              </ul>
             </li>
           </ul>
         </div>

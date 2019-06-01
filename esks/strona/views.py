@@ -12,10 +12,11 @@ def login(request):
 def home(request):
     locations = list(Pageitem.objects.all())
     items = locations[0]
+    langs = Pageitem.objects
     blogs = Blog.objects
     infos = Info.objects
     files = Fileserve.objects
-    return render(request, 'home.html', {'items': items, 'blogs': blogs, 'infos': infos, 'files': files})
+    return render(request, 'home.html', {'items': items, 'langs': langs, 'blogs': blogs, 'infos': infos, 'files': files})
 
 def blog(request, blog_id):
     locations = list(Pageitem.objects.all())
