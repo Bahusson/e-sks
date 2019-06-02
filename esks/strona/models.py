@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Pageitem(models.Model):
-    lang_id = models.CharField(max_length=10, blank=True, null=True) #id Języka.
+#    lang_id = models.CharField(max_length=10, blank=True, null=True) #id Języka.
     lang_flag = models.ImageField(upload_to='images') #Mały obrazek języka
     headtitle = models.CharField(max_length=200) #Nagłówek strony w tym języku
     mainpage = models.CharField(max_length=200) #Strona główna w tym języku
