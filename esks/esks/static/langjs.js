@@ -2,7 +2,6 @@
 function setCookie(cvalue)
 {
   document.cookie = "esks_language = " + cvalue;
-  location.reload();
 }
 
 $(document).ready(function()
