@@ -42,10 +42,14 @@
               <a class="nav-link" href="{% url 'login' %}">{{ items.logout }}</a>
             </li>
             <li class="nav-item">
-              <img src="{{items.lang_flag.url }}" height=20 />
+              <img src="{{ items.lang_flag.url }}" height=20 />
               <ul class="level_two">
-                {% for lang in langs.all %}
-                  <li><a href="#"><img id="{{ lang.lang_id }}" src="{{ lang.lang_flag.url }}" height=20 /></a></li>
+              <!--  {% for key, value in choices.items %}
+                  <li>{{key}} - {{value}}</li>
+                {% endfor %}-->
+
+                {% for lang_id, lang_flag in langs %}
+                  <li><img id="{{ lang_id }}" src="/media/{{ lang_flag }}" height=20 /></li>
                 {% endfor %}
               </ul>
             </li>

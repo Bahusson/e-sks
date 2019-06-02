@@ -2,46 +2,47 @@
 function setCookie(cvalue)
 {
   document.cookie = "esks_language = " + cvalue;
+  location.reload();
 }
 
 $(document).ready(function()
 {
-  $('#pl').click(function() // Ustaw Język Polski
+  $('#lang_flag_pl').click(function() // Ustaw Język Polski
  {
    setCookie("pl")
   });
 
-  $('#en').click(function() // Ustaw Język Angielski
+  $('#lang_flag_en').click(function() // Ustaw Język Angielski
  {
     setCookie("en")
   });
 
-  $('#de').click(function() // Ustaw Język Niemiecki
+  $('#lang_flag_de').click(function() // Ustaw Język Niemiecki
  {
    setCookie("de")
   });
 
-  $('#fr').click(function() // Ustaw Język Francuski
+  $('#lang_flag_fr').click(function() // Ustaw Język Francuski
  {
    setCookie("fr")
   });
 
-  $('#ru').click(function() // Ustaw Język Rosyjski
+  $('#lang_flag_ru').click(function() // Ustaw Język Rosyjski
  {
     setCookie("ru")
   });
 
-  $('#uk').click(function() // Ustaw Język Ukraiński
+  $('#lang_flag_uk').click(function() // Ustaw Język Ukraiński
  {
    setCookie("uk")
   });
 
-  $('#es').click(function() // Ustaw Język Hiszpański
+  $('#lang_flag_es').click(function() // Ustaw Język Hiszpański
  {
     setCookie("es")
   });
 
-  $('#hi').click(function() // Ustaw Język Hindi
+  $('#lang_flag_hi').click(function() // Ustaw Język Hindi
  {
    setCookie("hi")
   });
