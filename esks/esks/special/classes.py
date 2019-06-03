@@ -43,12 +43,12 @@ class PageLoad(object):
         if info_id == None:
             pass
         else:
-            info = G404(I, pk=nf)
+            self.info = G404(I, pk=info_id)
 
         if blog_id == None:
             pass
         else:
-            blog = G404(B, pk=bl)
+            self.blog = G404(B, pk=blog_id)
 
     def items(self):
         return self.items

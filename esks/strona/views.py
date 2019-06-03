@@ -18,9 +18,9 @@ def home(request):
     return render(request, 'home.html', {'items': pl.items, 'langs': pl.langs, 'blogs': pl.blogs, 'infos': pl.infos, 'files': pl.files})
 
 def blog(request, blog_id):
-    pl = PageLoad(P,L,F,I,B,G404,info_id=None,blog_id=None)
+    pl = PageLoad(P,L,F,I,B,G404,None,blog_id)
     return render(request, 'blog.html', {'items': pl.items, 'langs': pl.langs, 'blog': pl.blog, 'infos': pl.infos, 'files': pl.files})
 
 def info(request, info_id):
-    pl = PageLoad(P,L,F,I,B,G404,info_id=None,blog_id=None)
+    pl = PageLoad(P,L,F,I,B,G404,info_id,None)
     return render(request, 'info.html', {'items': pl.items, 'langs': pl.langs, 'blog': pl.blog, 'info': pl.info, 'infos': pl.infos, 'files': pl.files})
