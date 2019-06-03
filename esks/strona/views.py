@@ -8,6 +8,10 @@ from .models import Fileserve
 from esks.settings import LANGUAGES
 
 def langmenu():
+    ''' Zwraca tyle języków ile mamy zainstalowane
+    w ustawieniach w zakładce LANGUAGES w formacie naprzemiennym
+    pasującym do wzornika z dwoma wyjściowymi
+    (ID_Języka, Ścieżka_Flagi_Języka) '''
     global langslist
     global locations
     lang_id = []
@@ -43,15 +47,19 @@ def home(request):
     return render(request, 'home.html', {'items': items, 'langs': langs, 'blogs': blogs, 'infos': infos, 'files': files})
 
 def blog(request, blog_id):
+    langmenu()
     items = locations[0]
+    langs = langslist
     infos = Info.objects
     files = Fileserve.objects
     blog = get_object_or_404(Blog, pk=blog_id)
-    return render(request, 'blog.html', {'items': items, 'blog': blog, 'infos': infos, 'files': files})
+    return render(request, 'blog.html', {'items': items, 'langs': langs, 'blog': blog, 'infos': infos, 'files': files})
 
 def info(request, info_id):
+    langmenu()
     items = locations[0]
+    langs = langslist
     files = Fileserve.objects
     infos = Info.objects
     info = get_object_or_404(Info, pk=info_id)
-    return render(request, 'info.html', {'items': items, 'blog': blog, 'info': info, 'infos': infos, 'files': files})
+    return render(request, 'info.html', {'items': items, 'langs': langs, 'blog': blog, 'info': info, 'infos': infos, 'files': files})

@@ -25,7 +25,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul id="level_one" class="navbar-nav ml-auto">
+          <ul id="level_one" class="navbar-nav ml-auto"><!-- Id do zmiany języka -->
             <li class="nav-item">
               <a class="nav-link active" href="{% url 'home' %}">{{ items.mainpage }}</a>
             </li>
@@ -41,18 +41,14 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'login' %}">{{ items.logout }}</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item"><!-- Menu zmiany języka. Nie ruszaj tego -->
               <img src="{{ items.lang_flag.url }}" height=20 />
               <ul class="level_two">
-              <!--  {% for key, value in choices.items %}
-                  <li>{{key}} - {{value}}</li>
-                {% endfor %}-->
-
                 {% for lang_id, lang_flag in langs %}
-                  <li><a href="{% url 'home' %}"><img id="{{ lang_id }}" src="/media/{{ lang_flag }}" height=20 /></a></li>
+                  <li><img id="{{ lang_id }}" src="/media/{{ lang_flag }}" height=20 /></li>
                 {% endfor %}
               </ul>
-            </li>
+            </li><!-- Koniec Menu zmiany języka -->
           </ul>
         </div>
       </nav>
