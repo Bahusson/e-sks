@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404 as G404
 from django.utils import translation
-#from importlib import reload
 from .models import Blog as B
 from .models import Info as I
 from .models import Fileserve as F
