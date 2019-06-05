@@ -45,7 +45,7 @@
               <img src="{{ items.lang_flag.url }}" height=20 />
               <ul class="level_two">
                 {% for lang_id, lang_flag in langs %}
-                  <li><a href="{% url 'home' %}"><img id="{{ lang_id }}" src="/media/{{ lang_flag }}" height=20 /></a></li>
+                  <li><img id="{{ lang_id }}" src="/media/{{ lang_flag }}" height=20 /></li>
                 {% endfor %}
               </ul>
             </li><!-- Koniec Menu zmiany języka -->
