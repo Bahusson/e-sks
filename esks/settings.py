@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'd_vld%wq4fpu1pn*8)x)itbt++-^dn$s60p4dg2y*dk$@^^9#+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #Misiu wyłącz debugowanie po wrzuceniu na server w oddzielnym pliku config - wiesz gdzie. ^^
+DEBUG = True  # Wyłącz debugowanie po wrzuceniu na server w pliku config.
 
 ALLOWED_HOSTS = []
 

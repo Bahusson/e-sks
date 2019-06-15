@@ -3,12 +3,11 @@ from django.utils import translation
 from .models import Sito
 from strona.models import Pageitem as P
 from esks.settings import LANGUAGES as L
-from esks.special.classes import Langmenu
+from esks.special.classes import PageLoad
 
 # Create your views here.
 def initial(request):
-    items = Langmenu(P,L).flag
-    langs = Langmenu(P,L).list
+    pl = PageLoad(P,L)
     locations = list(Sito.objects.all())
     sitos = locations[0]
-    return render(request, 'initial.html', {'sitos': sitos, 'items': items, 'langs': langs})
+    return render(request, 'initial.html', {'sitos': sitos, 'items': pl.items, 'langs': pl.langs})

@@ -6,20 +6,23 @@ from .models import Info as I
 from .models import Fileserve as F
 from strona.models import Pageitem as P
 from esks.settings import LANGUAGES as L
-from esks.special.classes import Langmenu, PageLoad
+from esks.special.classes import PageLoad
 
 
 def login(request):
     return render(request, 'login.html')
 
 def home(request):
-    pl = PageLoad(P,L,F,I,B,G404,info_id=None,blog_id=None)
+    pl = PageLoad(P, L)
+    pl.portal(F, I, B, G404)
     return render(request, 'home.html', {'items': pl.items, 'langs': pl.langs, 'blogs': pl.blogs, 'infos': pl.infos, 'files': pl.files})
 
 def blog(request, blog_id):
-    pl = PageLoad(P,L,F,I,B,G404,None,blog_id)
+    pl = PageLoad(P, L)
+    pl.portal(F, I, B, G404, blogid=blog_id)
     return render(request, 'blog.html', {'items': pl.items, 'langs': pl.langs, 'blog': pl.blog, 'infos': pl.infos, 'files': pl.files})
 
 def info(request, info_id):
-    pl = PageLoad(P,L,F,I,B,G404,info_id,None)
-    return render(request, 'info.html', {'items': pl.items, 'langs': pl.langs, 'blog': pl.blog, 'info': pl.info, 'infos': pl.infos, 'files': pl.files})
+    pl = PageLoad(P, L)
+    pl.portal(F, I, B, G404, infoid=info_id)
+    return render(request, 'info.html', {'items': pl.items, 'langs': pl.langs, 'info': pl.info, 'infos': pl.infos, 'files': pl.files})

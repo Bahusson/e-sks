@@ -1,14 +1,16 @@
-class Langmenu(object):
+class PageLoad(object):
     ''' Zwraca tyle języków ile mamy zainstalowane
     w ustawieniach w zakładce LANGUAGES w formacie naprzemiennym
     pasującym do wzornika z dwoma wyjściowymi
-    (ID_Języka, Ścieżka_Flagi_Języka) '''
-    def __init__(self,a,b):
+    (ID_Języka, Ścieżka_Flagi_Języka), oraz
+    Ładuje wszystkie podstawowe elementy w widoku strony. '''
+
+    def __init__(self, a, b, *args, **kwargs):
         lang_id = []
         langsl = []
-        self.langslist = []
+        self.langs = []
         locations = list(a.objects.all())
-        self.items1 = locations[0]
+        self.items = locations[0]
         for item in b :
             lang_id.append("lang_flag_" + str(item[0]))
 
@@ -16,57 +18,26 @@ class Langmenu(object):
         y = 0
 
         while x+1 > 0 :
-            z = self.items1.__dict__[lang_id[y]]
+            z = self.items.__dict__[lang_id[y]]
             langsl.append(z)
             x = x-1
             y = y+1
 
-        self.langslist = zip(lang_id, langsl)
+        self.langs = zip(lang_id, langsl)
 
-    def flag(self):
-        return self.items1
+    def portal(self, *args, **kwargs):
+        f = args[0]
+        i = args[1]
+        b = args[2]
+        G404 = args[3]
+        self.files = f.objects
+        self.infos = i.objects
+        self.blogs = b.objects
 
-    def list(self):
-        return self.langslist
+        if 'blogid' in kwargs:
+            blog_id = kwargs['blogid']
+            self.blog = G404(b, pk=blog_id)
 
-class PageLoad(object):
-    ''' Ładuje wszystkie podstawowe elementy w widoku strony
-    Ogólnie rzecz biorąc oszczędza kod'''
-
-    def __init__(self,P,L,F,I,B,G404,info_id,blog_id):
-        self.items = Langmenu(P,L).flag
-        self.langs = Langmenu(P,L).list
-        self.files = F.objects
-        self.infos = I.objects
-        self.blogs = B.objects
-
-        if info_id == None:
-            pass
-        else:
-            self.info = G404(I, pk=info_id)
-
-        if blog_id == None:
-            pass
-        else:
-            self.blog = G404(B, pk=blog_id)
-
-    def items(self):
-        return self.items
-
-    def langs(self):
-        return self.langs
-
-    def files(self):
-        return self.files
-
-    def infos(self):
-        return self.infos
-
-    def info(self):
-        return self.info
-
-    def blogs(self):
-        return self.blogs
-
-    def blog(self):
-        return self.blog
+        if 'infoid' in kwargs:
+            info_id = kwargs['infoid']
+            self.info = G404(i, pk=info_id)
