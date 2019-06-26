@@ -7,4 +7,5 @@
 #       bi.) Automatyczne wykrywanie języka przeglądarki dla tłumaczenia strony.
 #       bii.) Dodatek Django-modeltranslation służący do tłumaczenia strony.
 #       biii.) Nakładkę JS umożliwiającą ręczne zmienianie języka tłumaczenia.
+#       c.) Interaktywny formularz switchowy pod JS przydzielający akcję kwaterunkową.
 #
