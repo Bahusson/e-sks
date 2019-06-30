@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import translation
+from django.contrib.auth import authenticate, login
 from .models import Sito
 from strona.models import Pageitem as P
 from esks.settings import LANGUAGES as L
@@ -16,6 +17,19 @@ def initial(request):
 
 
 def register(request):
-    form = UserCreationForm()
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_datap['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect('home')
+
+    else:
+        form = UserCreationForm()
+
     context = {'form': form}
     return render(request, 'registration/register.html', context)

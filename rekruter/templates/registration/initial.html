@@ -175,7 +175,8 @@
           <label for="checkbox" class="css-label"></label>
         </div>
         <div class="col-md-3">
-          <button type="input" id="send" class="btn btn-lg btn-block btn-primary">{{ sitos.buttondalej }} {% csrf_token %}</button>
+          <!--<button type="input" id="send" class="btn btn-lg btn-block btn-primary">{{ sitos.buttondalej }} {% csrf_token %}</button>-->
+          <a href="{% url 'register' %}" type="input" id="send" class="btn btn-lg btn-block btn-primary">{{ sitos.buttondalej }}</a>
         </div>
       </div><!--end row -->
 
