@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'user_example',
     'akademik.apps.AkademikConfig',
     'rekruter.apps.RekruterConfig',
     'strona.apps.StronaConfig',
