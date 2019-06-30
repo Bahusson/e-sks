@@ -12,6 +12,7 @@ class Pageitem(models.Model):
     logout = models.CharField(max_length=200) #Wyloguj
     news = models.CharField(max_length=200) #Aktualności
     docs = models.CharField(max_length=200) #Ważne pliki
+    login = models.CharField(max_length=200, blank=True, null=True) #zaloguj
 
 class Blog(models.Model):
     title = models.CharField(max_length=200)
