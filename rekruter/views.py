@@ -6,8 +6,8 @@ from esks.settings import LANGUAGES as L
 from esks.special.classes import PageLoad
 
 # Create your views here.
-def initial(request):
+def register(request):
     pl = PageLoad(P,L)
     locations = list(Sito.objects.all())
     sitos = locations[0]
-    return render(request, 'initial.html', {'sitos': sitos, 'items': pl.items, 'langs': pl.langs})
+    return render(request, 'rekruter/register.html', {'sitos': sitos, 'items': pl.items, 'langs': pl.langs})

@@ -16,21 +16,30 @@
   </head>
 
   <body>
+    <main role="main">
+      <section class="jumbotron text-center">
+        <div class="container">
+          {% if form.errors %}
+          <p>Ups! Coś poszło nie tak!</p>
+          {% endif %}
 
-      <main role="main">
-        <section class="jumbotron text-center">
-          <div class="container">
-            <h1 class="jumbotron-heading">Witaj w E-SKS / Welcome to E-SKS</h1>
-            <p>
-              <a class="btn btn-primary my-2" href="{% url 'home' %}">Zaloguj się / Login</a>
-              <a class="btn btn-secondary my-2" href="{% url 'initial' %}">Zarejestruj się / Register</a>
-            </p>
-          </div>
-        </section>
+          {% if next %}
+          <p>Ta strona jest niedostępna.</p>
+          {% endif %}
 
-      <div>
-      </div><!-- /.row -->
+          <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
 
+            <p>Login: {{ form.username }} </p>
+            <p>Hasło: {{ form.password }} </p>
+
+            <input class="btn btn-primary my-2" type="submit" = value="Zaloguj">
+            <input type="hidden" name="next" value="{{ next }}">
+            <a class="btn btn-secondary my-2" href="{% url 'home' %}">Wstecz</a>
+          </form>
+          <a href="{% url 'register' %}">Zarejestruj Się</a>
+        </div>
+      </section>
     </main>
 
     <footer class="text-muted">

@@ -8,21 +8,17 @@ from strona.models import Pageitem as P
 from esks.settings import LANGUAGES as L
 from esks.special.classes import PageLoad
 
-
-def index(request):
-    return render(request, 'index.html')
-
 def home(request):
     pl = PageLoad(P, L)
     pl.portal(F, I, B, G404)
-    return render(request, 'home.html', {'items': pl.items, 'langs': pl.langs, 'blogs': pl.blogs, 'infos': pl.infos, 'files': pl.files})
+    return render(request, 'strona/home.html', {'items': pl.items, 'langs': pl.langs, 'blogs': pl.blogs, 'infos': pl.infos, 'files': pl.files})
 
 def blog(request, blog_id):
     pl = PageLoad(P, L)
     pl.portal(F, I, B, G404, blogid=blog_id)
-    return render(request, 'blog.html', {'items': pl.items, 'langs': pl.langs, 'blog': pl.blog, 'infos': pl.infos, 'files': pl.files})
+    return render(request, 'strona/blog.html', {'items': pl.items, 'langs': pl.langs, 'blog': pl.blog, 'infos': pl.infos, 'files': pl.files})
 
 def info(request, info_id):
     pl = PageLoad(P, L)
     pl.portal(F, I, B, G404, infoid=info_id)
-    return render(request, 'info.html', {'items': pl.items, 'langs': pl.langs, 'info': pl.info, 'infos': pl.infos, 'files': pl.files})
+    return render(request, 'strona/info.html', {'items': pl.items, 'langs': pl.langs, 'info': pl.info, 'infos': pl.infos, 'files': pl.files})

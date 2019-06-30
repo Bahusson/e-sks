@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{{ items.headtitle }} - {{ infos.title }}</title>
+    <title>{{ items.headtitle }} - {{ items.mainpage }}</title>
 
     <!-- Bootstrap core CSS - możemy sami ładować bootstrap z serwera ale to bardziej obciąży naszego klienta imo -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -39,7 +39,7 @@
               <a class="nav-link" href="">{{ items.contact }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'index' %}">{{ items.logout }}</a>
+              <a class="nav-link" href="{% url 'login' %}">{{ items.login }}</a>
             </li>
             <li class="nav-item"><!-- Menu zmiany języka. Nie ruszaj tego -->
               <img src="{{ items.lang_flag.url }}" height=20 />
@@ -58,27 +58,22 @@
 
       <div class="row">
         <div class="col-md-7 blog-main">
-          <div class="container">
-            <h1 class="text-center pt-3">{{ info.title }}</h1>
-            <hr />
-                <br/>
-                {% if info.image != None %}
-                    <br />
-                    {% with info as i %}
-                        <img class="img-fluid" src="{{ i.image.url }}" width=50% height=auto />
-                    <br />
-                    {{ i.body|linebreaksbr }}
-                    {% endwith %}
-                {% else %}
-                    <br/>
-                    {% with info as i %}
-                    <br />
-                    {{ i.body|linebreaksbr }}
-                    {% endwith %}
-                {% endif %}
+          <h3 class="pb-3 mb-4 font-italic border-bottom">
+            {{ items.news }}
+          </h3>
 
+          {% for blog in blogs.all %}
+            <div class="row">
+              <div class="col-md-6 order-md-0">
+                <h2 class="blog-post-title"><a href="{% url 'blog' blog.id %}">{{ blog.title }}</a></h2>
+                <p>{{ blog.shortsum }}</p>
+              </div><!-- /.blog-post -->
+              <div class="col-md-2">
+                <a href="{% url 'blog' blog.id %}"><img class="blog-image" src="{{blog.image.url }}" height=200 /></a>
+              </div>
+            </div>
 
-          </div>
+          {% endfor %}
         </div><!-- Tutaj idzie boczne menu -->
 
         <aside class="col-md-4 blog-sidebar">
@@ -113,6 +108,7 @@
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
     <script src="{% static "jquery.js" %}"></script>
   <!--  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

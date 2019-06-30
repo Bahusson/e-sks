@@ -3,7 +3,7 @@ from strona.models import Pageitem, Blog, Info, Fileserve
 
 
 class PageitemsTranslate(TranslationOptions):
-    fields = ('lang_flag', 'headtitle', 'mainpage', 'information', 'akamap', 'contact', 'logout', 'news', 'docs')
+    fields = ('lang_flag', 'headtitle', 'mainpage', 'information', 'akamap', 'contact', 'logout', 'news', 'docs', 'login')
 
 translator.register(Pageitem, PageitemsTranslate)
 
