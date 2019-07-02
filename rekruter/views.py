@@ -5,7 +5,7 @@ from .models import Sito
 from strona.models import Pageitem as P
 from esks.settings import LANGUAGES as L
 from esks.special.classes import PageLoad
-from django.contrib.auth.forms import UserCreationForm
+from .models import ExtendedCreationForm
 
 
 # Create your views here.
@@ -17,7 +17,7 @@ def initial(request):
 
 def register(request):
     if request.method == 'POST':  # Jeśli wysyłamy formularz do Bazy danych.
-        form = UserCreationForm(request.POST)
+        form = ExtendedCreationForm(request.POST)
 
         # Po rejestracji automatycznie loguje klienta podanym loginem i hasłem.
         if form.is_valid():  # Jeśli formularz jest poprawny.
@@ -29,7 +29,7 @@ def register(request):
             return redirect('home')  # Przekierowuje na stronę główną zalogowanego usera.
 
     else:  # Zanim wyślemy cokolwiek mysimy wygenerować formularz na stronie.
-        form = UserCreationForm()
+        form = ExtendedCreationForm()
 
     context = {'form': form}
     return render(request, 'registration/register.html', context)
