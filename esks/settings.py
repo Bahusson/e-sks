@@ -166,6 +166,10 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+LOGIN_REDIRECT_URL = '/'  # Przekierowanie usera po zalogowaniu. W tej chwili jest główna.
+
+LOGOUT_REDIRECT_URL = '/'  # Przekierowanie po wylogowaniu.
+
 # Ściągnij ustawienia lokalne gdybyśmy chcieli udostępnić kod i wejść na OpenSource
 try:
     from .local_settings import *

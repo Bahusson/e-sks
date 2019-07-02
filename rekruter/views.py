@@ -15,20 +15,20 @@ def initial(request):
     sitos = locations[0]
     return render(request, 'registration/initial.html', {'sitos': sitos, 'items': pl.items, 'langs': pl.langs})
 
-
 def register(request):
-    if request.method == 'POST':
+    if request.method == 'POST':  # Jeśli wysyłamy formularz do Bazy danych.
         form = UserCreationForm(request.POST)
 
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data['username']
-            password = form.cleaned_datap['password1']
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return redirect('home')
+        # Po rejestracji automatycznie loguje klienta podanym loginem i hasłem.
+        if form.is_valid():  # Jeśli formularz jest poprawny.
+            form.save()      # Zapisz formularz.
+            username = form.cleaned_data['username']  # Nazwa Usera z prawidłowego formularza.
+            password = form.cleaned_data['password1']  # Hasło j.w.
+            user = authenticate(username=username, password=password)  # Sprawdza shaszowane dane powyżej w bazie danych.
+            login(request, user)  # Loguje usera.
+            return redirect('home')  # Przekierowuje na stronę główną zalogowanego usera.
 
-    else:
+    else:  # Zanim wyślemy cokolwiek mysimy wygenerować formularz na stronie.
         form = UserCreationForm()
 
     context = {'form': form}
