@@ -4,14 +4,13 @@ from .models import Sito
 from strona.models import Pageitem as P
 from esks.settings import LANGUAGES as L
 from esks.special.classes import PageLoad
-from .models import ExtendedCreationForm
-from .models import FormItems
+from .models import ExtendedCreationForm, FormItems, QuarterClass
 from django.contrib.auth.forms import AuthenticationForm
-from django.core.cache import cache
 
 
 def initial(request):
     if request.method == 'POST':
+        # Tworzy zmienną dla sesji użytkownika do późniejszego wykorzystania.
         request.session['quarter'] = request.POST['quarter']
         return redirect('register')
     else:
@@ -44,7 +43,15 @@ def logger(request):
 
 
 def register(request):
+    # Tutaj odbieramy zmienną zdefiniowaną wcześniej.
     quarter = request.session['quarter']
+    locations = list(QuarterClass.objects.all())
+    quarters = locations[0]
+    quartzlist = [
+    'stud_local', 'stud_foreign', 'phd', 'bank',
+    'new1', 'new23', 'new_foreign', 'erasmus', 'bilateral',
+    ]
+    setter = quarters.__dict__[quartzlist[int(quarter)-1]]
     if request.method == 'POST':  # Jeśli wysyłamy formularz do Bazy danych.
         form = ExtendedCreationForm(request.POST)
 
@@ -60,7 +67,10 @@ def register(request):
         form = ExtendedCreationForm()
         locations = list(FormItems.objects.all())
         items = locations[0]
-        context = {'form': form, 'item': items, 'quarter': quarter}
+        context = {'form': form,
+                   'item': items,
+                   'quarter': quarter,
+                   'setter': setter}
     return render(request, 'registration/register.html', context)
 
 

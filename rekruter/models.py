@@ -3,7 +3,8 @@ from django.contrib.auth.forms import UserCreationForm, User
 from django import forms
 
 
-class Sito(models.Model):  # Sito pytań do akcji kwaterunkowej
+class Sito(models.Model):
+    # Sito pytań do akcji kwaterunkowej
     intro = models.CharField(max_length=500)
     yes = models.CharField(max_length=50, null=True)
     no = models.CharField(max_length=50, null=True)
@@ -18,7 +19,8 @@ class Sito(models.Model):  # Sito pytań do akcji kwaterunkowej
     buttondalej = models.CharField(max_length=100)
 
 
-class ExtendedCreationForm(UserCreationForm):  # Rozszerzenie formularza rejestracji
+class ExtendedCreationForm(UserCreationForm):
+    # Rozszerzenie formularza rejestracji
     first_name = forms.CharField(max_length=30)
     last_name = forms.CharField(max_length=30)
     email = forms.EmailField(max_length=75)
@@ -38,7 +40,8 @@ class ExtendedCreationForm(UserCreationForm):  # Rozszerzenie formularza rejestr
         return user
 
 
-class FormItems(models.Model):  #  Klasa do tłumaczeń rekrutera. Do usunięcia w produkcji.
+class FormItems(models.Model):
+    # Klasa do tłumaczeń rekrutera. Do usunięcia w produkcji
     login = models.CharField(max_length=50, null=True)
     password = models.CharField(max_length=50, null=True)
     re_password = models.CharField(max_length=50, null=True)
@@ -49,3 +52,16 @@ class FormItems(models.Model):  #  Klasa do tłumaczeń rekrutera. Do usunięcia
     admin_panel = models.CharField(max_length=50, null=True)
     back = models.CharField(max_length=50, null=True)
     action = models.CharField(max_length=50, null=True)
+
+
+class QuarterClass(models.Model):
+    # Klasa do tłumaczenia nazw Akcji Kwaterunkowych.
+    stud_local = models.CharField(max_length=50, null=True)
+    stud_foreign = models.CharField(max_length=50, null=True)
+    phd = models.CharField(max_length=50, null=True)
+    bank = models.CharField(max_length=50, null=True)
+    new1 = models.CharField(max_length=50, null=True)
+    new23 = models.CharField(max_length=50, null=True)
+    new_foreign = models.CharField(max_length=50, null=True)
+    erasmus = models.CharField(max_length=50, null=True)
+    bilateral = models.CharField(max_length=50, null=True)
