@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404 as G404
-from django.utils import translation
+#from django.utils import translation
 from .models import Blog as B
 from .models import Info as I
 from .models import Fileserve as F
@@ -39,7 +39,7 @@ def info(request, info_id):
     context = {
      'items': pl.items,
      'langs': pl.langs,
-     'blog': pl.blog,
+     'blogs': pl.blogs,
      'info': pl.info,
      'infos': pl.infos,
      'files': pl.files}

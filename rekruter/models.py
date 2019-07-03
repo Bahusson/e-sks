@@ -25,13 +25,14 @@ class ExtendedCreationForm(UserCreationForm):  # Rozszerzenie formularza rejestr
 
     class Meta:
         model = User
-        fields = ("username", "first_name", "last_name", "email",)
+        fields = ("username", "first_name", "last_name", "email")
 
-    def save(self, commit=True):
+    def save(self, quarter, commit=True):
         user = super(ExtendedCreationForm, self).save(commit=False)
         user.first_name = self.cleaned_data["first_name"]
         user.last_name = self.cleaned_data["last_name"]
         user.email = self.cleaned_data["email"]
+        user.quarter = quarter
         if commit:
             user.save()
         return user
@@ -47,3 +48,4 @@ class FormItems(models.Model):  #  Klasa do tłumaczeń rekrutera. Do usunięcia
     register = models.CharField(max_length=50, null=True)
     admin_panel = models.CharField(max_length=50, null=True)
     back = models.CharField(max_length=50, null=True)
+    action = models.CharField(max_length=50, null=True)

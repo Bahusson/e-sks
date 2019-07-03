@@ -33,7 +33,7 @@
             <p>{{ item.login }}: {{ form.username }} </p>
             <p>{{ item.password }}: {{ form.password }} </p>
 
-            <input class="btn btn-primary my-2" type="submit" = value="{{ item1.login }}">
+            <input class="btn btn-primary my-2" type="submit" value="{{ item1.login }}">
             <input type="hidden" name="next" value="{{ next }}">
             <a class="btn btn-secondary my-2" href="{% url 'home' %}">{{ item.back }}</a>
           </form>
