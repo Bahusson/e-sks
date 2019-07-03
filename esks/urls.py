@@ -24,7 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls), #Zmień nazwę żeby była zmyłka dla botów próbujących się dostać do strony administracji
     path('', include('strona.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-#    path('initial/', rekruter.views.initial, name='initial'),
     path('strona/', include('strona.urls')),
     path('rekruter/', include('rekruter.urls')), #strona rejestracji do systemu akademików (dla studentów)
 #    path('akademik/', include('akademik.urls')), #strona administracyjna dla rady studentów i administracji akademika

@@ -1,19 +1,44 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.utils import translation
-from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
 from .models import Sito
 from strona.models import Pageitem as P
 from esks.settings import LANGUAGES as L
 from esks.special.classes import PageLoad
 from .models import ExtendedCreationForm
+from .models import FormItems
+from django.contrib.auth.forms import AuthenticationForm
 
 
-# Create your views here.
 def initial(request):
     pl = PageLoad(P, L)
     locations = list(Sito.objects.all())
     sitos = locations[0]
-    return render(request, 'registration/initial.html', {'sitos': sitos, 'items': pl.items, 'langs': pl.langs})
+    context = {'sitos': sitos, 'items': pl.items, 'langs': pl.langs}
+    return render(request, 'registration/initial.html', context)
+
+
+def logger(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            # Tutaj trzeba wstawić jakiś error message.
+            pass
+
+    else:
+        form = AuthenticationForm()
+        locations = list(FormItems.objects.all())
+        items = locations[0]
+        locations1 = list(P.objects.all())
+        items1 = locations1[0]
+
+    context = {'form': form, 'item': items, 'item1': items1, }
+    return render(request, 'registration/login.html', context)
+
 
 def register(request):
     if request.method == 'POST':  # Jeśli wysyłamy formularz do Bazy danych.
@@ -30,6 +55,11 @@ def register(request):
 
     else:  # Zanim wyślemy cokolwiek mysimy wygenerować formularz na stronie.
         form = ExtendedCreationForm()
+        locations = list(FormItems.objects.all())
+        items = locations[0]
 
-    context = {'form': form}
+    context = {'form': form, 'item': items}
     return render(request, 'registration/register.html', context)
+
+
+#def unlogger(request):

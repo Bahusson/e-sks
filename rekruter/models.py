@@ -35,3 +35,15 @@ class ExtendedCreationForm(UserCreationForm):  # Rozszerzenie formularza rejestr
         if commit:
             user.save()
         return user
+
+
+class FormItems(models.Model):  #  Klasa do tłumaczeń rekrutera. Do usunięcia w produkcji.
+    login = models.CharField(max_length=50, null=True)
+    password = models.CharField(max_length=50, null=True)
+    re_password = models.CharField(max_length=50, null=True)
+    name = models.CharField(max_length=50, null=True)
+    surname = models.CharField(max_length=50, null=True)
+    email = models.CharField(max_length=50, null=True)
+    register = models.CharField(max_length=50, null=True)
+    admin_panel = models.CharField(max_length=50, null=True)
+    back = models.CharField(max_length=50, null=True)

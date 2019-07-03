@@ -26,9 +26,16 @@
             <p>Formularz zawiera błędy!</p>
             {% endif %}
 
-            {{ form }}
 
-            <input type="submit" value="register">
+            <p>{{ item.login }} {{ form.username }}</p>
+            <p>{{ item.password }} {{ form.password1 }}</p>
+            <p>{{ item.re_password }} {{ form.password2 }}</p>
+            <P>{{ item.name }} {{ form.first_name }}</p>
+            <p>{{ item.surname }} {{ form.last_name }}</p>
+            <p>{{ item.email }} {{ form.email }}</p>
+
+
+            <input type="submit" value="{{ item.register }}">
           </form>
         </div>
       </section>
