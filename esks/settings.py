@@ -120,7 +120,7 @@ CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
         'LOCATION': 'cache_table',
-        'TIMEOUT': 60,
+        'TIMEOUT': 10,
         'OPTIONS': {
             'MAX_ENTRIES': 2000,
             'CULL_FREQUENCY': 2
@@ -130,7 +130,7 @@ CACHES = {
 
 CACHE_MIDDLEWARE_ALIAS = 'default'
 
-CACHE_MIDDLEWARE_SECONDS = 600
+CACHE_MIDDLEWARE_SECONDS = 10
 
 CACHE_MIDDLEWARE_KEY_PREFIX = ''
 

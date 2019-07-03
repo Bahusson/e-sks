@@ -12,8 +12,7 @@ from django.core.cache import cache
 
 def initial(request):
     if request.method == 'POST':
-        quarter = request.POST['quarter']
-        cache.set('quarter', quarter, 30)
+        request.session['quarter'] = request.POST['quarter']
         return redirect('register')
     else:
         pl = PageLoad(P, L)
@@ -45,12 +44,12 @@ def logger(request):
 
 
 def register(request):
+    quarter = request.session['quarter']
     if request.method == 'POST':  # Jeśli wysyłamy formularz do Bazy danych.
         form = ExtendedCreationForm(request.POST)
 
         # Po rejestracji automatycznie loguje klienta podanym loginem i hasłem.
         if form.is_valid():  # Jeśli formularz jest poprawny.
-            quarter = cache.get('quarter', 666)
             form.save(quarter)      # Zapisz formularz.
             username = form.cleaned_data['username']  # Nazwa Usera z prawidłowego formularza.
             password = form.cleaned_data['password1']  # Hasło j.w.
@@ -58,7 +57,6 @@ def register(request):
             login(request, user)  # Loguje usera.
             return redirect('home')  # Przekierowuje na stronę główną zalogowanego usera.
     else:  # Zanim wyślemy cokolwiek mysimy wygenerować formularz na stronie.
-        quarter = cache.get('quarter', 666)
         form = ExtendedCreationForm()
         locations = list(FormItems.objects.all())
         items = locations[0]
