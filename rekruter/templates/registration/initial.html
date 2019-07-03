@@ -176,7 +176,7 @@
         </div>
         <div class="col-md-3">
           <!--<button type="input" id="send" class="btn btn-lg btn-block btn-primary">{{ sitos.buttondalej }} {% csrf_token %}</button>-->
-          <form method="post" action="{% url 'register' %}">
+          <form method="post">
             {% csrf_token %}
             <input id="send" class="btn btn-primary my-2" type="submit" value="{{ sitos.buttondalej }}">
             <input id="quarter" name=quarter value="3">

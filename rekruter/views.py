@@ -14,6 +14,7 @@ def initial(request):
     if request.method == 'POST':
         quarter = request.POST['quarter']
         cache.set('quarter', quarter, 30)
+        return redirect('register')
     else:
         pl = PageLoad(P, L)
         locations = list(Sito.objects.all())
@@ -49,7 +50,8 @@ def register(request):
 
         # Po rejestracji automatycznie loguje klienta podanym loginem i hasłem.
         if form.is_valid():  # Jeśli formularz jest poprawny.
-            form.save()      # Zapisz formularz.
+            quarter = cache.get('quarter', 666)
+            form.save(quarter)      # Zapisz formularz.
             username = form.cleaned_data['username']  # Nazwa Usera z prawidłowego formularza.
             password = form.cleaned_data['password1']  # Hasło j.w.
             user = authenticate(username=username, password=password)  # Sprawdza shaszowane dane powyżej w bazie danych.
@@ -57,10 +59,10 @@ def register(request):
             return redirect('home')  # Przekierowuje na stronę główną zalogowanego usera.
     else:  # Zanim wyślemy cokolwiek mysimy wygenerować formularz na stronie.
         quarter = cache.get('quarter', 666)
-        form = ExtendedCreationForm(quarter)
+        form = ExtendedCreationForm()
         locations = list(FormItems.objects.all())
         items = locations[0]
-    context = {'form': form, 'item': items}
+        context = {'form': form, 'item': items, 'quarter': quarter}
     return render(request, 'registration/register.html', context)
 
 
