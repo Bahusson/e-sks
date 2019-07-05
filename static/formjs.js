@@ -1,12 +1,5 @@
 var unlock
-/*
-var domain = "127.0.0.1" // Tu zmień domenę z localhost albo podepnij to jakoś lepiej.
 
-function setCookedSignal(cvalue)
-{
-  document.cookie = "akcja_kwaterunkowa = " + cvalue + ";domain=" + domain + ";path=/";
-  location.reload();
-} */
 //Przełącznik elementów typu radiowego.
 
 var radio = function(type)
@@ -26,11 +19,12 @@ var radio = function(type)
 var radioon = radio("on");
 var radiooff = radio("off");
 
-// Włącza widok zgody.
-function checkboxon()
+// Włącza widok zgody i zwraca wartość wyboru.
+function checkboxon(set)
 {
   var x = document.getElementById("agreecheck");
     x.style.display = "block";
+  document.getElementById("quarter").value = set;
 }
 
 // Funkcja ukrywająca i pokazująca przycisk "send"
@@ -60,12 +54,6 @@ function hop()
   var SH = $('body').prop("scrollHeight");
   $('html, body').stop().animate({scrollTop: SH-WH}, 1000);
 }
-
-function setCookedSignal(set)
-{
-  document.getElementById("quarter").value(set);
-}
-
 
 // Tutaj zaczyna się programowanie przycisków
 
@@ -97,8 +85,8 @@ $(document).ready(function()
  {
    if (unlock === true)
    {
-     checkboxon();
-     setCookedSignal("1"); // Obecni studenci
+     checkboxon("1");
+     //setCookedSignal("1"); // Obecni studenci
      radiooff("rad3");
      radiooff("rad4");
      hop();
@@ -117,8 +105,8 @@ $(document).ready(function()
  {
    if (unlock === true)
    {
-     checkboxon();
-     setCookedSignal("2"); // Obecni Studenci Cudzoziemcy
+     checkboxon("2");
+     //setCookedSignal("2"); // Obecni Studenci Cudzoziemcy
      radiooff("rad5");
      radiooff("rad6");
      hop();
@@ -134,8 +122,8 @@ $(document).ready(function()
 
   $('#rad2A').click(function() // Doktorant Tak
  {
-   checkboxon();
-   setCookedSignal("3"); // Doktoranci
+   checkboxon("3");
+   //setCookedSignal("3"); // Doktoranci
    radiooff("rad1");
    radiooff("rad3");
    radiooff("rad4");
@@ -158,30 +146,30 @@ $(document).ready(function()
 
   $('#rad3B').click(function() // Zamiar Nie
  {
-   checkboxon();
-   setCookedSignal("4"); // Bank Miejsc
+   checkboxon("4");
+   //setCookedSignal("4"); // Bank Miejsc
    radiooff("rad4");
    hop();
   });
 
   $('#rad4A').click(function() // Pierwszy stopień Tak
  {
-   checkboxon();
-   setCookedSignal("5"); // Nowi: Studia Pierwszego Stopnia
+   checkboxon("5");
+   //setCookedSignal("5"); // Nowi: Studia Pierwszego Stopnia
    hop();
   });
 
   $('#rad4B').click(function() // Pierwszy stopień Nie
  {
-   checkboxon();
-   setCookedSignal("6"); // Nowi: Studia Drugiego i Trzeciego Stopnia
+   checkboxon("6");
+   //setCookedSignal("6"); // Nowi: Studia Drugiego i Trzeciego Stopnia
    hop();
   });
 
   $('#rad5A').click(function() // Pełny Wymiar Tak
  {
-   checkboxon();
-   setCookedSignal("7"); // Nowi: Studenci Międzynarodowi
+   checkboxon("7");
+   //setCookedSignal("7"); // Nowi: Studenci Międzynarodowi
    radiooff("rad6");
    hop();
   });
@@ -195,15 +183,15 @@ $(document).ready(function()
 
   $('#rad6A').click(function() // Erazmus Tak
  {
-   checkboxon();
-   setCookedSignal("8"); // Studenci Erazmusa
+   checkboxon("8");
+   //setCookedSignal("8"); // Studenci Erazmusa
    hop();
   });
 
   $('#rad6B').click(function() // Erazmus Nie
  {
-   checkboxon();
-   setCookedSignal("9"); // Wymiana Bilateralna
+   checkboxon("9");
+   //setCookedSignal("9"); // Wymiana Bilateralna
    hop();
   });
 
