@@ -43,15 +43,21 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+# Kolejność tego draństwa jest ważna.
+# https://docs.djangoproject.com/en/2.2/topics/cache/#order-of-middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+
 ]
 
 ROOT_URLCONF = 'esks.urls'
@@ -108,9 +114,31 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# CACHE bazodanowy. https://docs.djangoproject.com/en/2.2/topics/cache/
+# Przed użyciem stwórz tabelę w bazie danych za pomocą: "python manage.py createcachetable"
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'cache_table',
+        'TIMEOUT': 10,
+        'OPTIONS': {
+            'MAX_ENTRIES': 2000,
+            'CULL_FREQUENCY': 2
+        }
+    }
+}
+
+CACHE_MIDDLEWARE_ALIAS = 'default'
+
+CACHE_MIDDLEWARE_SECONDS = 10
+
+CACHE_MIDDLEWARE_KEY_PREFIX = ''
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
+# Dla sesji opartych na ciastkach "django.contrib.sessions.backends.signed_cookies"
 
 LANGUAGE_CODE = 'pl'
 
@@ -122,6 +150,11 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Moduł tłumaczeniowy, jak wszystko z MODELTRANSLATION w nazwie
+# https://django-modeltranslation.readthedocs.io/en/latest/
+# klasy są tak poustawiane, że dodanie lub usunięcie języka z settings.py
+# automatycznie powoduje ich dodanie/usunięcie wszędzie indziej.
+# TODO: Poprawić langjs.js żeby też był z tym zsynchronizowany.
 gettext = lambda s: s
 LANGUAGES = (
     ('pl', gettext('Polish')),  # Pierwszy jest zawsze defaultem chyba, że zrobisz override.
@@ -166,7 +199,15 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+LOGIN_REDIRECT_URL = '/'  # Przekierowanie usera po zalogowaniu
+# jeśli nie masz tego zdefiniowanego inaczej. My mamy, ale zostawiam bo w razie
+# "w" default przekierowuje na nieistniejącą stronę. To już lepiej na główną!
+
+LOGOUT_REDIRECT_URL = '/'  # Przekierowanie po wylogowaniu.
+
 # Ściągnij ustawienia lokalne gdybyśmy chcieli udostępnić kod i wejść na OpenSource
+# na serwerze obok "settings" robisz plik .local_settings i ustalasz od nowa:
+# SECRET_KEY, DEBUG = False, DATABASES, oraz CACHES jeśli używasz Memccache.
 try:
     from .local_settings import *
 except ImportError:
