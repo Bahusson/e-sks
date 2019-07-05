@@ -51,13 +51,14 @@ def register(request):
     'stud_local', 'stud_foreign', 'phd', 'bank',
     'new1', 'new23', 'new_foreign', 'erasmus', 'bilateral',
     ]
-    setter = quarters.__dict__[quartzlist[int(quarter)-1]]
+    #setter = quarters.__dict__[quartzlist[int(quarter)-1]]
+    setter = quarters.__getattribute__(quartzlist[int(quarter)-1])
     if request.method == 'POST':  # Jeśli wysyłamy formularz do Bazy danych.
         form = ExtendedCreationForm(request.POST)
 
         # Po rejestracji automatycznie loguje klienta podanym loginem i hasłem.
         if form.is_valid():  # Jeśli formularz jest poprawny.
-            form.save(quarter)      # Zapisz formularz.
+            form.save(quarter)      # Zapisz formularz ze zmienną z poprzedniego formularza.
             username = form.cleaned_data['username']  # Nazwa Usera z prawidłowego formularza.
             password = form.cleaned_data['password1']  # Hasło j.w.
             user = authenticate(username=username, password=password)  # Sprawdza shaszowane dane powyżej w bazie danych.
