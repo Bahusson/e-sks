@@ -134,11 +134,11 @@ CACHE_MIDDLEWARE_SECONDS = 10
 
 CACHE_MIDDLEWARE_KEY_PREFIX = ''
 
-# Internationalization
-# https://docs.djangoproject.com/en/2.1/topics/i18n/
-
 SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 # Dla sesji opartych na ciastkach "django.contrib.sessions.backends.signed_cookies"
+
+# Internationalization
+# https://docs.djangoproject.com/en/2.1/topics/i18n/
 
 LANGUAGE_CODE = 'pl'
 
