@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404 as G404
-#from django.utils import translation
 from .models import Blog as B
-from .models import Info as I
+from .models import Info as In
 from .models import Fileserve as F
 from strona.models import Pageitem as P
 from esks.settings import LANGUAGES as L
@@ -11,7 +10,7 @@ from esks.special.classes import PageLoad
 
 def home(request):
     pl = PageLoad(P, L)
-    pl.portal(F, I, B, G404)
+    pl.portal(F, In, B, G404)
     context = {
      'items': pl.items,
      'langs': pl.langs,
@@ -23,7 +22,7 @@ def home(request):
 
 def blog(request, blog_id):
     pl = PageLoad(P, L)
-    pl.portal(F, I, B, G404, blogid=blog_id)
+    pl.portal(F, In, B, G404, blogid=blog_id)
     context = {
      'items': pl.items,
      'langs': pl.langs,
@@ -35,7 +34,7 @@ def blog(request, blog_id):
 
 def info(request, info_id):
     pl = PageLoad(P, L)
-    pl.portal(F, I, B, G404, infoid=info_id)
+    pl.portal(F, In, B, G404, infoid=info_id)
     context = {
      'items': pl.items,
      'langs': pl.langs,

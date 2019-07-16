@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login  # , logout
 from .models import Sito
 from strona.models import Pageitem as P
 from esks.settings import LANGUAGES as L
@@ -48,22 +48,25 @@ def register(request):
     locations = list(QuarterClass.objects.all())
     quarters = locations[0]
     quartzlist = [
-    'stud_local', 'stud_foreign', 'phd', 'bank',
-    'new1', 'new23', 'new_foreign', 'erasmus', 'bilateral',
+     'stud_local', 'stud_foreign', 'phd', 'bank',
+     'new1', 'new23', 'new_foreign', 'erasmus', 'bilateral',
     ]
-    #setter = quarters.__dict__[quartzlist[int(quarter)-1]]
     setter = quarters.__getattribute__(quartzlist[int(quarter)-1])
     if request.method == 'POST':  # Jeśli wysyłamy formularz do Bazy danych.
         form = ExtendedCreationForm(request.POST)
 
         # Po rejestracji automatycznie loguje klienta podanym loginem i hasłem.
         if form.is_valid():  # Jeśli formularz jest poprawny.
-            form.save(quarter)      # Zapisz formularz ze zmienną z poprzedniego formularza.
-            username = form.cleaned_data['username']  # Nazwa Usera z prawidłowego formularza.
+            form.save(quarter)
+            # Zapisz formularz ze zmienną z poprzedniego formularza.
+            username = form.cleaned_data['username']
+            # Nazwa Usera z prawidłowego formularza.
             password = form.cleaned_data['password1']  # Hasło j.w.
-            user = authenticate(username=username, password=password)  # Sprawdza shaszowane dane powyżej w bazie danych.
+            user = authenticate(username=username, password=password)
+            # Sprawdza shaszowane dane powyżej w bazie danych.
             login(request, user)  # Loguje usera.
-            return redirect('home')  # Przekierowuje na stronę główną zalogowanego usera.
+            return redirect('home')
+            # Przekierowuje na stronę główną zalogowanego usera.
     else:  # Zanim wyślemy cokolwiek mysimy wygenerować formularz na stronie.
         form = ExtendedCreationForm()
         locations = list(FormItems.objects.all())
@@ -75,4 +78,4 @@ def register(request):
     return render(request, 'registration/register.html', context)
 
 
-#def unlogger(request):
+# def unlogger(request):
