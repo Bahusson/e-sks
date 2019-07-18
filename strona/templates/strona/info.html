@@ -62,7 +62,7 @@
             <h1 class="text-center pt-3">{{ info.title }}</h1>
             <hr />
                 <br/>
-                {% if info.image != None %}
+                {% if info.image %}
                     <br />
                     {% with info as i %}
                         <img class="img-fluid" src="{{ i.image.url }}" width=50% height=auto />
