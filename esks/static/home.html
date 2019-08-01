@@ -19,7 +19,6 @@
     <link href="{% static 'style.css' %}" rel="stylesheet">
     <link href="{% static 'form.css' %}" rel="stylesheet">
 
-
     <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
 
 
@@ -33,7 +32,7 @@
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
             <span class="sr-only">Toggle navigation</span>
-            <!--<span class="icon-bar"></span>-->
+            <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
@@ -76,7 +75,7 @@
     </div></div>
 <!-- Top content -->
     <main role="main">
-      <img src="{% static 'img/logo.png' %}"/>
+
       <div class="row">
         <div class="col-md-7 blog-main">
           <br>
@@ -91,152 +90,80 @@
                 <h2 class="blog-post-title"><a href="{% url 'blog' blog.id %}">{{ blog.title }}</a></h2>
                 <p>{{ blog.shortsum }}</p>
               </div><!-- /.blog-post -->
-              <br>
               <div class="col-md-2">
                 <a href="{% url 'blog' blog.id %}"><img class="blog-image" src="{{blog.image.url }}" height=200 /></a>
               </div>
             </div>
 
           {% endfor %}
-        </div>
+        </div><!-- Tutaj idzie boczne menu -->
+
+        <aside class="col-md-4 blog-sidebar">
+          <div class="p-3">
+            <br>
+            <br>
+            <br>
+            <h4 class="font-italic">{{ items.information }}</h4>
+            <ol class="list-unstyled mb-0">
+              {% for info in infos.all %}
+              <li><a href="{% url 'info' info.id %}">{{ info.title }}</a></li>
+              {% endfor %}
+            </ol>
+          </div>
+
+          <div class="p-3">
+            <h4 class="font-italic">{{ items.docs }}</h4>
+            <ol class="list-unstyled mb-0">
+              {% for file in files.all %}
+              <li><a href="{{ file.file.url }}">{{ file.title }}</a></li> <!-- tutaj rozwiąż problem z serwowaniem plików bezpośrednio ze strony -->
+              {% endfor %}
+            </ol>
+          </div>
+        </aside>
+
+      </div><!-- /.row -->
 
 
     </main>
     <br>
-
-    <div class="docs " >
-    <div class="row nopadding " id="texty" jumbotron jumbotron-fluid >
-    <div class="steps jumbotron jumbotron-fluid" >
-    <div class=" col-md-12 jumbotron jumbotron-fluid">
-    <div class="head">
-    	<h3>INFORMACJE</h3>
-
-    <!--PUBLIKACJE-->
-
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xm-4">
-    <div class="text">
-    <div class="col-lg-2 col-md-2 col-sm-4 col-xm-2">
-    <div class="text-box">
-    	<a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf"> <img="https://files.tinypic.pl/i/00986/bk7dlf28z6pi.png"><i class="fa fa-file-text-o "></i></a>
-    </div>
-    </div>
-    <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
-    <div class="model-text">
-    <h1>Informacje 01</h1>
-
-    </div>
-    </div>
-    </div><!--text-->
-    </div><!--col-4-->
-
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xm-4">
-    <div class="text">
-    <div class="col-lg-2 col-md-2 col-sm-4 col-xm-2">
-    <div class="text-box">
-    	<a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf"><i class="fa fa-file-text-o "></i></a>
-    </div>
-    </div>
-    <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
-    <div class="model-text">
-    <h1>Informacje 02</h1>
-
-    </div>
-    </div>
-    </div><!--icon-->
-    </div><!--col-4-->
-
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xm-4">
-    <div class="text">
-    <div class="col-lg-2 col-md-2 col-sm-4 col-xm-2">
-    <div class="text-box">
-    	<a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf"><i class="fa fa-file-text-o "></i></a>
-    </div>
-    </div>
-    <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
-    <div class="model-text">
-    <h1>Informacje 03</h1>
-
-
-
-
-    </div>
-    </div>
-    </div><!--icon-->
-    </div><!--col-4-->
-    </div><!--icon-content-->
-    </div><!--end of col-12-->
-
-    </div>
-  </div>
-</div>
-
-
-    <div class="row nopadding " id="texty" >
-    <div class="steps" >
-    <div class=" col-md-12">
-    <div class="head">
-    	<h3>{{ items.docs }}</h3>
-    	<center><div class="bar"></div></center>
-    <!--PUBLIKACJE-->
-
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xm-4">
-    <div class="text">
-    <div class="col-lg-2 col-md-2 col-sm-4 col-xm-2">
-    <div class="text-box">
-    	<a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf"><i class="fa fa-file-text-o "></i></a>
-    </div>
-    </div>
-    <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
-    <div class="model-text">
-    <h1>Regulamin domu studenckiego</h1>
-
-    </div>
-    </div>
-    </div><!--text-->
-    </div><!--col-4-->
-
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xm-4">
-    <div class="text">
-    <div class="col-lg-2 col-md-2 col-sm-4 col-xm-2">
-    <div class="text-box">
-    	<a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf"><i class="fa fa-file-text-o "></i></a>
-    </div>
-    </div>
-    <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
-    <div class="model-text">
-    <h1>Plan akademika</h1>
-
-    </div>
-    </div>
-    </div><!--icon-->
-    </div><!--col-4-->
-
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xm-4">
-    <div class="text">
-    <div class="col-lg-2 col-md-2 col-sm-4 col-xm-2">
-    <div class="text-box">
-    	<a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf"><i class="fa fa-file-text-o "></i></a>
-    </div>
-    </div>
-    <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
-    <div class="model-text">
-    <h1>Kalendarz</h1>
-
-    </div>
-    </div>
-    </div><!--icon-->
-    </div><!--col-4-->
-    </div><!--icon-content-->
-    </div><!--end of col-12-->
-
-    </div>
-  </div>
-</div>
-    <!--end of head-->
-      <!--END PUBLIKACJE-->
     <br>
-
-
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+<br>
     <footer class="text-muted">
       <div class="container text-center">
         <p> &copy; Jakub Kozdrowicz & Maciej Fleiszfreser {% now "Y" %}</p>
