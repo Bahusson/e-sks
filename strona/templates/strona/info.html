@@ -1,0 +1,45 @@
+<!doctype html>
+{% extends 'base.html' %}
+<html lang="en">
+  {% load staticfiles %}
+  <head></head>
+
+  <body>
+
+    <header> </header>
+{% block content %}
+    <main role="main">
+
+      <div class="row">
+        <div class="col-md-7 blog-main">
+          <div class="container">
+            <h1 class="text-center pt-3">{{ info.title }}</h1>
+            <hr />
+                <br/>
+                {% if info.image %}
+                    <br />
+                    {% with info as i %}
+                        <img class="img-fluid" src="{{ i.image.url }}" width=50% height=auto />
+                    <br />
+                    {{ i.body|linebreaksbr }}
+                    {% endwith %}
+                {% else %}
+                    <br/>
+                    {% with info as i %}
+                    <br />
+                    {{ i.body|linebreaksbr }}
+                    {% endwith %}
+                {% endif %}
+
+
+          </div>
+        </div><!-- Tutaj idzie boczne menu -->
+
+
+      </div><!-- /.row -->
+
+    </main>
+{% endblock %}
+    <footer></footer>
+  </body>
+</html>
