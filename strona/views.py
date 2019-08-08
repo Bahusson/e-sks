@@ -7,12 +7,11 @@ from strona.models import Pageitem as P
 from esks.settings import LANGUAGES as L
 from esks.special.classes import Blog, Info, File
 
-bl = Blog(P, L)
-inf = Info()
-fil = File()
-
 
 def home(request):
+    bl = Blog(P, L)
+    inf = Info()
+    fil = File()
     bl.gen(B=B)
     inf.gen(In=In)
     fil.gen(F=F)
@@ -26,6 +25,9 @@ def home(request):
 
 
 def blog(request, blog_id):
+    bl = Blog(P, L)
+    inf = Info()
+    fil = File()
     bl.gen(B=B, G404=G404, blogid=blog_id)
     inf.gen(In=In)
     fil.gen(F=F)
@@ -39,6 +41,9 @@ def blog(request, blog_id):
 
 
 def info(request, info_id):
+    bl = Blog(P, L)
+    inf = Info()
+    fil = File()
     bl.gen(B=B)
     inf.gen(In=In, G404=G404, infoid=info_id)
     fil.gen(F=F)
