@@ -35,4 +35,14 @@
     width: 25px;
     padding-top: 3px;
     padding-bottom: 3px;
+    overflow: hidden;
+
+}
+polska. {
+  display: block;
+  width: 25px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  overflow: hidden;
+
 }
