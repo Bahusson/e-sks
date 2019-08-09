@@ -18,7 +18,7 @@ def home(request):
     context = {
      'items': bl.items,
      'langs': bl.langs,
-     'blogs': bl.blogs,
+     'blogs': bl.bloglist,
      'infos': inf.infos,
      'files': fil.files, }
     return render(request, 'strona/home.html', context)
