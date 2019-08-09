@@ -14,7 +14,6 @@ class Pageitem(models.Model):
     login = models.CharField(max_length=200, blank=True, null=True)  # zaloguj
 
 
-
 class Blog(models.Model):
     title = models.CharField(max_length=200)
     pubdate = models.DateTimeField()
@@ -30,6 +29,9 @@ class Blog(models.Model):
 
     def pubdate_short(self):
         return self.pubdate.strftime('%a %d %b %Y')
+
+    class Meta:
+        ordering = ['-pubdate']
 
 
 class Info (models.Model):  # Katalog "informacje" ze strony SEKS
