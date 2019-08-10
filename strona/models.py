@@ -11,8 +11,9 @@ class Pageitem(models.Model):
     logout = models.CharField(max_length=200)  # Wyloguj
     news = models.CharField(max_length=200)  # Aktualności
     docs = models.CharField(max_length=200)  # Ważne pliki
-    login = models.CharField(max_length=200, blank=True, null=True)  # zaloguj
-
+    login = models.CharField(max_length=200)  # zaloguj
+    panel_user = models.CharField(max_length=200)
+    panel_staff = models.CharField(max_length=200)
 
 
 class Blog(models.Model):
@@ -30,6 +31,9 @@ class Blog(models.Model):
 
     def pubdate_short(self):
         return self.pubdate.strftime('%a %d %b %Y')
+
+    class Meta:
+        ordering = ['-pubdate']
 
 
 class Info (models.Model):  # Katalog "informacje" ze strony SEKS
