@@ -7,19 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    {% block title %}
     <title>{{ items.headtitle }} - {{ items.mainpage }}</title>
+    {% endblock %}
     <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
     <!-- Bootstrap core CSS - możemy sami ładować bootstrap z serwera ale to bardziej obciąży naszego klienta imo -->
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-
     <!-- Dodatkowy CSS idzie do podmianki jak ustalimy dokładnie co ma być w stylach
     Ogólnie Bootstrap, ale inne kolorki itp... -->
     <link href="{% static 'langucss.css' %}" rel="stylesheet">
     <link href="{% static 'animate.css' %}" rel="stylesheet">
     <link href="{% static 'style.css' %}" rel="stylesheet">
-    <link href="{% static 'form.css' %}" rel="stylesheet">
     <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    {% block css %}
+    {% endblock %}
 
 
   </head>
@@ -43,9 +44,12 @@
   				<div class="collapse navbar-collapse" id="top-navbar-1">
   					<ul class="nav navbar-nav navbar-right">
   						<li><a href="{% url 'home' %}">{{ items.mainpage }}</a></li>
-  						<li><a href="">{{ items.information }}</a></li>
+              {% if user.is_staff %} <!-- Warunkowy dostęp do panelu użytkownika lub admina -->
+  						  <li><a href="{% url 'staffpanel' %}">{{ items.panel_staff }}</a></li>
+              {% elif user.is_authenticated %}
+                <li><a href="{% url 'userpanel' %}">{{ items.panel_user }}</a></li>
+              {% endif %} <!-- Koniec warunkowania dostępu do panelu użytkownika lub admina -->
   						<li><a href="">{{ items.akamap }}</a></li>
-  						<li><a href="">{{ items.contact }}</a></li>
               <li class="nav-item">
                 {% if user.is_authenticated %}
                 <a class="btn btn-link-3" href="{% url 'logout' %}">{{ items.logout }} ({{ user.username }})</a>
@@ -79,7 +83,7 @@
     <!-- end of empty div -->
 <!-- Top content -->
 
-{% block content %}
+{% block body %}
 {% endblock %}
 
 
@@ -92,9 +96,9 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+
     <script src="{% static 'jquery.js' %}"></script>
-    <script src="{% static 'formjs.js' %}"></script>
-    <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+    <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script> <!-- Czy ten nie jest przestarzały? Na samej górze jest JQuery 3.3.1, albo 3.3.4 pełny a tu go nadpisujemy. Po co? -->
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/jquery.backstretch.min.js' %}"></script>
     <script src="{% static 'js/wow.min.js' %}"></script>
@@ -104,8 +108,10 @@
     <!--My Javascript-->
     <script src="{% static 'langjs.js' %}"></script>
     <!--  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    {% block scripts %}
+    {% endblock %}
 
   </body>
 </html>

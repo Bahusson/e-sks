@@ -8,6 +8,7 @@ from .models import ExtendedCreationForm, FormItems, QuarterClass
 from django.contrib.auth.forms import AuthenticationForm
 
 
+# Wstępny formularz przydzielający akcję kwaterunkową.
 def initial(request):
     if request.method == 'POST':
         # Tworzy zmienną dla sesji użytkownika do późniejszego wykorzystania.
@@ -21,6 +22,7 @@ def initial(request):
     return render(request, 'registration/initial.html', context)
 
 
+# Formularz logowania. Do przeróbki po zmienie autentykacji.
 def logger(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -42,6 +44,7 @@ def logger(request):
     return render(request, 'registration/login.html', context)
 
 
+# Formularz rejestracji. Do wywalenia po zmienie autentykacji.
 def register(request):
     # Tutaj odbieramy zmienną zdefiniowaną wcześniej.
     quarter = request.session['quarter']
@@ -50,24 +53,21 @@ def register(request):
     quartzlist = [
      'stud_local', 'stud_foreign', 'phd', 'bank',
      'new1', 'new23', 'new_foreign', 'erasmus', 'bilateral',
-    ]
+    ]  # To nie powinno być na stałe w kodzie ale jako zmienna z panelu admina.
     setter = quarters.__getattribute__(quartzlist[int(quarter)-1])
-    if request.method == 'POST':  # Jeśli wysyłamy formularz do Bazy danych.
+    if request.method == 'POST':
         form = ExtendedCreationForm(request.POST)
-
         # Po rejestracji automatycznie loguje klienta podanym loginem i hasłem.
-        if form.is_valid():  # Jeśli formularz jest poprawny.
+        if form.is_valid():
             form.save(quarter)
-            # Zapisz formularz ze zmienną z poprzedniego formularza.
             username = form.cleaned_data['username']
-            # Nazwa Usera z prawidłowego formularza.
-            password = form.cleaned_data['password1']  # Hasło j.w.
+            password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
             # Sprawdza shaszowane dane powyżej w bazie danych.
-            login(request, user)  # Loguje usera.
+            login(request, user)
             return redirect('home')
             # Przekierowuje na stronę główną zalogowanego usera.
-    else:  # Zanim wyślemy cokolwiek mysimy wygenerować formularz na stronie.
+    else:
         form = ExtendedCreationForm()
         locations = list(FormItems.objects.all())
         items = locations[0]
