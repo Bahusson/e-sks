@@ -17,14 +17,15 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
-import strona.views
-import rekruter.views
+# import strona.views
+# import rekruter.views
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls), #Zmień nazwę żeby była zmyłka dla botów próbujących się dostać do strony administracji
+    path('admin/', admin.site.urls),  # Potem wywalimy admina gdzie indziej...
     path('', include('strona.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('strona/', include('strona.urls')),
-    path('rekruter/', include('rekruter.urls')), #strona rejestracji do systemu akademików (dla studentów)
-#    path('akademik/', include('akademik.urls')), #strona administracyjna dla rady studentów i administracji akademika
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #pliki statyczne ładowane tylko manualnie z poziomu serwera.
+    path('rekruter/', include('rekruter.urls')),
+    path('akademik/', include('akademik.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

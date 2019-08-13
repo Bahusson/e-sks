@@ -5,9 +5,7 @@ from .models import Info as In
 from .models import Fileserve as F
 from strona.models import Pageitem as P
 from esks.settings import LANGUAGES as L
-from esks.special.classes import PageLoad, Blog, Info, File
-from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.auth.decorators import login_required
+from esks.special.classes import Blog, Info, File
 
 
 # Strona główna.
@@ -60,23 +58,3 @@ def info(request, info_id):
      'infos': inf.infos,
      'files': fil.files, }
     return render(request, 'strona/info.html', context)
-
-
-# Panel obsługi.
-@staff_member_required(login_url='logger')
-def staffpanel(request):
-    pl = PageLoad(P, L)
-    context = {
-     'items': pl.items,
-     'langs': pl.langs, }
-    return render(request, 'strona/panel/staff.html', context)
-
-
-# Panel użytkownika.
-@login_required(login_url='logger')
-def userpanel(request):
-    pl = PageLoad(P, L)
-    context = {
-     'items': pl.items,
-     'langs': pl.langs, }
-    return render(request, 'strona/panel/user.html', context)

@@ -5,6 +5,4 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('blogs/<int:blog_id>/', views.blog, name='blog'),
     path('infos/<int:info_id>/', views.info, name='info'),
-    path('staffpanel', views.staffpanel, name='staffpanel'),
-    path('userpanel', views.userpanel, name='userpanel'),
 ]
