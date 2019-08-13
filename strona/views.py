@@ -9,6 +9,7 @@ from esks.special.classes import PageLoad, Blog, Info, File
 from django.contrib.admin.views.decorators import staff_member_required, user_passes_test
 
 
+# Strona główna.
 def home(request):
     bl = Blog(P, L)
     inf = Info()
@@ -25,6 +26,7 @@ def home(request):
     return render(request, 'strona/home.html', context)
 
 
+# Pojedyńcze aktualności w zbliżeniu.
 def blog(request, blog_id):
     bl = Blog(P, L)
     inf = Info()
@@ -41,6 +43,7 @@ def blog(request, blog_id):
     return render(request, 'strona/blog.html', context)
 
 
+# Pojedyńcze informacje w zbliżeniu.
 def info(request, info_id):
     bl = Blog(P, L)
     inf = Info()
@@ -58,6 +61,7 @@ def info(request, info_id):
     return render(request, 'strona/info.html', context)
 
 
+# Panel obsługi.
 @staff_member_required(login_url='logger')
 def staffpanel(request):
     pl = PageLoad(P, L)
@@ -67,6 +71,7 @@ def staffpanel(request):
     return render(request, 'strona/panel/staff.html', context)
 
 
+# Panel użytkownika.
 @user_passes_test(lambda u: u.is_authenticated, login_url='logger')
 def userpanel(request):
     pl = PageLoad(P, L)

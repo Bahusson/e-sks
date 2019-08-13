@@ -28,6 +28,7 @@ class PageLoad(object):
         self.langs = zip(lang_id, langsl)
 
 
+# Subklasa aktualności.
 class Blog(PageLoad):
     def __init__(self, *args, **kwargs):
         if args:
@@ -44,6 +45,7 @@ class Blog(PageLoad):
             self.blog = G404(b, pk=blog_id)
 
 
+# Subklasa informacji.
 class Info(PageLoad):
     def __init__(self, *args, **kwargs):
         if args:
@@ -59,6 +61,7 @@ class Info(PageLoad):
             self.info = G404(inf, pk=info_id)
 
 
+# Subklasa pliku strony głównej.
 class File(PageLoad):
     def __init__(self, *args, **kwargs):
         if args:
