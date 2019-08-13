@@ -5,7 +5,7 @@ from .models import Info as In
 from .models import Fileserve as F
 from strona.models import Pageitem as P
 from esks.settings import LANGUAGES as L
-from esks.special.classes import Blog, Info, File
+from esks.special.classes import PageLoad, Blog, Info, File
 
 
 def home(request):
@@ -55,3 +55,19 @@ def info(request, info_id):
      'infos': inf.infos,
      'files': fil.files, }
     return render(request, 'strona/info.html', context)
+
+
+def staffpanel(request):
+    pl = PageLoad(P, L)
+    context = {
+     'items': pl.items,
+     'langs': pl.langs, }
+    return render(request, 'strona/panel/staff.html', context)
+
+
+def userpanel(request):
+    pl = PageLoad(P, L)
+    context = {
+     'items': pl.items,
+     'langs': pl.langs, }
+    return render(request, 'strona/panel/user.html', context)
