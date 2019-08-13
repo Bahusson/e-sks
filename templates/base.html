@@ -45,9 +45,9 @@
   					<ul class="nav navbar-nav navbar-right">
   						<li><a href="{% url 'home' %}">{{ items.mainpage }}</a></li>
               {% if user.is_staff %} <!-- Warunkowy dostęp do panelu użytkownika lub admina -->
-  						  <li><a href="">{{ items.panel_staff }}</a></li>
+  						  <li><a href="{% url 'staffpanel' %}">{{ items.panel_staff }}</a></li>
               {% elif user.is_authenticated %}
-                <li><a href="">{{ items.panel_user }}</a></li>
+                <li><a href="{% url 'userpanel' %}">{{ items.panel_user }}</a></li>
               {% endif %} <!-- Koniec warunkowania dostępu do panelu użytkownika lub admina -->
   						<li><a href="">{{ items.akamap }}</a></li>
               <li class="nav-item">
