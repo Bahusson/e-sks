@@ -6,6 +6,7 @@ from .models import Fileserve as F
 from strona.models import Pageitem as P
 from esks.settings import LANGUAGES as L
 from esks.special.classes import PageLoad, Blog, Info, File
+from django.contrib.admin.views.decorators import staff_member_required, user_passes_test
 
 
 def home(request):
@@ -57,6 +58,7 @@ def info(request, info_id):
     return render(request, 'strona/info.html', context)
 
 
+@staff_member_required(login_url='logger')
 def staffpanel(request):
     pl = PageLoad(P, L)
     context = {
@@ -65,6 +67,7 @@ def staffpanel(request):
     return render(request, 'strona/panel/staff.html', context)
 
 
+@user_passes_test(lambda u: u.is_authenticated, login_url='logger')
 def userpanel(request):
     pl = PageLoad(P, L)
     context = {
