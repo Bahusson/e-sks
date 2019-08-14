@@ -3,7 +3,7 @@ from strona.models import Pageitem as P
 from esks.settings import LANGUAGES as L
 from esks.special.classes import PageLoad
 from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.auth.decorators import login_required
+#from django.contrib.auth.decorators import user_passes_test
 
 
 # Panel obsługi.
@@ -17,7 +17,7 @@ def staffpanel(request):
 
 
 # Panel użytkownika.
-@login_required(login_url='logger')
+# @user_passes_test(login_url='initial')
 def userpanel(request):
     pl = PageLoad(P, L)
     context = {

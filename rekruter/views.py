@@ -7,9 +7,11 @@ from esks.special.classes import PageLoad
 from .models import FormItems, QuarterClass
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import ExtendedCreationForm
+from django.contrib.auth.decorators import login_required
 
 
 # Wstępny formularz przydzielający akcję kwaterunkową.
+#@login_required(login_url='initial')
 def initial(request):
     if request.method == 'POST':
         # Tworzy zmienną dla sesji użytkownika do późniejszego wykorzystania.
