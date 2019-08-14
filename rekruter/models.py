@@ -52,37 +52,32 @@ class QuarterClass(models.Model):
 
 class Profile(models.Model):
     # Klasa zmieniająca klasę usera. Plus dwa dekoratory linkujące.
+    USER = 1
+    COUNCIL = 2
+    STAFF = 3
+    SUPERUSER = 4
+    ROLE_CHOICES = (
+     (USER, 'Student'),
+     (COUNCIL, 'Teacher'),
+     (STAFF, 'Staff'),
+     (SUPERUSER, 'Superuser'),
+    )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    quarter = models.CharField(max_length=20, blank=True, default='')
+    quarter = models.CharField(max_length=20, blank=True, null=True)
+    role = models.PositiveSmallIntegerField(
+        choices=ROLE_CHOICES, null=True, blank=True)
+
+    def __str__(self):  # __unicode__ for Python 2
+        return self.user.username
 
 
 @receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
+def create_or_update_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
+    instance.profile.save()
 
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
-
-
-class ExtendedCreationForm(UserCreationForm):
-    # Rozszerzenie formularza rejestracji
-    first_name = forms.CharField(max_length=30)
-    last_name = forms.CharField(max_length=30)
-    email = forms.EmailField(max_length=75)
-
-    class Meta:
-        model = User
-        fields = ("username", "first_name", "last_name", "email")
-
-    def save(self, quarter, commit=True):
-        user = super(ExtendedCreationForm, self).save(commit=False)
-        user.first_name = self.cleaned_data["first_name"]
-        user.last_name = self.cleaned_data["last_name"]
-        user.email = self.cleaned_data["email"]
-        user.quarter = quarter
-        if commit:
-            user.save()
-        return user

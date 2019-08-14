@@ -57,12 +57,13 @@ def register(request):
     ]  # To nie powinno być na stałe w kodzie ale jako zmienna z panelu admina.
     setter = quarters.__getattribute__(quartzlist[int(quarter)-1])
     if request.method == 'POST':
-        user_form = ExtendedCreationForm(request.POST, instance=request.user)
-        #profile_form = ProfileForm(request.POST, instance=request.user.profile)
-        if user_form.is_valid:
-            # profile_form.quarter = quarter
-            user_form.save()
-            #profile_form.save()
+        user_form = ExtendedCreationForm(request.POST)
+        profile_form = ProfileForm(request.POST)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save(commit=False)
+            profile = profile_form.save(commit=False)
+            profile.user = user_form
+            profile.save()
             username = user_form.cleaned_data['username']
             password = user_form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
@@ -72,12 +73,12 @@ def register(request):
             # Przekierowuje na stronę główną zalogowanego usera.
     else:
         user_form = ExtendedCreationForm()
-        #profile_form = ProfileForm()
+        profile_form = ProfileForm(initial={'quarter': quarter})
         locations = list(FormItems.objects.all())
         items = locations[0]
         context = {'form': user_form,
-                   #'profile': profile_form,
                    'item': items,
+                   'profile': profile_form,
                    'quarter': quarter,
                    'setter': setter}
     return render(request, 'registration/register.html', context)

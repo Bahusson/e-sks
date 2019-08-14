@@ -5,8 +5,8 @@ from strona.models import Pageitem as P
 from esks.settings import LANGUAGES as L
 from esks.special.classes import PageLoad
 from .models import FormItems, QuarterClass
-from .forms import ExtendedCreationForm, ProfileForm
 from django.contrib.auth.forms import AuthenticationForm
+from .forms import UserForm, ProfileForm
 
 
 # Wstępny formularz przydzielający akcję kwaterunkową.
@@ -19,7 +19,7 @@ def initial(request):
         pl = PageLoad(P, L)
         locations = list(Sito.objects.all())
         sitos = locations[0]
-    context = {'sitos': sitos, 'items': pl.items, 'langs': pl.langs}
+        context = {'sitos': sitos, 'items': pl.items, 'langs': pl.langs}
     return render(request, 'registration/initial.html', context)
 
 
@@ -41,7 +41,7 @@ def logger(request):
         items = locations[0]
         locations1 = list(P.objects.all())
         items1 = locations1[0]
-    context = {'form': form, 'item': items, 'item1': items1, }
+        context = {'form': form, 'item': items, 'item1': items1, }
     return render(request, 'registration/login.html', context)
 
 
@@ -57,30 +57,28 @@ def register(request):
     ]  # To nie powinno być na stałe w kodzie ale jako zmienna z panelu admina.
     setter = quarters.__getattribute__(quartzlist[int(quarter)-1])
     if request.method == 'POST':
-        user_form = ExtendedCreationForm(request.POST)
-        profile_form = ProfileForm(request.POST)
-        if user_form.is_valid() and profile_form.is_valid():
-            # user_form.save(commit=False)
-            profile = user_form.save(commit=False)
-            profile.user = request.user
-            profile.save()
-            username = user_form.cleaned_data['username']
-            password = user_form.cleaned_data['password1']
+        form = UserForm(request.POST)
+        #profile_form = ProfileForm(request.POST)
+        # Po rejestracji automatycznie loguje klienta podanym loginem i hasłem.
+        if form.is_valid():
+            user = form.save()
+            #userprofile = profile_form.saveq(quarter, commit=False)
+            #userprofile.user = user
+            #userprofile.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
             # Sprawdza shaszowane dane powyżej w bazie danych.
             login(request, user)
             return redirect('home')
             # Przekierowuje na stronę główną zalogowanego usera.
     else:
-        user_form = ExtendedCreationForm()
-        profile_form = ProfileForm(initial={'quarter': quarter})
+        form = UserForm()
         locations = list(FormItems.objects.all())
         items = locations[0]
-        context = {'form': user_form,
+        context = {'form': form,
                    'item': items,
-                   'profile': profile_form,
-                   'quarter': quarter,
-                   'setter': setter}
+                   'setter': setter, }
     return render(request, 'registration/register.html', context)
 
 
