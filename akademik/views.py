@@ -3,7 +3,8 @@ from strona.models import Pageitem as P
 from esks.settings import LANGUAGES as L
 from esks.special.classes import PageLoad
 from django.contrib.admin.views.decorators import staff_member_required
-#from django.contrib.auth.decorators import user_passes_test
+# from django.contrib.auth.decorators import user_passes_test
+from esks.special.decorators import user_has_quarters
 
 
 # Panel obsługi.
@@ -17,7 +18,8 @@ def staffpanel(request):
 
 
 # Panel użytkownika.
-# @user_passes_test(login_url='initial')
+# @user_passes_test(lambda u: u.is_authenticated, login_url='initial')
+@user_has_quarters(login_url='initial')
 def userpanel(request):
     pl = PageLoad(P, L)
     context = {
