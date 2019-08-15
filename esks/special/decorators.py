@@ -1,7 +1,3 @@
-from django.http import redirect
-from rekruter.models import Profile
-
-
 from functools import wraps
 from urllib.parse import urlparse
 
