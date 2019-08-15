@@ -26,7 +26,7 @@
 
     <body>
 
-    	<!-- NAVBAR -->
+  	<!-- NAVBAR -->
       <nav class="navbar navbar-fixed-top navbar-no-bg" role="navigation">
         <div class="container">
           <div class="navbar-header">
@@ -37,64 +37,41 @@
 
               <span class="icon-bar"></span>
             </button>
-					<a class="navbar-brand" href="{% url 'home' %}">{{ items.mainpage }}</a>
-				</div>
-				<!-- NAVBAR LINKI -->
-				<div class="collapse navbar-collapse" id="top-navbar-1">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="{% url 'home' %}">{{ items.mainpage }}</a></li>
-            {% if user.is_staff %} <!-- Warunkowy dostęp do panelu użytkownika lub admina -->
-						<li><a href="{% url 'staffpanel' %}">{{ items.panel_staff }}</a></li>
-            {% elif user.is_authenticated %}
-						<li><a href="{% url 'userpanel' %}">{{ items.panel_user }}</a></li>
-            {% endif %} <!-- Koniec warunkowania dostępu do panelu użytkownika lub admina -->
-						<li><a href="">{{ items.akamap }}</a></li>
-      <!-- NAVBAR BUTTON LOGIN -->
-            <li class="nav-item">
-            {% if user.is_authenticated %}
-            <a class="btn btn-link-3" href="{% url 'logout' %}">{{ items.logout }} ({{ user.username }})</a>
-            {% else %}
-            <a class="btn btn-link-3" href="{% url 'logger' %}">{{ items.login }}</a>
-            {% endif %}
-            </li>
-      <!-- NAVBAR MENU ZMIANY JEZYKA -->
-      <li class="nav-item"><!-- Menu zmiany języka. Nie ruszaj tego -->
-
-            <span class="icon-bar"></span>
-          </button>
-        <a class="navbar-brand" href="{% url 'home' %}">{{ items.mainpage }}</a>
-      </div>
-  				<!-- menu -->
+  				<a class="navbar-brand" href="{% url 'home' %}">{{ items.mainpage }}</a>
+  				</div>
+  				<!-- NAVBAR LINKI -->
   				<div class="collapse navbar-collapse" id="top-navbar-1">
   					<ul class="nav navbar-nav navbar-right">
   						<li><a href="{% url 'home' %}">{{ items.mainpage }}</a></li>
               {% if user.is_staff %} <!-- Warunkowy dostęp do panelu użytkownika lub admina -->
-  						  <li><a href="{% url 'staffpanel' %}">{{ items.panel_staff }}</a></li>
+  						 <li><a href="{% url 'staffpanel' %}">{{ items.panel_staff }}</a></li>
               {% elif user.is_authenticated %}
-                <li><a href="{% url 'userpanel' %}">{{ items.panel_user }}</a></li>
+  						 <li><a href="{% url 'userpanel' %}">{{ items.panel_user }}</a></li>
               {% endif %} <!-- Koniec warunkowania dostępu do panelu użytkownika lub admina -->
   						<li><a href="">{{ items.akamap }}</a></li>
+             <!-- NAVBAR BUTTON LOGIN -->
               <li class="nav-item">
-                {% if user.is_authenticated %}
-                <a class="btn btn-link-3" href="{% url 'logout' %}">{{ items.logout }} ({{ user.first_name }})</a>
-                {% else %}
-                <a class="btn btn-link-3" href="{% url 'logger' %}">{{ items.login }}</a>
-                {% endif %}
+              {% if user.is_authenticated %}
+               <a class="btn btn-link-3" href="{% url 'logout' %}">{{ items.logout }} ({{ user.username }})</a>
+              {% else %}
+               <a class="btn btn-link-3" href="{% url 'logger' %}">{{ items.login }}</a>
+              {% endif %}
               </li>
+             <!-- NAVBAR MENU ZMIANY JEZYKA -->
               <li class="nav-item"><!-- Menu zmiany języka. Nie ruszaj tego -->
-
-          <li><img id="{{ lang_id }}" src="/media/{{ lang_flag }}" height=20 /></li>
-        {% endfor %}
-      </ul>
-    </li>
-    <!-- KONIEC MENU ZMIANY JEZYKA -->
-    </ul>
-
-					</ul>
-				</div>
-			</div>
-		</nav>
-    <!-- KONIEC NAVBARU -->
+               <ul class="languagepicker roundborders large">
+                 <li><img class=""src="{{ items.lang_flag.url }}" height=20 width="40" /></li>
+                 {% for lang_id, lang_flag in langs %}
+                  <li><img id="{{ lang_id }}" src="/media/{{ lang_flag }}" height=20 /></li>
+                 {% endfor %}
+               </ul>
+              </li>
+             <!-- KONIEC MENU ZMIANY JEZYKA -->
+            </ul>
+  			 	</div>
+  			</div>
+  		</nav>
+     <!-- KONIEC NAVBARU -->
     	<!-- PUSTY DIV ODPOWIEDZIALNY ZA ZMIANE NAVBARA -->
       <div class="top-content">
         <div class="container">
@@ -106,31 +83,7 @@
       <!-- Features -->
         <div class="features-container section-container"> </div>
 
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-	       <br>
+          <!--Daruj, że to wywaliłem, ale na wuj Ci tu tyle tego <br>? -->
          {% block body %}
          {% endblock %}
 
