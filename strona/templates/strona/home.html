@@ -162,7 +162,9 @@
         <div class="text">
         <div class="col-lg-3 col-md-3 col-sm-4 col-xm-4">
         <div class="text-box">
-        <a href="{% url 'blog' blog.id %}"><img class="blog-image" src="{{ blog.image.url }}" height=200 /></a>
+        {% if blog.image %}
+         <a href="{% url 'blog' blog.id %}"><img class="blog-image" src="{{ blog.image.url }}" height=200 /></a>
+        {% endif %}
         </div>
         </div>
         <br>
@@ -187,7 +189,9 @@
         <div class="text">
         <div class="col-lg-3 col-md-3 col-sm-4 col-xm-4">
         <div class="text-box">
-        <a href="{% url 'blog' blogs.3.id %}"><img class="blog-image" src="{{ blogs.3.image.url }}" height=200 /></a>
+        {% if blogs.3.image %}
+         <a href="{% url 'blog' blogs.3.id %}"><img class="blog-image" src="{{ blogs.3.image.url }}" height=200 /></a>
+        {% endif %}
         </div>
         </div>
         <br>
@@ -213,9 +217,3 @@
     </div>
 
 {% endblock %}
-
-    <footer>
-  </footer>
-
-  </body>
-</html>
