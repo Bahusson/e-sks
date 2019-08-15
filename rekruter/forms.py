@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Profile
 
 
 class ExtendedCreationForm(UserCreationForm):
@@ -49,18 +48,3 @@ class UserForm(forms.ModelForm):
         if commit:
             user.save()
         return user
-
-
-class ProfileForm(forms.ModelForm):
-    quarter = forms.CharField(widget=forms.HiddenInput())
-
-    class Meta:
-        model = Profile
-        fields = ('quarter', )
-
-    def save(self, commit=True):
-        profile = super(ProfileForm, self).save(commit=False)
-        profile.quarter = self.cleaned_data["quarter"]
-        if commit:
-            profile.save()
-        return profile
