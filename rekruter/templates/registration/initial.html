@@ -151,7 +151,7 @@
         <div class="col-md-3">
           <form name="quarterly" method="post">
             {% csrf_token %}
-            <input class='visible' type="hidden" id="quarter" name="quarter" value=' '>
+            {{ form.quarter }}
             <input id="send" class="button" name="subbutton" type="submit" value="{{ sitos.buttondalej }}">
           </form>
         </div>

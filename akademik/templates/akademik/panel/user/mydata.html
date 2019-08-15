@@ -1,0 +1,27 @@
+{% extends 'panel_uzytkownika.html' %}
+{% load staticfiles %}
+
+{% block title %}
+<title>Moje Dane Otako!</title>
+{% endblock %}
+
+{% block body %}
+<p> A tu już nie ma panelu usera. I co mi zrobisz?! :D</p>
+
+{% endblock %}
+{% block body2 %}
+<p> Tutaj się przedłuża blok body panelu użytkownika</p>
+<p>Imię: {{ udata.first_name }}  Nazwisko: {{ udata.last_name }}</p>
+<p>Email: {{ udata.email }}</p><p> Przydzielony do: {{ setter }}</p>
+{% endblock %}
+
+
+
+
+{% block scripts %}
+<p>override script</p>
+{% endblock %}
+
+{% block scripts2 %}
+<p>extended script </p>
+{% endblock %}

@@ -2,11 +2,14 @@
 {% load staticfiles %}
 {% block body %}
 
-  <!-- empty div -->
-  <div class="top-content">
-    <div class="container">
-  <div class="row">	<div class="col-sm-12 text wow fadeInLeft"></div></div>
-</div></div>
+<!-- empty div - Czy jest do czegoś potrzebny? Bez niego imho lepiej się wyświetla! -->
+ <div class="top-content">
+   <div class="container">
+    <div class="row">
+     <div class="col-sm-12 text wow fadeInLeft"></div>
+    </div>
+   </div>
+ </div>
 <!-- Top content -->
 
 <main role="main">
@@ -23,7 +26,7 @@
                 <div class="text">
                   <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10"> <!-- Część z tekstem -->
                     <div class="text-box">
-                      {% if blog.image %} <!-- Jeśli nie ma obrazka zwróć default -->
+                      {% if blog.image %} <!-- Jeśli nie ma obrazka zwróć default ze skórki Usera -->
                        <a href="{% url 'blog' blog.id %}"><img class="blog-image" src="{{ blog.image.url }}" height=200 /></a>
                       {% else %}
                        <a href="{% url 'blog' blog.id %}"><img class="blog-image" src="{{ skin.blogimagedefault.url }}" height=200 /></a>
@@ -52,7 +55,7 @@
                      {% if blogs.3.image %}
                       <a href="{% url 'blog' blogs.3.id %}"><img class="blog-image" src="{{ blogs.3.image.url }}" height=200 /></a>
                      {% else %}
-                      <a href="{% url 'blog' blog.id %}"><img class="blog-image" src="{{ skin.blogimagedefault.url }}" height=200 /></a>
+                     <a href="{% url 'blog' blog.id %}"><img class="blog-image" src="{{ skin.blogimagedefault.url }}" height=200 /></a>
                      {% endif %}
                     </div>
                   </div>
@@ -75,6 +78,7 @@
     </div>
 
     <br><br><br><br><br><br>
+
     <div class="docs " >
     <div class="row nopadding " id="texty" jumbotron jumbotron-fluid >
     <div class="steps jumbotron jumbotron-fluid" >

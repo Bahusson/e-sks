@@ -26,7 +26,8 @@ def home(request):
      'blogs': bl.bloglist,
      'infos': inf.infos,
      'files': fil.files, }
-    return render(request, 'strona/home.html', context)
+    template = 'strona/home.html'
+    return render(request, template, context)
 
 
 # Pojedyńcze aktualności w zbliżeniu.
@@ -43,7 +44,8 @@ def blog(request, blog_id):
      'blog': bl.blog,
      'infos': inf.infos,
      'files': fil.files, }
-    return render(request, 'strona/blog.html', context)
+    template = 'strona/blog.html'
+    return render(request, template, context)
 
 
 # Pojedyńcze informacje w zbliżeniu.
@@ -61,4 +63,5 @@ def info(request, info_id):
      'info': inf.info,
      'infos': inf.infos,
      'files': fil.files, }
-    return render(request, 'strona/info.html', context)
+    template = 'strona/info.html'
+    return render(request, template, context)

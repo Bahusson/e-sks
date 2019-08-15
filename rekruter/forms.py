@@ -29,6 +29,21 @@ class ExtendedCreationForm(UserCreationForm):
         return user
 
 
+class IniForm(forms.ModelForm):
+    quarter = forms.CharField(widget=forms.HiddenInput())
+
+    class Meta:
+        model = User
+        fields = ('quarter', )
+
+    def save(self, commit=True):
+        user = super(IniForm, self).save(commit=False)
+        user.quarter = self.cleaned_data["quarter"]
+        if commit:
+            user.save()
+        return user
+
+
 class UserForm(forms.ModelForm):
     first_name = forms.CharField(max_length=30)
     last_name = forms.CharField(max_length=30)
@@ -37,13 +52,16 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = (
-         'first_name', 'last_name', 'email')
+            'first_name',
+            'last_name',
+            'quarter',
+        )
 
     def save(self, commit=True):
         user = super(UserForm, self).save(commit=False)
         user.first_name = self.cleaned_data["first_name"]
         user.last_name = self.cleaned_data["last_name"]
-        user.email = self.cleaned_data["email"]
+        user.quarter = self.cleaned_data["quarterl"]
         if commit:
             user.save()
         return user
