@@ -56,8 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-
+    'esks.special.middleware.LoginRequiredMiddleware'
 ]
 
 ROOT_URLCONF = 'esks.urls'
@@ -204,6 +203,18 @@ LOGIN_REDIRECT_URL = '/'  # Przekierowanie usera po zalogowaniu
 # "w" default przekierowuje na nieistniejącą stronę. To już lepiej na główną!
 
 LOGOUT_REDIRECT_URL = '/'  # Przekierowanie po wylogowaniu.
+
+# Poniżej dane do ustawień Middleware blokującego strony przed niezalogowanymi.
+LOGIN_URL = '/'
+
+LOGIN_EXEMPT_URLS = (
+     r'^/$',  # nie wiem czy nie złapie wszystkich XD
+     r'^strona/.*$',
+     r'^rekruter/logger/$',
+     r'^rekruter/register/$',
+     r'^static/.*$',
+     r'^media/.*$',
+)
 
 # Ściągnij ustawienia lokalne gdybyśmy chcieli udostępnić kod i wejść na OpenSource
 # na serwerze obok "settings" robisz plik .local_settings i ustalasz od nowa:

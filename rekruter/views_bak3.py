@@ -6,17 +6,15 @@ from esks.settings import LANGUAGES as L
 from esks.special.classes import PageLoad
 from .models import FormItems, QuarterClass
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import ExtendedCreationForm
-from django.contrib.auth.decorators import login_required
+from .forms import UserForm, ProfileForm
 
 
 # Wstępny formularz przydzielający akcję kwaterunkową.
-#@login_required(login_url='initial')
 def initial(request):
     if request.method == 'POST':
         # Tworzy zmienną dla sesji użytkownika do późniejszego wykorzystania.
         request.session['quarter'] = request.POST['quarter']
-        return redirect('home')
+        return redirect('register')
     else:
         pl = PageLoad(P, L)
         locations = list(Sito.objects.all())
@@ -49,27 +47,6 @@ def logger(request):
 
 # Formularz rejestracji. Do wywalenia po zmienie autentykacji.
 def register(request):
-    if request.method == 'POST':
-        form = ExtendedCreationForm(request.POST)
-        # Po rejestracji automatycznie loguje klienta podanym loginem i hasłem.
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password1']
-            user = authenticate(username=username, password=password)
-            # Sprawdza shaszowane dane powyżej w bazie danych.
-            login(request, user)
-            return redirect('home')
-            # Przekierowuje na stronę główną zalogowanego usera.
-    else:
-        form = ExtendedCreationForm()
-        locations = list(FormItems.objects.all())
-        items = locations[0]
-        context = {'form': form,
-                   'item': items,}
-    return render(request, 'registration/register.html', context)
-
-    '''
     # Tutaj odbieramy zmienną zdefiniowaną wcześniej.
     quarter = request.session['quarter']
     locations = list(QuarterClass.objects.all())
@@ -79,5 +56,30 @@ def register(request):
      'new1', 'new23', 'new_foreign', 'erasmus', 'bilateral',
     ]  # To nie powinno być na stałe w kodzie ale jako zmienna z panelu admina.
     setter = quarters.__getattribute__(quartzlist[int(quarter)-1])
-    '''
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        #profile_form = ProfileForm(request.POST)
+        # Po rejestracji automatycznie loguje klienta podanym loginem i hasłem.
+        if form.is_valid():
+            user = form.save()
+            #userprofile = profile_form.saveq(quarter, commit=False)
+            #userprofile.user = user
+            #userprofile.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            # Sprawdza shaszowane dane powyżej w bazie danych.
+            login(request, user)
+            return redirect('home')
+            # Przekierowuje na stronę główną zalogowanego usera.
+    else:
+        form = UserForm()
+        locations = list(FormItems.objects.all())
+        items = locations[0]
+        context = {'form': form,
+                   'item': items,
+                   'setter': setter, }
+    return render(request, 'registration/register.html', context)
+
+
 # def unlogger(request):
