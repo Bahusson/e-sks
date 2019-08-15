@@ -75,3 +75,17 @@ class File(PageLoad):
             G404 = kwargs['G404']
             file_id = kwargs['fileid']
             self.file = G404(fil, pk=file_id)
+
+
+# Subklasa pozwająca na dowolne zmienianie skórek przez Usera
+# Spośród dostępnych w adminie.
+class PageSkinner(PageLoad):
+    def __init__(self, *args, **kwargs):
+        if args:
+            super().__init__(*args)
+
+    def gen(self, **kwargs):
+        s = kwargs['skins']
+        c = int(kwargs['choice'])
+        self.skins = list(s.objects.all())
+        self.skin = self.skins[c]

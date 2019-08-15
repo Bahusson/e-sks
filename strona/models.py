@@ -56,3 +56,8 @@ class Fileserve(models.Model):  # serwowanie plików niestatycznych
 
     def pubdate_short(self):
         return self.pubdate.strftime('%a %d %b %Y')
+
+
+# Klasa skórek do naszej apki. Pola nienulowalne.
+class PageSkin(models.Model):
+    blogimagedefault = models.ImageField(upload_to='skins')

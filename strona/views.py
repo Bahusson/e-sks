@@ -1,24 +1,28 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404 as G404
+from .models import PageSkin as S
 from .models import Blog as B
 from .models import Info as In
 from .models import Fileserve as F
 from strona.models import Pageitem as P
 from esks.settings import LANGUAGES as L
-from esks.special.classes import Blog, Info, File
+from esks.special.classes import Blog, Info, File, PageSkinner
 
 
 # Strona główna.
 def home(request):
-    bl = Blog(P, L)
+    ps = PageSkinner(P, L)
+    bl = Blog()
     inf = Info()
     fil = File()
+    ps.gen(skins=S, choice=0)  # Do zmiany po ustawieniu reszty w panelu usera.
     bl.gen(B=B)
     inf.gen(In=In)
     fil.gen(F=F)
     context = {
-     'items': bl.items,
-     'langs': bl.langs,
+     'items': ps.items,
+     'langs': ps.langs,
+     'skin': ps.skin,
      'blogs': bl.bloglist,
      'infos': inf.infos,
      'files': fil.files, }
