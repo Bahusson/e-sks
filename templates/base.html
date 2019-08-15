@@ -40,7 +40,7 @@
 				<!-- NAVBAR LINKI -->
 				<div class="collapse navbar-collapse" id="top-navbar-1">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="{% url 'home' %}">{{ items.mainpage }}</a></li>
+						<li><a href="{% url 'home' %}">PANEL UŻYTKOWNIKA</a></li> <!-- tu było {{ items.mainpage }} -->
             {% if user.is_staff %} <!-- Warunkowy dostęp do panelu użytkownika lub admina -->
 						<li><a href="{% url 'staffpanel' %}">{{ items.panel_staff }}</a></li>
             {% elif user.is_authenticated %}
@@ -74,6 +74,8 @@
 			</div>
 		</nav>
     <!-- KONIEC NAVBARU -->
+
+    <div class="features-container section-container"> </div>
     	<!-- PUSTY DIV ODPOWIEDZIALNY ZA ZMIANE NAVBARA -->
       <div class="top-content">
         <div class="container">
@@ -82,41 +84,7 @@
               <div class="description">	</div>
             </div></div></div></div>
       <!--KONIEC PUSTEGO DIVA -->
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <!-- Features -->
-        <div class="features-container section-container"> </div>
 
-
-          <br>
-          <br>
-	       <br>
          {% block body %}
 
          {% endblock %}
@@ -137,6 +105,7 @@
                 </div></div></div></div>
           <!--KONIEC PUSTEGO DIVA -->
         </footer>
+
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->

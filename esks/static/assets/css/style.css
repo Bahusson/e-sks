@@ -65,7 +65,7 @@ h3 {
 	margin-bottom: 0;
 	padding-top: 0;
   height: 75px;
-	background: white;
+	background: #ffffff;
 	border: 0;
 	-moz-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
 	-webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
@@ -74,7 +74,7 @@ h3 {
 	-o-transition: all .6s; -moz-transition: all .6s; -webkit-transition: all .6s; -ms-transition: all .6s; transition: all .6s;
 }
 .navbar-no-bg {
-	padding-top: 0px; background: #38B6FF;
+	padding-top: 0px; background: #e98328;
 	-moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
 }
 
@@ -119,12 +119,12 @@ ul.navbar-nav li a.btn-link-3 {
 ul.navbar-nav li a.btn-link-3:hover,
 ul.navbar-nav li a.btn-link-3:focus,
 ul.navbar-nav li a.btn-link-3:active,
-ul.navbar-nav li a.btn-link-3:active:focus { outline: 0; background: transparent; color: black;  }
+ul.navbar-nav li a.btn-link-3:active:focus { outline: 0; color: black;  }
 
 .navbar-brand {
 	width: 275px;
   height:73px;
-	background: url(https://images.tinypic.pl/i/00986/tvy6c5m0zto1.png) left center no-repeat;
+	background: url(https://images.tinypic.pl/i/00987/ife9ep2mrlac.png) left;
 	text-indent: -99999px;
 }
 .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand { margin-left: 0; }

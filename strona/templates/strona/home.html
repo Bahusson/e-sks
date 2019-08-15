@@ -12,7 +12,15 @@
  </div>
 <!-- Top content -->
 
+<!-- Top content -->
+<!-- POCZĄTEK AKTUALNÓŚĆ -->
 <main role="main">
+  <div class="docs" >
+  <div class="row nopadding " id="texty" >
+  <div class="steps" >
+  <div class=" col-md-12">
+  <div class="head">
+    <h3>{{ items.news }}</h3>
   <div class="docs" >
     <div class="row nopadding " id="texty" jumbotron jumbotron-fluid >
      <div class="steps jumbotron jumbotron-fluid" >
@@ -86,64 +94,36 @@
     <div class="head">
     	<h3>INFORMACJE</h3>
 
-    <!--PUBLIKACJE-->
+    {% if blogs.3 %} <!-- Dodatkowy blog ma być tylko wydoczny na laptopach -->
+      <div class="col-lg-3 col-md-3 col-sm-4 col-xm-4">
+      <div class="text">
+      <div class="col-lg-3 col-md-3 col-sm-4 col-xm-4">
+      <div class="text-box">
+      <a href="{% url 'blog' blogs.3.id %}"><img class="blog-image" src="{{ blogs.3.image.url }}" height=200 /></a>
+      </div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
+      <div class="model-text">
+        <h2 ><a href="{% url 'blog' blogs.3.id %}">{{ blogs.3.title }}</a></h2>
+        <p>{{ blogs.3.summary }}</p>
+      </div>
+      </div>
+      </div><!--text-->
+      </div><!--col-4-->
+    {% endif %} <!-- Koniec dodatkowego bloga -->
 
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xm-4">
-    <div class="text">
-    <div class="col-lg-2 col-md-2 col-sm-4 col-xm-2">
-    <div class="text-box">
-    	<a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf"> <img="https://files.tinypic.pl/i/00986/bk7dlf28z6pi.png"><i class="fa fa-file-text-o "></i></a>
-    </div>
-    </div>
-    <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
-    <div class="model-text">
-    <h1>Informacje 01</h1>
-
-    </div>
-    </div>
-    </div><!--text-->
-    </div><!--col-4-->
-
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xm-4">
-    <div class="text">
-    <div class="col-lg-2 col-md-2 col-sm-4 col-xm-2">
-    <div class="text-box">
-    	<a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf"><i class="fa fa-file-text-o "></i></a>
-    </div>
-    </div>
-    <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
-    <div class="model-text">
-    <h1>Informacje 02</h1>
-
-    </div>
-    </div>
-    </div><!--icon-->
-    </div><!--col-4-->
-
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xm-4">
-    <div class="text">
-    <div class="col-lg-2 col-md-2 col-sm-4 col-xm-2">
-    <div class="text-box">
-    	<a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf"><i class="fa fa-file-text-o "></i></a>
-    </div>
-    </div>
-    <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
-    <div class="model-text">
-    <h1>Informacje 03</h1>
-
-
-
-
-    </div>
-    </div>
-    </div><!--icon-->
-    </div><!--col-4-->
-    </div><!--icon-content-->
-    </div><!--end of col-12-->
-
-    </div>
   </div>
-</div>
+  </div>
+  </div>
+  </div>
+  </div>
+<!-- KONIEC AKTUALNOŚCI -->
 
 
     <div class="row nopadding " id="texty" >
@@ -153,7 +133,6 @@
     	<h3>{{ items.docs }}</h3>
     	<center><div class="bar"></div></center>
     <!--PUBLIKACJE-->
-<img src="{% static 'img/logo.png' %}"/>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xm-4">
     <div class="text">
     <div class="col-lg-2 col-md-2 col-sm-4 col-xm-2">
