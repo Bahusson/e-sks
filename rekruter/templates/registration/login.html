@@ -30,7 +30,7 @@
           <form method="post" action="{% url 'logger' %}">
             {% csrf_token %}
 
-            <p>{{ item.login }}: {{ form.username }} </p>
+            <p>{{ item.email }}: {{ form.username }} </p>
             <p>{{ item.password }}: {{ form.password }} </p>
 
             <input class="btn btn-primary my-2" type="submit" value="{{ item1.login }}">

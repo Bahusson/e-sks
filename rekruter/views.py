@@ -7,11 +7,10 @@ from esks.special.classes import PageLoad
 from .models import FormItems, QuarterClass
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import ExtendedCreationForm
-from django.contrib.auth.decorators import login_required
 
 
 # Wstępny formularz przydzielający akcję kwaterunkową.
-#@login_required(login_url='initial')
+# @login_required(login_url='initial')
 def initial(request):
     if request.method == 'POST':
         # Tworzy zmienną dla sesji użytkownika do późniejszego wykorzystania.
@@ -54,9 +53,9 @@ def register(request):
         # Po rejestracji automatycznie loguje klienta podanym loginem i hasłem.
         if form.is_valid():
             form.save()
-            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
             password = form.cleaned_data['password1']
-            user = authenticate(username=username, password=password)
+            user = authenticate(email=email, password=password)
             # Sprawdza shaszowane dane powyżej w bazie danych.
             login(request, user)
             return redirect('home')
@@ -66,7 +65,7 @@ def register(request):
         locations = list(FormItems.objects.all())
         items = locations[0]
         context = {'form': form,
-                   'item': items,}
+                   'item': items, }
     return render(request, 'registration/register.html', context)
 
     '''
