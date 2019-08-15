@@ -1,7 +1,50 @@
+from __future__ import unicode_literals
 from django.db import models
-from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+from django.core.mail import send_mail
+from django.contrib.auth.models import PermissionsMixin
+from django.contrib.auth.base_user import AbstractBaseUser
+from django.utils.translation import ugettext_lazy as _
+
+from .managers import UserManager
+
+
+# Klasa zmienia autentykację Usera na email jak w Core2.
+class User(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(_('email address'), unique=True)
+    first_name = models.CharField(_('first name'), max_length=30, blank=True)
+    last_name = models.CharField(_('last name'), max_length=30, blank=True)
+    date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
+    is_active = models.BooleanField(_('active'), default=True)
+    avatar = models.ImageField(upload_to='avatars', null=True, blank=True)
+    quarter = models.CharField(_('quarter'), max_length=2, blank=True)
+
+    objects = UserManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    class Meta:
+        verbose_name = _('user')
+        verbose_name_plural = _('users')
+
+    def get_full_name(self):
+        '''
+        Returns the first_name plus the last_name, with a space in between.
+        '''
+        full_name = '%s %s' % (self.first_name, self.last_name)
+        return full_name.strip()
+
+    def get_short_name(self):
+        '''
+        Returns the short name for the user.
+        '''
+        return self.first_name
+
+    def email_user(self, subject, message, from_email=None, **kwargs):
+        '''
+        Sends an email to this User.
+        '''
+        send_mail(subject, message, from_email, [self.email], **kwargs)
 
 
 class Sito(models.Model):
@@ -45,36 +88,3 @@ class QuarterClass(models.Model):
     new_foreign = models.CharField(max_length=50, null=True)
     erasmus = models.CharField(max_length=50, null=True)
     bilateral = models.CharField(max_length=50, null=True)
-
-
-class Profile(models.Model):
-    # Klasa zmieniająca klasę usera. Plus dwa dekoratory linkujące.
-    USER = 1
-    COUNCIL = 2
-    STAFF = 3
-    SUPERUSER = 4
-    ROLE_CHOICES = (
-     (USER, 'Student'),
-     (COUNCIL, 'Teacher'),
-     (STAFF, 'Staff'),
-     (SUPERUSER, 'Superuser'),
-    )
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    quarter = models.CharField(max_length=20, blank=True, null=True)
-    role = models.PositiveSmallIntegerField(
-        choices=ROLE_CHOICES, null=True, blank=True)
-
-    def __str__(self):  # __unicode__ for Python 2
-        return self.user.username
-
-
-@receiver(post_save, sender=User)
-def create_or_update_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-    instance.profile.save()
-
-
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()

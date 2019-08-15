@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'esks.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'esksdb',
+        'NAME': 'esksdb2',
         'USER': 'postgres',
         'PASSWORD': 'Mu3kata!owieC',
         'HOST': '127.0.0.1',
