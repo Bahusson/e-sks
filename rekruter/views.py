@@ -29,7 +29,8 @@ def initial(request):
          'sitos': sitos,
          'items': pl.items,
          'langs': pl.langs, }
-        return render(request, 'registration/initial.html', context)
+        template = 'registration/initial.html'
+        return render(request, template, context)
 
 
 # Formularz rejestracji. Do wywalenia po zmienie autentykacji.
@@ -51,7 +52,8 @@ def register(request):
         items = locations[0]
         context = {'form': form,
                    'item': items, }
-    return render(request, 'registration/register.html', context)
+    template = 'registration/register.html'
+    return render(request, template, context)
 
 
 # Formularz logowania. Do przeróbki po zmienie autentykacji.
@@ -72,9 +74,11 @@ def logger(request):
         items = locations[0]
         locations1 = list(P.objects.all())
         items1 = locations1[0]
-        context = {'form': form, 'item': items, 'item1': items1, }
-    return render(request, 'registration/login.html', context)
-
+        context = {'form': form,
+                   'item': items,
+                   'item1': items1, }
+        template = 'registration/login.html'
+    return render(request, template, context)
 
     '''
     # Tutaj odbieramy zmienną zdefiniowaną wcześniej.

@@ -25,7 +25,6 @@ function checkboxon(set)
   var x = document.getElementById("agreecheck");
     x.style.display = "block";
   document.getElementById("id_quarter").value = set;
-  window.alert(document.getElementById("id_quarter").value);
 }
 
 // Funkcja ukrywająca i pokazująca przycisk "send"
