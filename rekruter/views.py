@@ -4,24 +4,54 @@ from .models import Sito
 from strona.models import Pageitem as P
 from esks.settings import LANGUAGES as L
 from esks.special.classes import PageLoad
-from .models import FormItems, QuarterClass
+from .models import FormItems, User
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import ExtendedCreationForm
+from .forms import ExtendedCreationForm, IniForm
 
 
 # Wstępny formularz przydzielający akcję kwaterunkową.
-# @login_required(login_url='initial')
+# Posiada jedno ukryte pole które zmienia akcję kwaterunkową usera.
 def initial(request):
     if request.method == 'POST':
-        # Tworzy zmienną dla sesji użytkownika do późniejszego wykorzystania.
-        request.session['quarter'] = request.POST['quarter']
-        return redirect('home')
+        uid = User.objects.get(id=request.user.id)
+        form = IniForm(request.POST, instance=uid)
+        if form.is_valid():
+            form.save()
+            return redirect('userpanel')
+
     else:
+        form = IniForm()
         pl = PageLoad(P, L)
         locations = list(Sito.objects.all())
         sitos = locations[0]
-        context = {'sitos': sitos, 'items': pl.items, 'langs': pl.langs}
-    return render(request, 'registration/initial.html', context)
+        context = {
+         'form': form,
+         'sitos': sitos,
+         'items': pl.items,
+         'langs': pl.langs, }
+        return render(request, 'registration/initial.html', context)
+
+
+# Formularz rejestracji. Do wywalenia po zmienie autentykacji.
+def register(request):
+    if request.method == 'POST':
+        form = ExtendedCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password1']
+            user = authenticate(email=email, password=password)
+            # Sprawdza shaszowane dane powyżej w bazie danych.
+            login(request, user)
+            return redirect('home')
+            # Przekierowuje na stronę główną zalogowanego usera.
+    else:
+        form = ExtendedCreationForm()
+        locations = list(FormItems.objects.all())
+        items = locations[0]
+        context = {'form': form,
+                   'item': items, }
+    return render(request, 'registration/register.html', context)
 
 
 # Formularz logowania. Do przeróbki po zmienie autentykacji.
@@ -45,28 +75,6 @@ def logger(request):
         context = {'form': form, 'item': items, 'item1': items1, }
     return render(request, 'registration/login.html', context)
 
-
-# Formularz rejestracji. Do wywalenia po zmienie autentykacji.
-def register(request):
-    if request.method == 'POST':
-        form = ExtendedCreationForm(request.POST)
-        # Po rejestracji automatycznie loguje klienta podanym loginem i hasłem.
-        if form.is_valid():
-            form.save()
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password1']
-            user = authenticate(email=email, password=password)
-            # Sprawdza shaszowane dane powyżej w bazie danych.
-            login(request, user)
-            return redirect('home')
-            # Przekierowuje na stronę główną zalogowanego usera.
-    else:
-        form = ExtendedCreationForm()
-        locations = list(FormItems.objects.all())
-        items = locations[0]
-        context = {'form': form,
-                   'item': items, }
-    return render(request, 'registration/register.html', context)
 
     '''
     # Tutaj odbieramy zmienną zdefiniowaną wcześniej.
