@@ -113,6 +113,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'rekruter.User'
+
 # CACHE bazodanowy. https://docs.djangoproject.com/en/2.2/topics/cache/
 # Przed użyciem stwórz tabelę w bazie danych za pomocą: "python manage.py createcachetable"
 CACHES = {
@@ -208,7 +210,7 @@ LOGOUT_REDIRECT_URL = '/'  # Przekierowanie po wylogowaniu.
 LOGIN_URL = '/'
 
 LOGIN_EXEMPT_URLS = (
-     r'^/$',  # nie wiem czy nie złapie wszystkich XD
+     r'^/$',
      r'^strona/.*$',
      r'^rekruter/logger/$',
      r'^rekruter/register/$',
