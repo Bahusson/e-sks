@@ -50,7 +50,7 @@
              <!-- NAVBAR BUTTON LOGIN -->
               <li class="nav-item">
                 {% if user.is_authenticated %}
-                 <a class="btn btn-link-3" href="{% url 'logout' %}">{{ items.logout }} ({{ user.username }})</a>
+                 <a class="btn btn-link-3" href="{% url 'logout' %}">{{ items.logout }} ({{ user.first_name }})</a>
                 {% else %}
                  <a class="btn btn-link-3" href="{% url 'logger' %}">{{ items.login }}</a>
                 {% endif %}
