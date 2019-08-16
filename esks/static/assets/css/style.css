@@ -64,8 +64,7 @@ h3 {
 .navbar {
 	margin-bottom: 0;
 	padding-top: 0;
-  height: 75px;
-	background: #ffffff;
+	background: white;
 	border: 0;
 	-moz-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
 	-webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
@@ -73,8 +72,9 @@ h3 {
 	-moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;
 	-o-transition: all .6s; -moz-transition: all .6s; -webkit-transition: all .6s; -ms-transition: all .6s; transition: all .6s;
 }
+
 .navbar-no-bg {
-	padding-top: 0px; background: #e98328;
+	padding-top: 10px; background: #e98328;
 	-moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
 }
 
@@ -82,7 +82,8 @@ ul.navbar-nav {
 	font-family: 'Ubuntu';
 	font-size: 16px;
 	color: white;
-	font-weight: 400;
+  height: 75px;
+	font-weight: 600;
   margin: 9px 0 0 0px;
   padding-top: center;
   position: relative;
@@ -91,9 +92,9 @@ ul.navbar-nav {
   font-weight: bold;
 }
 
-ul.navbar-nav li a { background: none; color: #888; border: 0; }
-ul.navbar-nav li a:hover { background: none; color: #aaa; border: 0; }
-ul.navbar-nav li a:focus { background: none; color: #aaa; outline: 0; border: 0; }
+ul.navbar-nav li a { background: none; color: #888; border: 0;}
+ul.navbar-nav li a:hover { background: none; color: #aaa; border: 0;}
+ul.navbar-nav li a:focus { background: none; color: #aaa; outline: 0; border: 0; height: 40px;}
 
 .navbar-no-bg ul.navbar-nav { color: #fff; }
 .navbar-no-bg ul.navbar-nav li a { color: #fff; }
@@ -107,10 +108,10 @@ ul.navbar-nav li a.btn-link-3 {
 	padding: center;
   text-align: center;
 	background: none;
-  border: 1px solid lightblue;
+  border: 1px solid #e98328;
 	font-family: 'Ubuntu';
 	font-size: 16px;
-    font-weight: 400;
+    font-weight: 600;
     color: white;
     text-transform: uppercase;
     text-align: justify;
