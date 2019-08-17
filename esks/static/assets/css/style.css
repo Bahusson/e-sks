@@ -13,17 +13,26 @@ strong { font-weight: 500; }
 
 a, a:hover, a:focus {
 	color: #000000;
-  font-size: 16px;
   font-weight: 300;
   text-decoration: none;
     -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
 }
 
-h1, h2 {
+h1 {
   color: black;
   margin-top: 10px;
   font-family: 'Ubuntu', sans-serif;
-  font-size: 25px;
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 56px;
+}
+
+
+h2 {
+  color: black;
+  margin-top: 10px;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 32px;
   font-weight: 300;
   line-height: 56px;
 }
@@ -32,13 +41,31 @@ h3 {
   font-family: 'Ubuntu',sans-serif;
   text-align: left;
   margin-left: 15px;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 900;
   line-height: 40px;
   text-transform: uppercase;
   font-weight: bold;
 }
 
+h4 {
+  font-family: 'Ubuntu',sans-serif;
+  text-align: center;
+  margin-left: 15px;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 40px;
+  font-weight: bold;
+}
+
+
+p {
+color: rgba(0,0,0,0.6);
+font-size: 15px;
+font-weight: 400;
+text-align: justify;
+
+}
 
 
 .medium-paragraph { font-size: 18px; line-height: 34px; }
@@ -77,7 +104,7 @@ h3 {
 }
 
 .navbar-no-bg {
-	padding-top: 10px; background: #e98328;
+	padding-top: 10px; background: #333333 ; /* #e98328  pomarańcza */
 	-moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
 }
 
@@ -101,8 +128,8 @@ ul.navbar-nav li a:focus { background: none; color: #aaa; outline: 0; border: 0;
 
 .navbar-no-bg ul.navbar-nav { color: #fff; }
 .navbar-no-bg ul.navbar-nav li a { color: #fff; }
-.navbar-no-bg ul.navbar-nav li a:hover { color: #ddd; }
-.navbar-no-bg ul.navbar-nav li a:focus { color: #ddd; }
+.navbar-no-bg ul.navbar-nav li a:hover { color: #e98328; }
+.navbar-no-bg ul.navbar-nav li a:focus { color: #e98328; }
 
 ul.navbar-nav li a.btn-link-3 {
 	position: relative;
@@ -111,7 +138,7 @@ ul.navbar-nav li a.btn-link-3 {
 	padding: center;
   text-align: center;
 	background: none;
-  border: 1px solid #e98328;
+  border: 1px solid #ffffff;
 	font-family: 'Ubuntu';
 	font-size: 16px;
     font-weight: 600;
@@ -123,7 +150,7 @@ ul.navbar-nav li a.btn-link-3 {
 ul.navbar-nav li a.btn-link-3:hover,
 ul.navbar-nav li a.btn-link-3:focus,
 ul.navbar-nav li a.btn-link-3:active,
-ul.navbar-nav li a.btn-link-3:active:focus { outline: 0; color: black;  }
+ul.navbar-nav li a.btn-link-3:active:focus { outline: 0; color: #e98328;  }
 
 .navbar-brand {
 	width: 275px;
@@ -147,11 +174,11 @@ ul.navbar-nav li a.btn-link-3:active:focus { outline: 0; color: black;  }
 /***** Features *****/
 
 .features-box { margin-top: 50px; text-align: bottom; }
-.features-box .features-box-icon { font-size: 60px; color: #6eba3c; line-height: 60px; text-align: center; }
+.features-box .features-box-icon { font-size: 60px; color: #e98328; line-height: 60px; text-align: center; }
 .features-box h3 { margin-top: 0; padding: 0 0 10px 0; }
 /***** DOCS *****/
 .docs{
-  background: #blue;
+
 }
 /*----------------------------------------------------------------*/
 /*------------------------------steps------------------------------*/
@@ -161,18 +188,7 @@ margin: 0;
 padding: 3% 6%;
 background-color: white;
 }
-.head{
-text-align: left;
-margin: 0;
-padding: 0;
-}
-.head h1{
-text-transform: uppercase;
-font-size: 25px;
-font-weight: 300;
-color: rgba(0,0,0,0.8);
-margin-left: 15px;
-}
+
 .bar{
 height: 3px;
 width: 100px;
@@ -180,13 +196,7 @@ border: 2px solid #ed7d6e;
 margin: 25px 0;
 align: center;
 }
-.head p{
-color: rgba(0,0,0,0.6);
-font-size: 17px;
-font-weight: 400;
-text-align: justify;
 
-}
 .icon-content {
 margin-top: 35px;
 padding: 0;
@@ -320,5 +330,3 @@ only screen and (                min-resolution: 192dpi),
 only screen and (                min-resolution: 2dppx) {
 
 	/* logo */
-
-/* HOME.HTML */
