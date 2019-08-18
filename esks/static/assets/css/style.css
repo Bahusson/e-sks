@@ -181,6 +181,13 @@ ul.navbar-nav li a.btn-link-3:active:focus { outline: 0; color: #e98328;  }
 
 }
 
+.cliente {
+
+  background-color: #e1e1e1;
+  border-width: auto;
+    margin-right: 30px;
+
+}
 /*----------------------------------------------------------------*/
 /***** Footer *****/
 
