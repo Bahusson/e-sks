@@ -13,7 +13,7 @@ strong { font-weight: 500; }
 
 a, a:hover, a:focus {
 	color: #000000;
-  font-weight: 300;
+  font-weight: bold;
   text-decoration: none;
     -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
 }
@@ -113,7 +113,7 @@ ul.navbar-nav {
 	font-size: 16px;
 	color: white;
   height: 75px;
-	font-weight: 600;
+	font-weight: bold;
   margin: 9px 0 0 0px;
   padding-top: center;
   position: relative;
@@ -141,7 +141,7 @@ ul.navbar-nav li a.btn-link-3 {
   border: 1px solid #ffffff;
 	font-family: 'Ubuntu';
 	font-size: 16px;
-    font-weight: 600;
+    font-weight: bold;
     color: white;
     text-transform: uppercase;
     text-align: justify;
@@ -180,73 +180,7 @@ ul.navbar-nav li a.btn-link-3:active:focus { outline: 0; color: #e98328;  }
 .docs{
 
 }
-/*----------------------------------------------------------------*/
-/*------------------------------steps------------------------------*/
-/*----------------------------------------------------------------*/
-.steps{
-margin: 0;
-padding: 3% 6%;
-background-color: white;
-}
 
-.bar{
-height: 3px;
-width: 100px;
-border: 2px solid #ed7d6e;
-margin: 25px 0;
-align: center;
-}
-
-.icon-content {
-margin-top: 35px;
-padding: 0;
-}
-.icon{
-margin: 25px 0;
-padding: 15px;
-}
-.icon-box{
-height: 120px;
-width: 120px;
-border-radius: 100%;
-border: 2px solid #ed7d6e;
-background-color: #ed7d6e;
-}
-.icon-box a{
-text-decoration: none;
-padding: 0;
-}
-.icon-box a i{
-color: #ffffff;
-font-size: 55px;
-text-align: center;
-padding: 30px 0;
-}
-.icon-text {
-margin: 0;
-padding: 15px 0;
-}
-.icon-text h3{
-font-size: 25px;
-font-weight: 500;
-padding: 0;
-color: rgba(0,0,0,0.8);
-}
-.icon-text p{
-font-size: 16px;
-font-weight: 400;
-text-align: center;
-padding: 10px 0;
-color: rgba(0,0,0,0.6);
-}
-.icon:hover{
-background-color: rgba(0,0,0,0.08);
-transition: 0.5s ease-in-out;
--o-transition: 0.5s ease-in-out;
--webkit-transition: 0.5s ease-in-out;
--safaria-transition: 0.5s ease-in-out;
--e-transition: 0.5s ease-in-out;
-}
 /*----------------------------------------------------------------*/
 /***** Footer *****/
 
