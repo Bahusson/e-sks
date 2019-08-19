@@ -27,65 +27,65 @@ class PageLoad(object):
 
         self.langs = zip(lang_id, langsl)
 
+    # Funkcji używaj jeśli chcesz używać zmiennych skórek.
+    # Defaultuje do 0 jeśli nie wybierzesz żadnej.
+    def page_dress(self, **kwargs):
+        c = 0
+        s = kwargs['skins']
+        if 'choice' in kwargs:
+            c = int(kwargs['choice'])
+        self.skins = list(s.objects.all())
+        self.skin = self.skins[c]
+        self.skinctx = {'skin': self.skin, }
+        return self.skinctx
 
-# Subklasa aktualności.
-class Blog(PageLoad):
+    # Funkcja tworzy za nas podstwwowy kontekst,
+    # który rozszerza się o dany w funkcji.
+    def lazy_context(self, **kwargs):
+        self.context = {
+         'items': self.items,
+         'langs': self.langs, }
+        if 'skins' in kwargs:
+            self.page_dress(**kwargs)
+            self.context.update(self.skinctx)
+        if 'context' in kwargs:
+            self.context.update(kwargs['context'])
+        return self.context
+
+
+# Klasa ładowania widoków /strony/
+class PageElement(object):
     def __init__(self, *args, **kwargs):
-        if args:
-            super().__init__(*args)
+        self.x = args[0]
+        self.listed = list(self.x.objects.all())
+        self.elements = self.x.objects
 
-    def gen(self, **kwargs):
-        b = kwargs['B']
-        self.bloglist = list(b.objects.all())
-        self.blogs = b.objects
+    def list_specific(self, num):
+        self.listed_specific = self.listed[num]
+        return self.listed_specific
 
-        if 'blogid' in kwargs:
-            G404 = kwargs['G404']
-            blog_id = kwargs['blogid']
-            self.blog = G404(b, pk=blog_id)
-
-
-# Subklasa informacji.
-class Info(PageLoad):
-    def __init__(self, *args, **kwargs):
-        if args:
-            super().__init__(*args)
-
-    def gen(self, **kwargs):
-        inf = kwargs['In']
-        self.infos = inf.objects
-
-        if 'infoid' in kwargs:
-            G404 = kwargs['G404']
-            info_id = kwargs['infoid']
-            self.info = G404(inf, pk=info_id)
+    def by_id(self, **kwargs):
+        G404 = kwargs['G404']
+        x_id = kwargs['id']
+        self.one_by_id = G404(self.x, pk=x_id)
+        return self.one_by_id
 
 
-# Subklasa pliku strony głównej.
-class File(PageLoad):
-    def __init__(self, *args, **kwargs):
-        if args:
-            super().__init__(*args)
-
-    def gen(self, **kwargs):
-        fil = kwargs['F']
-        self.files = fil.objects
-
-        if 'fileid' in kwargs:
-            G404 = kwargs['G404']
-            file_id = kwargs['fileid']
-            self.file = G404(fil, pk=file_id)
-
-
+'''
 # Subklasa pozwająca na dowolne zmienianie skórek przez Usera
 # Spośród dostępnych w adminie.
 class PageSkinner(PageLoad):
     def __init__(self, *args, **kwargs):
-        if args:
-            super().__init__(*args)
-
-    def gen(self, **kwargs):
+        super().__init__(*args)
         s = kwargs['skins']
         c = int(kwargs['choice'])
         self.skins = list(s.objects.all())
         self.skin = self.skins[c]
+        self.context = {
+         'items': self.items,
+         'langs': self.langs,
+         'skin': self.skin, }
+
+        if 'context' in kwargs:
+            self.context.update(kwargs['context'])
+'''

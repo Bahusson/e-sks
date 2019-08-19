@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from strona.models import Pageitem as P
 from strona.models import PageSkin as S
 from esks.settings import LANGUAGES as L
-from esks.special.classes import PageLoad
+from esks.special.classes import PageSkinner
 from django.contrib.admin.views.decorators import staff_member_required
 from rekruter.models import User, QuarterClass
 
@@ -10,21 +10,27 @@ from rekruter.models import User, QuarterClass
 # Panel Rady
 @staff_member_required(login_url='logger')
 def staffpanel_c(request):
-    # zdefiniuj dodatkowe konteksty tutaj.
-    pl = PageLoad(P, L)
-    context_lazy = pl.lazy_context(skins=S)
+    ps = PageSkinner(P, L)
+    ps.gen(skins=S, choice=0)
+    context = {
+     'items': ps.items,
+     'langs': ps.langs,
+     'skin': ps.skin, }
     template = 'panel_rady.html'
-    return render(request, template, context_lazy)
+    return render(request, template, context)
 
 
 # Panel Obsługi Akademików
 @staff_member_required(login_url='logger')
 def staffpanel_h(request):
-    # zdefiniuj dodatkowe konteksty tutaj.
-    pl = PageLoad(P, L)
-    context_lazy = pl.lazy_context(skins=S)
+    ps = PageSkinner(P, L)
+    ps.gen(skins=S, choice=0)
+    context = {
+     'items': ps.items,
+     'langs': ps.langs,
+     'skin': ps.skin, }
     template = 'panel_akademika.html'
-    return render(request, template, context_lazy)
+    return render(request, template, context)
 
 
 # Panel użytkownika.
@@ -35,24 +41,27 @@ def userpanel(request):
     if quarter == '':
         return redirect('initial')
     else:
-        # zdefiniuj dodatkowe konteksty tutaj.
-        pl = PageLoad(P, L)
-        context_lazy = pl.lazy_context(skins=S)
-    template = 'panel_uzytkownika.html'
-    return render(request, template, context_lazy)
+        ps = PageSkinner(P, L)
+        ps.gen(skins=S, choice=0)
+        context = {
+         'items': ps.items,
+         'langs': ps.langs,
+         'skin': ps.skin, }
+        template = 'panel_uzytkownika.html'
+        return render(request, template, context)
 
 
 def showmydata(request):
-    ru = request.user
     userdata = User.objects.get(
-     id=ru.id, email=ru.email,
-     first_name=ru.first_name,
-     last_name=ru.last_name,
-     quarter=ru.quarter)
+     id=request.user.id, email=request.user.email,
+     first_name=request.user.first_name, last_name=request.user.last_name,
+     quarter=request.user.quarter)
 
     if request.method == 'POST':
         pass
     else:
+        ps = PageSkinner(P, L)
+        ps.gen(skins=S, choice=0)
         quarter = userdata.__dict__['quarter']
         locations = list(QuarterClass.objects.all())
         quarters = locations[0]
@@ -64,9 +73,6 @@ def showmydata(request):
         context = {
          'setter': setter,
          'udata': userdata,
-         }
-        # zdefiniuj dodatkowe konteksty tutaj.
-        pl = PageLoad(P, L)
-        context_lazy = pl.lazy_context(skins=S, context=context)
+         
         template = 'akademik/panel/user/mydata.html'
-        return render(request, template, context_lazy)
+        return render(request, template, context)
