@@ -26,7 +26,8 @@
                 {% with blog as b %}
                 <iframe width="560" height="315" src="{{ b.video }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 {% endwith %}
-            {% else %}
+            {% endif %}
+            {% if blog.image %}<!--jeśli jest link to go wyświetl -->
                 <br/>
                 {% with blog as b %}
                 <img class="img-fluid" src="{{ b.image.url }}" width=50% height=auto />
