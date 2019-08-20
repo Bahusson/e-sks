@@ -21,6 +21,8 @@
     <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
     {% block css %}
     {% endblock %}
+    {% block css2 %}
+    {% endblock %}
   </head>
 
   <body>
@@ -41,9 +43,16 @@
   				<div class="collapse navbar-collapse" id="top-navbar-1">
   					<ul class="nav navbar-nav navbar-right">
   						<li><a href="{% url 'home' %}">{{ items.mainpage }}</a></li>
-                {% if user.is_staff %} <!-- Warunkowy dostęp do panelu użytkownika lub admina -->
-    						 <li><a href="{% url 'staffpanel_c' %}">{{ items.panel_staff }}</a></li>
-                {% elif user.is_authenticated %}
+                {% if user.role_council > 1 %} <!-- Warunkowy dostęp do panelu użytkownika lub admina -->
+    						 <li><a href="{% url 'staffpanel_c' %}">{{ items.panel_council }}</a></li>
+                {% endif %}
+                {% if user.is_hotel %}
+                 <li><a href="{% url 'staffpanel_h' %}">{{ items.panel_staff }}</a></li>
+                {% endif %}
+                {% if user.is_translator %}
+                  <li><a href="{% url 'translatorpanel' %}">{{ items.panel_translator }}</a></li>
+                {% endif %}
+                {% if user.is_authenticated %}
     						 <li><a href="{% url 'userpanel' %}">{{ items.panel_user }}</a></li>
                 {% endif %} <!-- Koniec warunkowania dostępu do panelu użytkownika lub admina -->
   						<li><a href="">{{ items.akamap }}</a></li>
