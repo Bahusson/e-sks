@@ -5,22 +5,20 @@
 <title>Panel Użytkownika</title>
 {% endblock %}
 
-
-{% block body %}
-
-
-<a class="button" href="{% url 'userdatapersonal' %}">Do templatki z danymi!</a>
-
-
-<p>To panel usera Pisz dalej. Dobrze Ci idzie!</p>
+{% block css %}
+{% endblock %}
+{% block css2 %}
 {% endblock %}
 
 
+{% block body %}
+<a class="button" href="{% url 'userdatapersonal' %}">Do templatki z danymi!</a>
+<p>To panel usera Pisz dalej. Dobrze Ci idzie!</p>
+{% endblock %}
 {% block body2 %}
 {% endblock %}
 
 {% block scripts %}
 {% endblock %}
-
 {% block scripts2 %}
 {% endblock %}

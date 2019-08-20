@@ -14,7 +14,7 @@ def staffpanel_c(request):
     # zdefiniuj dodatkowe konteksty tutaj.
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(skins=S)
-    template = 'panels/panel_rady.html'
+    template = 'panel_rady.html'
     return render(request, template, context_lazy)
 
 
@@ -24,7 +24,7 @@ def staffpanel_h(request):
     # zdefiniuj dodatkowe konteksty tutaj.
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(skins=S)
-    template = 'panels/panel_akademika.html'
+    template = 'panel_akademika.html'
     return render(request, template, context_lazy)
 
 
@@ -34,7 +34,7 @@ def translatorpanel(request):
     # zdefiniuj dodatkowe konteksty tutaj.
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(skins=S)
-    template = 'panels/panel_tlumacza.html'
+    template = 'panel_tlumacza.html'
     return render(request, template, context_lazy)
 
 
@@ -49,7 +49,7 @@ def userpanel(request):
         # zdefiniuj dodatkowe konteksty tutaj.
         pl = PageLoad(P, L)
         context_lazy = pl.lazy_context(skins=S)
-    template = 'panels/panel_uzytkownika.html'
+    template = 'panel_uzytkownika.html'
     return render(request, template, context_lazy)
 
 
