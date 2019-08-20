@@ -3,12 +3,13 @@ from strona.models import Pageitem as P
 from strona.models import PageSkin as S
 from esks.settings import LANGUAGES as L
 from esks.special.classes import PageLoad
-from django.contrib.admin.views.decorators import staff_member_required
+from esks.special.decorators import council_only, hotel_staff_only
+# from django.contrib.admin.views.decorators import staff_member_required
 from rekruter.models import User, QuarterClass
 
 
 # Panel Rady
-@staff_member_required(login_url='logger')
+@council_only(login_url='logger')
 def staffpanel_c(request):
     # zdefiniuj dodatkowe konteksty tutaj.
     pl = PageLoad(P, L)
@@ -18,7 +19,7 @@ def staffpanel_c(request):
 
 
 # Panel Obsługi Akademików
-@staff_member_required(login_url='logger')
+@hotel_staff_only(login_url='logger')
 def staffpanel_h(request):
     # zdefiniuj dodatkowe konteksty tutaj.
     pl = PageLoad(P, L)

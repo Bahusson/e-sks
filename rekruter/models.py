@@ -10,12 +10,26 @@ from .managers import UserManager
 
 # Klasa zmienia autentykację Usera na email jak w Core2.
 class User(AbstractBaseUser, PermissionsMixin):
+    USER = 1
+    COUNCIL = 2
+    COUNCIL_ADMIN = 3
+    SUPERUSER = 4
+    ROLE_CHOICES = (
+     (USER, 'User'),
+     (COUNCIL, 'Council'),
+     (COUNCIL_ADMIN, 'Council Admin'),
+     (SUPERUSER, 'Superuser'),
+    )
     email = models.EmailField(_('email address'), unique=True)
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
     is_staff = models.BooleanField(_('staff status'), default=False,)
     is_active = models.BooleanField(_('active'), default=True)
+    is_translator = models.BooleanField(_('translator'), default=False)
+    is_hotel = models.BooleanField(_('hotel'), default=False)
+    role_council = models.PositiveSmallIntegerField(
+        choices=ROLE_CHOICES, null=True, blank=True)
     avatar = models.ImageField(upload_to='avatars', null=True, blank=True)
     quarter = models.CharField(_('quarter'), max_length=2, blank=True)
 
