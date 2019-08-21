@@ -13,7 +13,10 @@ class Pageitem(models.Model):
     docs = models.CharField(max_length=200)  # Ważne pliki
     login = models.CharField(max_length=200)  # zaloguj
     panel_user = models.CharField(max_length=200)
+    panel_council = models.CharField(max_length=200)
     panel_staff = models.CharField(max_length=200)
+    panel_translator = models.CharField(max_length=200)
+    backtouserpanel = models.CharField(max_length=200)
 
 
 class Blog(models.Model):

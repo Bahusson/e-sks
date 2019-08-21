@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+
+
 {% block body %}
 <!-- POCZĄTEK AKTUALNÓŚĆ -->
 
@@ -8,21 +10,70 @@
     <img width=100% src="https://files.tinypic.pl/i/00987/ftsxlq91m4a0.png">
   </div>
 
-    <h3 class="font-weight-bolder">{{ items.news }}</h3>
-      {% for blog in blogs|slice:":3" %} <!-- Iterator aktualności 1-3 -->
-      {% if blog %}
-    <div class="col-md-4">
-      <div class="col">
-          <a href="{% url 'blog' blog.id %}"><img class="blog-image float-left" src="{{ blog.image.url }}" width="300" height="200" /></a>
-            <div class="desc">
-              <h4 ><a href="{% url 'blog' blog.id %}">{{ blog.title }}</a></h4>
-              <!-- <p>{{ blog.summary }}</p>  nie wiem czy to jest potzebne-->
-            </div>
-      </div>
-    </div><!--text-->
+<main role="main">
+  <div class="docs" >
+    <div class="row nopadding " id="texty" jumbotron jumbotron-fluid >
+     <div class="steps jumbotron jumbotron-fluid" >
+      <div class=" col-md-12 jumbotron jumbotron-fluid">
+       <div class="head">
+        <h3>{{ items.news }}</h3>
 
-    {% endif %}
-    {% endfor %} <!-- Koniec iteratora aktualności 1-3 -->
+          {% for blog in blogs|slice:":3" %} <!-- Iterator aktualności 1-3 -->
+            {% if blog %}
+              <div class="col-lg-3 col-md-3 col-sm-4 col-xm-4"> <!-- Kafelek Aktualności-->
+                <div class="text">
+                  <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10"> <!-- Część z tekstem -->
+                    <div class="text-box">
+                      {% if blog.image %} <!-- Jeśli nie ma obrazka zwróć default ze skórki Usera -->
+                       <a href="{% url 'blog' blog.id %}"><img class="blog-image" src="{{ blog.image.url }}" height=200 /></a>
+                      {% else %}
+                       <a href="{% url 'blog' blog.id %}"><img class="blog-image" src="{{ skin.blogimagedefault.url }}" height=200 /></a>
+                      {% endif %}
+                    </div>
+                  </div> <!-- Koniec części z tekstem -->
+
+                  <br><br><br><br><br><br>
+
+                  <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
+                    <div class="model-text">
+                      <h2 ><a href="{% url 'blog' blog.id %}">{{ blog.title }}</a></h2>
+                      <p>{{ blog.summary }}</p>
+                    </div>
+                  </div>
+                </div><!--.text-->
+              </div><!-- Koniec kafelka aktualności -->
+            {% endif %}
+          {% endfor %} <!-- Koniec iteratora aktualności 1-3 -->
+
+            {% if blogs.3 %} <!-- Dodatkowy blog ma być tylko wydoczny na laptopach -->
+              <div class="col-lg-3 col-md-3 col-sm-4 col-xm-4">
+                <div class="text">
+                  <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
+                    <div class="text-box">
+                     {% if blogs.3.image %}
+                      <a href="{% url 'blog' blogs.3.id %}"><img class="blog-image" src="{{ blogs.3.image.url }}" height=200 /></a>
+                     {% else %}
+                     <a href="{% url 'blog' blog.id %}"><img class="blog-image" src="{{ skin.blogimagedefault.url }}" height=200 /></a>
+                     {% endif %}
+                    </div>
+                  </div>
+
+                  <br><br><br><br><br><br>
+
+                  <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
+                    <div class="model-text">
+                      <h2 ><a href="{% url 'blog' blogs.3.id %}">{{ blogs.3.title }}</a></h2>
+                      <p>{{ blogs.3.summary }}</p>
+                    </div>
+                  </div>
+                </div><!--text-->
+              </div><!--col-4-->
+            {% endif %} <!-- Koniec dodatkowego bloga -->
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
 
     <br><br><br><br><br><br>
 
@@ -33,38 +84,97 @@
     <div class="head">
     	<h3>INFORMACJE</h3>
 
-    {% if blogs.3 %} <!-- Dodatkowy blog ma być tylko wydoczny na laptopach -->
-    <div class="col-md-4">
-      <div class="col">
-        <a href="{% url 'blog' blog.3.id %}"><img class="blog-image float-left" src="{{ blog.3.image.url }}" width="300" height="200" /></a>
-          <div class="desc">
-            <h4><a href="{% url 'blog' blog.3.id %}">{{ blog.3.title }}</a></h4>
-          <!--  <p>{{ blog.3.summary }}</p>  nie wiem czy to jest potzebne-->
-          </div>
-      </div>
-    </div><!--text-->
-    {% endif %} <!-- Koniec dodatkowego bloga -->
-<!-- KONIEC AKTUALNOŚCI -->
-<<<<<<< refs/remotes/origin/master
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<div class="media">
-    <div class="image"></div>
-    <div class="text">This is a media object example.
-      We can use grid-template-areas to switch around the image and text part of the media object.
+    <!--PUBLIKACJE-->
+
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xm-4">
+    <div class="text">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xm-2">
+    <div class="text-box">
+    	<a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf"> <img="https://files.tinypic.pl/i/00986/bk7dlf28z6pi.png"><i class="fa fa-file-text-o "></i></a>
     </div>
-<<<<<<< refs/remotes/origin/master
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
+    <div class="model-text">
+    <h1>Informacje 01</h1>
+
+    </div>
+    </div>
+    </div><!--text-->
+    </div><!--col-4-->
+
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xm-4">
+    <div class="text">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xm-2">
+    <div class="text-box">
+    	<a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf"><i class="fa fa-file-text-o "></i></a>
+    </div>
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
+    <div class="model-text">
+    <h1>Informacje 02</h1>
+
+    </div>
+    </div>
+    </div><!--icon-->
+    </div><!--col-4-->
+
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xm-4">
+    <div class="text">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xm-2">
+    <div class="text-box">
+    	<a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf"><i class="fa fa-file-text-o "></i></a>
+    </div>
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
+    <div class="model-text">
+    <h1>Informacje 03</h1>
+
+
+
+
+    </div>
+    </div>
+    </div><!--icon-->
+    </div><!--col-4-->
+    </div><!--icon-content-->
+    </div><!--end of col-12-->
+
+    </div>
+  </div>
+</div>
+
+
+    <div class="row nopadding " id="texty" >
+    <div class="steps" >
+    <div class=" col-md-12">
+    <div class="head">
+    	<h3>{{ items.docs }}</h3>
+    	<center><div class="bar"></div></center>
+    <!--PUBLIKACJE-->
+<img src="{% static 'img/logo.png' %}"/>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xm-4">
+    <div class="text">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xm-2">
+    <div class="text-box">
+    	<a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf"><i class="fa fa-file-text-o "></i></a>
+    </div>
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
+    <div class="model-text">
+    <h1>Regulamin domu studenckiego</h1>
+
+    </div>
+    </div>
+    </div><!--text-->
+    </div><!--col-4-->
+
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xm-4">
+    <div class="text">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xm-2">
+    <div class="text-box">
+    	<a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf"><i class="fa fa-file-text-o "></i></a>
+    </div>
+    </div>
     <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
     <div class="model-text">
     <h1>Plan akademika</h1>
@@ -98,94 +208,3 @@
 <!--END PUBLIKACJE-->
       <br><br><br><br><br><br>
 {% endblock %}
-=======
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-=======
-
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-<br>
-<div class="container ">
-
-    <div class="col-md-3 p text-right" width="auto" >
-
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTea_3kuBtKGKbqgQZg2TF1q5gjnbiBtjK-gKz6G3mdNl2_TxHN" class="cliente float-right"  height="230px"  />
-          </div>
-        <div class="col-sm-3 text-left border" height="400">
-<div class="cliente" height="400">
-            <h4 class="text-left">{{ items.docs }}</h4>
-            <ul>
-              <li>Dokument 01</li>
-              <li>Dokument 02</li>
-              <li>Dokument 03</li>
-              <li>Dokument 04</li>
-              <li>Dokument 05</li>
-            </ul>
-</div>
-          </div>
-
-          <div class="col-md-3 p text-right" width="auto" >
-
-                <img src="https://st.depositphotos.com/1345889/2318/i/450/depositphotos_23186830-stock-photo-cute-young-student-girl.jpg" class="cliente float-right"  height="230px"  />
-                </div>
-              <div class="col-sm-3 text-left border" height="400">
-      <div class="cliente" height="400">
-                  <h4 class="text-left">Informacje</h4>
-                  <ul>
-                    <li>Dokument 01</li>
-                    <li>Dokument 02</li>
-                    <li>Dokument 03</li>
-                    <li>Dokument 04</li>
-                    <li>Dokument 05</li>
-                  </ul>
-      </div>
-                </div>
-</div>
-
-
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-<<<<<<< refs/remotes/origin/master
->>>>>>> aktualności
-=======
-
->>>>>>> ważne doc i informacje - wersja 01
-{% endblock %}
-
-    <footer>
-  </footer>
->>>>>>> pasek aktualności + pasek ważne doc

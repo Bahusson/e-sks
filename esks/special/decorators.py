@@ -3,7 +3,6 @@ from urllib.parse import urlparse
 
 from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME
-from django.core.exceptions import PermissionDenied
 from django.shortcuts import resolve_url
 
 
@@ -35,14 +34,14 @@ def user_passes_test(
     return decorator
 
 
-def login_required(
+def hotel_staff_only(
  function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url=None):
     """
-    Decorator for views that checks that the user is logged in, redirecting
+    Decorator for views that checks that the user is hotel staff redirecting
     to the log-in page if necessary.
     """
     actual_decorator = user_passes_test(
-        lambda u: u.is_authenticated,
+        lambda u: u.is_hotel,
         login_url=login_url,
         redirect_field_name=redirect_field_name
     )
@@ -51,35 +50,33 @@ def login_required(
     return actual_decorator
 
 
-def permission_required(perm, login_url=None, raise_exception=False):
+def translators_only(
+ function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url=None):
     """
-    Decorator for views that checks whether a user has a particular permission
-    enabled, redirecting to the log-in page if necessary.
-    If the raise_exception parameter is given the PermissionDenied exception
-    is raised.
+    Decorator for views that checks that the user is translator, redirecting
+    to the log-in page if necessary.
     """
-    def check_perms(user):
-        if isinstance(perm, str):
-            perms = (perm,)
-        else:
-            perms = perm
-        # First check if the user has the permission (even anon users)
-        if user.has_perms(perms):
-            return True
-        # In case the 403 handler should be called raise the exception
-        if raise_exception:
-            raise PermissionDenied
-        # As the last resort, show the login form
-        return False
-    return user_passes_test(check_perms, login_url=login_url)
+    actual_decorator = user_passes_test(
+        lambda u: u.is_translator,
+        login_url=login_url,
+        redirect_field_name=redirect_field_name
+    )
+    if function:
+        return actual_decorator(function)
+    return actual_decorator
 
 
-'''
-def quarter_test(f, subject):
-    def test_user_for_subject(request, subject, *args, **kwargs):
-        if not Profile.objects.filter(user=request.Profile, subject=subject).exists():
-            return redirect('initial')
-        else:
-            return f(request, *args, **kwargs)
-    return test_user_for_subject
-'''
+def council_only(
+ function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url=None):
+    """
+    Decorator for views that checks that the user belongs to the council
+    , redirecting  to the log-in page if necessary.
+    """
+    actual_decorator = user_passes_test(
+        lambda u: u.role_council > 1,
+        login_url=login_url,
+        redirect_field_name=redirect_field_name
+    )
+    if function:
+        return actual_decorator(function)
+    return actual_decorator

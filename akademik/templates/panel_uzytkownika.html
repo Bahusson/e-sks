@@ -1,28 +1,24 @@
-{% extends 'base.html' %}
+{% extends 'common_panel.html' %}
 {% load staticfiles %}
 
 {% block title %}
 <title>Panel Użytkownika</title>
 {% endblock %}
 
-
-{% block body %}
-
-
-<a class="button" href="{% url 'userdatapersonal' %}">Do templatki z danymi!</a>
-
-
-<p>To panel usera Pisz dalej. Dobrze Ci idzie!</p>
+{% block css %}
+{% endblock %}
+{% block css2 %}
 {% endblock %}
 
 
+{% block body %}
+<a class="button" href="{% url 'userdatapersonal' %}">Do templatki z danymi!</a>
+<p>To panel usera Pisz dalej. Dobrze Ci idzie!</p>
+{% endblock %}
 {% block body2 %}
 {% endblock %}
 
-<p>Satan!!!</p>
-
 {% block scripts %}
-<p>script</p>
 {% endblock %}
 {% block scripts2 %}
 {% endblock %}
