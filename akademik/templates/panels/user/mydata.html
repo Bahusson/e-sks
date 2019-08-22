@@ -1,4 +1,4 @@
-{% extends 'panel_uzytkownika.html' %}
+{% extends 'base.html' %}
 {% load staticfiles %}
 
 {% block title %}
@@ -10,23 +10,24 @@
 {% block css2 %}
 {% endblock %}
 
-{% block body %}
-<p> A tu już nie ma panelu usera. I co mi zrobisz?! :D</p>
-
-{% endblock %}
-{% block body2 %}
-<p> Tutaj się przedłuża blok body panelu użytkownika</p>
-<p>Imię: {{ udata.first_name }}  Nazwisko: {{ udata.last_name }}</p>
-<p>Email: {{ udata.email }}</p><p> Przydzielony do: {{ setter }}</p>
-{% endblock %}
-
+{% block aside %}
+  {% include 'common/aside_start.html' %}
+     {% block body %}
+       {% include 'menus/user_menus.html' %} <!-- Menu z opcjami użytkownika -->
+     {% endblock body %}
+  {% include 'common/aside_middle.html' %}
+    {% block body2 %}
+      <p> Tutaj się przedłuża blok body panelu użytkownika</p>
+      <p>Imię: {{ udata.first_name }}  Nazwisko: {{ udata.last_name }}</p>
+      <p>Email: {{ udata.email }}</p><p> Przydzielony do: {{ setter }}</p>
+    {% endblock body2 %}
+  {% include 'common/aside_end.html' %}
+{% endblock aside %}
 
 
 
 {% block scripts %}
-<p>override script</p>
 {% endblock %}
 
 {% block scripts2 %}
-<p>extended script </p>
 {% endblock %}

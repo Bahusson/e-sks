@@ -71,21 +71,26 @@ class PageElement(object):
         return self.one_by_id
 
 
-'''
-# Subklasa pozwająca na dowolne zmienianie skórek przez Usera
-# Spośród dostępnych w adminie.
-class PageSkinner(PageLoad):
-    def __init__(self, *args, **kwargs):
+class PortalLoad(PageLoad):
+    def __init__(self, *args):
         super().__init__(*args)
-        s = kwargs['skins']
-        c = int(kwargs['choice'])
-        self.skins = list(s.objects.all())
-        self.skin = self.skins[c]
+        d = args[2]
+        place = args[3]
+        print("place is" + str(place))
+        loc_d = list(d.objects.all())
+        self.portal = loc_d[place]
+
+    def page_dress(self, **kwargs):
+        super().page_dress(**kwargs)
+
+    def lazy_context(self, **kwargs):
         self.context = {
          'items': self.items,
          'langs': self.langs,
-         'skin': self.skin, }
-
+         'portals': self.portal, }
+        if 'skins' in kwargs:
+            self.page_dress(**kwargs)
+            self.context.update(self.skinctx)
         if 'context' in kwargs:
             self.context.update(kwargs['context'])
-'''
+        return self.context

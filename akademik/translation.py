@@ -1,36 +1,68 @@
-# from modeltranslation.translator import translator, TranslationOptions
-# from .models import CommonItems, HotelItems, CouncilItems, TranslatorItems, UserItems
+from modeltranslation.translator import translator, TranslationOptions
+from .models import PortalBaseItem
+from .models import HotelMenuItem, CouncilMenuItem, TranslatorMenuItem, UserMenuItem
+from .models import HotelLinkItem, CouncilLinkItem, TranslatorLinkItem, UserLinkItem
 
 
-# class CommonItemsTranslate(TranslationOptions):
-#    fields = ()
+# Zmiana kolejności wynika z tego, żeby łatwiej się kopiowało między klasami.
+class PortalBaseItemTranslate(TranslationOptions):
+    fields = ('title', 'descr')
 
 
-# translator.register(CommonItems, CommonItemsTranslate)
+translator.register(PortalBaseItem, PortalBaseItemTranslate)
 
 
-# class HotelItemsTranslate(TranslationOptions):
-#    fields = ()
+class HotelMenuItemTranslate(TranslationOptions):
+    fields = ('title', )
 
 
-# translator.register(HotelItems, HotelItemsTranslate)
+translator.register(HotelMenuItem, HotelMenuItemTranslate)
 
 
-# class CouncilItemsTranslate(TranslationOptions):
-#    fields = ()
+class CouncilMenuItemTranslate(TranslationOptions):
+    fields = ('title', )
 
 
-# translator.register(CouncilItems, CouncilItemsTranslate)
+translator.register(CouncilMenuItem, CouncilMenuItemTranslate)
 
 
-# class TranslatorItemsTranslate(TranslationOptions):
-#    fields = ()
+class TranslatorMenuItemTranslate(TranslationOptions):
+    fields = ('title', )
 
 
-# translator.register(TranslatorItems, TranslatorItemsTranslate)
-
-# class UserItemsTranslate(TranslationOptions):
-#    fields = ()
+translator.register(TranslatorMenuItem, TranslatorMenuItemTranslate)
 
 
-# translator.register(UserItems, UserItemsTranslate)
+class UserMenuItemTranslate(TranslationOptions):
+    fields = ('title', )
+
+
+translator.register(UserMenuItem, UserMenuItemTranslate)
+
+
+class HotelLinkItemTranslate(TranslationOptions):
+    fields = ('title', )
+
+
+translator.register(HotelLinkItem, HotelLinkItemTranslate)
+
+
+class CouncilLinkItemTranslate(TranslationOptions):
+    fields = ('title', )
+
+
+translator.register(CouncilLinkItem, CouncilLinkItemTranslate)
+
+
+class TranslatorLinkItemTranslate(TranslationOptions):
+    fields = ('title', )
+
+
+translator.register(TranslatorLinkItem, TranslatorLinkItemTranslate)
+
+
+class UserLinkItemTranslate(TranslationOptions):
+    fields = ('title', )
+
+
+translator.register(UserLinkItem, UserLinkItemTranslate)

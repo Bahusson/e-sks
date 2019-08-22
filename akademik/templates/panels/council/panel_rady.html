@@ -1,0 +1,29 @@
+<!-- Goły panel rady. Na początku nic się nie wyświetla. A mogłoby -->
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+<title>Panel Rady</title>
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+{% block css2 %}
+{% endblock %}
+
+{% block aside %}
+  {% include 'common/aside_start.html' %} <!-- Początek bocznego panelu -->
+     {% block body %}
+      {% include 'menus/council_menus.html' %} <!-- Menu z opcjami użytkownika -->
+     {% endblock body %}
+  {% include 'common/aside_middle.html' %} <!-- Tu się kończy panel boczny a zaczyna zawartość wyświetlana -->
+    {% block body2 %}
+    <!-- Tu mają się wyświetlać dane z różnych opcji po kliknięciu -->
+    {% endblock body2 %}
+  {% include 'common/aside_end.html' %} <!-- Tu się kończą proporcje panelu bocznego go zawartości -->
+{% endblock aside %}
+
+{% block scripts %}
+{% endblock %}
+{% block scripts2 %}
+{% endblock %}
