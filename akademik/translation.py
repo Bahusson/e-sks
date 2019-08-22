@@ -1,36 +1,88 @@
-# from modeltranslation.translator import translator, TranslationOptions
-# from .models import CommonItems, HotelItems, CouncilItems, TranslatorItems, UserItems
+from modeltranslation.translator import translator, TranslationOptions
+from .models import HotelBaseItem, CouncilBaseItem, TranslatorBaseItem, UserBaseItem
+from .models import HotelMenuItem, CouncilMenuItem, TranslatorMenuItem, UserMenuItem
+from .models import HotelLinkItem, CouncilLinkItem, TranslatorLinkItem, UserLinkItem
 
 
-# class CommonItemsTranslate(TranslationOptions):
-#    fields = ()
+class HotelBaseItemTranslate(TranslationOptions):
+    fields = ('title', 'descr')
 
 
-# translator.register(CommonItems, CommonItemsTranslate)
+translator.register(HotelBaseItem, HotelBaseItemTranslate)
 
 
-# class HotelItemsTranslate(TranslationOptions):
-#    fields = ()
+class CouncilBaseItemTranslate(TranslationOptions):
+    fields = ('title', 'descr')
 
 
-# translator.register(HotelItems, HotelItemsTranslate)
+translator.register(CouncilBaseItem, CouncilBaseItemTranslate)
 
 
-# class CouncilItemsTranslate(TranslationOptions):
-#    fields = ()
+class TranslatorBaseItemTranslate(TranslationOptions):
+    fields = ('title', 'descr')
 
 
-# translator.register(CouncilItems, CouncilItemsTranslate)
+translator.register(TranslatorBaseItem, TranslatorBaseItemTranslate)
 
 
-# class TranslatorItemsTranslate(TranslationOptions):
-#    fields = ()
+class UserBaseItemTranslate(TranslationOptions):
+    fields = ('title', 'descr')
 
 
-# translator.register(TranslatorItems, TranslatorItemsTranslate)
-
-# class UserItemsTranslate(TranslationOptions):
-#    fields = ()
+translator.register(UserBaseItem, UserBaseItemTranslate)
 
 
-# translator.register(UserItems, UserItemsTranslate)
+class HotelMenuItemTranslate(TranslationOptions):
+    fields = ('title', 'position')
+
+
+translator.register(HotelMenuItem, HotelMenuItemTranslate)
+
+
+class CouncilMenuItemTranslate(TranslationOptions):
+    fields = ('title', 'position')
+
+
+translator.register(CouncilMenuItem, CouncilMenuItemTranslate)
+
+
+class TranslatorMenuItemTranslate(TranslationOptions):
+    fields = ('title', 'position')
+
+
+translator.register(TranslatorMenuItem, TranslatorMenuItemTranslate)
+
+
+class UserMenuItemTranslate(TranslationOptions):
+    fields = ('title', 'position')
+
+
+translator.register(UserMenuItem, UserMenuItemTranslate)
+
+
+class HotelLinkItemTranslate(TranslationOptions):
+    fields = ('title', 'position')
+
+
+translator.register(HotelLinkItem, HotelLinkItemTranslate)
+
+
+class CouncilLinkItemTranslate(TranslationOptions):
+    fields = ('title', 'position')
+
+
+translator.register(CouncilLinkItem, CouncilLinkItemTranslate)
+
+
+class TranslatorLinkItemTranslate(TranslationOptions):
+    fields = ('title', 'position')
+
+
+translator.register(TranslatorLinkItem, TranslatorLinkItemTranslate)
+
+
+class UserLinkItemTranslate(TranslationOptions):
+    fields = ('title', 'position')
+
+
+translator.register(UserLinkItem, UserLinkItemTranslate)
