@@ -12,15 +12,15 @@
 {% endblock %}
 
 {% block aside %}
-  {% include 'aside_start.html' %} <!-- Początek bocznego panelu -->
+  {% include 'common/aside_start.html' %} <!-- Początek bocznego panelu -->
      {% block body %}
       {% include 'menus/council_menus.html' %} <!-- Menu z opcjami użytkownika -->
      {% endblock body %}
-  {% include 'aside_middle.html' %} <!-- Tu się kończy panel boczny a zaczyna zawartość wyświetlana -->
+  {% include 'common/aside_middle.html' %} <!-- Tu się kończy panel boczny a zaczyna zawartość wyświetlana -->
     {% block body2 %}
     <!-- Tu mają się wyświetlać dane z różnych opcji po kliknięciu -->
     {% endblock body2 %}
-  {% include 'aside_end.html' %} <!-- Tu się kończą proporcje panelu bocznego go zawartości -->
+  {% include 'common/aside_end.html' %} <!-- Tu się kończą proporcje panelu bocznego go zawartości -->
 {% endblock aside %}
 
 {% block scripts %}
