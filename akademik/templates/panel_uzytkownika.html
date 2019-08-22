@@ -1,3 +1,4 @@
+<!-- Goły panel użytkownika. Na początku nic się nie wyświetla. A mogłoby -->
 {% extends 'base.html' %}
 {% load staticfiles %}
 
@@ -11,20 +12,15 @@
 {% endblock %}
 
 {% block aside %}
-  {% include 'aside_start.html' %}
+  {% include 'aside_start.html' %} <!-- Początek bocznego panelu -->
      {% block body %}
-      <div class="p-3"><!--Przykładowy div z zawartością -->
-        <h4 class="font-italic">Pierwsze Menu</h4>
-          <ol class="list-unstyled mb-0"> <!-- Tutaj daj jakąś pętlę for-->
-            <li><a href="{% url 'userdatapersonal' %}">Moje dane</a></li>
-          </ol>
-      </div>
+      {% include 'menus/user_menus.html' %} <!-- Menu z opcjami użytkownika -->
      {% endblock body %}
-  {% include 'aside_middle.html' %}
+  {% include 'aside_middle.html' %} <!-- Tu się kończy panel boczny a zaczyna zawartość wyświetlana -->
     {% block body2 %}
-    <!-- Tu mają się wyświetlać dane z różnych opcji -->
+    <!-- Tu mają się wyświetlać dane z różnych opcji po kliknięciu -->
     {% endblock body2 %}
-  {% include 'aside_end.html' %}
+  {% include 'aside_end.html' %} <!-- Tu się kończą proporcje panelu bocznego go zawartości -->
 {% endblock aside %}
 
 {% block scripts %}
