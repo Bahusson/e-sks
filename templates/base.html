@@ -92,16 +92,25 @@
 
           <!--Daruj, że to wywaliłem, ale na wuj Ci tu tyle tego <br>? -->
 
-          {% block aside %}
-
-          {% block body %}
+       {% block aside %} <!--Ten blok wyświetli się tylko w panelach Akademika-->
+        <br><br><br>
+        <main role="main" class="container">
+          <div class="row">
+            <aside class="col-md-4 blog-sidebar"> <!-- Start bocznego menu -->
+              <div class="p-3 mb-3 bg-light rounded">
+                <h4 class="font-italic">{{ portals.title }}</h4>
+                <p class="mb-0">{{ portals.descr }}</p>
+              </div>
+          {% block menu %} <!--Ten blok wyświetli się tylko w panelach Akademika-->
+          {% endblock menu %}
+            </aside><!-- Koniec bocznego menu -->
+            <div class="col-md-8 blog-main"><!-- Wydzielenie głównej przestrzeni od paska menu -->
+          {% block body %} <!--Ten blok jest wspólny dla Strony i dla Akademika-->
           {% endblock body %}
-
-
-          {% block body2 %}
-          {% endblock body2 %}
-
-          {% endblock aside %}
+            </div><!-- Koniec głównej przestrzeni -->
+          </div>
+        </main><!-- end container -->
+      {% endblock aside %}
 
         <!-- Footer -->
         <footer class="text-muted">

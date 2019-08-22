@@ -5,6 +5,9 @@
 <title>{{ blog.title }}</title>
 {% endblock %}
 
+ <!-- Nullifikator bocznego menu z base.html Nie ruszaj tego, jak i end-taga!-->
+{% block aside %}
+<!-- Null -->
 {% block body %}
 
     <main role="main">
@@ -39,8 +42,9 @@
         <div class="container">
       <div class="row">	<div class="col-sm-12 text wow fadeInLeft"></div></div>
 
-      
+
     </div>
     </div>
     <!-- end of empty div -->
 {% endblock %}
+{% endblock aside %}

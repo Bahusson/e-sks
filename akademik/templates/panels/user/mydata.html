@@ -10,20 +10,20 @@
 {% block css2 %}
 {% endblock %}
 
+<!--Zwraca oryginalną kompozycję menu z bazy. Potem podstawiasz zmienne,-->
 {% block aside %}
-  {% include 'common/aside_start.html' %}
-     {% block body %}
-       {% include 'menus/user_menus.html' %} <!-- Menu z opcjami użytkownika -->
-     {% endblock body %}
-  {% include 'common/aside_middle.html' %}
-    {% block body2 %}
-      <p> Tutaj się przedłuża blok body panelu użytkownika</p>
-      <p>Imię: {{ udata.first_name }}  Nazwisko: {{ udata.last_name }}</p>
-      <p>Email: {{ udata.email }}</p><p> Przydzielony do: {{ setter }}</p>
-    {% endblock body2 %}
-  {% include 'common/aside_end.html' %}
+ {{ block.super }}
 {% endblock aside %}
 
+{% block menu %}
+ {% include 'menus/user_menus.html' %} <!-- Menu z opcjami użytkownika -->
+{% endblock menu %}
+
+{% block body %}
+  <p> Tutaj się przedłuża blok body panelu użytkownika</p>
+  <p>Imię: {{ udata.first_name }}  Nazwisko: {{ udata.last_name }}</p>
+  <p>Email: {{ udata.email }}</p><p> Przydzielony do: {{ setter }}</p>
+{% endblock body %}
 
 
 {% block scripts %}
