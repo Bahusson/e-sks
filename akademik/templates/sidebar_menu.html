@@ -1,0 +1,7 @@
+Ściąga dla menu głównego panelu użytkownika
+<div class="p-3"><!--Przykładowy div z zawartością -->
+  <h4 class="font-italic">{{ menu.title }}</h4>
+    <ol class="list-unstyled mb-0"> <!-- Tutaj daj jakąś pętlę for-->
+      <li><a href="{% url 'userdatapersonal' %}">{{ menu.item_name }}</a></li>
+    </ol>
+</div>

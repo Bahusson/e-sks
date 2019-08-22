@@ -1,4 +1,4 @@
-{% extends 'common_panel.html' %}
+{% extends 'base.html' %}
 {% load staticfiles %}
 
 {% block title %}
@@ -10,13 +10,22 @@
 {% block css2 %}
 {% endblock %}
 
-
-{% block body %}
-<a class="button" href="{% url 'userdatapersonal' %}">Do templatki z danymi!</a>
-<p>To panel usera Pisz dalej. Dobrze Ci idzie!</p>
-{% endblock %}
-{% block body2 %}
-{% endblock %}
+{% block aside %}
+  {% include 'aside_start.html' %}
+     {% block body %}
+      <div class="p-3"><!--Przykładowy div z zawartością -->
+        <h4 class="font-italic">Pierwsze Menu</h4>
+          <ol class="list-unstyled mb-0"> <!-- Tutaj daj jakąś pętlę for-->
+            <li><a href="{% url 'userdatapersonal' %}">Moje dane</a></li>
+          </ol>
+      </div>
+     {% endblock body %}
+  {% include 'aside_middle.html' %}
+    {% block body2 %}
+    <!-- Tu mają się wyświetlać dane z różnych opcji -->
+    {% endblock body2 %}
+  {% include 'aside_end.html' %}
+{% endblock aside %}
 
 {% block scripts %}
 {% endblock %}
