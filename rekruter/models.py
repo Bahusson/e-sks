@@ -107,3 +107,9 @@ class QuarterClass(models.Model):
     new_foreign = models.CharField(max_length=50, null=True)
     erasmus = models.CharField(max_length=50, null=True)
     bilateral = models.CharField(max_length=50, null=True)
+
+    def gen_quartzlist(self):
+        self.quartzlista = []
+        for attr in self:
+            self.quartzlista.append(attr)
+        return self.quartzlista

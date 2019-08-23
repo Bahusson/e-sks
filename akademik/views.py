@@ -83,6 +83,14 @@ def showmydata(request):
         quarter = userdata.__dict__['quarter']
         locations = list(QuarterClass.objects.all())
         quarters = locations[0]
+        preqlist = list(quarters.__dict__.keys())
+        preqlist2 = preqlist[2:]
+
+
+            return list.Where((x, i) => i % nStep == 0);
+
+
+        print(preqlist2)
         quartzlist = [
          'stud_local', 'stud_foreign', 'phd', 'bank',
          'new1', 'new23', 'new_foreign', 'erasmus', 'bilateral',
