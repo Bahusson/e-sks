@@ -4,8 +4,8 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils.translation import ugettext_lazy as _
-
 from .managers import UserManager
+from esks.settings import AUTH_USER_MODEL
 
 
 # Klasa zmienia autentykację Usera na email jak w Core2.
@@ -94,8 +94,71 @@ class FormItems(models.Model):
     data_correct = models.CharField(max_length=250)
     assign_again = models.CharField(max_length=250)
     list_select = models.CharField(max_length=50)
+    personal_data = models.CharField(max_length=50)
+    citizenship = models.CharField(max_length=50)
+    passport = models.CharField(max_length=50)
+    dowod = models.CharField(max_length=50)
+    gender = models.CharField(max_length=50)
+    warning_f = models.CharField(max_length=50)
+    tel_mandatory = models.CharField(max_length=50)
+    defaul_t = models.CharField(max_length=50)
+    telephone = models.CharField(max_length=50)
+    preferences = models.CharField(max_length=50)
+    match_prefs = models.CharField(max_length=250)
+    see_map = models.CharField(max_length=50)
+    choose = models.CharField(max_length=50)
+    i_ask = models.CharField(max_length=50)
+    time_in_sh = models.CharField(max_length=100)
+    adress_data = models.CharField(max_length=50)
+    street = models.CharField(max_length=50)
+    building_no = models.CharField(max_length=50)
+    local_no = models.CharField(max_length=50)
+    postcode = models.CharField(max_length=50)
+    city = models.CharField(max_length=50)
+    click_map = models.CharField(max_length=50)
+    search = models.CharField(max_length=50)
+    check_search = models.CharField(max_length=100)
+    check_mandatory = models.CharField(max_length=200)
+    search_failed = models.CharField(max_length=250)
+    pref_as_stud = models.CharField(max_length=100)
+    faculty = models.CharField(max_length=50)
+    degree = models.CharField(max_length=50)
+    deangroup = models.CharField(max_length=50)
+    album = models.CharField(max_length=50)
+    semester = models.CharField(max_length=50)
+    additional_info = models.CharField(max_length=50)
+    spouse_cohabitant = models.CharField(max_length=50)
+    special_case_docs = models.CharField(max_length=50)
+    statement = models.CharField(max_length=50)
+    agree = models.CharField(max_length=50)
+    disagree = models.CharField(max_length=50)
+    mail_join = models.TextField()
+    data_processing = models.TextField()
+    appendix = models.CharField(max_length=50)
+    sendme = models.CharField(max_length=50)
+    ufile = models.CharField(max_length=50)
+    browse = models.CharField(max_length=50)
+    appendix_name = models.CharField(max_length=50)
+    del_file = models.CharField(max_length=50)
+    down_file = models.CharField(max_length=50)
+    nofile_chosen = models.CharField(max_length=50)
+    nought = models.CharField(max_length=50)
+    male = models.CharField(max_length=50)
+    female = models.CharField(max_length=50)
+    other = models.CharField(max_length=50)
+    app_for_sh = models.CharField(max_length=50)
+    app_no = models.CharField(max_length=50)
+    state = models.CharField(max_length=50)
+    number = models.CharField(max_length=50)
+    created = models.CharField(max_length=50)
+    spouseID = models.CharField(max_length=50)
+    stays = models.CharField(max_length=50)
+    show_by = models.CharField(max_length=50)
+    results = models.CharField(max_length=50)
+    total = models.CharField(max_length=50)
 
 
+# Klasa kwaterunkowa.
 class QuarterClass(models.Model):
     # Klasa do tłumaczenia nazw Akcji Kwaterunkowych.
     stud_local = models.CharField(max_length=50, null=True)
@@ -108,8 +171,122 @@ class QuarterClass(models.Model):
     erasmus = models.CharField(max_length=50, null=True)
     bilateral = models.CharField(max_length=50, null=True)
 
-    def gen_quartzlist(self):
-        self.quartzlista = []
-        for attr in self:
-            self.quartzlista.append(attr)
-        return self.quartzlista
+
+# Wszystkie domy studenckie - nazwy i być może atrybuty.
+class StudentHouse(models.Model):
+    name = models.CharField(max_length=100)
+    position = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['position']
+
+
+# Czy chce zmienić pokój czy zostać.
+class IfRoomChange(models.Model):
+    name = models.CharField(max_length=100)
+    position = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['position']
+
+
+# Czas przyznania pobytu.
+class TimePeriod(models.Model):
+    name = models.CharField(max_length=100)
+    position = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['position']
+
+
+# Lista wszystkich wydziałów.
+class StudyFaculty(models.Model):
+    name = models.CharField(max_length=100)
+    position = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['position']
+
+
+# Lista wszystkich rodzajów studiów.
+class StudyDegree(models.Model):
+    name = models.CharField(max_length=100)
+    position = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['position']
+
+
+# Czy chce mieszkać z małżonkiem
+class SpouseCohabitant(models.Model):
+    name = models.CharField(max_length=100)
+    position = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['position']
+
+
+# Podanie o szczególne okoliczności
+class SpecialCase(models.Model):
+    name = models.CharField(max_length=100)
+    position = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['position']
+
+
+class ApplicationStatus(models.Model):
+    name = models.CharField(max_length=100)
+    position = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['position']
+
+
+class ApplicationFormFields(models.Model):
+    # Klasa do wypełniania pól formularza przez Userów.
+    name = models.CharField(max_length=100)
+    owner = models.ForeignKey(
+     AUTH_USER_MODEL, on_delete=models.CASCADE)
+    # Preferencje akademików 1-3
+    sh_choice1 = models.IntegerField(blank=True)
+    sh_choice2 = models.IntegerField(blank=True)
+    sh_choice3 = models.IntegerField(blank=True)
+    # Czy zmiana pokoju?
+    if_room_change = models.IntegerField(blank=True)
+    duration = models.IntegerField(blank=True)
+    location = models.CharField(max_length=50, blank=True)
+    faculty = models.IntegerField(blank=True)
+    degree = models.IntegerField(blank=True)
+    deangroup = models.IntegerField(blank=True)
+    semester = models.IntegerField(blank=True)
+    spouse_cohabitant = models.IntegerField(blank=True)
+    special_case_docs = models.IntegerField(blank=True)
+    international_placement = models.BooleanField(blank=True)
+    mailinglist = models.BooleanField(blank=True)
+    dataprocessing = models.BooleanField(blank=True)
+    attachment = models.FileField(upload_to='userdocs', null=True, blank=True)

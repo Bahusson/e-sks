@@ -17,7 +17,7 @@ def initial(request):
         form = IniForm(request.POST, instance=uid)
         if form.is_valid():
             form.save()
-            return redirect('userpanel')
+            return redirect('userdatapersonal')
 
     else:
         form = IniForm()
