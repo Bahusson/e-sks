@@ -14,7 +14,7 @@ class PortalBaseItem(models.Model):
     descr = models.CharField(max_length=400)
 
     def __str__(self):
-        return self.portal
+        return self.title
 
     class Meta:
         ordering = ['portal']
@@ -25,6 +25,9 @@ class HotelMenuItem(models.Model):
     title = models.CharField(max_length=200)
     position = models.IntegerField()
 
+    def __str__(self):
+        return self.title
+
     class Meta:
         ordering = ['position']
 
@@ -34,14 +37,20 @@ class HotelLinkItem(models.Model):
     menu = models.IntegerField()
     position = models.IntegerField()
 
+    def __str__(self):
+        return self.title
+
     class Meta:
-        ordering = ['position']
+        ordering = ['menu', 'position']
 
 
 # To zestaw klas tłumaczeniowych dla panelu Rady
 class CouncilMenuItem(models.Model):
     title = models.CharField(max_length=200)
     position = models.IntegerField()
+
+    def __str__(self):
+        return self.title
 
     class Meta:
         ordering = ['position']
@@ -52,14 +61,20 @@ class CouncilLinkItem(models.Model):
     menu = models.IntegerField()
     position = models.IntegerField()
 
+    def __str__(self):
+        return self.title
+
     class Meta:
-        ordering = ['position']
+        ordering = ['menu', 'position']
 
 
 # To zestaw klas tłumaczeniowych dla panelu Tłumacza
 class TranslatorMenuItem(models.Model):
     title = models.CharField(max_length=200)
     position = models.IntegerField()
+
+    def __str__(self):
+        return self.title
 
     class Meta:
         ordering = ['position']
@@ -70,14 +85,20 @@ class TranslatorLinkItem(models.Model):
     menu = models.IntegerField()
     position = models.IntegerField()
 
+    def __str__(self):
+        return self.title
+
     class Meta:
-        ordering = ['position']
+        ordering = ['menu', 'position']
 
 
 # To zestaw klas tłumaczeniowych dla panelu Użytkownika
 class UserMenuItem(models.Model):
     title = models.CharField(max_length=200)
     position = models.IntegerField()
+
+    def __str__(self):
+        return self.title
 
     class Meta:
         ordering = ['position']
@@ -88,5 +109,8 @@ class UserLinkItem(models.Model):
     menu = models.IntegerField()
     position = models.IntegerField()
 
+    def __str__(self):
+        return self.title
+
     class Meta:
-        ordering = ['position']
+        ordering = ['menu', 'position']

@@ -1,9 +1,8 @@
-<!-- Goły panel rady. Na początku nic się nie wyświetla. A mogłoby -->
 {% extends 'base.html' %}
 {% load staticfiles %}
 
 {% block title %}
-<title>Panel Rady</title>
+<title>{{ link.6 }}</title>
 {% endblock %}
 
 {% block css %}
@@ -17,15 +16,21 @@
 {% endblock aside %}
 
 {% block menu %}
-  {% include 'menus/council_menus.html' %} <!-- Menu z opcjami użytkownika -->
+ {% include 'menus/user_menus.html' %} <!-- Menu z opcjami użytkownika -->
 {% endblock menu %}
 
 {% block body %}
- <!-- Tu mają się wyświetlać dane z różnych opcji po kliknięciu -->
+<form enctype="multipart/form-data" method="post" action="sendform"> <!-- Do wysyłania plików -->
+
+
+
+</form>
 {% endblock body %}
 
 
 {% block scripts %}
+<script src="{% static "quarterchange.js" %}"></script>
 {% endblock %}
+
 {% block scripts2 %}
 {% endblock %}

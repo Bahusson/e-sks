@@ -7,4 +7,5 @@ urlpatterns = [
     path('panel_uzytkownika', views.userpanel, name='userpanel'),
     path('panel_tlumacza', views.translatorpanel, name='translatorpanel'),
     path('twoje_dane', views.showmydata, name='userdatapersonal'),
+    path('aplikacja_ds', views.dormapply, name='dsapply'),
 ]

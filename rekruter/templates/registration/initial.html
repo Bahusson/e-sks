@@ -10,7 +10,10 @@
 <link href="{% static 'formcss.css' %}" rel="stylesheet">
 {% endblock %}
 
+{% block aside %}
+<!--Null-->
 {% block body %}
+  <br><br><br><br>
   <div class="container">
     <h1 class="px-3 py-3 pt-md-5 pb-md-4 text-center">{{ sitos.intro }}</h1>
     <br />
@@ -156,10 +159,11 @@
           </form>
         </div>
       </div><!--end row -->
-
-
   </div><!--end container-->
+  <br><br><br>
 {% endblock %}
+{% endblock aside %}
+
 
 {% block scripts %}
 <script src="{% static "formjs.js" %}"></script>

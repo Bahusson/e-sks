@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block title %}
-<title>Moje Dane Otako!</title>
+<title>{{ link.6 }}</title>
 {% endblock %}
 
 {% block css %}
@@ -10,23 +10,40 @@
 {% block css2 %}
 {% endblock %}
 
+<!--Zwraca oryginalną kompozycję menu z bazy. Potem podstawiasz zmienne,-->
 {% block aside %}
-  {% include 'common/aside_start.html' %}
-     {% block body %}
-       {% include 'menus/user_menus.html' %} <!-- Menu z opcjami użytkownika -->
-     {% endblock body %}
-  {% include 'common/aside_middle.html' %}
-    {% block body2 %}
-      <p> Tutaj się przedłuża blok body panelu użytkownika</p>
-      <p>Imię: {{ udata.first_name }}  Nazwisko: {{ udata.last_name }}</p>
-      <p>Email: {{ udata.email }}</p><p> Przydzielony do: {{ setter }}</p>
-    {% endblock body2 %}
-  {% include 'common/aside_end.html' %}
+ {{ block.super }}
 {% endblock aside %}
 
+{% block menu %}
+ {% include 'menus/user_menus.html' %} <!-- Menu z opcjami użytkownika -->
+{% endblock menu %}
+
+{% block body %}
+  <p>{{ formitem.data_correct }}</p>
+  <p>{{ formitem.name }}: {{ udata.first_name }}  {{ formitem.surname }}: {{ udata.last_name }}</p>
+  <p>{{ formitem.email }}: {{ udata.email }}</p>
+
+
+  {{ formitem.action }}:
+  <p> {{ formitem.assigned_to }}: {{ setter }}</p>
+  <p><a href="{% url 'initial' %}">{{ formitem.assign_again }}</a></p>
+  <form name="QuarterForm" method="post">
+        <select id="Quarterselector" name="Quarter">
+          <option value ="None" disabled>{{ formitem.list_select }}:</option>
+        {% for item in setlist %}
+           <option value ="{{ forloop.counter }}">{{ item }}</option>
+        {% endfor %}
+        </select>
+      {% csrf_token %}
+      {{ form.quarter }}
+    <input id="send" class="button" name="subbutton" type="submit" value="Zmień Akcję">
+  </form>
+{% endblock body %}
 
 
 {% block scripts %}
+<script src="{% static "quarterchange.js" %}"></script>
 {% endblock %}
 
 {% block scripts2 %}
