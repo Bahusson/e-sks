@@ -1,5 +1,5 @@
 from modeltranslation.translator import translator, TranslationOptions
-from rekruter.models import Sito, FormItems, QuarterClass, StudentHouse
+from rekruter.models import Sito, FormItems, QuarterClassB, StudentHouse
 from rekruter.models import IfRoomChange, TimePeriod, StudyFaculty
 from rekruter.models import StudyDegree, SpouseCohabitant, SpecialCase
 from rekruter.models import ApplicationStatus
@@ -35,15 +35,6 @@ class FormItemsTranslate(TranslationOptions):
 
 
 translator.register(FormItems, FormItemsTranslate)
-
-
-class QuarterClassTranslate(TranslationOptions):
-    fields = (
-     'stud_local', 'stud_foreign', 'phd', 'bank', 'new1', 'new23',
-     'new_foreign', 'erasmus', 'bilateral',)
-
-
-translator.register(QuarterClass, QuarterClassTranslate)
 
 
 class StudentHouseTranslate(TranslationOptions):
@@ -100,3 +91,10 @@ class ApplicationStatusTranslate(TranslationOptions):
 
 
 translator.register(ApplicationStatus, ApplicationStatusTranslate)
+
+
+class QuarterClassBTranslate(TranslationOptions):
+    fields = ('name', )
+
+
+translator.register(QuarterClassB, QuarterClassBTranslate)

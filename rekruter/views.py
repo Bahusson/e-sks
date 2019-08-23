@@ -80,15 +80,4 @@ def logger(request):
         template = 'registration/login.html'
     return render(request, template, context)
 
-    '''
-    # Tutaj odbieramy zmienną zdefiniowaną wcześniej.
-    quarter = request.session['quarter']
-    locations = list(QuarterClass.objects.all())
-    quarters = locations[0]
-    quartzlist = [
-     'stud_local', 'stud_foreign', 'phd', 'bank',
-     'new1', 'new23', 'new_foreign', 'erasmus', 'bilateral',
-    ]  # To nie powinno być na stałe w kodzie ale jako zmienna z panelu admina.
-    setter = quarters.__getattribute__(quartzlist[int(quarter)-1])
-    '''
 # def unlogger(request):

@@ -6,6 +6,7 @@ from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils.translation import ugettext_lazy as _
 from .managers import UserManager
 from esks.settings import AUTH_USER_MODEL
+import uuid
 
 
 # Klasa zmienia autentykację Usera na email jak w Core2.
@@ -158,20 +159,6 @@ class FormItems(models.Model):
     total = models.CharField(max_length=50)
 
 
-# Klasa kwaterunkowa.
-class QuarterClass(models.Model):
-    # Klasa do tłumaczenia nazw Akcji Kwaterunkowych.
-    stud_local = models.CharField(max_length=50, null=True)
-    stud_foreign = models.CharField(max_length=50, null=True)
-    phd = models.CharField(max_length=50, null=True)
-    bank = models.CharField(max_length=50, null=True)
-    new1 = models.CharField(max_length=50, null=True)
-    new23 = models.CharField(max_length=50, null=True)
-    new_foreign = models.CharField(max_length=50, null=True)
-    erasmus = models.CharField(max_length=50, null=True)
-    bilateral = models.CharField(max_length=50, null=True)
-
-
 # Wszystkie domy studenckie - nazwy i być może atrybuty.
 class StudentHouse(models.Model):
     name = models.CharField(max_length=100)
@@ -269,7 +256,8 @@ class ApplicationStatus(models.Model):
 
 class ApplicationFormFields(models.Model):
     # Klasa do wypełniania pól formularza przez Userów.
-    name = models.CharField(max_length=100)
+    application_no = models.UUIDField(
+     primary_key=True, default=uuid.uuid4, editable=False)
     owner = models.ForeignKey(
      AUTH_USER_MODEL, on_delete=models.CASCADE)
     # Preferencje akademików 1-3
@@ -290,3 +278,21 @@ class ApplicationFormFields(models.Model):
     mailinglist = models.BooleanField(blank=True)
     dataprocessing = models.BooleanField(blank=True)
     attachment = models.FileField(upload_to='userdocs', null=True, blank=True)
+
+    class Meta:
+        ordering = ['owner', 'application_no']
+
+    def __str__(self):
+        return str(self.application_no) + ' ' + str(self.owner)
+
+
+class QuarterClassB(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=100)
+    position = models.IntegerField()
+
+    class Meta:
+        ordering = ['position', 'id']
+
+    def __str__(self):
+        return self.name

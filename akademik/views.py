@@ -13,7 +13,7 @@ from .models import TranslatorLinkItem as Tli
 from .models import HotelMenuItem as Hmi
 from .models import HotelLinkItem as Hli
 from esks.special.decorators import council_only, hotel_staff_only, translators_only
-from rekruter.models import User, QuarterClass, FormItems
+from rekruter.models import User, FormItems, QuarterClassB
 from rekruter.forms import IniForm
 
 
@@ -77,18 +77,18 @@ def showmydata(request):
             form.save()
             return redirect('userdatapersonal')
     else:
-        pefi = PageElement(FormItems)
-        pefi0 = pefi.list_specific(0)
-        peqc = PageElement(QuarterClass)
+        pe_fi = PageElement(FormItems)
+        pe_fi0 = pe_fi.list_specific(0)
+        peqc = PageElement(QuarterClassB)
         form = IniForm()
         quarter = userdata.__dict__['quarter']
-        setter = peqc.get_setter(0, quarter, L)
-        setlist = peqc.get_setlist(0, L)
+        myquarter = peqc.list_specific(int(quarter)-1)
+        quarterlist = peqc.listed
         context = {
-         'formitem': pefi0,
+         'formitem': pe_fi0,
          'form': form,
-         'setter': setter,
-         'setlist': setlist,
+         'setter': myquarter,
+         'setlist': quarterlist,
          'udata': userdata,
          }
         # zdefiniuj dodatkowe konteksty tutaj.
