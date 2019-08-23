@@ -61,7 +61,7 @@ class UserForm(forms.ModelForm):
         user = super(UserForm, self).save(commit=False)
         user.first_name = self.cleaned_data["first_name"]
         user.last_name = self.cleaned_data["last_name"]
-        user.quarter = self.cleaned_data["quarterl"]
+        user.quarter = self.cleaned_data["quarter"]
         if commit:
             user.save()
         return user

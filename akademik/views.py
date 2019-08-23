@@ -14,6 +14,7 @@ from .models import HotelMenuItem as Hmi
 from .models import HotelLinkItem as Hli
 from esks.special.decorators import council_only, hotel_staff_only, translators_only
 from rekruter.models import User, QuarterClass
+from rekruter.forms import IniForm
 
 
 # Panel Rady
@@ -68,11 +69,14 @@ def showmydata(request):
      first_name=ru.first_name,
      last_name=ru.last_name,
      quarter=ru.quarter)
-
     if request.method == 'POST':
-        pass
+        uid = User.objects.get(id=ru.id)
+        form = IniForm(request.POST, instance=uid)
+        if form.is_valid():
+            form.save()
+            return redirect('userdatapersonal')
     else:
-
+        form = IniForm()
         quarter = userdata.__dict__['quarter']
         locations = list(QuarterClass.objects.all())
         quarters = locations[0]
@@ -81,8 +85,14 @@ def showmydata(request):
          'new1', 'new23', 'new_foreign', 'erasmus', 'bilateral',
         ]  # To nie powinno być na stałe w kodzie ale jako zmienna z admina.
         setter = quarters.__getattribute__(quartzlist[int(quarter)-1])
+        setlist = []
+        for item in quartzlist:
+            setlist.append(quarters.__getattribute__(item))
         context = {
+         'value': 2,
+         'form': form,
          'setter': setter,
+         'setlist': setlist,
          'udata': userdata,
          }
         # zdefiniuj dodatkowe konteksty tutaj.

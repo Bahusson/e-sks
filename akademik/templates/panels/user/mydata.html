@@ -22,11 +22,28 @@
 {% block body %}
   <p> Tutaj się przedłuża blok body panelu użytkownika</p>
   <p>Imię: {{ udata.first_name }}  Nazwisko: {{ udata.last_name }}</p>
-  <p>Email: {{ udata.email }}</p><p> Przydzielony do: {{ setter }}</p>
+  <p>Email: {{ udata.email }}</p>
+
+
+  Akcja kwaterunkowa:
+  <p> Przydzielony do: {{ setter }}</p>
+  <p><a href="{% url 'initial' %}">Przydziel ponownie za pomocą flowchartu</a></p>
+  <form name="QuarterForm" method="post">
+        <select id="Quarterselector" name="Quarter">
+          <option value ="wybierz">wybierz</option>
+        {% for item in setlist %}
+           <option value ="{{ forloop.counter }}">{{ item }}</option>
+        {% endfor %}
+        </select>
+      {% csrf_token %}
+      {{ form.quarter }}
+    <input id="send" class="button" name="subbutton" type="submit" value="Zmień Akcję">
+  </form>
 {% endblock body %}
 
 
 {% block scripts %}
+<script src="{% static "quarterchange.js" %}"></script>
 {% endblock %}
 
 {% block scripts2 %}
