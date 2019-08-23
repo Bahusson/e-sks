@@ -14,7 +14,8 @@ from .models import HotelMenuItem as Hmi
 from .models import HotelLinkItem as Hli
 from esks.special.decorators import council_only, hotel_staff_only, translators_only
 from rekruter.models import User, FormItems, QuarterClassB
-from rekruter.forms import IniForm
+from rekruter.forms import IniForm, ApplicationForm
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 
 # Panel Rady
@@ -96,3 +97,14 @@ def showmydata(request):
         context_lazy = pl.lazy_context(skins=S, context=context)
         template = 'panels/user/mydata.html'
         return render(request, template, context_lazy)
+
+
+def dormapply(request):
+    if request.method == 'POST':
+        form = ApplicationForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('userpanel')
+    else:
+        form = ApplicationForm()
+    return render(request, 'panels/user/dormapply.html', {'form': form})
