@@ -1,210 +1,88 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-
-
 {% block body %}
 <!-- POCZĄTEK AKTUALNÓŚĆ -->
 
-  <div class="alert alert-success alert-dismissible">
+  <div class="alert alert-success alert-dismissible ">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <img width=100% src="https://files.tinypic.pl/i/00987/ftsxlq91m4a0.png">
   </div>
 
-<main role="main">
-  <div class="docs" >
-    <div class="row nopadding " id="texty" jumbotron jumbotron-fluid >
-     <div class="steps jumbotron jumbotron-fluid" >
-      <div class=" col-md-12 jumbotron jumbotron-fluid">
-       <div class="head">
-        <h3>{{ items.news }}</h3>
-
-          {% for blog in blogs|slice:":3" %} <!-- Iterator aktualności 1-3 -->
-            {% if blog %}
-              <div class="col-lg-3 col-md-3 col-sm-4 col-xm-4"> <!-- Kafelek Aktualności-->
-                <div class="text">
-                  <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10"> <!-- Część z tekstem -->
-                    <div class="text-box">
-                      {% if blog.image %} <!-- Jeśli nie ma obrazka zwróć default ze skórki Usera -->
-                       <a href="{% url 'blog' blog.id %}"><img class="blog-image" src="{{ blog.image.url }}" height=200 /></a>
-                      {% else %}
-                       <a href="{% url 'blog' blog.id %}"><img class="blog-image" src="{{ skin.blogimagedefault.url }}" height=200 /></a>
-                      {% endif %}
-                    </div>
-                  </div> <!-- Koniec części z tekstem -->
-
-                  <br><br><br><br><br><br>
-
-                  <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
-                    <div class="model-text">
-                      <h2 ><a href="{% url 'blog' blog.id %}">{{ blog.title }}</a></h2>
-                      <p>{{ blog.summary }}</p>
-                    </div>
-                  </div>
-                </div><!--.text-->
-              </div><!-- Koniec kafelka aktualności -->
-            {% endif %}
-          {% endfor %} <!-- Koniec iteratora aktualności 1-3 -->
-
-            {% if blogs.3 %} <!-- Dodatkowy blog ma być tylko wydoczny na laptopach -->
-              <div class="col-lg-3 col-md-3 col-sm-4 col-xm-4">
-                <div class="text">
-                  <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
-                    <div class="text-box">
-                     {% if blogs.3.image %}
-                      <a href="{% url 'blog' blogs.3.id %}"><img class="blog-image" src="{{ blogs.3.image.url }}" height=200 /></a>
-                     {% else %}
-                     <a href="{% url 'blog' blog.id %}"><img class="blog-image" src="{{ skin.blogimagedefault.url }}" height=200 /></a>
-                     {% endif %}
-                    </div>
-                  </div>
-
-                  <br><br><br><br><br><br>
-
-                  <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
-                    <div class="model-text">
-                      <h2 ><a href="{% url 'blog' blogs.3.id %}">{{ blogs.3.title }}</a></h2>
-                      <p>{{ blogs.3.summary }}</p>
-                    </div>
-                  </div>
-                </div><!--text-->
-              </div><!--col-4-->
-            {% endif %} <!-- Koniec dodatkowego bloga -->
-        </div>
-       </div>
+    <h3 class="font-weight-bolder">{{ items.news }}</h3>
+      {% for blog in blogs|slice:":3" %} <!-- Iterator aktualności 1-3 -->
+      {% if blog %}
+    <div class="col-md-4 shdwn">
+      <div class="col">
+        {% if blog.image %} <!-- Jeśli nie ma obrazka zwróć default ze skórki Usera -->
+          <a href="{% url 'blog' blog.id %}"><img class="blog-image imgshdw float-left" src="{{ blog.image.url }}" width="300" height="200" /></a>
+          {% else %}
+           <a href="{% url 'blog' blog.id %}"><img class="blog-image" src="{{ skin.blogimagedefault.url }}" height=200 /></a>
+          {% endif %}
+            <div class="desc ">
+              <h4 ><a href="{% url 'blog' blog.id %}">{{ blog.title }}</a></h4>
+              <!-- <p>{{ blog.summary }}</p>  nie wiem czy to jest potzebne-->
+            </div>
       </div>
-     </div>
-    </div>
-
-    <br><br><br><br><br><br>
-
-    <div class="docs " >
-    <div class="row nopadding " id="texty" jumbotron jumbotron-fluid >
-    <div class="steps jumbotron jumbotron-fluid" >
-    <div class=" col-md-12 jumbotron jumbotron-fluid">
-    <div class="head">
-    	<h3>INFORMACJE</h3>
-
-    <!--PUBLIKACJE-->
-
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xm-4">
-    <div class="text">
-    <div class="col-lg-2 col-md-2 col-sm-4 col-xm-2">
-    <div class="text-box">
-    	<a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf"> <img="https://files.tinypic.pl/i/00986/bk7dlf28z6pi.png"><i class="fa fa-file-text-o "></i></a>
-    </div>
-    </div>
-    <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
-    <div class="model-text">
-    <h1>Informacje 01</h1>
-
-    </div>
-    </div>
     </div><!--text-->
-    </div><!--col-4-->
 
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xm-4">
-    <div class="text">
-    <div class="col-lg-2 col-md-2 col-sm-4 col-xm-2">
-    <div class="text-box">
-    	<a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf"><i class="fa fa-file-text-o "></i></a>
-    </div>
-    </div>
-    <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
-    <div class="model-text">
-    <h1>Informacje 02</h1>
+    {% endif %}
+    {% endfor %} <!-- Koniec iteratora aktualności 1-3 -->
 
+    {% if blogs.3 %}
+  <div class="col-md-4 shdwn">
+    <div class="col">
+      {% if blog.image %} <!-- Jeśli nie ma obrazka zwróć default ze skórki Usera -->
+        <a href="{% url 'blogs' blogs.3.id %}"><img class="blog-image imgshdw float-left" src="{{ blogs.3.image.url }}" width="300" height="200" /></a>
+        {% else %}
+         <a href="{% url 'blog' blog.id %}"><img class="blog-image" src="{{ skin.blogimagedefault.url }}" height=200 /></a>
+        {% endif %}
+          <div class="desc ">
+            <h4 ><a href="{% url 'blog' blog.id %}">{{ blogs.3.title }}</a></h4>
+            <!-- <p>{{ blogs.3.summary }}</p>  nie wiem czy to jest potzebne-->
+          </div>
     </div>
-    </div>
-    </div><!--icon-->
-    </div><!--col-4-->
 
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xm-4">
-    <div class="text">
-    <div class="col-lg-2 col-md-2 col-sm-4 col-xm-2">
-    <div class="text-box">
-    	<a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf"><i class="fa fa-file-text-o "></i></a>
-    </div>
-    </div>
-    <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
-    <div class="model-text">
-    <h1>Informacje 03</h1>
+  </div><!--text-->
+
+  {% endif %} <!-- Koniec dodatkowego bloga -->
+<!-- KONIEC AKTUALNOŚCI -->
 
 
 
 
-    </div>
-    </div>
-    </div><!--icon-->
-    </div><!--col-4-->
-    </div><!--icon-content-->
-    </div><!--end of col-12-->
+<div class="container ">
 
+  <div class="col-md-3 p text-right">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTea_3kuBtKGKbqgQZg2TF1q5gjnbiBtjK-gKz6G3mdNl2_TxHN" class="infobox float-right" />
+  </div>
+  <div class="col-sm-3 text-left border">
+    <div class="infobox">
+        <h4 class="text-left">{{ items.docs }}</h4>
+            <ul>
+              <li><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Formularz rejstracyjny</a></li>
+              <li><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Wzór podania</li>
+              <li><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Wniosek akomodacyjny</li>
+              <li><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Wzór formularza</li>
+              <li><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Karta studenta</li>
+            </ul>
+  </div>
+</div>
+
+  <div class="col-md-3 p text-right">
+    <img src="https://st.depositphotos.com/1345889/2318/i/450/depositphotos_23186830-stock-photo-cute-young-student-girl.jpg" class="infobox float-right" />
+  </div>
+    <div class="col-sm-3 text-left border">
+      <div class="infobox">
+        <h4 class="text-left">Informacje</h4>
+        <ul>
+          <li><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Regulamin domu studenckiego</a></li>
+          <li><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Plan akademika</li>
+          <li><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Regulaminu rekrutacji</li>
+          <li><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Kalendarz</li>
+          <li><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Szczegóły rekrutacji 2019</li>
+        </ul>
     </div>
   </div>
 </div>
 
-
-    <div class="row nopadding " id="texty" >
-    <div class="steps" >
-    <div class=" col-md-12">
-    <div class="head">
-    	<h3>{{ items.docs }}</h3>
-    	<center><div class="bar"></div></center>
-    <!--PUBLIKACJE-->
-<img src="{% static 'img/logo.png' %}"/>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xm-4">
-    <div class="text">
-    <div class="col-lg-2 col-md-2 col-sm-4 col-xm-2">
-    <div class="text-box">
-    	<a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf"><i class="fa fa-file-text-o "></i></a>
-    </div>
-    </div>
-    <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
-    <div class="model-text">
-    <h1>Regulamin domu studenckiego</h1>
-
-    </div>
-    </div>
-    </div><!--text-->
-    </div><!--col-4-->
-
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xm-4">
-    <div class="text">
-    <div class="col-lg-2 col-md-2 col-sm-4 col-xm-2">
-    <div class="text-box">
-    	<a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf"><i class="fa fa-file-text-o "></i></a>
-    </div>
-    </div>
-    <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
-    <div class="model-text">
-    <h1>Plan akademika</h1>
-
-    </div>
-    </div>
-    </div><!--text-->
-    </div><!--col-4-->
-
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xm-4">
-    <div class="text">
-    <div class="col-lg-2 col-md-2 col-sm-4 col-xm-2">
-    <div class="text-box">
-    	<a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf"><i class="fa fa-file-text-o "></i></a>
-    </div>
-    </div>
-    <div class="col-lg-10 col-md-10 col-sm-10 col-xm-10">
-    <div class="model-text">
-    <h1>Kalendarz</h1>
-
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-
-    </div>
-  </div>
-</div>
-<!--END PUBLIKACJE-->
-      <br><br><br><br><br><br>
 {% endblock %}
