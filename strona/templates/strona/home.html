@@ -3,9 +3,9 @@
 {% block body %}
 <!-- POCZĄTEK AKTUALNÓŚĆ -->
 
-  <div class="alert alert-success alert-dismissible ">
+  <div class="alert alert-dark alert-dismissible  ">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <img width=100% src="https://files.tinypic.pl/i/00987/ftsxlq91m4a0.png">
+    <img width=100% src="https://pics.tinypic.pl/i/00987/f1s60f69at4r.png">
   </div>
 
     <h3 class="font-weight-bolder">{{ items.news }}</h3>
@@ -19,7 +19,7 @@
            <a href="{% url 'blog' blog.id %}"><img class="blog-image" src="{{ skin.blogimagedefault.url }}" height=200 /></a>
           {% endif %}
             <div class="desc ">
-              <h4 ><a href="{% url 'blog' blog.id %}">{{ blog.title }}</a></h4>
+              <h4 class="head-news"><a href="{% url 'blog' blog.id %}">{{ blog.title }}</a></h4>
               <!-- <p>{{ blog.summary }}</p>  nie wiem czy to jest potzebne-->
             </div>
       </div>
@@ -37,7 +37,7 @@
          <a href="{% url 'blog' blog.id %}"><img class="blog-image" src="{{ skin.blogimagedefault.url }}" height=200 /></a>
         {% endif %}
           <div class="desc ">
-            <h4 ><a href="{% url 'blog' blog.id %}">{{ blogs.3.title }}</a></h4>
+            <h4 class="head-news"><a href="{% url 'blog' blog.id %}">{{ blogs.3.title }}</a></h4>
             <!-- <p>{{ blogs.3.summary }}</p>  nie wiem czy to jest potzebne-->
           </div>
     </div>
@@ -53,36 +53,33 @@
 <div class="container ">
 
   <div class="col-md-3 p text-right">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTea_3kuBtKGKbqgQZg2TF1q5gjnbiBtjK-gKz6G3mdNl2_TxHN" class="infobox float-right" />
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTea_3kuBtKGKbqgQZg2TF1q5gjnbiBtjK-gKz6G3mdNl2_TxHN" class="infobox float-right">
   </div>
   <div class="col-sm-3 text-left border">
     <div class="infobox">
-        <h4 class="text-left">{{ items.docs }}</h4>
-            <ul>
-              <li><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Formularz rejstracyjny</a></li>
-              <li><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Wzór podania</li>
-              <li><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Wniosek akomodacyjny</li>
-              <li><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Wzór formularza</li>
-              <li><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Karta studenta</li>
-            </ul>
+        <p class="head-foot">WAŻNE DOKUMENTY</p>
+              <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Formularz rejstracyjny</a></p>
+              <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Wzór podania</a></p>
+              <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Wniosek akomodacyjny</a></p>
+              <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Wzór formularza</a></p>
+              <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Karta studenta</a></p>
   </div>
 </div>
 
   <div class="col-md-3 p text-right">
-    <img src="https://st.depositphotos.com/1345889/2318/i/450/depositphotos_23186830-stock-photo-cute-young-student-girl.jpg" class="infobox float-right" />
+    <img src="https://st.depositphotos.com/1345889/2318/i/450/depositphotos_23186830-stock-photo-cute-young-student-girl.jpg" class="infobox float-right"></a>
   </div>
-    <div class="col-sm-3 text-left border">
-      <div class="infobox">
-        <h4 class="text-left">Informacje</h4>
-        <ul>
-          <li><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Regulamin domu studenckiego</a></li>
-          <li><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Plan akademika</li>
-          <li><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Regulaminu rekrutacji</li>
-          <li><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Kalendarz</li>
-          <li><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Szczegóły rekrutacji 2019</li>
-        </ul>
-    </div>
+  <div class="col-sm-3 text-left border">
+    <div class="infobox">
+        <p class="head-foot">INFORMACJE</p>
+              <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Regulamin </a></p>
+              <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Plan akademika</a></p>
+              <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Regulaminu rekrutacji</a></p>
+              <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Kalendarz</a></p>
+              <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Szczegóły rekrutacji 2019</a></p>
+  </div>
   </div>
 </div>
-
 {% endblock %}
+
+<footer></footer>
