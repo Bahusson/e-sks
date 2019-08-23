@@ -90,6 +90,10 @@ class FormItems(models.Model):
     admin_panel = models.CharField(max_length=50, null=True)
     back = models.CharField(max_length=50, null=True)
     action = models.CharField(max_length=50, null=True)
+    assigned_to = models.CharField(max_length=50, null=True)
+    data_correct = models.CharField(max_length=250)
+    assign_again = models.CharField(max_length=250)
+    list_select = models.CharField(max_length=50)
 
 
 class QuarterClass(models.Model):

@@ -17,7 +17,8 @@ translator.register(Sito, SitoTranslate)
 class FormItemsTranslate(TranslationOptions):
     fields = (
      'login', 'password', 're_password', 'name', 'surname', 'email',
-     'register', 'admin_panel', 'back', 'action',)
+     'register', 'admin_panel', 'back', 'action', 'assigned_to',
+     'data_correct', 'assign_again', 'list_select', )
 
 
 translator.register(FormItems, FormItemsTranslate)

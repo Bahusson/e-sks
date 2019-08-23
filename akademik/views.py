@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from strona.models import Pageitem as P
 from strona.models import PageSkin as S
 from esks.settings import LANGUAGES as L
-from esks.special.classes import PortalLoad
+from esks.special.classes import PortalLoad, PageElement
 from .models import PortalBaseItem as Pbi
 from .models import UserMenuItem as Umi
 from .models import UserLinkItem as Uli
@@ -13,7 +13,7 @@ from .models import TranslatorLinkItem as Tli
 from .models import HotelMenuItem as Hmi
 from .models import HotelLinkItem as Hli
 from esks.special.decorators import council_only, hotel_staff_only, translators_only
-from rekruter.models import User, QuarterClass
+from rekruter.models import User, QuarterClass, FormItems
 from rekruter.forms import IniForm
 
 
@@ -62,7 +62,10 @@ def userpanel(request):
     return render(request, template, context_lazy)
 
 
+# Funkcja pokazuje dane użytkownika i pozwala zmienić akcję kwaterunkową.
 def showmydata(request):
+    pefi = PageElement(FormItems)
+    pefi0 = pefi.list_specific(0)
     ru = request.user
     userdata = User.objects.get(
      id=ru.id, email=ru.email,
@@ -89,7 +92,7 @@ def showmydata(request):
         for item in quartzlist:
             setlist.append(quarters.__getattribute__(item))
         context = {
-         'value': 2,
+         'formitem': pefi0,
          'form': form,
          'setter': setter,
          'setlist': setlist,
