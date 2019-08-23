@@ -76,9 +76,12 @@ class PortalLoad(PageLoad):
         super().__init__(*args)
         d = args[2]
         place = args[3]
-        print("place is" + str(place))
+        menus = args[4]
+        links = args[5]
         loc_d = list(d.objects.all())
         self.portal = loc_d[place]
+        self.menu = list(menus.objects.all())
+        self.link = list(links.objects.all())
 
     def page_dress(self, **kwargs):
         super().page_dress(**kwargs)
@@ -87,7 +90,9 @@ class PortalLoad(PageLoad):
         self.context = {
          'items': self.items,
          'langs': self.langs,
-         'portals': self.portal, }
+         'portals': self.portal,
+         'menu': self.menu,
+         'link': self.link, }
         if 'skins' in kwargs:
             self.page_dress(**kwargs)
             self.context.update(self.skinctx)

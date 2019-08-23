@@ -1,7 +1,13 @@
 <!-- Fragment generujący menu z podpunktami dla Panelu Usera. Rozszerzaj dodając Divy -->
 <div class="p-3">
-  <h4 class="font-italic">Pierwsze Menu</h4>
+  <h4 class="font-italic">{{ menu.0 }}</h4>
     <ol class="list-unstyled mb-0">
-      <li><a href="{% url 'userdatapersonal' %}">Moje dane</a></li>
+      <li><a href="">{{ link.0 }}</a></li>
+    </ol>
+</div>
+<div class="p-3">
+  <h4 class="font-italic">{{ menu.1 }}</h4>
+    <ol class="list-unstyled mb-0">
+      <li><a href="">{{ link.1 }}</a></li>
     </ol>
 </div>
