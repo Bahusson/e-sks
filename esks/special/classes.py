@@ -51,19 +51,54 @@ class PageLoad(object):
         if 'context' in kwargs:
             self.context.update(kwargs['context'])
         return self.context
+        '''
+        locations = list(QuarterClass.objects.all())
+        quarters = locations[0]
+        preqlist = list(quarters.__dict__.keys())
+        preqlist2 = preqlist[2:]
+        preqlist3 = preqlist2[0::len(L)+1]
+        quartzlist = preqlist3
+        '''
 
 
 # Klasa ładowania widoków /strony/
 class PageElement(object):
     def __init__(self, *args, **kwargs):
         self.x = args[0]
-        self.listed = list(self.x.objects.all())
-        self.elements = self.x.objects
+        self.listed = list(self.x.objects.all())  # Lista obiektów
+        self.elements = self.x.objects  # Obiekty
+        self.baseattrs = self.listed[0]  # Pierwsze obiekty na liście
 
+    # Konkretnte obiekty na liście (nie pierwsze).
     def list_specific(self, num):
         self.listed_specific = self.listed[num]
         return self.listed_specific
 
+    # Działa tylko jeśli wszystkie atrybuty są tłumaczone.
+    # Zwraca gołe nazwy atrybutów bez względu na ilość języków.
+    def get_attrnames(self, langs):
+        preqlist = list(self.baseattrs.__dict__.keys())
+        preqlist2 = preqlist[2:]  # Obetnij czołówkę.
+        self.attrnames = preqlist2[0::len(langs)+1]
+        return self.attrnames
+
+    # Zwraca pojedynczy przetłumaczony obiekt.
+    def get_setter(self, place, quarter, langs):
+        attrnames = self.get_attrnames(langs)
+        attrobjects = self.list_specific(place)
+        self.setter = attrobjects.__getattribute__(attrnames[int(quarter)-1])
+        return self.setter
+
+    # Zwraca listę przetłumaczonych atrybutów
+    def get_setlist(self, place, langs):
+        attrnames = self.get_attrnames(langs)
+        attrobjects = self.list_specific(place)
+        self.setlist = []
+        for item in attrnames:
+            self.setlist.append(attrobjects.__getattribute__(item))
+        return self.setlist
+
+    # Elementy po Id.
     def by_id(self, **kwargs):
         G404 = kwargs['G404']
         x_id = kwargs['id']

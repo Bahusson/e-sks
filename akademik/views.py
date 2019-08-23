@@ -64,8 +64,6 @@ def userpanel(request):
 
 # Funkcja pokazuje dane użytkownika i pozwala zmienić akcję kwaterunkową.
 def showmydata(request):
-    pefi = PageElement(FormItems)
-    pefi0 = pefi.list_specific(0)
     ru = request.user
     userdata = User.objects.get(
      id=ru.id, email=ru.email,
@@ -79,26 +77,13 @@ def showmydata(request):
             form.save()
             return redirect('userdatapersonal')
     else:
+        pefi = PageElement(FormItems)
+        pefi0 = pefi.list_specific(0)
+        peqc = PageElement(QuarterClass)
         form = IniForm()
         quarter = userdata.__dict__['quarter']
-        locations = list(QuarterClass.objects.all())
-        quarters = locations[0]
-        preqlist = list(quarters.__dict__.keys())
-        preqlist2 = preqlist[2:]
-
-
-            return list.Where((x, i) => i % nStep == 0);
-
-
-        print(preqlist2)
-        quartzlist = [
-         'stud_local', 'stud_foreign', 'phd', 'bank',
-         'new1', 'new23', 'new_foreign', 'erasmus', 'bilateral',
-        ]  # To nie powinno być na stałe w kodzie ale jako zmienna z admina.
-        setter = quarters.__getattribute__(quartzlist[int(quarter)-1])
-        setlist = []
-        for item in quartzlist:
-            setlist.append(quarters.__getattribute__(item))
+        setter = peqc.get_setter(0, quarter, L)
+        setlist = peqc.get_setlist(0, L)
         context = {
          'formitem': pefi0,
          'form': form,
