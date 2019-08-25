@@ -19,6 +19,7 @@
     <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet">
     <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
     <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.css">
     {% block css %}
     {% endblock %}
     {% block css2 %}
@@ -90,13 +91,20 @@
       <!-- Features -->
         <div class="features-container section-container"> </div>
 
-          <!--Daruj, że to wywaliłem, ale na wuj Ci tu tyle tego <br>? -->
          {% block body %}
          {% endblock %}
          {% block body2 %}
          {% endblock %}
 
+         <!-- START Bootstrap-Cookie-Alert -->
+         <div class="alert text-center cookiealert" role="alert">
+             <b>Lubisz ciasteczka?</b> &#x1F36A; Ten serwis wykorzystuje pliki cookies. Korzystanie z witryny oznacza zgodę na ich zapis lub odczyt wg ustawień przeglądarki. <a href="" target="_blank">Learn more</a>
 
+             <button type="button" class="btn btn-primary btn-sm acceptcookies" aria-label="Close">
+                 Zgadzam się!
+             </button>
+         </div>
+         <!-- END Bootstrap-Cookie-Alert -->
 <!-- Footer -->
 <div class="mt-5 pt-5 pb-5 footer">
 <div class="container">
@@ -127,7 +135,7 @@
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-
+        <script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
         <script src="{% static 'assets/js/jquery-1.11.1.min.js' %}"></script>
         <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
         <script src="{% static 'assets/js/jquery.backstretch.min.js' %}"></script>
