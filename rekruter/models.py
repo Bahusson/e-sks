@@ -157,6 +157,7 @@ class FormItems(models.Model):
     show_by = models.CharField(max_length=50)
     results = models.CharField(max_length=50)
     total = models.CharField(max_length=50)
+    agree_international = models.CharField(max_length=100)
 
 
 # Wszystkie domy studenckie - nazwy i być może atrybuty.

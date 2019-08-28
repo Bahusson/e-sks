@@ -111,5 +111,5 @@ class ApplicationForm(forms.ModelForm):
         application.dataprocessing = self.cleaned_data["dataprocessing"]
         application.attachment = self.cleaned_data["attachment"]
         if commit:
-            user.save()
-        return user
+            application.save()
+        return application

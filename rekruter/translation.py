@@ -31,7 +31,7 @@ class FormItemsTranslate(TranslationOptions):
      'browse', 'appendix_name', 'del_file', 'down_file', 'nofile_chosen',
      'nought', 'male', 'female', 'other', 'app_for_sh', 'app_no', 'state',
      'number', 'created', 'spouseID', 'stays', 'show_by', 'results', 'total',
-      )
+     'agree_international', )
 
 
 translator.register(FormItems, FormItemsTranslate)
