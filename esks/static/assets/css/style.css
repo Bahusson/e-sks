@@ -183,6 +183,71 @@ a:hover img.imgshdw {
         box-shadow: 2px 2px 4px #999;
 }
 
+/******CARDS*********/
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 0px;
+  margin: 0px;
+}
+
+/* Remove extra left and right margins, due to padding in columns */
+.row {margin: 30px ;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the counter cards */
+.card {
+  padding: 0px;
+  height: 253px;
+  width: auto;
+  background-color: #333333;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+.head-card {
+  border: 1px;
+  border-color: #ffffff;
+  background: #e98328;
+
+  }
+
+.card p {
+  color: #ffffff;
+  text-align: center;
+}
+.cardo a {
+  color:#ffffff;
+}
+
+.cardo a:hover {
+  color: #e98328;
+}
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 0px;
+  }
+}
+
+
 
 
 /***** Footer *****/
@@ -222,6 +287,7 @@ a:hover img.imgshdw {
   width: 0;
   margin-top: 10px;
 }
+
 /***** MEDIA QUERIES *****/
 
 
@@ -272,6 +338,8 @@ a:hover img.imgshdw {
 
 }
 
+
+
 @media (max-width: 415px) {
 
 	h1, h2 { font-size: 36px; }
@@ -286,6 +354,4 @@ only screen and (   min--moz-device-pixel-ratio: 2),
 only screen and (     -o-min-device-pixel-ratio: 2/1),
 only screen and (        min-device-pixel-ratio: 2),
 only screen and (                min-resolution: 192dpi),
-only screen and (                min-resolution: 2dppx) {
-
-	/* logo */
+only screen and (                min-resolution: 2dppx)
