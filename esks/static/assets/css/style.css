@@ -26,7 +26,6 @@ h1 {
   line-height: 56px;
 }
 
-
 h2 {
   color: black;
   margin-top: 10px;
@@ -47,15 +46,11 @@ h3 {
   font-weight: bold;
 }
 
-
-
-
 p {
 color: rgba(0,0,0,0.6);
 font-size: 15px;
 font-weight: 400;
 text-align: justify;
-
 }
 
 
@@ -138,6 +133,7 @@ ul.navbar-nav li a.btn-link-3 {
     text-align: justify;
     -moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;
 }
+
 ul.navbar-nav li a.btn-link-3:hover,
 ul.navbar-nav li a.btn-link-3:focus,
 ul.navbar-nav li a.btn-link-3:active,
@@ -159,8 +155,6 @@ ul.navbar-nav li a.btn-link-3:active:focus { outline: 0; color: #e98328;  }
 .top-content { padding: 10px 0 10px 0; }
 
 /***** SRODEK *****/
-
-
 .infobox {
   background-color: #333333;
   margin-right: 30px;
@@ -184,16 +178,10 @@ a:hover img.imgshdw {
 }
 
 /******CARDS*********/
-
 * {
   box-sizing: border-box;
 }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Float four columns side by side */
 .column {
   float: left;
   width: 25%;
@@ -201,8 +189,10 @@ body {
   margin: 0px;
 }
 
-/* Remove extra left and right margins, due to padding in columns */
-.row {margin: 30px ;}
+.row {
+  margin: 30px ;
+  padding-bottom: 20px;
+}
 
 /* Clear floats after the columns */
 .row:after {
@@ -211,7 +201,6 @@ body {
   clear: both;
 }
 
-/* Style the counter cards */
 .card {
   padding: 0px;
   height: 253px;
@@ -220,17 +209,18 @@ body {
   color: #ffffff;
   text-transform: uppercase;
 }
+
 .head-card {
   border: 1px;
   border-color: #ffffff;
   background: #e98328;
-
   }
 
 .card p {
   color: #ffffff;
   text-align: center;
 }
+
 .cardo a {
   color:#ffffff;
 }
@@ -238,7 +228,7 @@ body {
 .cardo a:hover {
   color: #e98328;
 }
-/* Responsive columns - one column layout (vertical) on small screens */
+
 @media screen and (max-width: 600px) {
   .column {
     width: 100%;
@@ -247,27 +237,27 @@ body {
   }
 }
 
-
-
-
 /***** Footer *****/
 .footer{
   background: #333333;
-
 }
+
 .author {
   color: #ffffff;
 }
+
 .head-foot p {
   text-align: right;
   margin-top: 10px;
   color: #ffffff;
 }
+
 .head-foot2 p {
   color:#ffffff;
   text-align: left;
   margin-top: 10px;
 }
+
 .head-foot a {
   color:#ffffff;
 }
@@ -275,12 +265,15 @@ body {
 .head-foot a:hover {
   color: #e98328;
 }
+
 .head-news a {
   color: #333333;
 }
+
 .head-news a:hover {
   color: #e98328;
 }
+
 .line {
   border-left:2px solid #ffffff;
   height: 100px;
@@ -291,14 +284,13 @@ body {
 /***** MEDIA QUERIES *****/
 
 
-@media (min-width: 992px) and (max-width: 1199px) {}
+@media (min-width: 992px) and (max-width: 1199px) {
 
 @media (min-width: 768px) and (max-width: 991px) {
 
 	.section-description p { padding: 0; }
 
 	.features-box .features-box-icon { font-size: 50px; line-height: 50px; }
-
 }
 
 @media (max-width: 767px) {
@@ -321,7 +313,7 @@ body {
 	.navbar-no-bg ul.navbar-nav li a:hover { color: #aaa; }
 	.navbar-no-bg ul.navbar-nav li a:focus { color: #aaa; }
 
-	.navbar-no-bg ul.navbar-nav li a.btn-link-3 { color: black; }
+	.navbar-no-bg ul.navbar-nav li a.btn-link-3 { color: #e98328; }
 	.navbar-no-bg ul.navbar-nav li a.btn-link-3:hover,
 	.navbar-no-bg ul.navbar-nav li a.btn-link-3:focus,
 	.navbar-no-bg ul.navbar-nav li a.btn-link-3:active,
@@ -338,12 +330,9 @@ body {
 
 }
 
-
-
 @media (max-width: 415px) {
 
 	h1, h2 { font-size: 36px; }
-
 }
 
 /* Retina-ize images/icons */
