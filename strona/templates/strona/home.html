@@ -9,9 +9,11 @@
   </div>
 
     <h3 class="font-weight-bolder">{{ items.news }}</h3>
+
       {% for blog in blogs|slice:":3" %} <!-- Iterator aktualności 1-3 -->
       {% if blog %}
     <div class="col-md-4 shdwn">
+
       <div class="col">
         {% if blog.image %} <!-- Jeśli nie ma obrazka zwróć default ze skórki Usera -->
           <a href="{% url 'blog' blog.id %}"><img class="blog-image imgshdw float-left" src="{{ blog.image.url }}" width="300" height="200" /></a>
@@ -23,6 +25,7 @@
               <!-- <p>{{ blog.summary }}</p>  nie wiem czy to jest potzebne-->
             </div>
       </div>
+
     </div><!--text-->
 
     {% endif %}
@@ -44,18 +47,30 @@
 
   </div><!--text-->
 
-  {% endif %} <!-- Koniec dodatkowego bloga -->
+  {% endif %}
+   <!-- Koniec dodatkowego bloga -->
+
+
+   <button type="button" class="btn-xs btn-default pull-right view" >
+   <a href="">ZOBACZ WIĘCEJ >>> </a>
+   </button>
+   <!-- PUSTY DIV  -->
+
+       <div class="row">
+         <div class="col-sm-12 text wow fadeInLeft">
+
+         </div></div>
 <!-- KONIEC AKTUALNOŚCI -->
 
 
-
+<br>
 
 <div class="container ">
 
   <div class="col-md-3 p text-right">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTea_3kuBtKGKbqgQZg2TF1q5gjnbiBtjK-gKz6G3mdNl2_TxHN" class="infobox float-right">
   </div>
-  <div class="col-sm-3 text-left border">
+  <div class="col-sm-3 text-left">
     <div class="infobox">
         <p class="head-foot">WAŻNE DOKUMENTY</p>
               <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Formularz rejstracyjny</a></p>
@@ -69,7 +84,7 @@
   <div class="col-md-3 p text-right">
     <img src="https://st.depositphotos.com/1345889/2318/i/450/depositphotos_23186830-stock-photo-cute-young-student-girl.jpg" class="infobox float-right"></a>
   </div>
-  <div class="col-sm-3 text-left border">
+  <div class="col-sm-3 text-left">
     <div class="infobox">
         <p class="head-foot">INFORMACJE</p>
               <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Regulamin </a></p>
@@ -80,6 +95,11 @@
   </div>
   </div>
 </div>
+
+
+
+
+
 {% endblock %}
 
 <footer></footer>
