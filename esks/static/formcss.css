@@ -40,6 +40,7 @@
       display: block;
       position: relative;
       padding-left: 35px;
+
       margin-bottom: 12px;
       cursor: pointer;
       font-size: 22px;
@@ -63,8 +64,10 @@
       left: 0;
       height: 25px;
       width: 25px;
+
       background-color: #eee;
       border-radius: 50%;
+      border: 1px solid #ffffff;
   }
 
   /* On mouse-over, add a grey background color */
@@ -97,6 +100,9 @@
   	height: 8px;
   	border-radius: 50%;
   	background: white;
+  }
+  .nav-item {
+    border: 1px solid #ffffff;
   }
 
   input[type=checkbox].css-checkbox {

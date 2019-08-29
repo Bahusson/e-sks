@@ -39,7 +39,7 @@
 
 }
 polska. {
-  display: block;
+  display: inline-flex;
   width: 25px;
   padding-top: 3px;
   padding-bottom: 3px;
