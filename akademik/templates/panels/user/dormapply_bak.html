@@ -20,19 +20,15 @@
 {% endblock menu %}
 
 {% block body %}
-  <!-- Tutaj idą pola do pól ukrtytych. -->
-
-  <form enctype="multipart/form-data" method="post"> <!-- Do wysyłania plików -->
-    {% csrf_token %}
+<form enctype="multipart/form-data" method="post" action="sendform"> <!-- Do wysyłania plików -->
 
 
-    <input id="send" class="button" name="subbutton" type="submit" value="Zmień Akcję">
-  </form>
+
+</form>
 {% endblock body %}
 
 
 {% block scripts %}
- <!-- Napisz od nowa i zmień ten skrpt, żeby wypełniał pola ukryte.-->
 <script src="{% static "quarterchange.js" %}"></script>
 {% endblock %}
 
