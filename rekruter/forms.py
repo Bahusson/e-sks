@@ -12,6 +12,11 @@ class ExtendedCreationForm(UserCreationForm):
     dowod = forms.CharField(max_length=20, required=False)
     passport = forms.CharField(max_length=20, required=False)
     telephone = forms.CharField(max_length=30)
+    street = forms.CharField(max_length=30)
+    building_no = forms.CharField(max_length=15)
+    local_no = forms.CharField(max_length=10, required=False)
+    postcode = forms.CharField(max_length=7)
+    city = forms.CharField(max_length=25)
 
     class Meta:
         model = User
@@ -26,6 +31,11 @@ class ExtendedCreationForm(UserCreationForm):
             'dowod',
             'passport',
             'telephone',
+            'street',
+            'building_no',
+            'local_no',
+            'postcode',
+            'city',
         )
 
     def save(self, commit=True):
@@ -38,6 +48,11 @@ class ExtendedCreationForm(UserCreationForm):
         user.dowod = self.cleaned_data["dowod"]
         user.passport = self.cleaned_data["passport"]
         user.telephone = self.cleaned_data["telephone"]
+        user.street = self.cleaned_data["street"]
+        user.building_no = self.cleaned_data["building_no"]
+        user.local_no = self.cleaned_data["local_no"]
+        user.postcode = self.cleaned_data["postcode"]
+        user.city = self.cleaned_data["city"]
 
         if commit:
             user.save()

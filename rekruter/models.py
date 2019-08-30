@@ -47,6 +47,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     dowod = models.CharField(_('dowod'), max_length=20, blank=True)
     passport = models.CharField(_('passport'), max_length=20, blank=True)
     telephone = models.CharField(_('telephone'), max_length=20, blank=True)
+    street = models.CharField(_('street'), max_length=30, blank=True)
+    building_no = models.CharField(_('building_no'), max_length=15, blank=True)
+    local_no = models.CharField(_('local_no'), max_length=10, blank=True)
+    postcode = models.CharField(_('postcode'), max_length=7, blank=True)
+    city = models.CharField(_('city'), max_length=25, blank=True)
 
     objects = UserManager()
 
@@ -94,7 +99,6 @@ class Sito(models.Model):
 
 
 class FormItems(models.Model):
-    # Klasa do tłumaczeń rekrutera. Do usunięcia w produkcji
     login = models.CharField(max_length=50, null=True)
     password = models.CharField(max_length=50, null=True)
     re_password = models.CharField(max_length=50, null=True)

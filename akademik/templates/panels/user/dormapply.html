@@ -21,7 +21,9 @@
 
 {% block body %}
   <!-- Tutaj idą pola do pól ukrtytych. -->
-
+  <p><b>{{ formitem.warning_f }}:</b> <b><a href="https://core2.sspw.pl/login" target="blank">{{ formitem.data_correct }}</a></b></p>
+  <p><b>{{ formitem.warning_f }}:</b> {{ formitem.warning_f }}</p>
+  <p><b>{{ formitem.warning_f }}:</b> {{ formitem.warning_f }}</p>
   <form enctype="multipart/form-data" method="post"> <!-- Do wysyłania plików -->
     {% csrf_token %}
 
