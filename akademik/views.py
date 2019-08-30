@@ -65,15 +65,10 @@ def userpanel(request):
 
 # Funkcja pokazuje dane użytkownika i pozwala zmienić akcję kwaterunkową.
 def showmydata(request):
-    ru = request.user
     userdata = User.objects.get(
-     id=ru.id, email=ru.email,
-     first_name=ru.first_name,
-     last_name=ru.last_name,
-     quarter=ru.quarter)
+     id=request.user.id)
     if request.method == 'POST':
-        uid = User.objects.get(id=ru.id)
-        form = IniForm(request.POST, instance=uid)
+        form = IniForm(request.POST, instance=userdata)
         if form.is_valid():
             form.save()
             return redirect('userdatapersonal')
@@ -100,11 +95,23 @@ def showmydata(request):
 
 
 def dormapply(request):
+    userdata = User.objects.get(
+     id=request.user.id)
     if request.method == 'POST':
-        form = ApplicationForm(request.POST, request.FILES)
+        form = ApplicationForm(request.POST, request.FILES, instance=userdata)
         if form.is_valid():
             form.save()
             return redirect('userpanel')
     else:
+        pe_fi = PageElement(FormItems)
+        pe_fi0 = pe_fi.list_specific(0)
         form = ApplicationForm()
-    return render(request, 'panels/user/dormapply.html', {'form': form})
+        context = {
+         'formitem': pe_fi0,
+         'form': form,
+         'udata': userdata,
+         }
+    pl = PortalLoad(P, L, Pbi, 0, Umi, Uli, )
+    context_lazy = pl.lazy_context(skins=S, context=context)
+    template = 'panels/user/dormapply.html'
+    return render(request, template, context_lazy)
