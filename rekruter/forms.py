@@ -7,6 +7,11 @@ class ExtendedCreationForm(UserCreationForm):
     first_name = forms.CharField(max_length=30)
     last_name = forms.CharField(max_length=30)
     email = forms.EmailField(max_length=75)
+    gender = forms.CharField(widget=forms.HiddenInput(), required=False)
+    citizenship = forms.CharField(max_length=30)
+    dowod = forms.CharField(max_length=20, required=False)
+    passport = forms.CharField(max_length=20, required=False)
+    telephone = forms.CharField(max_length=30)
 
     class Meta:
         model = User
@@ -16,6 +21,11 @@ class ExtendedCreationForm(UserCreationForm):
             'password2',
             'first_name',
             'last_name',
+            'gender',
+            'citizenship',
+            'dowod',
+            'passport',
+            'telephone',
         )
 
     def save(self, commit=True):
@@ -23,6 +33,11 @@ class ExtendedCreationForm(UserCreationForm):
         user.email = self.cleaned_data["email"]
         user.first_name = self.cleaned_data["first_name"]
         user.last_name = self.cleaned_data["last_name"]
+        user.gender = int(self.cleaned_data["gender"])
+        user.citizenship = self.cleaned_data["citizenship"]
+        user.dowod = self.cleaned_data["dowod"]
+        user.passport = self.cleaned_data["passport"]
+        user.telephone = self.cleaned_data["telephone"]
 
         if commit:
             user.save()
