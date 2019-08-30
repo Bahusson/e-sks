@@ -12,11 +12,15 @@ from .models import TranslatorMenuItem as Tmi
 from .models import TranslatorLinkItem as Tli
 from .models import HotelMenuItem as Hmi
 from .models import HotelLinkItem as Hli
+from rekruter.models import StudentHouse as Sh
+from rekruter.models import IfRoomChange as Ifr
+from rekruter.models import TimePeriod as Tper
+from rekruter.models import StudyFaculty as Stf
+from rekruter.models import StudyDegree as Std
 from esks.special.decorators import council_only, hotel_staff_only, translators_only
 from rekruter.models import User, FormItems, QuarterClassB
 from rekruter.forms import IniForm, ApplicationForm
-from django.core.files.uploadedfile import SimpleUploadedFile
-
+# from django.core.files.uploadedfile import SimpleUploadedFile
 
 # Panel Rady
 @council_only(login_url='logger')
@@ -65,15 +69,10 @@ def userpanel(request):
 
 # Funkcja pokazuje dane użytkownika i pozwala zmienić akcję kwaterunkową.
 def showmydata(request):
-    ru = request.user
     userdata = User.objects.get(
-     id=ru.id, email=ru.email,
-     first_name=ru.first_name,
-     last_name=ru.last_name,
-     quarter=ru.quarter)
+     id=request.user.id)
     if request.method == 'POST':
-        uid = User.objects.get(id=ru.id)
-        form = IniForm(request.POST, instance=uid)
+        form = IniForm(request.POST, instance=userdata)
         if form.is_valid():
             form.save()
             return redirect('userdatapersonal')
@@ -100,11 +99,33 @@ def showmydata(request):
 
 
 def dormapply(request):
+    userdata = User.objects.get(
+     id=request.user.id)
     if request.method == 'POST':
-        form = ApplicationForm(request.POST, request.FILES)
+        form = ApplicationForm(request.POST, request.FILES, instance=userdata)
         if form.is_valid():
             form.save()
             return redirect('userpanel')
     else:
+        sh = PageElement(Sh)
+        ifr = PageElement(Ifr)
+        tper = PageElement(Tper)
+        stf = PageElement(Stf)
+        std = PageElement(Std)
+        pe_fi = PageElement(FormItems)
+        pe_fi0 = pe_fi.list_specific(0)
         form = ApplicationForm()
-    return render(request, 'panels/user/dormapply.html', {'form': form})
+        context = {
+         'formitem': pe_fi0,
+         'form': form,
+         'udata': userdata,
+         'houselist': sh.listed,
+         'staylist': ifr.listed,
+         'periodlist': tper.listed,
+         'facultylist': stf.listed,
+         'degreelist': std.listed,
+         }
+    pl = PortalLoad(P, L, Pbi, 0, Umi, Uli, )
+    context_lazy = pl.lazy_context(skins=S, context=context)
+    template = 'panels/user/dormapply.html'
+    return render(request, template, context_lazy)

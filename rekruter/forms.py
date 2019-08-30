@@ -7,6 +7,17 @@ class ExtendedCreationForm(UserCreationForm):
     first_name = forms.CharField(max_length=30)
     last_name = forms.CharField(max_length=30)
     email = forms.EmailField(max_length=75)
+    gender = forms.CharField(widget=forms.HiddenInput(), required=False)
+    citizenship = forms.CharField(max_length=30)
+    dowod = forms.CharField(max_length=20, required=False)
+    passport = forms.CharField(max_length=20, required=False)
+    telephone = forms.CharField(max_length=30)
+    street = forms.CharField(max_length=30)
+    building_no = forms.CharField(max_length=15)
+    local_no = forms.CharField(max_length=10, required=False)
+    postcode = forms.CharField(max_length=7)
+    city = forms.CharField(max_length=25)
+    album = forms.CharField(max_length=25, required=False)
 
     class Meta:
         model = User
@@ -16,6 +27,17 @@ class ExtendedCreationForm(UserCreationForm):
             'password2',
             'first_name',
             'last_name',
+            'gender',
+            'citizenship',
+            'dowod',
+            'passport',
+            'telephone',
+            'street',
+            'building_no',
+            'local_no',
+            'postcode',
+            'city',
+            'album',
         )
 
     def save(self, commit=True):
@@ -23,6 +45,17 @@ class ExtendedCreationForm(UserCreationForm):
         user.email = self.cleaned_data["email"]
         user.first_name = self.cleaned_data["first_name"]
         user.last_name = self.cleaned_data["last_name"]
+        user.gender = int(self.cleaned_data["gender"])
+        user.citizenship = self.cleaned_data["citizenship"]
+        user.dowod = self.cleaned_data["dowod"]
+        user.passport = self.cleaned_data["passport"]
+        user.telephone = self.cleaned_data["telephone"]
+        user.street = self.cleaned_data["street"]
+        user.building_no = self.cleaned_data["building_no"]
+        user.local_no = self.cleaned_data["local_no"]
+        user.postcode = self.cleaned_data["postcode"]
+        user.city = self.cleaned_data["city"]
+        user.city = self.cleaned_data["album"]
 
         if commit:
             user.save()
@@ -75,7 +108,7 @@ class ApplicationForm(forms.ModelForm):
     duration = forms.CharField(widget=forms.HiddenInput())
     location = forms.CharField(widget=forms.HiddenInput())
     faculty = forms.CharField(widget=forms.HiddenInput())
-    deangroup = forms.CharField(widget=forms.HiddenInput())
+    deangroup = forms.CharField(max_length=30, required=False)
     semester = forms.CharField(widget=forms.HiddenInput())
     spouse_cohabitant = forms.CharField(widget=forms.HiddenInput())
     special_case_docs = forms.CharField(widget=forms.HiddenInput())

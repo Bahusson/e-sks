@@ -21,6 +21,14 @@ class User(AbstractBaseUser, PermissionsMixin):
      (COUNCIL_ADMIN, 'Council Admin'),
      (SUPERUSER, 'Superuser'),
     )
+    OTHER = 0
+    MALE = 1
+    FEMALE = 2
+    GENDERS = (
+     (OTHER, 'other'),
+     (MALE, 'male'),
+     (FEMALE, 'female'),
+    )
     email = models.EmailField(_('email address'), unique=True)
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
@@ -33,6 +41,18 @@ class User(AbstractBaseUser, PermissionsMixin):
         choices=ROLE_CHOICES, null=True, blank=True)
     avatar = models.ImageField(upload_to='avatars', null=True, blank=True)
     quarter = models.CharField(_('quarter'), max_length=2, blank=True)
+    gender = models.PositiveSmallIntegerField(
+        choices=GENDERS, null=True, blank=True)
+    citizenship = models.CharField(_('citizenship'), max_length=40, blank=True)
+    dowod = models.CharField(_('dowod'), max_length=20, blank=True)
+    passport = models.CharField(_('passport'), max_length=20, blank=True)
+    telephone = models.CharField(_('telephone'), max_length=20, blank=True)
+    street = models.CharField(_('street'), max_length=30, blank=True)
+    building_no = models.CharField(_('building_no'), max_length=15, blank=True)
+    local_no = models.CharField(_('local_no'), max_length=10, blank=True)
+    postcode = models.CharField(_('postcode'), max_length=7, blank=True)
+    city = models.CharField(_('city'), max_length=25, blank=True)
+    album = models.CharField(_('album'), max_length=25, blank=True)
 
     objects = UserManager()
 
@@ -80,7 +100,6 @@ class Sito(models.Model):
 
 
 class FormItems(models.Model):
-    # Klasa do tłumaczeń rekrutera. Do usunięcia w produkcji
     login = models.CharField(max_length=50, null=True)
     password = models.CharField(max_length=50, null=True)
     re_password = models.CharField(max_length=50, null=True)
@@ -158,6 +177,8 @@ class FormItems(models.Model):
     results = models.CharField(max_length=50)
     total = models.CharField(max_length=50)
     agree_international = models.CharField(max_length=100)
+    or_if = models.CharField(max_length=50)
+    change_man = models.CharField(max_length=50)
 
 
 # Wszystkie domy studenckie - nazwy i być może atrybuty.

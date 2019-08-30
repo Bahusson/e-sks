@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block title %}
-<title>{{ link.6 }}</title>
+<title>{{ link.3 }}</title>
 {% endblock %}
 
 {% block css %}
@@ -20,13 +20,18 @@
 {% endblock menu %}
 
 {% block body %}
-  <!-- Tutaj idą pola do pól ukrtytych. -->
+ {% include 'panels/user/userdata1.html' %} <!-- Podstawowe dane Usera -->
+ {% include 'panels/user/sh_preferences.html' %} <!-- Preferencje Usera -->
+ {% include 'panels/user/userdata2.html' %} <!-- Rozszerzone dane Usera -->
+ {% include 'panels/user/formmap.html' %} <!-- Mapka do zaznaczania -->
+ {% include 'panels/user/faculty_data.html' %} <!-- Dane wydziału -->
+
 
   <form enctype="multipart/form-data" method="post"> <!-- Do wysyłania plików -->
     {% csrf_token %}
 
 
-    <input id="send" class="button" name="subbutton" type="submit" value="Zmień Akcję">
+    <input id="send" class="button" name="subbutton" type="submit" value="{{ formitem.sendme }}">
   </form>
 {% endblock body %}
 
