@@ -1,0 +1,44 @@
+<h4> {{ formitem.preferences }} </h4>
+<p> {{ formitem.match_prefs }} <a href="">{{ formitem.see_map }}</a></p>
+<p>
+   1:
+    <select id="sh_1">
+             <option value ="None" disabled>{{ formitem.list_select }}:</option>
+           {% for item in houselist %}
+              <option value ="{{ forloop.counter }}">{{ item }}</option>
+           {% endfor %}
+    </select>
+   2:
+    <select id="sh_2">
+             <option value ="None" disabled>{{ formitem.list_select }}:</option>
+           {% for item in houselist %}
+              <option value ="{{ forloop.counter }}">{{ item }}</option>
+           {% endfor %}
+    </select>
+   3:
+    <select id="sh_2">
+             <option value ="None" disabled>{{ formitem.list_select }}:</option>
+           {% for item in houselist %}
+              <option value ="{{ forloop.counter }}">{{ item }}</option>
+           {% endfor %}
+    </select>
+</p>
+<p>
+    {{ formitem.i_ask }} :
+    <select id="ifroomstay">
+             <option value ="None" disabled>{{ formitem.list_select }}:</option>
+           {% for item in staylist %}
+              <option value ="{{ forloop.counter }}">{{ item }}</option>
+           {% endfor %}
+    </select>
+</p>
+<p>
+    {{ formitem.time_in_sh }} :
+    <select id="ifroomstay">
+             <option value ="None" disabled>{{ formitem.list_select }}:</option>
+           {% for item in periodlist %}
+              <option value ="{{ forloop.counter }}">{{ item }}</option>
+           {% endfor %}
+    </select>
+</p>
+<br>

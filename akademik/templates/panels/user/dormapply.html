@@ -20,10 +20,12 @@
 {% endblock menu %}
 
 {% block body %}
-  <!-- Tutaj idą pola do pól ukrtytych. -->
-  <p><b>{{ formitem.warning_f }}:</b> <b><a href="https://core2.sspw.pl/login" target="blank">{{ formitem.data_correct }}</a></b></p>
-  <p><b>{{ formitem.warning_f }}:</b> {{ formitem.warning_f }}</p>
-  <p><b>{{ formitem.warning_f }}:</b> {{ formitem.warning_f }}</p>
+ {% include 'panels/user/userdata1.html' %} <!-- Podstawowe dane Usera -->
+ {% include 'panels/user/sh_preferences.html' %} <!-- Preferencje Usera -->
+ {% include 'panels/user/userdata2.html' %} <!-- Rozszerzone dane Usera -->
+ {% include 'panels/user/formmap.html' %} <!-- Mapka do zaznaczania -->
+
+
   <form enctype="multipart/form-data" method="post"> <!-- Do wysyłania plików -->
     {% csrf_token %}
 

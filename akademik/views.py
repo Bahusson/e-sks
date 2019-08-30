@@ -12,11 +12,13 @@ from .models import TranslatorMenuItem as Tmi
 from .models import TranslatorLinkItem as Tli
 from .models import HotelMenuItem as Hmi
 from .models import HotelLinkItem as Hli
+from rekruter.models import StudentHouse as Sh
+from rekruter.models import IfRoomChange as Ifr
+from rekruter.models import TimePeriod as Tper
 from esks.special.decorators import council_only, hotel_staff_only, translators_only
 from rekruter.models import User, FormItems, QuarterClassB
 from rekruter.forms import IniForm, ApplicationForm
-from django.core.files.uploadedfile import SimpleUploadedFile
-
+# from django.core.files.uploadedfile import SimpleUploadedFile
 
 # Panel Rady
 @council_only(login_url='logger')
@@ -103,6 +105,9 @@ def dormapply(request):
             form.save()
             return redirect('userpanel')
     else:
+        sh = PageElement(Sh)
+        ifr = PageElement(Ifr)
+        tper = PageElement(Tper)
         pe_fi = PageElement(FormItems)
         pe_fi0 = pe_fi.list_specific(0)
         form = ApplicationForm()
@@ -110,6 +115,9 @@ def dormapply(request):
          'formitem': pe_fi0,
          'form': form,
          'udata': userdata,
+         'houselist': sh.listed,
+         'staylist': ifr.listed,
+         'periodlist': tper.listed,
          }
     pl = PortalLoad(P, L, Pbi, 0, Umi, Uli, )
     context_lazy = pl.lazy_context(skins=S, context=context)
