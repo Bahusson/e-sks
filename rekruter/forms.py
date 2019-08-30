@@ -17,6 +17,7 @@ class ExtendedCreationForm(UserCreationForm):
     local_no = forms.CharField(max_length=10, required=False)
     postcode = forms.CharField(max_length=7)
     city = forms.CharField(max_length=25)
+    album = forms.CharField(max_length=25, required=False)
 
     class Meta:
         model = User
@@ -36,6 +37,7 @@ class ExtendedCreationForm(UserCreationForm):
             'local_no',
             'postcode',
             'city',
+            'album',
         )
 
     def save(self, commit=True):
@@ -53,6 +55,7 @@ class ExtendedCreationForm(UserCreationForm):
         user.local_no = self.cleaned_data["local_no"]
         user.postcode = self.cleaned_data["postcode"]
         user.city = self.cleaned_data["city"]
+        user.city = self.cleaned_data["album"]
 
         if commit:
             user.save()
@@ -105,7 +108,7 @@ class ApplicationForm(forms.ModelForm):
     duration = forms.CharField(widget=forms.HiddenInput())
     location = forms.CharField(widget=forms.HiddenInput())
     faculty = forms.CharField(widget=forms.HiddenInput())
-    deangroup = forms.CharField(widget=forms.HiddenInput())
+    deangroup = forms.CharField(max_length=30, required=False)
     semester = forms.CharField(widget=forms.HiddenInput())
     spouse_cohabitant = forms.CharField(widget=forms.HiddenInput())
     special_case_docs = forms.CharField(widget=forms.HiddenInput())
