@@ -20,14 +20,10 @@
 {% endblock menu %}
 
 {% block body %}
-  <p>{{ formitem.data_correct }}</p>
-  <p>{{ formitem.name }}: {{ udata.first_name }}  {{ formitem.surname }}: {{ udata.last_name }}</p>
-  <p>{{ formitem.email }}: {{ udata.email }}</p>
-
-
-  {{ formitem.action }}:
-  <p> {{ formitem.assigned_to }}: {{ setter }}</p>
-  <p><a href="{% url 'initial' %}">{{ formitem.assign_again }}</a></p>
+ {% include 'panels/user/userdata.html' %} <!-- Podstawowe dane Usera -->
+  <h4>{{ formitem.action }}</h4>:
+  <p><b> {{ formitem.assigned_to }}</b>: {{ setter }}</p>
+  <h5>{{ formitem.change_man }}</h5>
   <form name="QuarterForm" method="post">
         <select id="Quarterselector" name="Quarter">
           <option value ="None" disabled>{{ formitem.list_select }}:</option>
@@ -37,8 +33,10 @@
         </select>
       {% csrf_token %}
       {{ form.quarter }}
-    <input id="send" class="button" name="subbutton" type="submit" value="Zmień Akcję">
+    <input id="send" class="button" name="subbutton" type="submit" value="{{ formitem.choose }}">
   </form>
+  <h5>{{ formitem.or_if }}</h5>
+  <p><a href="{% url 'initial' %}" class="btn">{{ formitem.assign_again }}</a></p>
 {% endblock body %}
 
 
