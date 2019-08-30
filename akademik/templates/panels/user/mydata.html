@@ -20,8 +20,8 @@
 {% endblock menu %}
 
 {% block body %}
- {% include 'panels/user/userdata.html' %} <!-- Podstawowe dane Usera -->
-  <h4>{{ formitem.action }}</h4>:
+ {% include 'panels/user/userdata1.html' %} <!-- Podstawowe dane Usera -->
+  <h4>{{ formitem.action }}</h4>
   <p><b> {{ formitem.assigned_to }}</b>: {{ setter }}</p>
   <h5>{{ formitem.change_man }}</h5>
   <form name="QuarterForm" method="post">
@@ -36,7 +36,7 @@
     <input id="send" class="button" name="subbutton" type="submit" value="{{ formitem.choose }}">
   </form>
   <h5>{{ formitem.or_if }}</h5>
-  <p><a href="{% url 'initial' %}" class="btn">{{ formitem.assign_again }}</a></p>
+  <p><a href="{% url 'initial' %}" class="btn">{{ formitem.assign_again }}</a></p> <!-- Tutaj ma być button -->
 {% endblock body %}
 
 

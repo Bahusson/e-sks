@@ -1,0 +1,13 @@
+<!-- Wyświetla podstawowe aktualne dane usera. Do formularza i innych miejsc. -->
+<h4>{{ formitem.personal_data }}</h4>
+<p><b><a href="https://core2.sspw.pl/login" target="blank">{{ formitem.data_correct }}</a></b></p>
+<p><b>{{ formitem.name }}</b>: {{ udata.first_name }}  <b>{{ formitem.surname }}</b>: {{ udata.last_name }}</p>
+<p><b>{{ formitem.citizenship }}</b>: {{ udata.citizenship }} <b>{{ formitem.gender }}</b>: {{ udata.gender }}</p>
+{% if udata.dowod %}
+  <p><b>{{ formitem.dowod }}</b>: {{ udata.dowod }}</p>
+{% elif udada.passport %}
+  <p><b>{{ formitem.passport }}</b>: {{ udata.passport }}</p>
+{% endif %}
+
+<p><b>{{ formitem.email }}</b>: {{ udata.email }} <b>{{ formitem.telephone }}</b>: {{ udata.telephone }}</p>
+<br>

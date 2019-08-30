@@ -21,6 +21,14 @@ class User(AbstractBaseUser, PermissionsMixin):
      (COUNCIL_ADMIN, 'Council Admin'),
      (SUPERUSER, 'Superuser'),
     )
+    OTHER = 0
+    MALE = 1
+    FEMALE = 2
+    GENDERS = (
+     (OTHER, 'other'),
+     (MALE, 'male'),
+     (FEMALE, 'female'),
+    )
     email = models.EmailField(_('email address'), unique=True)
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
@@ -33,6 +41,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         choices=ROLE_CHOICES, null=True, blank=True)
     avatar = models.ImageField(upload_to='avatars', null=True, blank=True)
     quarter = models.CharField(_('quarter'), max_length=2, blank=True)
+    gender = models.PositiveSmallIntegerField(
+        choices=GENDERS, null=True, blank=True)
+    citizenship = models.CharField(_('citizenship'), max_length=40, blank=True)
+    dowod = models.CharField(_('dowod'), max_length=20, blank=True)
+    passport = models.CharField(_('passport'), max_length=20, blank=True)
+    telephone = models.CharField(_('telephone'), max_length=20, blank=True)
 
     objects = UserManager()
 
