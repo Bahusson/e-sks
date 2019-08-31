@@ -1,7 +1,7 @@
 <!-- Zgody do celów demonstracyjnych. Potem do zmiany na bardziej modularne. -->
 <h4> {{ formitem.statement }} </h4>
 <p>
-  <select id="faculty">
+  <select id="international_placement">
              <option value ="None" disabled>{{ formitem.list_select }}:</option>
              <option value ="0">{{ formitem.disagree }}</option>
              <option value ="1">{{ formitem.agree }}</option>
@@ -9,11 +9,11 @@
     {{ formitem.agree_international }}
 </p>
 <p>
-  <input name="checkbox" id="checkbox1" class="css-checkbox" type="checkbox">
+  <input id="mailinglist" class="css-checkbox" type="checkbox">
   {{ formitem.mail_join }}
 </p>
 <p>
-  <input name="checkbox" id="checkbox2" class="css-checkbox" type="checkbox">
+  <input id="dataprocessing" class="css-checkbox" type="checkbox">
   {{ formitem.data_processing }}
 </p>
 <br>
