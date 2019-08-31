@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+<title>{{ link.3 }}</title>
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+{% block css2 %}
+{% endblock %}
+
+<!--Zwraca oryginalną kompozycję menu z bazy. Potem podstawiasz zmienne,-->
+{% block aside %}
+ {{ block.super }}
+{% endblock aside %}
+
+{% block menu %}
+ {% include 'menus/user_menus.html' %} <!-- Menu z opcjami użytkownika -->
+{% endblock menu %}
+
+{% block body %}
+ {% include 'forms/elements/userdata1.html' %} <!-- Podstawowe dane Usera -->
+ {% include 'forms/elements/sh_preferences.html' %} <!-- Preferencje Usera -->
+ {% include 'forms/elements/userdata2.html' %} <!-- Rozszerzone dane Usera -->
+ {% include 'forms/elements/formmap.html' %} <!-- Mapka do zaznaczania -->
+ {% include 'forms/elements/faculty_data.html' %} <!-- Dane wydziału -->
+ {% include 'forms/elements/extra_info.html' %} <!-- Dodatkowe informacje -->
+ {% include 'forms/elements/agreements.html' %} <!-- Dodatkowe informacje -->
+
+
+  <form enctype="multipart/form-data" method="post"> <!-- Do wysyłania plików -->
+    {% csrf_token %}
+
+
+    <input id="send" class="button" name="subbutton" type="submit" value="{{ formitem.sendme }}">
+  </form>
+{% endblock body %}
+
+
+{% block scripts %}
+ <!-- Napisz od nowa i zmień ten skrpt, żeby wypełniał pola ukryte.-->
+<script src="{% static "quarterchange.js" %}"></script>
+{% endblock %}
+
+{% block scripts2 %}
+{% endblock %}

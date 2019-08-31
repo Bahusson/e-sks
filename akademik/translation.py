@@ -1,8 +1,8 @@
 from modeltranslation.translator import translator, TranslationOptions
 from .models import PortalBaseItem
-from .models import HotelMenuItem, CouncilMenuItem, TranslatorMenuItem, UserMenuItem
-from .models import HotelLinkItem, CouncilLinkItem, TranslatorLinkItem, UserLinkItem
-from .models import HousingParty
+from .models import HotelMenuItem, CouncilMenuItem, TranslatorMenuItem
+from .models import HotelLinkItem, CouncilLinkItem, TranslatorLinkItem
+from .models import UserMenuItem, UserLinkItem, HousingParty
 
 
 # Zmiana kolejności wynika z tego, żeby łatwiej się kopiowało między klasami.

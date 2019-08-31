@@ -17,10 +17,13 @@ from rekruter.models import IfRoomChange as Ifr
 from rekruter.models import TimePeriod as Tper
 from rekruter.models import StudyFaculty as Stf
 from rekruter.models import StudyDegree as Std
+from rekruter.models import SpouseCohabitant as Sch
+from rekruter.models import SpecialCase as Scs
 from esks.special.decorators import council_only, hotel_staff_only, translators_only
 from rekruter.models import User, FormItems, QuarterClassB
 from rekruter.forms import IniForm, ApplicationForm
 # from django.core.files.uploadedfile import SimpleUploadedFile
+
 
 # Panel Rady
 @council_only(login_url='logger')
@@ -107,25 +110,29 @@ def dormapply(request):
             form.save()
             return redirect('userpanel')
     else:
+        pe_fi = PageElement(FormItems)
+        pe_fi0 = pe_fi.list_specific(0)
+        form = ApplicationForm()
         sh = PageElement(Sh)
         ifr = PageElement(Ifr)
         tper = PageElement(Tper)
         stf = PageElement(Stf)
         std = PageElement(Std)
-        pe_fi = PageElement(FormItems)
-        pe_fi0 = pe_fi.list_specific(0)
-        form = ApplicationForm()
+        sch = PageElement(Sch)
+        scs = PageElement(Scs)
         context = {
+         'udata': userdata,
          'formitem': pe_fi0,
          'form': form,
-         'udata': userdata,
          'houselist': sh.listed,
          'staylist': ifr.listed,
          'periodlist': tper.listed,
          'facultylist': stf.listed,
          'degreelist': std.listed,
+         'spouselist': sch.listed,
+         'scaselist': scs.listed,
          }
     pl = PortalLoad(P, L, Pbi, 0, Umi, Uli, )
     context_lazy = pl.lazy_context(skins=S, context=context)
-    template = 'panels/user/dormapply.html'
+    template = 'forms/dormapply.html'
     return render(request, template, context_lazy)

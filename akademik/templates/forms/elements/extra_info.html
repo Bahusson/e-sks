@@ -1,0 +1,21 @@
+<!-- Dodatkowe dane: Czy chce mieszkać z małżonkiem i czy jest niepełnosprawny/a -->
+<!-- Domyślnie: Nie składa -->
+<h4> {{ formitem.additional_info }} </h4>
+<p> {{ formitem.spouse_cohabitant }}:</p>
+<p>    <select id="faculty">
+             <option value ="None" disabled>{{ formitem.list_select }}:</option>
+           {% for item in spouselist %}
+              <option value ="{{ forloop.counter }}">{{ item }}</option>
+           {% endfor %}
+    </select>
+</p>
+<p> {{ formitem.special_case_docs }}:</p>
+<p>
+    <select id="faculty">
+             <option value ="None" disabled>{{ formitem.list_select }}:</option>
+           {% for item in scaselist %}
+              <option value ="{{ forloop.counter }}">{{ item }}</option>
+           {% endfor %}
+    </select>
+</p>
+<br>
