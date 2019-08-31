@@ -2,9 +2,9 @@ from django.contrib import admin
 
 # Register your models here.
 from .models import PortalBaseItem
-from .models import HotelMenuItem, CouncilMenuItem, TranslatorMenuItem, UserMenuItem
-from .models import HotelLinkItem, CouncilLinkItem, TranslatorLinkItem, UserLinkItem
-
+from .models import HotelMenuItem, CouncilMenuItem, TranslatorMenuItem
+from .models import HotelLinkItem, CouncilLinkItem, TranslatorLinkItem
+from .models import UserMenuItem, UserLinkItem, HousingParty
 
 admin.site.register(PortalBaseItem)
 admin.site.register(HotelMenuItem)
@@ -15,3 +15,4 @@ admin.site.register(HotelLinkItem)
 admin.site.register(CouncilLinkItem)
 admin.site.register(TranslatorLinkItem)
 admin.site.register(UserLinkItem)
+admin.site.register(HousingParty)

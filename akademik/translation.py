@@ -2,6 +2,7 @@ from modeltranslation.translator import translator, TranslationOptions
 from .models import PortalBaseItem
 from .models import HotelMenuItem, CouncilMenuItem, TranslatorMenuItem, UserMenuItem
 from .models import HotelLinkItem, CouncilLinkItem, TranslatorLinkItem, UserLinkItem
+from .models import HousingParty
 
 
 # Zmiana kolejności wynika z tego, żeby łatwiej się kopiowało między klasami.
@@ -66,3 +67,10 @@ class UserLinkItemTranslate(TranslationOptions):
 
 
 translator.register(UserLinkItem, UserLinkItemTranslate)
+
+
+class HousingPartyTranslate(TranslationOptions):
+    fields = ('title', 'comment', 'announcement', )
+
+
+translator.register(HousingParty, HousingPartyTranslate)

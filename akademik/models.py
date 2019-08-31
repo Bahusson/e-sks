@@ -1,7 +1,7 @@
 from django.db import models
+
+
 # W tej klasie będą elementy wspólne dla wszystkich paneli.
-
-
 class PortalBaseItem(models.Model):
     PORTAL_CHOICES = [
         ('1', 'User'),
@@ -114,3 +114,20 @@ class UserLinkItem(models.Model):
 
     class Meta:
         ordering = ['menu', 'position']
+
+
+# Ta klasa tworzy i porządkuje akcje kwaterunkowe
+# Dodaje też ogłoszenie w wielu językach.
+class HousingParty(models.Model):
+    title = models.CharField(max_length=200)
+    quarter = models.IntegerField()
+    date_start = models.DateTimeField()
+    date_end = models.DateTimeField()
+    comment = models.TextField(blank=True)
+    announcement = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['date_start', 'date_end', 'quarter']
