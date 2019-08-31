@@ -20,11 +20,13 @@
 {% endblock menu %}
 
 {% block body %}
- {% include 'panels/user/userdata1.html' %} <!-- Podstawowe dane Usera -->
- {% include 'panels/user/sh_preferences.html' %} <!-- Preferencje Usera -->
- {% include 'panels/user/userdata2.html' %} <!-- Rozszerzone dane Usera -->
- {% include 'panels/user/formmap.html' %} <!-- Mapka do zaznaczania -->
- {% include 'panels/user/faculty_data.html' %} <!-- Dane wydziału -->
+ {% include 'forms/elements/userdata1.html' %} <!-- Podstawowe dane Usera -->
+ {% include 'forms/elements/sh_preferences.html' %} <!-- Preferencje Usera -->
+ {% include 'forms/elements/userdata2.html' %} <!-- Rozszerzone dane Usera -->
+ {% include 'forms/elements/formmap.html' %} <!-- Mapka do zaznaczania -->
+ {% include 'forms/elements/faculty_data.html' %} <!-- Dane wydziału -->
+ {% include 'forms/elements/extra_info.html' %} <!-- Dodatkowe informacje -->
+ {% include 'forms/elements/agreements.html' %} <!-- Dodatkowe informacje -->
 
 
   <form enctype="multipart/form-data" method="post"> <!-- Do wysyłania plików -->

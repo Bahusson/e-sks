@@ -147,8 +147,8 @@ class FormItems(models.Model):
     album = models.CharField(max_length=50)
     semester = models.CharField(max_length=50)
     additional_info = models.CharField(max_length=50)
-    spouse_cohabitant = models.CharField(max_length=50)
-    special_case_docs = models.CharField(max_length=50)
+    spouse_cohabitant = models.CharField(max_length=100)
+    special_case_docs = models.CharField(max_length=100)
     statement = models.CharField(max_length=50)
     agree = models.CharField(max_length=50)
     disagree = models.CharField(max_length=50)
@@ -255,7 +255,7 @@ class SpouseCohabitant(models.Model):
 
 # Podanie o szczególne okoliczności
 class SpecialCase(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=150)
     position = models.IntegerField()
 
     def __str__(self):
@@ -292,7 +292,7 @@ class ApplicationFormFields(models.Model):
     location = models.CharField(max_length=50, blank=True)
     faculty = models.IntegerField(blank=True)
     degree = models.IntegerField(blank=True)
-    deangroup = models.IntegerField(blank=True)
+    deangroup = models.CharField(max_length=50, blank=True)
     semester = models.IntegerField(blank=True)
     spouse_cohabitant = models.IntegerField(blank=True)
     special_case_docs = models.IntegerField(blank=True)
