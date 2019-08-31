@@ -105,9 +105,10 @@ def dormapply(request):
     userdata = User.objects.get(
      id=request.user.id)
     if request.method == 'POST':
-        form = ApplicationForm(request.POST, request.FILES, instance=userdata)
+        form = ApplicationForm(request.POST)
         if form.is_valid():
-            form.save()
+            form.save(userdata)
+            print('form saved man!')
             return redirect('userpanel')
     else:
         pe_fi = PageElement(FormItems)
@@ -132,7 +133,7 @@ def dormapply(request):
          'spouselist': sch.listed,
          'scaselist': scs.listed,
          }
-    pl = PortalLoad(P, L, Pbi, 0, Umi, Uli, )
-    context_lazy = pl.lazy_context(skins=S, context=context)
-    template = 'forms/dormapply.html'
-    return render(request, template, context_lazy)
+        pl = PortalLoad(P, L, Pbi, 0, Umi, Uli, )
+        context_lazy = pl.lazy_context(skins=S, context=context)
+        template = 'forms/dormapply.html'
+        return render(request, template, context_lazy)

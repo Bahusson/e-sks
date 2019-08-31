@@ -5,6 +5,16 @@ function formfill(elname, elid)
   document.getElementById(elid).value = x;
 }
 
+
+function formcheckfill(elname, elid)
+{
+  if (document.getElementById(elname).checked === false) {
+    x = "0" ;}
+  else {
+    x = "1" ;}
+  document.getElementById(elid).value = x;
+}
+
 $(document).ready(function()
 {
   $('#send').click(function()
@@ -20,7 +30,7 @@ $(document).ready(function()
   formfill("spouse_cohabitant", "id_spouse_cohabitant")
   formfill("special_case_docs", "id_special_case_docs")
   formfill("international_placement", "id_international_placement")
-  formfill("mailinglist", "id_mailinglist")
-  formfill("dataprocessing", "id_dataprocessing")
+  formcheckfill("mailinglist", "id_mailinglist")
+  formcheckfill("dataprocessing", "id_dataprocessing")
   });
 });

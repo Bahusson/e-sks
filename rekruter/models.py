@@ -292,7 +292,7 @@ class ApplicationFormFields(models.Model):
     location = models.CharField(max_length=50, blank=True)
     faculty = models.IntegerField(blank=True)
     degree = models.IntegerField(blank=True)
-    deangroup = models.IntegerField(blank=True)
+    deangroup = models.CharField(max_length=50, blank=True)
     semester = models.IntegerField(blank=True)
     spouse_cohabitant = models.IntegerField(blank=True)
     special_case_docs = models.IntegerField(blank=True)
