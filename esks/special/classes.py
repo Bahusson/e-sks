@@ -51,14 +51,6 @@ class PageLoad(object):
         if 'context' in kwargs:
             self.context.update(kwargs['context'])
         return self.context
-        '''
-        locations = list(QuarterClass.objects.all())
-        quarters = locations[0]
-        preqlist = list(quarters.__dict__.keys())
-        preqlist2 = preqlist[2:]
-        preqlist3 = preqlist2[0::len(L)+1]
-        quartzlist = preqlist3
-        '''
 
 
 # Klasa ładowania widoków /strony/

@@ -129,5 +129,11 @@ class HousingParty(models.Model):
     def __str__(self):
         return self.title
 
+    def get_startdate(self):
+        return self.date_start.date
+
+    def get_enddate(self):
+        return self.date_end.date
+
     class Meta:
         ordering = ['date_start', 'date_end', 'quarter']
