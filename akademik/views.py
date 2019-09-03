@@ -12,6 +12,7 @@ from .models import TranslatorMenuItem as Tmi
 from .models import TranslatorLinkItem as Tli
 from .models import HotelMenuItem as Hmi
 from .models import HotelLinkItem as Hli
+from .models import HousingParty as HParty
 from rekruter.models import StudentHouse as Sh
 from rekruter.models import IfRoomChange as Ifr
 from rekruter.models import TimePeriod as Tper
@@ -22,6 +23,8 @@ from rekruter.models import SpecialCase as Scs
 from esks.special.decorators import council_only, hotel_staff_only, translators_only
 from rekruter.models import User, FormItems, QuarterClassB
 from rekruter.forms import IniForm, ApplicationForm
+import datetime
+import pytz
 # from django.core.files.uploadedfile import SimpleUploadedFile
 
 
@@ -101,7 +104,41 @@ def showmydata(request):
         return render(request, template, context_lazy)
 
 
+# Funkcja przekierowuje Użytkownika w zależności od jego akcji kwaterunkowej,
+# oraz stopnia wypełnienia formularza.
+def house_switcher():  # request
+    # stwórz [listę] aktywnych akcji kwaterunkowych vs czas serwera
+    active_parties = []
+    all_parties = PageElement(HParty)
+    tz_UTC = pytz.timezone('Europe/Warsaw')
+    dt_now = datetime.datetime.now(tz_UTC)
+    list_parties = all_parties.listed
+    x = 0
+    print(list_parties[x].__dict__['date_start'])
+    print(type(list_parties[x].__dict__['date_start']))
+    print(dt_now)
+    print(type(dt_now))
+    for item in list_parties:
+        if list_parties[x].__dict__['date_start'] <= dt_now <= list_parties[x].__dict__['date_end']:
+            active_parties.append(list_parties[x].__dict__['quarter'])
+        x = x+1
+    return active_parties
+    # User zdaje test na to,
+    # czy jego atrybut (akcja kwaterunkowa) jest na liście
+
+    # Jesli tak, dostaje przekierowanie na odpowiedni widok formularza
+
+    # Jeśli nie, dostaje przekierowanie na widok
+    # na którym jest lista aktywnych akcji
+
+    # + Jeśli tak ale ma wypełnioy, (dodaj foreign field do formularza,
+    # albo ekstra pola z info na której stronie jest)
+    # to dostaje przekierowanie na inny widok (ten na którym skończył)
+
+
 def dormapply(request):
+    x = house_switcher()
+    print('lista aktywnych :' + str(x))
     userdata = User.objects.get(
      id=request.user.id)
     if request.method == 'POST':

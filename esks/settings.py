@@ -58,7 +58,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'login_required.middleware.LoginRequiredMiddleware',
-    # 'esks.special.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'esks.urls'
@@ -206,8 +205,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = '/'  # Przekierowanie usera po zalogowaniu
-# jeśli nie masz tego zdefiniowanego inaczej. My mamy, ale zostawiam bo w razie
-# "w" default przekierowuje na nieistniejącą stronę. To już lepiej na główną!
 
 LOGOUT_REDIRECT_URL = '/'  # Przekierowanie po wylogowaniu.
 
@@ -223,6 +220,7 @@ LOGIN_REQUIRED_IGNORE_PATHS = [
      r'^rekruter/register/$',
      r'^static/.*$',
      r'^media/.*$',
+     r'^admin/.*$',
 ]
 
 # Ściągnij ustawienia lokalne gdybyśmy chcieli udostępnić kod i wejść na OpenSource
