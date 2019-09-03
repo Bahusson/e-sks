@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'login_required',
 ]
 
 # Kolejność tego draństwa jest ważna.
@@ -56,7 +57,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'esks.special.middleware.LoginRequiredMiddleware'
+    'login_required.middleware.LoginRequiredMiddleware',
+    # 'esks.special.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'esks.urls'
@@ -212,14 +214,16 @@ LOGOUT_REDIRECT_URL = '/'  # Przekierowanie po wylogowaniu.
 # Poniżej dane do ustawień Middleware blokującego strony przed niezalogowanymi.
 LOGIN_URL = '/'
 
-LOGIN_EXEMPT_URLS = (
-     r'^/$',
+
+# https://github.com/CleitonDeLima/django-login-required-middleware
+LOGIN_REQUIRED_IGNORE_PATHS = [
+     r'^$',
      r'^strona/.*$',
      r'^rekruter/logger/$',
      r'^rekruter/register/$',
      r'^static/.*$',
      r'^media/.*$',
-)
+]
 
 # Ściągnij ustawienia lokalne gdybyśmy chcieli udostępnić kod i wejść na OpenSource
 # na serwerze obok "settings" robisz plik .local_settings i ustalasz od nowa:

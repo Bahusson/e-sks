@@ -86,7 +86,6 @@ $(document).ready(function()
    if (unlock === true)
    {
      checkboxon("1");
-     //setCookedSignal("1"); // Obecni studenci
      radiooff("rad3");
      radiooff("rad4");
      hop();
@@ -106,7 +105,6 @@ $(document).ready(function()
    if (unlock === true)
    {
      checkboxon("2");
-     //setCookedSignal("2"); // Obecni Studenci Cudzoziemcy
      radiooff("rad5");
      radiooff("rad6");
      hop();
@@ -123,7 +121,6 @@ $(document).ready(function()
   $('#rad2A').click(function() // Doktorant Tak
  {
    checkboxon("3");
-   //setCookedSignal("3"); // Doktoranci
    radiooff("rad1");
    radiooff("rad3");
    radiooff("rad4");
@@ -147,7 +144,6 @@ $(document).ready(function()
   $('#rad3B').click(function() // Zamiar Nie
  {
    checkboxon("4");
-   //setCookedSignal("4"); // Bank Miejsc
    radiooff("rad4");
    hop();
   });
@@ -155,21 +151,18 @@ $(document).ready(function()
   $('#rad4A').click(function() // Pierwszy stopień Tak
  {
    checkboxon("5");
-   //setCookedSignal("5"); // Nowi: Studia Pierwszego Stopnia
    hop();
   });
 
   $('#rad4B').click(function() // Pierwszy stopień Nie
  {
    checkboxon("6");
-   //setCookedSignal("6"); // Nowi: Studia Drugiego i Trzeciego Stopnia
    hop();
   });
 
   $('#rad5A').click(function() // Pełny Wymiar Tak
  {
    checkboxon("7");
-   //setCookedSignal("7"); // Nowi: Studenci Międzynarodowi
    radiooff("rad6");
    hop();
   });
@@ -184,14 +177,12 @@ $(document).ready(function()
   $('#rad6A').click(function() // Erazmus Tak
  {
    checkboxon("8");
-   //setCookedSignal("8"); // Studenci Erazmusa
    hop();
   });
 
   $('#rad6B').click(function() // Erazmus Nie
  {
    checkboxon("9");
-   //setCookedSignal("9"); // Wymiana Bilateralna
    hop();
   });
 

@@ -108,7 +108,6 @@ def dormapply(request):
         form = ApplicationForm(request.POST)
         if form.is_valid():
             form.save(userdata)
-            print('form saved man!')
             return redirect('userpanel')
     else:
         pe_fi = PageElement(FormItems)
