@@ -104,25 +104,31 @@ def showmydata(request):
         return render(request, template, context_lazy)
 
 
-# Funkcja przekierowuje Użytkownika w zależności od jego akcji kwaterunkowej,
-# oraz stopnia wypełnienia formularza.
-def house_switcher():  # request
-    # stwórz [listę] aktywnych akcji kwaterunkowych vs czas serwera
+# Funkcja zwraca numery akcji kwaterunkowych, które są aktualnie 'aktywne'
+# względem czasu serwera.
+def active_party():
     active_parties = []
     all_parties = PageElement(HParty)
     tz_UTC = pytz.timezone('Europe/Warsaw')
     dt_now = datetime.datetime.now(tz_UTC)
     list_parties = all_parties.listed
     x = 0
-    print(list_parties[x].__dict__['date_start'])
-    print(type(list_parties[x].__dict__['date_start']))
-    print(dt_now)
-    print(type(dt_now))
     for item in list_parties:
         if list_parties[x].__dict__['date_start'] <= dt_now <= list_parties[x].__dict__['date_end']:
-            active_parties.append(list_parties[x].__dict__['quarter'])
+            active_parties.append(str(list_parties[x].__dict__['quarter']))
         x = x+1
     return active_parties
+
+
+def party_switch(request):
+    x = active_party()
+    quarter = request.user.quarter
+    if quarter in x:
+        print('nowy formularz...')
+        return 0
+    else:
+        print('przekierowuję...')
+        return 1
     # User zdaje test na to,
     # czy jego atrybut (akcja kwaterunkowa) jest na liście
 
@@ -136,9 +142,8 @@ def house_switcher():  # request
     # to dostaje przekierowanie na inny widok (ten na którym skończył)
 
 
+# Jeden widok dla wszystkich formularzy aplikacyjnych.
 def dormapply(request):
-    x = house_switcher()
-    print('lista aktywnych :' + str(x))
     userdata = User.objects.get(
      id=request.user.id)
     if request.method == 'POST':
@@ -147,29 +152,33 @@ def dormapply(request):
             form.save(userdata)
             return redirect('userpanel')
     else:
-        pe_fi = PageElement(FormItems)
-        pe_fi0 = pe_fi.list_specific(0)
-        form = ApplicationForm()
-        sh = PageElement(Sh)
-        ifr = PageElement(Ifr)
-        tper = PageElement(Tper)
-        stf = PageElement(Stf)
-        std = PageElement(Std)
-        sch = PageElement(Sch)
-        scs = PageElement(Scs)
-        context = {
-         'udata': userdata,
-         'formitem': pe_fi0,
-         'form': form,
-         'houselist': sh.listed,
-         'staylist': ifr.listed,
-         'periodlist': tper.listed,
-         'facultylist': stf.listed,
-         'degreelist': std.listed,
-         'spouselist': sch.listed,
-         'scaselist': scs.listed,
-         }
-        pl = PortalLoad(P, L, Pbi, 0, Umi, Uli, )
-        context_lazy = pl.lazy_context(skins=S, context=context)
-        template = 'forms/dormapply.html'
-        return render(request, template, context_lazy)
+        redir = party_switch(request)
+        if redir == 1:
+            return redirect('initial')  # Gdzie przekierować jak nie jego akcja?
+        else:
+            pe_fi = PageElement(FormItems)
+            pe_fi0 = pe_fi.list_specific(0)
+            form = ApplicationForm()
+            sh = PageElement(Sh)
+            ifr = PageElement(Ifr)
+            tper = PageElement(Tper)
+            stf = PageElement(Stf)
+            std = PageElement(Std)
+            sch = PageElement(Sch)
+            scs = PageElement(Scs)
+            context = {
+             'udata': userdata,
+             'formitem': pe_fi0,
+             'form': form,
+             'houselist': sh.listed,
+             'staylist': ifr.listed,
+             'periodlist': tper.listed,
+             'facultylist': stf.listed,
+             'degreelist': std.listed,
+             'spouselist': sch.listed,
+             'scaselist': scs.listed,
+             }
+            pl = PortalLoad(P, L, Pbi, 0, Umi, Uli, )
+            context_lazy = pl.lazy_context(skins=S, context=context)
+            template = 'forms/dormapply.html'
+            return render(request, template, context_lazy)
