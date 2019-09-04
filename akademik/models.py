@@ -1,4 +1,5 @@
 from django.db import models
+from esks.settings import AUTH_USER_MODEL
 
 
 # W tej klasie będą elementy wspólne dla wszystkich paneli.
@@ -121,10 +122,21 @@ class UserLinkItem(models.Model):
 class HousingParty(models.Model):
     title = models.CharField(max_length=200)
     quarter = models.IntegerField()
-    date_start = models.DateTimeField()
-    date_end = models.DateTimeField()
+    date_start = models.DateTimeField(blank=True, null=True)
+    date_end = models.DateTimeField(blank=True, null=True)
     comment = models.TextField(blank=True)
     announcement = models.TextField(blank=True)
+    userdata1 = models.BooleanField(default=False)
+    sh_preferences = models.BooleanField(default=False)
+    userdata2 = models.BooleanField(default=False)
+    formmap = models.BooleanField(default=False)
+    faculty_data = models.BooleanField(default=False)
+    extra_info = models.BooleanField(default=False)
+    agreements1 = models.BooleanField(default=False)
+    agreements2 = models.BooleanField(default=False)
+    agreements3 = models.BooleanField(default=False)
+    owner = models.ForeignKey(
+     AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title

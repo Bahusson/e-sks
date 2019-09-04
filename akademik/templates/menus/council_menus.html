@@ -11,3 +11,13 @@
       <li><a href="">{{ link.1 }}</a></li>
     </ol>
 </div>
+<!-- Tylko dla Szefa Rady -->
+{% if user.role_council > 2 %}
+  <div class="p-3">
+    <h4 class="font-italic">{{ menu.2 }}</h4>
+      <ol class="list-unstyled mb-0">
+        <li><a href="{% url 'makemeparty' %}">{{ link.2 }}</a></li> <!--Stwórz akcję kwaterunkową -->
+      </ol>
+  </div>
+{% endif %}
+<!-- End tylko dla Szefa Rady -->
