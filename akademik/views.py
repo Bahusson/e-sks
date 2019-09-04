@@ -183,6 +183,7 @@ def dormapply(request):
             template = 'forms/dormapply.html'
             return render(request, template, context_lazy)
 
+
 # Tworzy nową akcję kwaterunkową wraz z formularzem z poziomu przew. rady.
 def makemeparty(request):
     userdata = User.objects.get(
@@ -195,7 +196,7 @@ def makemeparty(request):
     else:
         pe_fi = PageElement(FormItems)
         pe_fi0 = pe_fi.list_specific(0)
-        form = ApplicationForm()
+        form = PartyForm()
         sh = PageElement(Sh)
         ifr = PageElement(Ifr)
         tper = PageElement(Tper)
@@ -203,10 +204,11 @@ def makemeparty(request):
         std = PageElement(Std)
         sch = PageElement(Sch)
         scs = PageElement(Scs)
+        peqc = PageElement(QuarterClassB)
         context = {
          'udata': userdata,
          'formitem': pe_fi0,
-         'form': form,
+         'form2': form,
          'houselist': sh.listed,
          'staylist': ifr.listed,
          'periodlist': tper.listed,
@@ -214,8 +216,9 @@ def makemeparty(request):
          'degreelist': std.listed,
          'spouselist': sch.listed,
          'scaselist': scs.listed,
+         'setlist': peqc.listed,
          }
-        pl = PortalLoad(P, L, Pbi, 0, Umi, Uli, )
+        pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
         context_lazy = pl.lazy_context(skins=S, context=context)
         template = 'forms/partymaker.html'
         return render(request, template, context_lazy)

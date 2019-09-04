@@ -2,10 +2,14 @@
 {% load staticfiles %}
 
 {% block title %}
-<title>{{ link.3 }}</title>
+<title>{{ link.2 }}</title>
 {% endblock %}
 
 {% block css %}
+<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css"/>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css"/>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/global.css"/>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/widgets.css"/>
 {% endblock %}
 {% block css2 %}
 {% endblock %}
@@ -21,23 +25,53 @@
 
 {% block body %}
 
-  <form enctype="multipart/form-data" method="post"> <!-- Do wysyłania plików -->
+  <form method="post"> <!-- Do wysyłania plików -->
     {% csrf_token %}
-    {% include 'forms/elements/userdata1.html' %} <!-- Podstawowe dane Usera -->
-    {% include 'forms/elements/sh_preferences.html' %} <!-- Preferencje Usera -->
-    {% include 'forms/elements/userdata2.html' %} <!-- Rozszerzone dane Usera -->
-    {% include 'forms/elements/formmap.html' %} <!-- Mapka do zaznaczania -->
-    {% include 'forms/elements/faculty_data.html' %} <!-- Dane wydziału -->
-    {% include 'forms/elements/extra_info.html' %} <!-- Dodatkowe informacje -->
-    {% include 'forms/elements/agreements.html' %} <!-- Zgody -->
+    <p>Tytuł akcji PL: {{ form2.title }}</p>
+    <p>Tytuł akcji EN: {{ form2.title_en }}</p>
+    <p>Wybierz akcję: <select id="Quarterselector" name="Quarter">
+                       <option value ="None" disabled>{{ formitem.list_select }}:</option>
+                       {% for item in setlist %}
+                        <option value ="{{ forloop.counter }}">{{ item }}</option>
+                       {% endfor %}
+                      </select></p>
+    <p>Czas Rozpoczęcia: {{ form2.date_start }}</p>
+    <p>Czas Zakończenia {{ form2.date_end }}</p>
+    <p>Komentarz PL: {{ form2.comment }}</p>
+    <p>Komentarz EN: {{ form2.comment_en }}</p>
+    <p>Ogłoszenie PL: {{ form2.announcement }}</p>
+    <p>Ogłoszenie EN: {{ form2.announcement_en }}</p>
+    <!-- Tutaj trzeba zrobić ładną tabelkę że w lewej tabeli są elementy formularza
+    a w prawej są checkboxy które rada sobie zaznacza jako opcje widoczne w formularzu -->
+    <p>Zaznacz wybrane opcje formularza zaznaczając krzyżyk przy wybranej opcji.</p>
+    <p>{% include 'forms/elements/userdata1.html' %} {{ form2.userdata1 }}</p> <!-- Podstawowe dane Usera -->
+    <p>{% include 'forms/elements/sh_preferences.html' %} {{ form2.sh_preferences }}</p> <!-- Preferencje Usera -->
+    <p>{% include 'forms/elements/userdata2.html' %} {{ form2.userdata2 }}</p> <!-- Rozszerzone dane Usera -->
+    <p>{% include 'forms/elements/formmap.html' %} {{ form2.formmap }}</p> <!-- Mapka do zaznaczania -->
+    <p>{% include 'forms/elements/faculty_data.html' %} {{ form2.faculty_data }}</p> <!-- Dane wydziału -->
+    <p>{% include 'forms/elements/extra_info.html' %} {{ form2.extra_info }}</p> <!-- Dodatkowe informacje -->
+    <p>{% include 'forms/elements/agreements.html' %} {{ form2.agreements1 }}</p><!-- Zgody -->
 
-    {{ form.sh_choice1 }}{{ form.sh_choice2 }}{{ form.sh_choice3 }}
-    {{ form.duration }}{{ form.if_room_change }}{{ form.faculty }}{{ form.degree }}
-    {{ form.semester }}{{ form.spouse_cohabitant }}{{ form.special_case_docs }}
-    {{ form.international_placement }}{{ form.mailinglist }}
-    {{ form.dataprocessing }}
-
+    {{ form2.quarter }}
     <input id="send" class="button" name="subbutton" type="submit" value="{{ formitem.sendme }}">
   </form>
   <!--<button id="send">test<button> Nieaktywny button do testów-->
 {% endblock body %}
+
+{% block scripts %}
+ <script src="{% static "quarterchange.js" %}"></script>
+ <script type="text/javascript" src="/admin/jsi18n/"></script>
+ <script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+ <script type="text/javascript" src="/static/admin/js/calendar.js"></script>
+ <script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+ <script type="text/javascript" src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
+ <script type="text/javascript" src="/static/admin/js/core.js"></script>
+ <script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+ <script type="text/javascript" src="/static/admin/js/actions.js"></script>
+ <script type="text/javascript" src="/static/admin/js/urlify.js"></script>
+ <script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
+ <script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+{% endblock %}
+
+{% block scripts2 %}
+{% endblock %}

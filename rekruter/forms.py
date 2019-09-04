@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.admin import widgets
 from django.contrib.auth.forms import UserCreationForm
 from rekruter.models import User, ApplicationFormFields
 from akademik.models import HousingParty
@@ -78,29 +79,6 @@ class IniForm(forms.ModelForm):
         return user
 
 
-class UserForm(forms.ModelForm):
-    first_name = forms.CharField(max_length=30)
-    last_name = forms.CharField(max_length=30)
-    email = forms.EmailField(max_length=75)
-
-    class Meta:
-        model = User
-        fields = (
-            'first_name',
-            'last_name',
-            'quarter',
-        )
-
-    def save(self, commit=True):
-        user = super(UserForm, self).save(commit=False)
-        user.first_name = self.cleaned_data["first_name"]
-        user.last_name = self.cleaned_data["last_name"]
-        user.quarter = self.cleaned_data["quarter"]
-        if commit:
-            user.save()
-        return user
-
-
 class ApplicationForm(forms.ModelForm):
     sh_choice1 = forms.CharField(widget=forms.HiddenInput())
     sh_choice2 = forms.CharField(widget=forms.HiddenInput())
@@ -156,41 +134,55 @@ class ApplicationForm(forms.ModelForm):
 
 class PartyForm(forms.ModelForm):
     title = forms.CharField(max_length=200)
+    title_pl = forms.CharField(max_length=200)
     title_en = forms.CharField(max_length=200)
-    quarter = forms.IntegerField()
+    quarter = forms.CharField(widget=forms.HiddenInput())
     date_start = forms.DateTimeField()
     date_end = forms.DateTimeField()
     comment = forms.CharField(widget=forms.Textarea, required=False)
+    comment_pl = forms.CharField(widget=forms.Textarea, required=False)
     comment_en = forms.CharField(widget=forms.Textarea, required=False)
     announcement = forms.CharField(widget=forms.Textarea, required=False)
+    announcement_pl = forms.CharField(widget=forms.Textarea, required=False)
     announcement_en = forms.CharField(widget=forms.Textarea, required=False)
-    userdata1 = forms.BooleanField()
-    sh_preferences = forms.BooleanField()
-    userdata2 = forms.BooleanField()
-    formmap = forms.BooleanField()
-    faculty_data = forms.BooleanField()
-    extra_info = forms.BooleanField()
-    agreements1 = forms.BooleanField()
+    userdata1 = forms.BooleanField(required=False)
+    sh_preferences = forms.BooleanField(required=False)
+    userdata2 = forms.BooleanField(required=False)
+    formmap = forms.BooleanField(required=False)
+    faculty_data = forms.BooleanField(required=False)
+    extra_info = forms.BooleanField(required=False)
+    agreements1 = forms.BooleanField(required=False)
     # agreements2 = forms.BooleanField(required=False)
     # agreements3 = forms.BooleanField(required=False)
 
     class Meta:
         model = HousingParty
         fields = (
-         'title', 'title_en', 'quarter', 'date_start', 'date_end', 'comment',
-         'comment_en', 'announcement', 'announcement_en', 'userdata1',
-         'userdata2', 'formmap', 'faculty_data', 'extra_info', 'agreements1')
+         'title', 'title_pl', 'title_en', 'quarter', 'date_start', 'date_end',
+         'comment', 'comment_pl', 'comment_en', 'announcement',
+         'announcement_pl', 'announcement_en', 'userdata1', 'userdata2',
+         'formmap', 'faculty_data', 'extra_info', 'agreements1')
+
+    # Tworzy takie rozbite pole DateTime jak to w adminie.
+    # https://stackoverflow.com/questions/15643019/datetime-field-in-django-form-model
+    def __init__(self, *args, **kwargs):
+        super(PartyForm, self).__init__(*args, **kwargs)
+        self.fields['date_start'].widget = widgets.AdminSplitDateTime()
+        self.fields['date_end'].widget = widgets.AdminSplitDateTime()
 
     def save(self, commit=True):
         user = super(IniForm, self).save(commit=False)
         user.title = self.cleaned_data["title"]
+        user.title_pl = self.cleaned_data["title"]
         user.title_en = self.cleaned_data["title_en"]
         user.quarter = self.cleaned_data["quarter"]
         user.date_start = self.cleaned_data["date_start"]
         user.date_end = self.cleaned_data["date_end"]
         user.comment = self.cleaned_data["comment"]
+        user.comment_pl = self.cleaned_data["comment"]
         user.comment_en = self.cleaned_data["comment_en"]
         user.announcement = self.cleaned_data["announcement"]
+        user.announcement_pl = self.cleaned_data["announcement"]
         user.announcement_en = self.cleaned_data["announcement_en"]
         user.userdata1 = self.cleaned_data["userdata1"]
         user.sh_preferences = self.cleaned_data["sh_preferences"]
