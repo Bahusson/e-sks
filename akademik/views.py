@@ -22,7 +22,7 @@ from rekruter.models import SpouseCohabitant as Sch
 from rekruter.models import SpecialCase as Scs
 from esks.special.decorators import council_only, hotel_staff_only, translators_only
 from rekruter.models import User, FormItems, QuarterClassB
-from rekruter.forms import IniForm, ApplicationForm
+from rekruter.forms import IniForm, ApplicationForm, PartyForm
 import datetime
 import pytz
 # from django.core.files.uploadedfile import SimpleUploadedFile
@@ -182,3 +182,40 @@ def dormapply(request):
             context_lazy = pl.lazy_context(skins=S, context=context)
             template = 'forms/dormapply.html'
             return render(request, template, context_lazy)
+
+# Tworzy nową akcję kwaterunkową wraz z formularzem z poziomu przew. rady.
+def makemeparty(request):
+    userdata = User.objects.get(
+     id=request.user.id)
+    if request.method == 'POST':
+        form = PartyForm(request.POST)
+        if form.is_valid():
+            form.save(userdata)
+            return redirect('staffpanel_c')
+    else:
+        pe_fi = PageElement(FormItems)
+        pe_fi0 = pe_fi.list_specific(0)
+        form = ApplicationForm()
+        sh = PageElement(Sh)
+        ifr = PageElement(Ifr)
+        tper = PageElement(Tper)
+        stf = PageElement(Stf)
+        std = PageElement(Std)
+        sch = PageElement(Sch)
+        scs = PageElement(Scs)
+        context = {
+         'udata': userdata,
+         'formitem': pe_fi0,
+         'form': form,
+         'houselist': sh.listed,
+         'staylist': ifr.listed,
+         'periodlist': tper.listed,
+         'facultylist': stf.listed,
+         'degreelist': std.listed,
+         'spouselist': sch.listed,
+         'scaselist': scs.listed,
+         }
+        pl = PortalLoad(P, L, Pbi, 0, Umi, Uli, )
+        context_lazy = pl.lazy_context(skins=S, context=context)
+        template = 'forms/partymaker.html'
+        return render(request, template, context_lazy)

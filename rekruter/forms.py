@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from rekruter.models import User, ApplicationFormFields
+from akademik.models import HousingParty
 
 
 class ExtendedCreationForm(UserCreationForm):
@@ -151,3 +152,54 @@ class ApplicationForm(forms.ModelForm):
         if commit:
             application.save()
         return application
+
+
+class PartyForm(forms.ModelForm):
+    title = forms.CharField(max_length=200)
+    title_en = forms.CharField(max_length=200)
+    quarter = forms.IntegerField()
+    date_start = forms.DateTimeField()
+    date_end = forms.DateTimeField()
+    comment = forms.CharField(widget=forms.Textarea, required=False)
+    comment_en = forms.CharField(widget=forms.Textarea, required=False)
+    announcement = forms.CharField(widget=forms.Textarea, required=False)
+    announcement_en = forms.CharField(widget=forms.Textarea, required=False)
+    userdata1 = forms.BooleanField()
+    sh_preferences = forms.BooleanField()
+    userdata2 = forms.BooleanField()
+    formmap = forms.BooleanField()
+    faculty_data = forms.BooleanField()
+    extra_info = forms.BooleanField()
+    agreements1 = forms.BooleanField()
+    # agreements2 = forms.BooleanField(required=False)
+    # agreements3 = forms.BooleanField(required=False)
+
+    class Meta:
+        model = HousingParty
+        fields = (
+         'title', 'title_en', 'quarter', 'date_start', 'date_end', 'comment',
+         'comment_en', 'announcement', 'announcement_en', 'userdata1',
+         'userdata2', 'formmap', 'faculty_data', 'extra_info', 'agreements1')
+
+    def save(self, commit=True):
+        user = super(IniForm, self).save(commit=False)
+        user.title = self.cleaned_data["title"]
+        user.title_en = self.cleaned_data["title_en"]
+        user.quarter = self.cleaned_data["quarter"]
+        user.date_start = self.cleaned_data["date_start"]
+        user.date_end = self.cleaned_data["date_end"]
+        user.comment = self.cleaned_data["comment"]
+        user.comment_en = self.cleaned_data["comment_en"]
+        user.announcement = self.cleaned_data["announcement"]
+        user.announcement_en = self.cleaned_data["announcement_en"]
+        user.userdata1 = self.cleaned_data["userdata1"]
+        user.sh_preferences = self.cleaned_data["sh_preferences"]
+        user.userdata2 = self.cleaned_data["userdata2"]
+        user.formmap = self.cleaned_data["formmap"]
+        user.faculty_data = self.cleaned_data["faculty_data"]
+        user.extra_info = self.cleaned_data["extra_info"]
+        user.agreements1 = self.cleaned_data["agreements1"]
+
+        if commit:
+            user.save()
+        return user

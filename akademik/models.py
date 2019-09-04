@@ -125,6 +125,15 @@ class HousingParty(models.Model):
     date_end = models.DateTimeField()
     comment = models.TextField(blank=True)
     announcement = models.TextField(blank=True)
+    userdata1 = models.BooleanField(default=False)
+    sh_preferences = models.BooleanField(default=False)
+    userdata2 = models.BooleanField(default=False)
+    formmap = models.BooleanField(default=False)
+    faculty_data = models.BooleanField(default=False)
+    extra_info = models.BooleanField(default=False)
+    agreements1 = models.BooleanField(default=False)
+    agreements2 = models.BooleanField(default=False)
+    agreements3 = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title

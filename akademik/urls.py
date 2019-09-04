@@ -8,4 +8,6 @@ urlpatterns = [
     path('panel_tlumacza', views.translatorpanel, name='translatorpanel'),
     path('twoje_dane', views.showmydata, name='userdatapersonal'),
     path('aplikacja_ds', views.dormapply, name='dsapply'),
+    path('kreator_akcji', views.makemeparty, name='makemeparty'),
+
 ]
