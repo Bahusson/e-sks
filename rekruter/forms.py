@@ -134,17 +134,19 @@ class ApplicationForm(forms.ModelForm):
 
 class PartyForm(forms.ModelForm):
     title = forms.CharField(max_length=200)
-    title_pl = forms.CharField(max_length=200)
-    title_en = forms.CharField(max_length=200)
+    #title_pl = forms.CharField(max_length=200)
+    #title_en = forms.CharField(max_length=200)
     quarter = forms.CharField(widget=forms.HiddenInput())
-    date_start = forms.DateTimeField()
-    date_end = forms.DateTimeField()
+    # date_start = forms.DateTimeField(widget=widgets.AdminSplitDateTime())
+    # date_end = forms.DateTimeField(widget=widgets.AdminSplitDateTime())
+    # date_start = forms.SplitDateTimeField()
+    # date_end = forms.SplitDateTimeField()
     comment = forms.CharField(widget=forms.Textarea, required=False)
-    comment_pl = forms.CharField(widget=forms.Textarea, required=False)
-    comment_en = forms.CharField(widget=forms.Textarea, required=False)
+    # comment_pl = forms.CharField(widget=forms.Textarea, required=False)
+    # comment_en = forms.CharField(widget=forms.Textarea, required=False)
     announcement = forms.CharField(widget=forms.Textarea, required=False)
-    announcement_pl = forms.CharField(widget=forms.Textarea, required=False)
-    announcement_en = forms.CharField(widget=forms.Textarea, required=False)
+    # announcement_pl = forms.CharField(widget=forms.Textarea, required=False)
+    # announcement_en = forms.CharField(widget=forms.Textarea, required=False)
     userdata1 = forms.BooleanField(required=False)
     sh_preferences = forms.BooleanField(required=False)
     userdata2 = forms.BooleanField(required=False)
@@ -158,40 +160,47 @@ class PartyForm(forms.ModelForm):
     class Meta:
         model = HousingParty
         fields = (
-         'title', 'title_pl', 'title_en', 'quarter', 'date_start', 'date_end',
-         'comment', 'comment_pl', 'comment_en', 'announcement',
-         'announcement_pl', 'announcement_en', 'userdata1', 'userdata2',
+         'title',
+         #'title_pl', 'title_en',
+         'quarter',
+         # 'date_start', 'date_end',
+         'comment', #'comment_pl', 'comment_en',
+         'announcement',
+         #'announcement_pl', 'announcement_en',
+         'userdata1',
+         'sh_preferences', 'userdata2',
          'formmap', 'faculty_data', 'extra_info', 'agreements1')
 
     # Tworzy takie rozbite pole DateTime jak to w adminie.
     # https://stackoverflow.com/questions/15643019/datetime-field-in-django-form-model
-    def __init__(self, *args, **kwargs):
-        super(PartyForm, self).__init__(*args, **kwargs)
-        self.fields['date_start'].widget = widgets.AdminSplitDateTime()
-        self.fields['date_end'].widget = widgets.AdminSplitDateTime()
+    # def __init__(self, *args, **kwargs):
+    #    super(PartyForm, self).__init__(*args, **kwargs)
+    #    self.fields['date_start'].widget = widgets.AdminSplitDateTime()
+    #    self.fields['date_end'].widget = widgets.AdminSplitDateTime()
 
-    def save(self, commit=True):
-        user = super(IniForm, self).save(commit=False)
-        user.title = self.cleaned_data["title"]
-        user.title_pl = self.cleaned_data["title"]
-        user.title_en = self.cleaned_data["title_en"]
-        user.quarter = self.cleaned_data["quarter"]
-        user.date_start = self.cleaned_data["date_start"]
-        user.date_end = self.cleaned_data["date_end"]
-        user.comment = self.cleaned_data["comment"]
-        user.comment_pl = self.cleaned_data["comment"]
-        user.comment_en = self.cleaned_data["comment_en"]
-        user.announcement = self.cleaned_data["announcement"]
-        user.announcement_pl = self.cleaned_data["announcement"]
-        user.announcement_en = self.cleaned_data["announcement_en"]
-        user.userdata1 = self.cleaned_data["userdata1"]
-        user.sh_preferences = self.cleaned_data["sh_preferences"]
-        user.userdata2 = self.cleaned_data["userdata2"]
-        user.formmap = self.cleaned_data["formmap"]
-        user.faculty_data = self.cleaned_data["faculty_data"]
-        user.extra_info = self.cleaned_data["extra_info"]
-        user.agreements1 = self.cleaned_data["agreements1"]
+    def save(self, uid, commit=True):
+        party = super(PartyForm, self).save(commit=False)
+        party.owner = uid
+        party.title = self.cleaned_data["title"]
+        # party.title_pl = self.cleaned_data["title"]
+        # party.title_en = self.cleaned_data["title_en"]
+        party.quarter = self.cleaned_data["quarter"]
+    #    party.date_start = self.cleaned_data["date_start"]
+    #    party.date_end = self.cleaned_data["date_end"]
+        party.comment = self.cleaned_data["comment"]
+        # party.comment_pl = self.cleaned_data["comment"]
+        # party.comment_en = self.cleaned_data["comment_en"]
+        party.announcement = self.cleaned_data["announcement"]
+        # party.announcement_pl = self.cleaned_data["announcement"]
+        # party.announcement_en = self.cleaned_data["announcement_en"]
+        party.userdata1 = self.cleaned_data["userdata1"]
+        party.sh_preferences = self.cleaned_data["sh_preferences"]
+        party.userdata2 = self.cleaned_data["userdata2"]
+        party.formmap = self.cleaned_data["formmap"]
+        party.faculty_data = self.cleaned_data["faculty_data"]
+        party.extra_info = self.cleaned_data["extra_info"]
+        party.agreements1 = self.cleaned_data["agreements1"]
 
         if commit:
-            user.save()
-        return user
+            party.save()
+        return party
