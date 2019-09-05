@@ -120,7 +120,7 @@ class UserLinkItem(models.Model):
 # Ta klasa tworzy i porządkuje akcje kwaterunkowe
 # Dodaje też ogłoszenie w wielu językach.
 class HousingParty(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(blank=True, max_length=200)
     quarter = models.IntegerField()
     date_start = models.DateTimeField(blank=True, null=True)
     date_end = models.DateTimeField(blank=True, null=True)

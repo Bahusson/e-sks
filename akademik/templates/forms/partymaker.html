@@ -23,7 +23,7 @@
 
   <form name="PartyForm" method="post"> <!-- Do wysyłania plików -->
     {% csrf_token %}
-    <p>Tytuł akcji PL: {{ form2.title }}</p>
+    <p>Tytuł akcji PL: {{ form2.title_pl }}</p>
     <p>Tytuł akcji EN: {{ form2.title_en }}</p>
     <p>Wybierz akcję: <select id="Quarterselector" name="Quarter">
                        <option value ="None" disabled>{{ formitem.list_select }}:</option>
@@ -33,9 +33,9 @@
                       </select></p>
     <p>Czas Rozpoczęcia: {{ form2.date_start }}</p>
     <p>Czas Zakończenia {{ form2.date_end }}</p>
-    <p>Komentarz PL: {{ form2.comment }}</p>
+    <p>Komentarz PL: {{ form2.comment_pl }}</p>
     <p>Komentarz EN: {{ form2.comment_en }}</p>
-    <p>Ogłoszenie PL: {{ form2.announcement }}</p>
+    <p>Ogłoszenie PL: {{ form2.announcement_pl }}</p>
     <p>Ogłoszenie EN: {{ form2.announcement_en }}</p>
     <!-- Tutaj trzeba zrobić ładną tabelkę że w lewej tabeli są elementy formularza
     a w prawej są checkboxy które rada sobie zaznacza jako opcje widoczne w formularzu -->

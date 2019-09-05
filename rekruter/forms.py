@@ -132,18 +132,16 @@ class ApplicationForm(forms.ModelForm):
 
 
 class PartyForm(forms.ModelForm):
-    title = forms.CharField(max_length=200)
-    #title_pl = forms.CharField(max_length=200)
-    #title_en = forms.CharField(max_length=200)
+    title_pl = forms.CharField(max_length=200)
+    title_en = forms.CharField(max_length=200)
     quarter = forms.CharField(widget=forms.HiddenInput())
     date_start = forms.DateTimeField(input_formats=['%d/%m/%Y %H:%M'])
     date_end = forms.DateTimeField(input_formats=['%d/%m/%Y %H:%M'])
-    comment = forms.CharField(widget=forms.Textarea, required=False)
-    # comment_pl = forms.CharField(widget=forms.Textarea, required=False)
-    # comment_en = forms.CharField(widget=forms.Textarea, required=False)
+    comment_pl = forms.CharField(widget=forms.Textarea, required=False)
+    comment_en = forms.CharField(widget=forms.Textarea, required=False)
     announcement = forms.CharField(widget=forms.Textarea, required=False)
-    # announcement_pl = forms.CharField(widget=forms.Textarea, required=False)
-    # announcement_en = forms.CharField(widget=forms.Textarea, required=False)
+    announcement_pl = forms.CharField(widget=forms.Textarea, required=False)
+    announcement_en = forms.CharField(widget=forms.Textarea, required=False)
     userdata1 = forms.BooleanField(required=False)
     sh_preferences = forms.BooleanField(required=False)
     userdata2 = forms.BooleanField(required=False)
@@ -157,31 +155,23 @@ class PartyForm(forms.ModelForm):
     class Meta:
         model = HousingParty
         fields = (
-         'title',
-         #'title_pl', 'title_en',
-         'quarter',
-         'date_start', 'date_end',
-         'comment', #'comment_pl', 'comment_en',
-         'announcement',
-         #'announcement_pl', 'announcement_en',
+         'title_pl', 'title_en', 'quarter', 'date_start', 'date_end',
+         'comment_pl', 'comment_en', 'announcement_pl', 'announcement_en',
          'userdata1',  'sh_preferences', 'userdata2',
          'formmap', 'faculty_data', 'extra_info', 'agreements1')
 
     def save(self, uid, commit=True):
         party = super(PartyForm, self).save(commit=False)
         party.owner = uid
-        party.title = self.cleaned_data["title"]
-        # party.title_pl = self.cleaned_data["title"]
-        # party.title_en = self.cleaned_data["title_en"]
+        party.title_pl = self.cleaned_data["title_pl"]
+        party.title_en = self.cleaned_data["title_en"]
         party.quarter = self.cleaned_data["quarter"]
         party.date_start = self.cleaned_data["date_start"]
         party.date_end = self.cleaned_data["date_end"]
-        party.comment = self.cleaned_data["comment"]
-        # party.comment_pl = self.cleaned_data["comment"]
-        # party.comment_en = self.cleaned_data["comment_en"]
-        party.announcement = self.cleaned_data["announcement"]
-        # party.announcement_pl = self.cleaned_data["announcement"]
-        # party.announcement_en = self.cleaned_data["announcement_en"]
+        party.comment_pl = self.cleaned_data["comment_pl"]
+        party.comment_en = self.cleaned_data["comment_en"]
+        party.announcement_pl = self.cleaned_data["announcement_pl"]
+        party.announcement_en = self.cleaned_data["announcement_en"]
         party.userdata1 = self.cleaned_data["userdata1"]
         party.sh_preferences = self.cleaned_data["sh_preferences"]
         party.userdata2 = self.cleaned_data["userdata2"]
