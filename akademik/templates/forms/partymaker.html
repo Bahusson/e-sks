@@ -6,10 +6,6 @@
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css"/>
-<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css"/>
-<link rel="stylesheet" type="text/css" href="/static/admin/css/global.css"/>
-<link rel="stylesheet" type="text/css" href="/static/admin/css/widgets.css"/>
 {% endblock %}
 {% block css2 %}
 {% endblock %}
@@ -27,7 +23,7 @@
 
   <form name="PartyForm" method="post"> <!-- Do wysyłania plików -->
     {% csrf_token %}
-    <p>Tytuł akcji PL: {{ form2.title }}</p>
+    <p>Tytuł akcji PL: {{ form2.title_pl }}</p>
     <p>Tytuł akcji EN: {{ form2.title_en }}</p>
     <p>Wybierz akcję: <select id="Quarterselector" name="Quarter">
                        <option value ="None" disabled>{{ formitem.list_select }}:</option>
@@ -37,9 +33,9 @@
                       </select></p>
     <p>Czas Rozpoczęcia: {{ form2.date_start }}</p>
     <p>Czas Zakończenia {{ form2.date_end }}</p>
-    <p>Komentarz PL: {{ form2.comment }}</p>
+    <p>Komentarz PL: {{ form2.comment_pl }}</p>
     <p>Komentarz EN: {{ form2.comment_en }}</p>
-    <p>Ogłoszenie PL: {{ form2.announcement }}</p>
+    <p>Ogłoszenie PL: {{ form2.announcement_pl }}</p>
     <p>Ogłoszenie EN: {{ form2.announcement_en }}</p>
     <!-- Tutaj trzeba zrobić ładną tabelkę że w lewej tabeli są elementy formularza
     a w prawej są checkboxy które rada sobie zaznacza jako opcje widoczne w formularzu -->
@@ -59,18 +55,8 @@
 {% endblock body %}
 
 {% block scripts %}
- <script src="{% static "quarterchange.js" %}"></script>
- <script type="text/javascript" src="/admin/jsi18n/"></script>
- <script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
- <script type="text/javascript" src="/static/admin/js/calendar.js"></script>
- <script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
- <script type="text/javascript" src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
- <script type="text/javascript" src="/static/admin/js/core.js"></script>
- <script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
- <script type="text/javascript" src="/static/admin/js/actions.js"></script>
- <script type="text/javascript" src="/static/admin/js/urlify.js"></script>
- <script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
- <script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+<script src="{% static "quarterchange.js" %}"></script>
+{% include 'forms/widgets/date_period.html' %}
 {% endblock %}
 
 {% block scripts2 %}
