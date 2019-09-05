@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.admin import widgets
 from django.contrib.auth.forms import UserCreationForm
 from rekruter.models import User, ApplicationFormFields
 from akademik.models import HousingParty
@@ -136,8 +137,10 @@ class PartyForm(forms.ModelForm):
     #title_pl = forms.CharField(max_length=200)
     #title_en = forms.CharField(max_length=200)
     quarter = forms.CharField(widget=forms.HiddenInput())
-    date_start = forms.DateTimeField(input_formats=['%d/%m/%Y %H:%M'])
-    date_end = forms.DateTimeField(input_formats=['%d/%m/%Y %H:%M'])
+    date_start = forms.DateTimeField(widget=widgets.AdminSplitDateTime())
+    #date_end = forms.DateTimeField(widget=widgets.AdminSplitDateTime())
+    # date_start = forms.SplitDateTimeField()
+    # date_end = forms.SplitDateTimeField()
     comment = forms.CharField(widget=forms.Textarea, required=False)
     # comment_pl = forms.CharField(widget=forms.Textarea, required=False)
     # comment_en = forms.CharField(widget=forms.Textarea, required=False)
@@ -160,12 +163,25 @@ class PartyForm(forms.ModelForm):
          'title',
          #'title_pl', 'title_en',
          'quarter',
-         'date_start', 'date_end',
+         'date_start',# 'date_end',
          'comment', #'comment_pl', 'comment_en',
          'announcement',
          #'announcement_pl', 'announcement_en',
-         'userdata1',  'sh_preferences', 'userdata2',
+         'userdata1',
+         'sh_preferences', 'userdata2',
          'formmap', 'faculty_data', 'extra_info', 'agreements1')
+
+    # Tworzy takie rozbite pole DateTime jak to w adminie.
+    # https://stackoverflow.com/questions/15643019/datetime-field-in-django-form-model
+    # def __init__(self, *args, **kwargs):
+    #    super(PartyForm, self).__init__(*args, **kwargs)
+    #    self.fields['date_start'].widget = widgets.AdminSplitDateTime()
+    #    self.fields['date_end'].widget = widgets.AdminSplitDateTime()
+    def test(self):
+        party = super(PartyForm, self).save(commit=False)
+        date_st = self.cleaned_data["date_start"]
+        print(type(date_st))
+        print(date_st)
 
     def save(self, uid, commit=True):
         party = super(PartyForm, self).save(commit=False)
@@ -174,8 +190,8 @@ class PartyForm(forms.ModelForm):
         # party.title_pl = self.cleaned_data["title"]
         # party.title_en = self.cleaned_data["title_en"]
         party.quarter = self.cleaned_data["quarter"]
-        party.date_start = self.cleaned_data["date_start"]
-        party.date_end = self.cleaned_data["date_end"]
+    #    party.date_start = self.cleaned_data["date_start"]
+    #    party.date_end = self.cleaned_data["date_end"]
         party.comment = self.cleaned_data["comment"]
         # party.comment_pl = self.cleaned_data["comment"]
         # party.comment_en = self.cleaned_data["comment_en"]

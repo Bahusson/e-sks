@@ -6,10 +6,6 @@
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css"/>
-<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css"/>
-<link rel="stylesheet" type="text/css" href="/static/admin/css/global.css"/>
-<link rel="stylesheet" type="text/css" href="/static/admin/css/widgets.css"/>
 {% endblock %}
 {% block css2 %}
 {% endblock %}
@@ -59,18 +55,20 @@
 {% endblock body %}
 
 {% block scripts %}
- <script src="{% static "quarterchange.js" %}"></script>
- <script type="text/javascript" src="/admin/jsi18n/"></script>
- <script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
- <script type="text/javascript" src="/static/admin/js/calendar.js"></script>
- <script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
- <script type="text/javascript" src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
- <script type="text/javascript" src="/static/admin/js/core.js"></script>
- <script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
- <script type="text/javascript" src="/static/admin/js/actions.js"></script>
- <script type="text/javascript" src="/static/admin/js/urlify.js"></script>
- <script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
- <script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+<script src="{% static "quarterchange.js" %}"></script>
+<!-- XDSoft DateTimePicker -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
+<script>
+  $(function () {
+    $("#id_date_start").datetimepicker({
+      format: 'd/m/Y H:i',
+    });
+    $("#id_date_end").datetimepicker({
+      format: 'd/m/Y H:i',
+    });
+  });
+</script>
 {% endblock %}
 
 {% block scripts2 %}
