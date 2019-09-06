@@ -5,7 +5,7 @@
 {% load staticfiles %}
 
 {% block title %}
-<title>Panel Rady</title>
+<title>{{ link.1 }}</title>
 {% endblock %}
 
 {% block css %}
@@ -23,6 +23,17 @@
 {% endblock menu %}
 
 {% block body %}
+<h2>{{ link.1 }}</h2>
+<p>
+<select id="party_view">
+           <option value ="0">Wszystkie akcje</option>
+           <option value ="1">Trwające Akcje</option>
+           <option value ="2">Nieaktywne Akcje</option>
+           <option value ="3">Zaplanowane Akcje</option>
+</select>
+<button id="send">Zmień widok</button>
+</p>
+<br><br>
   {% for party in parties %}
     <h4>{{ party.title }}</h6>
     <p><b>{{ formitem.action }}:</b> {{ setter|action:party.quarter }} </p>
