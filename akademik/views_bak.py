@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.shortcuts import get_object_or_404 as G404
 from strona.models import Pageitem as P
 from strona.models import PageSkin as S
 from esks.settings import LANGUAGES as L
@@ -106,8 +105,9 @@ def showmydata(request):
         return render(request, template, context_lazy)
 
 
-# Zwraca atrybut akcji "aktywnych" względem czasu serwera.
-def active_party(attrname="id"):
+# Funkcja zwraca numery akcji kwaterunkowych, które są aktualnie 'aktywne'
+# względem czasu serwera.
+def active_party():
     active_parties = []
     all_parties = PageElement(HParty)
     tz_UTC = pytz.timezone('Europe/Warsaw')
@@ -116,13 +116,27 @@ def active_party(attrname="id"):
     x = 0
     for item in list_parties:
         if list_parties[x].__dict__['date_start'] <= dt_now <= list_parties[x].__dict__['date_end']:
-            active_parties.append(str(list_parties[x].__dict__[attrname]))
+            active_parties.append(str(list_parties[x].__dict__['quarter']))
+        x = x+1
+    return active_parties
+
+### Jeśli ten numer zadziała to powyższe do modyfikacji bo duplikat
+def active_party_by_id(id="id"):
+    active_parties = []
+    all_parties = PageElement(HParty)
+    tz_UTC = pytz.timezone('Europe/Warsaw')
+    dt_now = datetime.datetime.now(tz_UTC)
+    list_parties = all_parties.listed
+    x = 0
+    for item in list_parties:
+        if list_parties[x].__dict__['date_start'] <= dt_now <= list_parties[x].__dict__['date_end']:
+            active_parties.append(str(list_parties[x].__dict__[id]))
         x = x+1
     return active_parties
 
 
 def party_switch(request):
-    x = active_party(id="quarter")
+    x = active_party()
     quarter = request.user.quarter
     if quarter in x:
         print('nowy formularz...')
@@ -228,28 +242,29 @@ def makemeparty(request):
         return render(request, template, context_lazy)
 
 
-# Na razie pokazuje tylko akcje aktywne.
-# Do zmiany, żeby był wybór.
+# Panel Rady
 @council_only(login_url='logger')
 def allparties(request, view_filter=0):
     all_parties = PageElement(HParty)
-    all_parties_l = all_parties.listed
-    active_range = active_party(attrname="id")
-    active_parties = []
-    for item in active_range:
-        obj = all_parties.elements.get(pk=item)
-        active_parties.append(obj)
-    pe_fi = PageElement(FormItems)
-    all_parties = PageElement(HParty)
-    hpi = PageElement(Hpi)
-    peqc = PageElement(QuarterClassB)
-    context = {
-     'formitem': pe_fi.baseattrs,
-     'parties': active_parties,
-     'p_item':hpi.baseattrs,
-     'setter': peqc.listed,
-     }
-    pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli)
-    context_lazy = pl.lazy_context(skins=S, context=context)
-    template = 'panels/council/allparties.html'
-    return render(request, template, context_lazy)
+    parties = all_parties.by_id
+    if request.method == 'POST':
+        if request.is_ajax():
+            party_range = request.post.get('party_range')
+            active_range = active_party_by_id()
+            #if party_range == 1:
+            party =
+    else:
+        pe_fi = PageElement(FormItems)
+        all_parties = PageElement(HParty)
+        hpi = PageElement(Hpi)
+        peqc = PageElement(QuarterClassB)
+        context = {
+         'formitem': pe_fi.baseattrs,
+         'parties':  parties,
+         'p_item':hpi.baseattrs,
+         'setter': peqc.listed,
+         }
+        pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli)
+        context_lazy = pl.lazy_context(skins=S, context=context)
+        template = 'panels/council/allparties.html'
+        return render(request, template, context_lazy)

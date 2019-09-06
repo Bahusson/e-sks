@@ -23,8 +23,8 @@
 
   <form name="PartyForm" method="post"> <!-- Do wysyłania plików -->
     {% csrf_token %}
-    <p>{{ p_item.party_titlePL }}: {{ form2.title_pl }}</p>
-    <p>{{ p_item.party_titleEN }}: {{ form2.title_en }}</p>
+    <p>{{ p_item.party_title }}(PL): {{ form2.title_pl }}</p>
+    <p>{{ p_item.party_title }}(EN): {{ form2.title_en }}</p>
     <p>{{ p_item.choose_party }}: <select id="Quarterselector" name="Quarter">
                        <option value ="None" disabled>{{ formitem.list_select }}:</option>
                        {% for item in setlist %}
@@ -33,10 +33,10 @@
                       </select></p>
     <p>{{ p_item.time_start }}: {{ form2.date_start }}</p>
     <p>{{ p_item.time_end }}: {{ form2.date_end }}</p>
-    <p>{{ p_item.commentPL }}: {{ form2.comment_pl }}</p>
-    <p>{{ p_item.commentEN }}: {{ form2.comment_en }}</p>
-    <p>{{ p_item.announcePL }}: {{ form2.announcement_pl }}</p>
-    <p>{{ p_item.announceEN }}: {{ form2.announcement_en }}</p>
+    <p>{{ p_item.comment }}(PL): {{ form2.comment_pl }}</p>
+    <p>{{ p_item.comment }}(EN): {{ form2.comment_en }}</p>
+    <p>{{ p_item.announce }}(PL): {{ form2.announcement_pl }}</p>
+    <p>{{ p_item.announce }}(EN): {{ form2.announcement_en }}</p>
     <!-- Tutaj trzeba zrobić ładną tabelkę że w lewej tabeli są elementy formularza
     a w prawej są checkboxy które rada sobie zaznacza jako opcje widoczne w formularzu -->
     <p>{{ p_item.tick_form }}</p>

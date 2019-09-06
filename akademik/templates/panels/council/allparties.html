@@ -24,9 +24,15 @@
 
 {% block body %}
   {% for party in parties %}
-    <h6>{{ party.title }}</h6>
-    <p>{{ formitem.action }}: {{ setter|action:party.quarter }} </p>
-    <p>{{ p_item.p_from }}: {{ party.date_start }} {{ p_item.p_to }}:{{ party.date_end }}</p>
+    <h4>{{ party.title }}</h6>
+    <p><b>{{ formitem.action }}:</b> {{ setter|action:party.quarter }} </p>
+    <p><b>{{ p_item.p_from }}:</b> {{ party.date_start }} <br><b>{{ p_item.p_to }}:</b>{{ party.date_end }}</p>
+    <p><b>{{ p_item.comment }}:</b> {{ party.comment }} </p>
+    <p><b>{{ p_item.announce }}:</b> {{ party.announcement }} </p>
+    {% if user.role_council > 2 %}
+      <a class="button" href="">{{ p_item.changeme }}</a>
+    {% endif %}
+    <br>
   {% endfor %}
 {% endblock body %}
 

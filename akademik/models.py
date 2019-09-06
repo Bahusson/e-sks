@@ -147,15 +147,13 @@ class HousingParty(models.Model):
 
 # Klasa tłumaczeniowa związana z akcjami kwaterunkowymi
 class HousingPartyItems(models.Model):
-    party_titlePL = models.CharField(blank=True, max_length=200)
-    party_titleEN = models.CharField(blank=True, max_length=200)
+    party_title = models.CharField(blank=True, max_length=200)
     choose_party = models.CharField(blank=True, max_length=200)
     time_start = models.CharField(blank=True, max_length=200)
     time_end = models.CharField(blank=True, max_length=200)
-    commentPL = models.CharField(blank=True, max_length=200)
-    commentEN = models.CharField(blank=True, max_length=200)
-    announcePL = models.CharField(blank=True, max_length=200)
-    announceEN = models.CharField(blank=True, max_length=200)
+    comment = models.CharField(blank=True, max_length=200)
+    announce = models.CharField(blank=True, max_length=200)
     tick_form = models.CharField(blank=True, max_length=200)
     p_from = models.CharField(blank=True, max_length=200)
     p_to = models.CharField(blank=True, max_length=200)
+    changeme = models.CharField(blank=True, max_length=200)

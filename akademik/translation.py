@@ -78,9 +78,8 @@ translator.register(HousingParty, HousingPartyTranslate)
 
 class HousingPartyItemsTranslate(TranslationOptions):
     fields = (
-    'party_titlePL', 'party_titleEN', 'choose_party', 'time_start', 'time_end',
-    'commentPL', 'commentEN', 'announcePL', 'announceEN', 'tick_form', 'p_from',
-    'p_to', )
+    'party_title', 'choose_party', 'time_start', 'time_end', 'comment',
+    'announce', 'tick_form', 'p_from', 'p_to', 'changeme', )
 
 
 translator.register(HousingPartyItems, HousingPartyItemsTranslate)
