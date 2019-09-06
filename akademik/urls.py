@@ -9,5 +9,5 @@ urlpatterns = [
     path('twoje_dane', views.showmydata, name='userdatapersonal'),
     path('aplikacja_ds', views.dormapply, name='dsapply'),
     path('kreator_akcji', views.makemeparty, name='makemeparty'),
-
+    path('akcje_kwaterunkowe', views.allparties, name='allparties'),
 ]

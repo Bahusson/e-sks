@@ -1,0 +1,54 @@
+<!-- Widok akcji kwaterunkowych. Przewodniczący powinien mieć możliwość ich edytowania -->
+<!-- Goły panel rady. Na początku nic się nie wyświetla. A mogłoby -->
+{% extends 'base.html' %}
+{% load xfilters %} <!-- Ładuje zaawansowane filtry logiczne -->
+{% load staticfiles %}
+
+{% block title %}
+<title>{{ link.1 }}</title>
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+{% block css2 %}
+{% endblock %}
+
+<!--Zwraca oryginalną kompozycję menu z bazy. Potem podstawiasz zmienne,-->
+{% block aside %}
+ {{ block.super }}
+{% endblock aside %}
+
+{% block menu %}
+  {% include 'menus/council_menus.html' %} <!-- Menu z opcjami użytkownika -->
+{% endblock menu %}
+
+{% block body %}
+<h2>{{ link.1 }}</h2>
+<p>
+<select id="party_view">
+           <option value ="0">Wszystkie akcje</option>
+           <option value ="1">Trwające Akcje</option>
+           <option value ="2">Nieaktywne Akcje</option>
+           <option value ="3">Zaplanowane Akcje</option>
+</select>
+<button id="send">Zmień widok</button>
+</p>
+<br><br>
+  {% for party in parties %}
+    <h4>{{ party.title }}</h6>
+    <p><b>{{ formitem.action }}:</b> {{ setter|action:party.quarter }} </p>
+    <p><b>{{ p_item.p_from }}:</b> {{ party.date_start }} <br><b>{{ p_item.p_to }}:</b>{{ party.date_end }}</p>
+    <p><b>{{ p_item.comment }}:</b> {{ party.comment }} </p>
+    <p><b>{{ p_item.announce }}:</b> {{ party.announcement }} </p>
+    {% if user.role_council > 2 %}
+      <a class="button" href="">{{ p_item.changeme }}</a>
+    {% endif %}
+    <br>
+  {% endfor %}
+{% endblock body %}
+
+
+{% block scripts %}
+{% endblock %}
+{% block scripts2 %}
+{% endblock %}

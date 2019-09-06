@@ -66,14 +66,17 @@ def translators_only(
     return actual_decorator
 
 
+# Dekorator Rady Studentów - ustal w funkcji power_level jeśli ma być bardziej restrykcyjny.
 def council_only(
- function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url=None):
+ function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url=None,
+ power_level=1
+ ):
     """
     Decorator for views that checks that the user belongs to the council
     , redirecting  to the log-in page if necessary.
     """
     actual_decorator = user_passes_test(
-        lambda u: u.role_council > 1,
+        lambda u: u.role_council > power_level,
         login_url=login_url,
         redirect_field_name=redirect_field_name
     )

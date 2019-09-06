@@ -141,11 +141,19 @@ class HousingParty(models.Model):
     def __str__(self):
         return self.title
 
-    def get_startdate(self):
-        return self.date_start.date
-
-    def get_enddate(self):
-        return self.date_end.date
-
     class Meta:
         ordering = ['date_start', 'date_end', 'quarter']
+
+
+# Klasa tłumaczeniowa związana z akcjami kwaterunkowymi
+class HousingPartyItems(models.Model):
+    party_title = models.CharField(blank=True, max_length=200)
+    choose_party = models.CharField(blank=True, max_length=200)
+    time_start = models.CharField(blank=True, max_length=200)
+    time_end = models.CharField(blank=True, max_length=200)
+    comment = models.CharField(blank=True, max_length=200)
+    announce = models.CharField(blank=True, max_length=200)
+    tick_form = models.CharField(blank=True, max_length=200)
+    p_from = models.CharField(blank=True, max_length=200)
+    p_to = models.CharField(blank=True, max_length=200)
+    changeme = models.CharField(blank=True, max_length=200)
