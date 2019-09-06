@@ -1,6 +1,7 @@
 <!-- Widok akcji kwaterunkowych. Przewodniczący powinien mieć możliwość ich edytowania -->
 <!-- Goły panel rady. Na początku nic się nie wyświetla. A mogłoby -->
 {% extends 'base.html' %}
+{% load xfilters %} <!-- Ładuje zaawansowane filtry logiczne -->
 {% load staticfiles %}
 
 {% block title %}
@@ -24,7 +25,7 @@
 {% block body %}
   {% for party in parties %}
     <h6>{{ party.title }}</h6>
-    <p>{{ formitem.action }}: {{ party.quarter }} </p>
+    <p>{{ formitem.action }}: {{ setter|action:party.quarter }} </p>
     <p>{{ p_item.p_from }}: {{ party.date_start }} {{ p_item.p_to }}:{{ party.date_end }}</p>
   {% endfor %}
 {% endblock body %}
