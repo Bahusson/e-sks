@@ -13,6 +13,7 @@ from .models import TranslatorLinkItem as Tli
 from .models import HotelMenuItem as Hmi
 from .models import HotelLinkItem as Hli
 from .models import HousingParty as HParty
+from .models import HousingPartyItems as Hpi
 from rekruter.models import StudentHouse as Sh
 from rekruter.models import IfRoomChange as Ifr
 from rekruter.models import TimePeriod as Tper
@@ -157,7 +158,7 @@ def dormapply(request):
             return redirect('initial')  # Gdzie przekierować jak nie jego akcja?
         else:
             pe_fi = PageElement(FormItems)
-            pe_fi0 = pe_fi.list_specific(0)
+            #pe_fi0 = pe_fi.list_specific(0)
             form = ApplicationForm()
             sh = PageElement(Sh)
             ifr = PageElement(Ifr)
@@ -168,7 +169,7 @@ def dormapply(request):
             scs = PageElement(Scs)
             context = {
              'udata': userdata,
-             'formitem': pe_fi0,
+             'formitem': pe_fi.baseattrs,
              'form': form,
              'houselist': sh.listed,
              'staylist': ifr.listed,
@@ -185,6 +186,7 @@ def dormapply(request):
 
 
 # Tworzy nową akcję kwaterunkową wraz z formularzem z poziomu przew. rady.
+@council_only(login_url='staffpanel_c', power_level=2)  # Tylko Przewodniczący
 def makemeparty(request):
     userdata = User.objects.get(
      id=request.user.id)
@@ -195,7 +197,7 @@ def makemeparty(request):
             return redirect('staffpanel_c')
     else:
         pe_fi = PageElement(FormItems)
-        pe_fi0 = pe_fi.list_specific(0)
+        #pe_fi0 = pe_fi.list_specific(0)
         form = PartyForm()
         sh = PageElement(Sh)
         ifr = PageElement(Ifr)
@@ -205,9 +207,10 @@ def makemeparty(request):
         sch = PageElement(Sch)
         scs = PageElement(Scs)
         peqc = PageElement(QuarterClassB)
+        hpi = PageElement(Hpi)
         context = {
          'udata': userdata,
-         'formitem': pe_fi0,
+         'formitem': pe_fi.baseattrs,
          'form2': form,
          'houselist': sh.listed,
          'staylist': ifr.listed,
@@ -217,8 +220,28 @@ def makemeparty(request):
          'spouselist': sch.listed,
          'scaselist': scs.listed,
          'setlist': peqc.listed,
+         'p_item':hpi.baseattrs
          }
         pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
         context_lazy = pl.lazy_context(skins=S, context=context)
         template = 'forms/partymaker.html'
         return render(request, template, context_lazy)
+
+
+# Panel Rady
+@council_only(login_url='logger')
+def allparties(request):
+    pe_fi = PageElement(FormItems)
+    all_parties = PageElement(HParty)
+    hpi = PageElement(Hpi)
+    peqc = PageElement(QuarterClassB)
+    context = {
+     'formitem': pe_fi.baseattrs,
+     'parties':  all_parties.listed,
+     'p_item':hpi.baseattrs,
+     'setter': peqc.listed,
+     }
+    pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli)
+    context_lazy = pl.lazy_context(skins=S, context=context)
+    template = 'panels/council/allparties.html'
+    return render(request, template, context_lazy)

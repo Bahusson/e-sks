@@ -2,13 +2,16 @@
 <div class="p-3">
   <h4 class="font-italic">{{ menu.0 }}</h4>
     <ol class="list-unstyled mb-0">
-      <li><a href="">{{ link.0 }}</a></li>
+      <li><a href="">{{ link.0 }}</a></li><!--Poczta-->
+      <li><a href="{% url 'allparties' %}">{{ link.1 }}</a></li><!--Akcje Kwaterunkowe-->
+      <li><a href="">{{ link.2 }}</a></li><!--Zarządzaj Stroną-->
+
     </ol>
 </div>
 <div class="p-3">
   <h4 class="font-italic">{{ menu.1 }}</h4>
     <ol class="list-unstyled mb-0">
-      <li><a href="">{{ link.1 }}</a></li>
+      <li><a href="">{{ link.3 }}</a></li><!--Lista Wniosków-->
     </ol>
 </div>
 <!-- Tylko dla Szefa Rady -->
@@ -16,7 +19,7 @@
   <div class="p-3">
     <h4 class="font-italic">{{ menu.2 }}</h4>
       <ol class="list-unstyled mb-0">
-        <li><a href="{% url 'makemeparty' %}">{{ link.2 }}</a></li> <!--Stwórz akcję kwaterunkową -->
+        <li><a href="{% url 'makemeparty' %}">{{ link.4 }}</a></li> <!--Stwórz akcję kwaterunkową -->
       </ol>
   </div>
 {% endif %}

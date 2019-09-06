@@ -1,5 +1,5 @@
 from modeltranslation.translator import translator, TranslationOptions
-from .models import PortalBaseItem
+from .models import PortalBaseItem, HousingPartyItems
 from .models import HotelMenuItem, CouncilMenuItem, TranslatorMenuItem
 from .models import HotelLinkItem, CouncilLinkItem, TranslatorLinkItem
 from .models import UserMenuItem, UserLinkItem, HousingParty
@@ -74,3 +74,13 @@ class HousingPartyTranslate(TranslationOptions):
 
 
 translator.register(HousingParty, HousingPartyTranslate)
+
+
+class HousingPartyItemsTranslate(TranslationOptions):
+    fields = (
+    'party_titlePL', 'party_titleEN', 'choose_party', 'time_start', 'time_end',
+    'commentPL', 'commentEN', 'announcePL', 'announceEN', 'tick_form', 'p_from',
+    'p_to', )
+
+
+translator.register(HousingPartyItems, HousingPartyItemsTranslate)

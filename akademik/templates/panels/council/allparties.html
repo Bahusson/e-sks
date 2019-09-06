@@ -1,0 +1,36 @@
+<!-- Widok akcji kwaterunkowych. Przewodniczący powinien mieć możliwość ich edytowania -->
+<!-- Goły panel rady. Na początku nic się nie wyświetla. A mogłoby -->
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+<title>Panel Rady</title>
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+{% block css2 %}
+{% endblock %}
+
+<!--Zwraca oryginalną kompozycję menu z bazy. Potem podstawiasz zmienne,-->
+{% block aside %}
+ {{ block.super }}
+{% endblock aside %}
+
+{% block menu %}
+  {% include 'menus/council_menus.html' %} <!-- Menu z opcjami użytkownika -->
+{% endblock menu %}
+
+{% block body %}
+  {% for party in parties %}
+    <h6>{{ party.title }}</h6>
+    <p>{{ formitem.action }}: {{ party.quarter }} </p>
+    <p>{{ p_item.p_from }}: {{ party.date_start }} {{ p_item.p_to }}:{{ party.date_end }}</p>
+  {% endfor %}
+{% endblock body %}
+
+
+{% block scripts %}
+{% endblock %}
+{% block scripts2 %}
+{% endblock %}
