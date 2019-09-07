@@ -7,8 +7,6 @@ from esks.special.classes import PortalLoad, PageElement, PartyMaster
 from .models import PortalBaseItem as Pbi
 from .models import UserMenuItem as Umi
 from .models import UserLinkItem as Uli
-from .models import CouncilMenuItem as Cmi
-from .models import CouncilLinkItem as Cli
 from .models import TranslatorMenuItem as Tmi
 from .models import TranslatorLinkItem as Tli
 from .models import HotelMenuItem as Hmi
@@ -110,6 +108,7 @@ def party_switch(request):
 def dormapply(request):
     userdata = User.objects.get(
      id=request.user.id)
+    service = True
     if request.method == 'POST':
         form = ApplicationForm(request.POST)
         if form.is_valid():
@@ -140,6 +139,7 @@ def dormapply(request):
              'degreelist': std.listed,
              'spouselist': sch.listed,
              'scaselist': scs.listed,
+             'service': service
              }
             pl = PortalLoad(P, L, Pbi, 0, Umi, Uli, )
             context_lazy = pl.lazy_context(skins=S, context=context)

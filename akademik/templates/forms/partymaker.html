@@ -26,9 +26,15 @@
     <p>{{ p_item.party_title }}(PL): {{ form2.title_pl }}</p>
     <p>{{ p_item.party_title }}(EN): {{ form2.title_en }}</p>
     <p>{{ p_item.choose_party }}: <select id="Quarterselector" name="Quarter">
-                       <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
+
+                        <option value ="None" disabled="disabled" {% if varlist.0 == 'nowa' %} selected="selected" {% endif %}>
+                          {{ formitem.list_select }}:</option>
                        {% for item in setlist %}
+                       {% if varlist.0 != 'nowa' %}
+                        <option value ="{{ forloop.counter }}"{% if forloop.counter == varlist.1 %} selected="selected" {% endif %}>{{ item }}</option>
+                       {% else %}
                         <option value ="{{ forloop.counter }}">{{ item }}</option>
+                       {% endif %}
                        {% endfor %}
                       </select></p>
     <p>{{ p_item.time_start }}: {{ form2.date_start }}</p>

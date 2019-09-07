@@ -2,7 +2,7 @@
 <!-- Domyślnie: Nie składa -->
 <h4> {{ formitem.additional_info }} </h4>
 <p> {{ formitem.spouse_cohabitant }}:</p>
-<p>    <select required id="spouse_cohabitant">
+<p>    <select {% if service %} required {% endif %} id="spouse_cohabitant">
              <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            {% for item in spouselist %}
               <option value ="{{ forloop.counter }}">{{ item }}</option>
@@ -11,7 +11,7 @@
 </p>
 <p> {{ formitem.special_case_docs }}:</p>
 <p>
-    <select required id="special_case_docs">
+    <select {% if service %} required {% endif %} id="special_case_docs">
              <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            {% for item in scaselist %}
               <option value ="{{ forloop.counter }}">{{ item }}</option>

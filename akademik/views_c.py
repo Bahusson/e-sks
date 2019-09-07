@@ -39,14 +39,31 @@ def staffpanel_c(request):
 def makemeparty(request, party_id):
     userdata = User.objects.get(
      id=request.user.id)
+    # Formularz serwisowy pola niewymagane
+    service = False
     if request.method == 'POST':
-        form = PartyForm(request.POST)
+        if party_id == 'nowa':
+            form = PartyForm(request.POST)
+            print(form)
+        else:
+            instance = HParty.objects.get(id=int(party_id))
+            instance2 = G404(HParty, id=int(party_id))
+            form = PartyForm(request.POST, instance=instance)
+            print(form)
         if form.is_valid():
             form.save(userdata)
             return redirect('staffpanel_c')
     else:
+        varlist = []
+        varlist.append(party_id)
+        if party_id == 'nowa':
+            form = PartyForm()
+        else:
+            instance = G404(HParty, id=int(party_id))
+            form = PartyForm(instance=instance)
+            quart = int(instance.quarter)
+            varlist.append(quart)
         pe_fi = PageElement(FormItems)
-        form = PartyForm()
         sh = PageElement(Sh)
         ifr = PageElement(Ifr)
         tper = PageElement(Tper)
@@ -68,7 +85,9 @@ def makemeparty(request, party_id):
          'spouselist': sch.listed,
          'scaselist': scs.listed,
          'setlist': peqc.listed,
-         'p_item': hpi.baseattrs
+         'p_item': hpi.baseattrs,
+         'varlist': varlist,
+         'service': service
          }
         pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
         context_lazy = pl.lazy_context(skins=S, context=context)
