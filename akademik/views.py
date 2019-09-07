@@ -267,7 +267,7 @@ def makemeparty(request):
 # Na razie pokazuje tylko akcje aktywne.
 # Do zmiany, żeby był wybór.
 @council_only(login_url='logger')
-def allparties(request, view_filter=0):
+def allparties(request, view_filter="1"):
     pm = PartyMaster()
     all_parties = pm.all_parties
     range = {
@@ -276,9 +276,10 @@ def allparties(request, view_filter=0):
      "3": pm.past_party(attrname="id"),
      "4": pm.future_party(attrname="id"),
     }
-    x = "1"
+    if request.method == 'POST':
+        view_filter = str(request.POST.get('view_filter'))
     active_parties = []
-    for item in range[x]:
+    for item in range[view_filter]:
         obj = all_parties.elements.get(pk=item)
         active_parties.append(obj)
     pe_fi = PageElement(FormItems)

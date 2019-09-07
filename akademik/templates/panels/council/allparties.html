@@ -25,13 +25,17 @@
 {% block body %}
 <h2>{{ link.1 }}</h2>
 <p>
-<select id="party_view">
-           <option value ="0">Wszystkie akcje</option>
-           <option value ="1">Trwające Akcje</option>
-           <option value ="2">Nieaktywne Akcje</option>
-           <option value ="3">Zaplanowane Akcje</option>
-</select>
-<button id="send">Zmień widok</button>
+<form name="PartyViewChangeForm" method="post">
+  {% csrf_token %}
+  <select id="party_view">
+             <option value ="1">Wszystkie akcje</option>
+             <option value ="2">Trwające Akcje</option>
+             <option value ="3">Nieaktywne Akcje</option>
+             <option value ="4">Zaplanowane Akcje</option>
+  </select>
+  <input type="hidden" name="view_filter" id="view_filter">
+  <input id="send" class="button" name="subbutton" type="submit" value="Zmień Widok">
+</form>
 </p>
 <br><br>
   {% for party in parties %}
@@ -49,6 +53,7 @@
 
 
 {% block scripts %}
+<script src="{% static "actionchange.js" %}"></script>
 {% endblock %}
 {% block scripts2 %}
 {% endblock %}
