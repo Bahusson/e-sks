@@ -267,7 +267,7 @@ def makemeparty(request):
 # Na razie pokazuje tylko akcje aktywne.
 # Do zmiany, żeby był wybór.
 @council_only(login_url='logger')
-def allparties(request, view_filter="1"):
+def allparties(request, view_filter="2"):
     pm = PartyMaster()
     all_parties = pm.all_parties
     range = {
@@ -291,6 +291,7 @@ def allparties(request, view_filter="1"):
      'parties': active_parties,
      'p_item':hpi.baseattrs,
      'setter': peqc.listed,
+     'view_filter': view_filter,
      }
     pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli)
     context_lazy = pl.lazy_context(skins=S, context=context)

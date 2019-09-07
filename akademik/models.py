@@ -157,3 +157,8 @@ class HousingPartyItems(models.Model):
     p_from = models.CharField(blank=True, max_length=200)
     p_to = models.CharField(blank=True, max_length=200)
     changeme = models.CharField(blank=True, max_length=200)
+    all_parties = models.CharField(blank=True, max_length=200)
+    active_parties = models.CharField(blank=True, max_length=200)
+    past_parties = models.CharField(blank=True, max_length=200)
+    future_parties = models.CharField(blank=True, max_length=200)
+    new_party_view = models.CharField(blank=True, max_length=200)
