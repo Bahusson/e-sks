@@ -126,3 +126,62 @@ class PortalLoad(PageLoad):
         if 'context' in kwargs:
             self.context.update(kwargs['context'])
         return self.context
+
+
+class PartyMaster(object):
+    # Podstawka zwraca wszystkie akcje kwaterunkowe
+    def __init__(self, *args):
+        H_Party = args[0]
+        py_tz = args[1]
+        dt = args[2]
+        self.all_parties = PageElement(H_Party)
+        tz_UTC = py_tz.timezone('Europe/Warsaw')
+        self.dt_now = dt.datetime.now(tz_UTC)
+        self.list_parties = self.all_parties.listed
+
+    # Zwraca wszystkie akcje bez względu na czas serwera (atrybuty)
+    def full_party(self, **kwargs):
+        full_parties = []
+        attrname = kwargs['attrname']
+        x = 0
+        for item in self.list_parties:
+            full_parties.append(
+             str(self.list_parties[x].__dict__[attrname]))
+            x = x+1
+        return full_parties
+
+    # Zwraca tylko aktywne akcje względem czasu serwera (atrybuty)
+    def active_party(self, **kwargs):
+        active_parties = []
+        attrname = kwargs['attrname']
+        x = 0
+        for item in self.list_parties:
+            if self.list_parties[x].__dict__['date_start'] <= self.dt_now <= self.list_parties[x].__dict__['date_end']:
+                active_parties.append(
+                 str(self.list_parties[x].__dict__[attrname]))
+            x = x+1
+        return active_parties
+
+    # Tylko nieaktywne akcje względem czasu serwera (atrybuty)
+    def past_party(self, **kwargs):
+        inactive_parties = []
+        attrname = kwargs['attrname']
+        x = 0
+        for item in self.list_parties:
+            if self.list_parties[x].__dict__['date_end'] < self.dt_now:
+                inactive_parties.append(
+                 str(self.list_parties[x].__dict__[attrname]))
+            x = x+1
+        return inactive_parties
+
+    # Tylko zaplanowane akcje względem czasu serwera (atrybuty)
+    def future_party(self, **kwargs):
+        future_parties = []
+        attrname = kwargs['attrname']
+        x = 0
+        for item in self.list_parties:
+            if self.list_parties[x].__dict__['date_start'] > self.dt_now:
+                future_parties.append(
+                 str(self.list_parties[x].__dict__[attrname]))
+            x = x+1
+        return future_parties

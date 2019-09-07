@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from rekruter.models import User, ApplicationFormFields
-from akademik.models import HousingParty
+from akademik.models import HousingParty as HParty
 
 
 class ExtendedCreationForm(UserCreationForm):
@@ -153,7 +153,7 @@ class PartyForm(forms.ModelForm):
     # agreements3 = forms.BooleanField(required=False)
 
     class Meta:
-        model = HousingParty
+        model = HParty
         fields = (
          'title_pl', 'title_en', 'quarter', 'date_start', 'date_end',
          'comment_pl', 'comment_en', 'announcement_pl', 'announcement_en',
@@ -161,6 +161,7 @@ class PartyForm(forms.ModelForm):
          'formmap', 'faculty_data', 'extra_info', 'agreements1')
 
     def save(self, uid, commit=True):
+        print('Hello!')
         party = super(PartyForm, self).save(commit=False)
         party.owner = uid
         party.title_pl = self.cleaned_data["title_pl"]

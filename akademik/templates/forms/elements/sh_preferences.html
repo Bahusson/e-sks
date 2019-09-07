@@ -2,21 +2,21 @@
 <p> {{ formitem.match_prefs }} <a href="">{{ formitem.see_map }}</a></p>
 <p>
    1:
-    <select required id="sh_choice1">
+    <select {% if service %} required {% endif %} id="sh_choice1">
              <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            {% for item in houselist %}
               <option value ="{{ forloop.counter }}">{{ item }}</option>
            {% endfor %}
     </select>
    2:
-    <select required id="sh_choice2">
+    <select {% if service %} required {% endif %} id="sh_choice2">
              <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            {% for item in houselist %}
               <option value ="{{ forloop.counter }}">{{ item }}</option>
            {% endfor %}
     </select>
    3:
-    <select required id="sh_choice3">
+    <select {% if service %} required {% endif %} id="sh_choice3">
              <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            {% for item in houselist %}
               <option value ="{{ forloop.counter }}">{{ item }}</option>
@@ -25,7 +25,7 @@
 </p>
 <p>
     {{ formitem.i_ask }} :
-    <select required id="if_room_change">
+    <select {% if service %} required {% endif %} id="if_room_change">
              <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            {% for item in staylist %}
               <option value ="{{ forloop.counter }}">{{ item }}</option>
@@ -34,7 +34,7 @@
 </p>
 <p>
     {{ formitem.time_in_sh }} :
-    <select required id="duration">
+    <select {% if service %} required {% endif %} id="duration">
              <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            {% for item in periodlist %}
               <option value ="{{ forloop.counter }}">{{ item }}</option>
