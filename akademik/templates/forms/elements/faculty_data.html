@@ -1,16 +1,16 @@
 <!-- Dane toku studiów - tylko jeśli student. Domyślnie: nie dotyczy. -->
 <h4> {{ formitem.pref_as_stud }} </h4>
 <p> {{ formitem.faculty }}
-    <select id="faculty">
-             <option value ="None" disabled>{{ formitem.list_select }}:</option>
+    <select required id="faculty">
+             <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            {% for item in facultylist %}
               <option value ="{{ forloop.counter }}">{{ item }}</option>
            {% endfor %}
     </select>
 </p>
 <p> {{ formitem.degree }}
-    <select id="degree">
-             <option value ="None" disabled>{{ formitem.list_select }}:</option>
+    <select required id="degree">
+             <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            {% for item in degreelist %}
               <option value ="{{ forloop.counter }}">{{ item }}</option>
            {% endfor %}
@@ -18,8 +18,8 @@
 </p>
 <p> {{ formitem.deangroup }} {{ form.deangroup }} </p>
 <p> {{ formitem.semester }}
-  <select id="semester">
-           <option value ="None" disabled>{{ formitem.list_select }}:</option>
+  <select required id="semester">
+           <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            <option value ="0">-</option>
          {% for item in "1"|rjust:"12"  %}
             <option value ="{{ forloop.counter }}">{{ forloop.counter }}</option>

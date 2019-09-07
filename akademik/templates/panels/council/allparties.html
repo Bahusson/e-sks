@@ -25,17 +25,21 @@
 {% block body %}
 <h2>{{ link.1 }}</h2>
 <p>
-<select id="party_view">
-           <option value ="0">Wszystkie akcje</option>
-           <option value ="1">Trwające Akcje</option>
-           <option value ="2">Nieaktywne Akcje</option>
-           <option value ="3">Zaplanowane Akcje</option>
-</select>
-<button id="send">Zmień widok</button>
+<form name="PartyViewChangeForm" method="post">
+  {% csrf_token %}
+  <select id="party_view">
+             <option value ="1" {% if view_filter == "1" %} selected="selected" {% endif %} >{{ p_item.all_parties }}</option>
+             <option value ="2" {% if view_filter == "2" %} selected="selected" {% endif %} >{{ p_item.active_parties }}</option>
+             <option value ="3" {% if view_filter == "3" %} selected="selected" {% endif %} >{{ p_item.past_parties }}</option>
+             <option value ="4" {% if view_filter == "4" %} selected="selected" {% endif %} >{{ p_item.future_parties }}</option>
+  </select>
+  <input type="hidden" name="view_filter" id="view_filter">
+  <input id="send" class="button" name="subbutton" type="submit" value="{{ p_item.new_party_view }}">
+</form>
 </p>
 <br><br>
   {% for party in parties %}
-    <h4>{{ party.title }}</h6>
+    <h4>{{ party.title }}</h4>
     <p><b>{{ formitem.action }}:</b> {{ setter|action:party.quarter }} </p>
     <p><b>{{ p_item.p_from }}:</b> {{ party.date_start }} <br><b>{{ p_item.p_to }}:</b>{{ party.date_end }}</p>
     <p><b>{{ p_item.comment }}:</b> {{ party.comment }} </p>
@@ -49,6 +53,7 @@
 
 
 {% block scripts %}
+<script src="{% static "actionchange.js" %}"></script>
 {% endblock %}
 {% block scripts2 %}
 {% endblock %}

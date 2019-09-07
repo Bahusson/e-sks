@@ -2,22 +2,22 @@
 <p> {{ formitem.match_prefs }} <a href="">{{ formitem.see_map }}</a></p>
 <p>
    1:
-    <select id="sh_choice1">
-             <option value ="None" disabled>{{ formitem.list_select }}:</option>
+    <select required id="sh_choice1">
+             <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            {% for item in houselist %}
               <option value ="{{ forloop.counter }}">{{ item }}</option>
            {% endfor %}
     </select>
    2:
-    <select id="sh_choice2">
-             <option value ="None" disabled>{{ formitem.list_select }}:</option>
+    <select required id="sh_choice2">
+             <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            {% for item in houselist %}
               <option value ="{{ forloop.counter }}">{{ item }}</option>
            {% endfor %}
     </select>
    3:
-    <select id="sh_choice3">
-             <option value ="None" disabled>{{ formitem.list_select }}:</option>
+    <select required id="sh_choice3">
+             <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            {% for item in houselist %}
               <option value ="{{ forloop.counter }}">{{ item }}</option>
            {% endfor %}
@@ -25,8 +25,8 @@
 </p>
 <p>
     {{ formitem.i_ask }} :
-    <select id="if_room_change">
-             <option value ="None" disabled>{{ formitem.list_select }}:</option>
+    <select required id="if_room_change">
+             <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            {% for item in staylist %}
               <option value ="{{ forloop.counter }}">{{ item }}</option>
            {% endfor %}
@@ -34,8 +34,8 @@
 </p>
 <p>
     {{ formitem.time_in_sh }} :
-    <select id="duration">
-             <option value ="None" disabled>{{ formitem.list_select }}:</option>
+    <select required id="duration">
+             <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            {% for item in periodlist %}
               <option value ="{{ forloop.counter }}">{{ item }}</option>
            {% endfor %}

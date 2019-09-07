@@ -1,8 +1,8 @@
 <!-- Zgody do celów demonstracyjnych. Potem do zmiany na bardziej modularne. -->
 <h4> {{ formitem.statement }} </h4>
 <p>
-  <select id="international_placement">
-             <option value ="None" disabled>{{ formitem.list_select }}:</option>
+  <select required id="international_placement">
+             <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
              <option value ="0">{{ formitem.disagree }}</option>
              <option value ="1">{{ formitem.agree }}</option>
     </select>
@@ -13,7 +13,7 @@
   {{ formitem.mail_join }}
 </p>
 <p>
-  <input id="dataprocessing" type="checkbox">
+  <input required id="dataprocessing" type="checkbox">
   {{ formitem.data_processing }}
 </p>
 <br>
