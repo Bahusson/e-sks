@@ -106,23 +106,61 @@ def showmydata(request):
         return render(request, template, context_lazy)
 
 
-# Zwraca atrybut akcji "aktywnych" względem czasu serwera.
-def active_party(attrname="id"):
-    active_parties = []
-    all_parties = PageElement(HParty)
-    tz_UTC = pytz.timezone('Europe/Warsaw')
-    dt_now = datetime.datetime.now(tz_UTC)
-    list_parties = all_parties.listed
-    x = 0
-    for item in list_parties:
-        if list_parties[x].__dict__['date_start'] <= dt_now <= list_parties[x].__dict__['date_end']:
-            active_parties.append(str(list_parties[x].__dict__[attrname]))
-        x = x+1
-    return active_parties
+class PartyMaster(object):
+    # Podstawka zwraca wszystkie akcje kwaterunkowe
+    def __init__(self):
+        self.all_parties = PageElement(HParty)
+        tz_UTC = pytz.timezone('Europe/Warsaw')
+        self.dt_now = datetime.datetime.now(tz_UTC)
+        self.list_parties = self.all_parties.listed
+
+    # Zwraca wszystkie akcje bez względu na czas serwera (atrybuty)
+    def full_party(self, **kwargs):
+        full_parties = []
+        attrname = kwargs['attrname']
+        x = 0
+        for item in self.list_parties:
+            full_parties.append(str(self.list_parties[x].__dict__[attrname]))
+            x = x+1
+        return full_parties
+
+    # Zwraca tylko aktywne akcje względem czasu serwera (atrybuty)
+    def active_party(self, **kwargs):
+        active_parties = []
+        attrname = kwargs['attrname']
+        x = 0
+        for item in self.list_parties:
+            if self.list_parties[x].__dict__['date_start'] <= self.dt_now <= self.list_parties[x].__dict__['date_end']:
+                active_parties.append(str(self.list_parties[x].__dict__[attrname]))
+            x = x+1
+        return active_parties
+
+    # Tylko nieaktywne akcje względem czasu serwera (atrybuty)
+    def past_party(self, **kwargs):
+        inactive_parties = []
+        attrname = kwargs['attrname']
+        x = 0
+        for item in self.list_parties:
+            if self.list_parties[x].__dict__['date_end'] < self.dt_now:
+                inactive_parties.append(str(self.list_parties[x].__dict__[attrname]))
+            x = x+1
+        return inactive_parties
+
+    # Tylko zaplanowane akcje względem czasu serwera (atrybuty)
+    def future_party(self, **kwargs):
+        future_parties = []
+        attrname = kwargs['attrname']
+        x = 0
+        for item in self.list_parties:
+            if self.list_parties[x].__dict__['date_start'] > self.dt_now:
+                future_parties.append(str(self.list_parties[x].__dict__[attrname]))
+            x = x+1
+        return future_parties
 
 
 def party_switch(request):
-    x = active_party(id="quarter")
+    y = PartyMaster()
+    x = y.active_party(attrname="quarter")
     quarter = request.user.quarter
     if quarter in x:
         print('nowy formularz...')
@@ -158,7 +196,6 @@ def dormapply(request):
             return redirect('initial')  # Gdzie przekierować jak nie jego akcja?
         else:
             pe_fi = PageElement(FormItems)
-            #pe_fi0 = pe_fi.list_specific(0)
             form = ApplicationForm()
             sh = PageElement(Sh)
             ifr = PageElement(Ifr)
@@ -197,7 +234,6 @@ def makemeparty(request):
             return redirect('staffpanel_c')
     else:
         pe_fi = PageElement(FormItems)
-        #pe_fi0 = pe_fi.list_specific(0)
         form = PartyForm()
         sh = PageElement(Sh)
         ifr = PageElement(Ifr)
@@ -232,11 +268,17 @@ def makemeparty(request):
 # Do zmiany, żeby był wybór.
 @council_only(login_url='logger')
 def allparties(request, view_filter=0):
-    all_parties = PageElement(HParty)
-    all_parties_l = all_parties.listed
-    active_range = active_party(attrname="id")
+    pm = PartyMaster()
+    all_parties = pm.all_parties
+    range = {
+     "1": pm.full_party(attrname="id"),
+     "2": pm.active_party(attrname="id"),
+     "3": pm.past_party(attrname="id"),
+     "4": pm.future_party(attrname="id"),
+    }
+    x = "1"
     active_parties = []
-    for item in active_range:
+    for item in range[x]:
         obj = all_parties.elements.get(pk=item)
         active_parties.append(obj)
     pe_fi = PageElement(FormItems)

@@ -35,7 +35,7 @@
 </p>
 <br><br>
   {% for party in parties %}
-    <h4>{{ party.title }}</h6>
+    <h4>{{ party.title }}</h4>
     <p><b>{{ formitem.action }}:</b> {{ setter|action:party.quarter }} </p>
     <p><b>{{ p_item.p_from }}:</b> {{ party.date_start }} <br><b>{{ p_item.p_to }}:</b>{{ party.date_end }}</p>
     <p><b>{{ p_item.comment }}:</b> {{ party.comment }} </p>
