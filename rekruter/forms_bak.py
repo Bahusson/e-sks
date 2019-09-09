@@ -135,10 +135,11 @@ class PartyForm(forms.ModelForm):
     title_pl = forms.CharField(max_length=200)
     title_en = forms.CharField(max_length=200)
     quarter = forms.CharField(widget=forms.HiddenInput())
-    date_start = forms.DateTimeField(input_formats=['%d.%m.%Y %H:%M:%S'])
-    date_end = forms.DateTimeField(input_formats=['%d.%m.%Y %H:%M:%S'])
+    date_start = forms.DateTimeField(input_formats=['%d/%m/%Y %H:%M'])
+    date_end = forms.DateTimeField(input_formats=['%d/%m/%Y %H:%M'])
     comment_pl = forms.CharField(widget=forms.Textarea, required=False)
     comment_en = forms.CharField(widget=forms.Textarea, required=False)
+    announcement = forms.CharField(widget=forms.Textarea, required=False)
     announcement_pl = forms.CharField(widget=forms.Textarea, required=False)
     announcement_en = forms.CharField(widget=forms.Textarea, required=False)
     userdata1 = forms.BooleanField(required=False)
@@ -185,56 +186,25 @@ class PartyForm(forms.ModelForm):
         return party
 
 
-class PartyFormChanger(forms.ModelForm):
-    '''
-    Obejście niekompatyblinych pól przy edytowaniu istniejącego modelu.
-    '''
+class PartyForm2(forms.ModelForm):
     title_pl = forms.CharField(max_length=200)
     title_en = forms.CharField(max_length=200)
     quarter = forms.CharField(widget=forms.HiddenInput())
-    date_start = forms.DateTimeField(input_formats=['%d.%m.%Y %H:%M:%S'])
-    date_end = forms.DateTimeField(input_formats=['%d.%m.%Y %H:%M:%S'])
-    # comment_pl = forms.CharField(widget=forms.Textarea, required=False)
-    # comment_en = forms.CharField(widget=forms.Textarea, required=False)
-    # announcement_pl = forms.CharField(widget=forms.Textarea, required=False)
-    # announcement_en = forms.CharField(widget=forms.Textarea, required=False)
-    userdata1 = forms.BooleanField(required=False)
-    sh_preferences = forms.BooleanField(required=False)
-    userdata2 = forms.BooleanField(required=False)
-    formmap = forms.BooleanField(required=False)
-    faculty_data = forms.BooleanField(required=False)
-    extra_info = forms.BooleanField(required=False)
-    agreements1 = forms.BooleanField(required=False)
-    # agreements2 = forms.BooleanField(required=False)
-    # agreements3 = forms.BooleanField(required=False)
+    date_start = forms.DateTimeField(input_formats=['%d/%m/%Y %H:%M'])
+    date_end = forms.DateTimeField(input_formats=['%d/%m/%Y %H:%M'])
 
     class Meta:
         model = HParty
-        fields = (
-         'title_pl', 'title_en', 'date_start', 'date_end',
-         'userdata1',  'sh_preferences', 'userdata2',
-         'formmap', 'faculty_data', 'extra_info', 'agreements1')
+        fields = ('title_pl', 'title_en', 'quarter', 'date_start', 'date_end',)
 
     def save(self, uid, commit=True):
-        print('Hello!')
-        party = super(PartyFormChanger, self).save(commit=False)
+        party = super(PartyForm2, self).save(commit=False)
         party.owner = uid
         party.title_pl = self.cleaned_data["title_pl"]
         party.title_en = self.cleaned_data["title_en"]
         party.quarter = self.cleaned_data["quarter"]
         party.date_start = self.cleaned_data["date_start"]
         party.date_end = self.cleaned_data["date_end"]
-        party.comment_pl = self.cleaned_data["comment_pl"]
-        party.comment_en = self.cleaned_data["comment_en"]
-        party.announcement_pl = self.cleaned_data["announcement_pl"]
-        party.announcement_en = self.cleaned_data["announcement_en"]
-        party.userdata1 = self.cleaned_data["userdata1"]
-        party.sh_preferences = self.cleaned_data["sh_preferences"]
-        party.userdata2 = self.cleaned_data["userdata2"]
-        party.formmap = self.cleaned_data["formmap"]
-        party.faculty_data = self.cleaned_data["faculty_data"]
-        party.extra_info = self.cleaned_data["extra_info"]
-        party.agreements1 = self.cleaned_data["agreements1"]
 
         if commit:
             party.save()

@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block title %}
-<title>{{ link.2 }}</title>
+<title>{{ link.5 }}</title>
 {% endblock %}
 
 {% block css %}
@@ -39,7 +39,8 @@
                       </select></p>
     <p>{{ p_item.time_start }}: {{ form2.date_start }}</p>
     <p>{{ p_item.time_end }}: {{ form2.date_end }}</p>
-    <p>{{ p_item.comment }}(PL): {{ form2.comment_pl }}</p>
+    <p>{{ p_item.comment }}(PL):
+      <input type="text" name="comment_pl" id="id_comment_pl" value="{{ party.comment_pl }}"></p>
     <p>{{ p_item.comment }}(EN): {{ form2.comment_en }}</p>
     <p>{{ p_item.announce }}(PL): {{ form2.announcement_pl }}</p>
     <p>{{ p_item.announce }}(EN): {{ form2.announcement_en }}</p>

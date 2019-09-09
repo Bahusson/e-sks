@@ -46,11 +46,7 @@
     <p><b>{{ p_item.announce }}:</b> {{ party.announcement }} </p>
     <p><b>{{ p_item.owner }}:</b> {{ party.owner.first_name }} {{ party.owner.last_name }} </p>
     {% if user.role_council > 2 %}
-    <form name="ChangePartyForm" method="post">
-      {% csrf_token %}
-      <input type="hidden" name="partyid"" value="{{ party.id }}">
-      <input class="button" name="changeparty" type="submit" value="{{ p_item.changeme }}">
-    </form>
+      <a class="button" href="{% url 'makemeparty' party.id %}">{{ p_item.changeme }}</a>
     {% endif %}
     <br>
   {% endfor %}
