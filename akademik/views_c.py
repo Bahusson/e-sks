@@ -19,7 +19,7 @@ from rekruter.models import SpouseCohabitant as Sch
 from rekruter.models import SpecialCase as Scs
 from esks.special.decorators import council_only
 from rekruter.models import User, FormItems, QuarterClassB
-from rekruter.forms import PartyForm, PartyFormChanger
+from rekruter.forms import PartyForm
 import datetime
 import pytz
 
@@ -34,6 +34,8 @@ def staffpanel_c(request):
     return render(request, template, context_lazy)
 
 
+# Z dwóch powyższych zrób klasę jak będziesz miał chwilę
+# i powarunkuj, bo są bardzo podobne - albo niech Kenny to zrobi dla wprawy.
 # Tworzy nową akcję kwaterunkową wraz z formularzem z poziomu przew. rady.
 @council_only(login_url='staffpanel_c', power_level=2)  # Tylko Przewodniczący
 def makemeparty(request):
@@ -41,7 +43,6 @@ def makemeparty(request):
      id=request.user.id)
     # Formularz serwisowy pola niewymagane
     service = False
-    comp_form = False
     if request.method == 'POST':
         form = PartyForm(request.POST)
         if form.is_valid():
@@ -73,7 +74,6 @@ def makemeparty(request):
          'setlist': peqc.listed,
          'p_item': hpi.baseattrs,
          'service': service,
-         'compform': comp_form,
          }
         pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
         context_lazy = pl.lazy_context(skins=S, context=context)
@@ -88,11 +88,10 @@ def changemeparty(request):
     party_id = request.session.get('partyid')
     # Formularz serwisowy pola niewymagane
     service = False
-    comp_form = True
     if request.method == 'POST':
         instance = HParty.objects.get(id=int(party_id))
         instance2 = G404(HParty, id=int(party_id))
-        form = PartyFormChanger(request.POST, instance=instance2)
+        form = PartyForm(request.POST, instance=instance2)
         if form.is_valid():
             form.save(userdata)
             return redirect('allparties')
@@ -101,7 +100,7 @@ def changemeparty(request):
         varlist = []
         varlist.append(party_id)
         instance = G404(HParty, id=party_id)
-        form = PartyFormChanger(instance=instance)
+        form = PartyForm(instance=instance)
         quart = int(instance.quarter)
         varlist.append(quart)
         pe_fi = PageElement(FormItems)
@@ -129,8 +128,6 @@ def changemeparty(request):
          'p_item': hpi.baseattrs,
          'varlist': varlist,
          'service': service,
-         'patrty': instance,
-         'compform': comp_form,
          }
         pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
         context_lazy = pl.lazy_context(skins=S, context=context)
