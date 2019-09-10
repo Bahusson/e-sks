@@ -310,6 +310,7 @@ a:hover .imgshdw {
 
 
 #wrapper {
+
     padding-top: 50px;
     padding-left: 0;
     -webkit-transition: all .5s ease;
@@ -337,11 +338,12 @@ a:hover .imgshdw {
 #sidebar-wrapper {
     z-index: 1000;
     position: static;
+
     left: 225px;
     width: 0;
     height: 100%;
-    margin-left: -225px;
-    margin-bottom: 225px;
+    
+    margin-bottom: 100px;
     overflow-y: auto;
     background: #f8f8f8;
     -webkit-transition: all .5s ease;
@@ -354,8 +356,11 @@ a:hover .imgshdw {
     position: absolute;
     top: 0;
     width: 225px;
+    margin-top: 100px;
+
     font-size: 14px;
-    margin: 0;
+    text-align: center;
+    margin: 10;
     padding: 0;
     list-style: none;
 }
