@@ -10,7 +10,6 @@
 {% block css2 %}
 <!--Musi być tutaj JQuery, żeby fragmenty formularza poniżej działały-->
 <script src="{% static 'assets/js/jquery-1.11.1.min.js' %}"></script>
-<script src="{% static "formfiller.js" %}"></script>
 {% endblock %}
 
 <!--Zwraca oryginalną kompozycję menu z bazy. Potem podstawiasz zmienne,-->
@@ -34,6 +33,12 @@
     {% include 'forms/elements/extra_info.html' %} <!-- Dodatkowe informacje -->
     {% include 'forms/elements/agreements.html' %} <!-- Zgody -->
 
+    {{ form.sh_choice1 }}{{ form.sh_choice2 }}{{ form.sh_choice3 }}
+    {{ form.duration }}{{ form.if_room_change }}{{ form.faculty }}{{ form.degree }}
+    {{ form.semester }}{{ form.spouse_cohabitant }}{{ form.special_case_docs }}
+    {{ form.international_placement }}{{ form.mailinglist }}
+    {{ form.dataprocessing }}
+
     <input id="send" class="button" name="subbutton" type="submit" value="{{ formitem.sendme }}">
   </form>
   <!--<button id="send">test<button> Nieaktywny button do testów-->
@@ -42,6 +47,7 @@
 
 {% block scripts %}
  <!-- Napisz od nowa i zmień ten skrpt, żeby wypełniał pola ukryte.-->
+<script src="{% static "formfiller.js" %}"></script>
 {% endblock %}
 
 {% block scripts2 %}

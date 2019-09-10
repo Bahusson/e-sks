@@ -1,4 +1,6 @@
 <!-- Zgody do celów demonstracyjnych. Potem do zmiany na bardziej modularne. -->
+{% load staticfiles %}
+
 <h4> {{ formitem.statement }} </h4>
 <p>
   <select {% if service %} required {% endif %}  id="international_placement">
@@ -17,3 +19,18 @@
   {{ formitem.data_processing }}
 </p>
 <br>
+
+<!--Ukryte pola formularza-->
+{{ form.international_placement }}{{ form.mailinglist }}{{ form.dataprocessing }}
+<!--Skrypt zapełniający pola-->
+<script>
+  $(document).ready(function()
+  {
+    $('#send').click(function()
+   {
+     formfill("international_placement", "id_international_placement")
+     formcheckfill("mailinglist", "id_mailinglist")
+     formcheckfill("dataprocessing", "id_dataprocessing")
+  });
+});
+</script>

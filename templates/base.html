@@ -155,7 +155,11 @@
     <!-- Bootstrap core JavaScript -->
 
     <script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
+    {% if service %}
+    <!--nULL-->
+    {% else %}
     <script src="{% static 'assets/js/jquery-1.11.1.min.js' %}"></script>
+    {% endif %}
     <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'assets/js/jquery.backstretch.min.js' %}"></script>
     <script src="{% static 'assets/js/wow.min.js' %}"></script>

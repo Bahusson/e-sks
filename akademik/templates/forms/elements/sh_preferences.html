@@ -1,3 +1,4 @@
+
 <h4> {{ formitem.preferences }} </h4>
 <p> {{ formitem.match_prefs }} <a href="">{{ formitem.see_map }}</a></p>
 <p>
@@ -42,3 +43,20 @@
     </select>
 </p>
 <br>
+<!--Ukryte pola formularza-->
+{{ form.sh_choice1 }}{{ form.sh_choice2 }}{{ form.sh_choice3 }}
+{{ form.duration }}{{ form.if_room_change }}
+<!--Skrypt zapełniający pola-->
+<script>
+  $(document).ready(function()
+  {
+    $('#send').click(function()
+   {
+    formfill("sh_choice1", "id_sh_choice1")
+    formfill("sh_choice2", "id_sh_choice2")
+    formfill("sh_choice3", "id_sh_choice3")
+    formfill("if_room_change", "id_if_room_change")
+    formfill("duration", "id_duration")
+  });
+});
+</script>
