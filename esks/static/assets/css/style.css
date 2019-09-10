@@ -110,6 +110,7 @@ p {
 }
 .navbar-no-bg {
     padding-top: 10px;
+
     background: #333333 ;
    /* #e98328 pomarańcza */
     -moz-box-shadow: none;
@@ -120,12 +121,11 @@ ul.navbar-nav {
     font-family: 'Ubuntu';
     font-size: 16px;
     color: white;
-    height: 75px;
+    height: 110px;
     font-weight: bold;
-    margin: 9px 0 0 0px;
+    margin: 0px 0 0 0px;
     padding-top: center;
     position: relative;
-    text-align: justify;
     text-transform: uppercase;
 
 }
@@ -182,8 +182,9 @@ ul.navbar-nav li a.btn-link-3:hover, ul.navbar-nav li a.btn-link-3:focus, ul.nav
 .navbar-brand {
     width: 275px;
     height:73px;
-    background: url(https://images.tinypic.pl/i/00987/ife9ep2mrlac.png) left;
+    background: url(https://images.tinypic.pl/i/00987/ife9ep2mrlac.png);
     text-indent: -99999px;
+    float: left;
 }
 .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
     margin-left: 0;
@@ -461,7 +462,7 @@ a:hover .imgshdw {
     color: #fff !important;
 }
 
-.sidebar-nav li:hover  a {
+.sidebar-nav li:hover  {
     color: #e98328;
 /***** MEDIA QUERIES *****/
 @media (min-width: 992px) and (max-width: 1199px) {
