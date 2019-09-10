@@ -93,8 +93,8 @@ def changemeparty(request):
         instance2 = G404(HParty, id=int(party_id))
         form = PartyForm(request.POST, instance=instance2)
         if form.is_valid():
-            form.save()
-            return redirect('dsapply')
+            form.save(userdata)
+            return redirect('allparties')
     else:
         party_id = request.session.get('partyid')
         varlist = []

@@ -165,6 +165,21 @@ class PartyMaster(object):
             x = x+1
         return active_parties
 
+    # Zwraca słownik z kqaterami przyporządkowanymi do ID
+    def dict_active_id_quarter(self):
+        active_quarters = []
+        active_ids = []
+        x = 0
+        for item in self.list_parties:
+            if self.list_parties[x].__dict__['date_start'] <= self.dt_now <= self.list_parties[x].__dict__['date_end']:
+                active_quarters.append(
+                    str(self.list_parties[x].__dict__['quarter']))
+                active_ids.append(
+                    str(self.list_parties[x].__dict__['id']))
+            x = x+1
+        active_parties = dict(zip(active_ids, active_quarters))
+        return active_parties
+
     # Tylko nieaktywne akcje względem czasu serwera (atrybuty)
     def past_party(self, **kwargs):
         inactive_parties = []
