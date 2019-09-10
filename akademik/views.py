@@ -94,12 +94,20 @@ def showmydata(request):
         return render(request, template, context_lazy)
 
 
+# Funkcja sprawdza czy akcja użytkownika jest tą właściwą i jeśli nie,
+# daje mu inne do wyboru. Rownież w razie jakby ktoś dał ciała i zdefiniował
+# dwie akcje kwaterunkowe tego samego typu, to funkcja zwróci Id tylko 1.
 def party_switch(request):
     y = PartyMaster(HParty, pytz, datetime)
-    x = y.active_party(attrname="quarter")
+    # x = y.active_party(attrname="quarter")
+    z = y.dict_active_id_quarter()
+    print(z)
     quarter = request.user.quarter
-    if quarter in x:
+    if quarter in z.values():
+        # Ten kawałek uzyskuje pierwszy klucz z wartości słownika...
+        a = list(z.keys())[list(z.values()).index(quarter)]
         print('nowy formularz...')
+        request.session['partyformid'] = a
         return 0
     else:
         print('przekierowuję...')
@@ -118,6 +126,7 @@ def dormapply(request):
             return redirect('userpanel')
     else:
         redir = party_switch(request)
+        party_form_id = request.session['partyformid']
         if redir == 1:
             return redirect('showparties')  # Gdzie przekierować?
         else:
@@ -130,6 +139,8 @@ def dormapply(request):
             std = PageElement(Std)
             sch = PageElement(Sch)
             scs = PageElement(Scs)
+            hp = PageElement(HParty)
+            puzzle = hp.by_id(G404=G404, id=party_form_id)
             context = {
              'udata': userdata,
              'formitem': pe_fi.baseattrs,
@@ -141,7 +152,8 @@ def dormapply(request):
              'degreelist': std.listed,
              'spouselist': sch.listed,
              'scaselist': scs.listed,
-             'service': service
+             'service': service,
+             'puzzle': puzzle
              }
             pl = PortalLoad(P, L, Pbi, 0, Umi, Uli, )
             context_lazy = pl.lazy_context(skins=S, context=context)
