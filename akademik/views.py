@@ -160,10 +160,10 @@ def showparties(request):
         request.session['partyid'] = request.POST.get('partyid')
         return redirect('changemeparty')
     elif 'apply_spontaneously' in request.POST:
-        form = IniForm(request.POST)
+        form = IniForm(request.POST, instance=userdata)
         if form.is_valid():
-            form.save(userdata)
-            return redirect('userdatapersonal')
+            form.save()
+            return redirect('dsapply')
     ap = AllParties(
      request, HParty, pytz, datetime, FormItems, Hpi, QuarterClassB,
      view_filter=view_filter, )

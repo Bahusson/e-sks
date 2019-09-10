@@ -58,7 +58,7 @@
     {% if view_filter == "2" %}
       <form name="SpontaneousApply" method="post">
         {% csrf_token %}
-        <input type="hidden" name="quarter" value="{{ party.id }}">
+        <input type="hidden" name="quarter" value="{{ party.quarter }}">
         <input class="button" name="apply_spontaneously" type="submit" value="{{ p_item.change_and_apply }}">
       </form>
     {% endif %}

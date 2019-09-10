@@ -93,8 +93,8 @@ def changemeparty(request):
         instance2 = G404(HParty, id=int(party_id))
         form = PartyForm(request.POST, instance=instance2)
         if form.is_valid():
-            form.save(userdata)
-            return redirect('allparties')
+            form.save()
+            return redirect('dsapply')
     else:
         party_id = request.session.get('partyid')
         varlist = []
@@ -140,15 +140,15 @@ def allparties(request):
     userdata = User.objects.get(
      id=request.user.id)
     view_filter = "2"
+    form = IniForm(request.POST)
     if 'subbutton' in request.POST:
         view_filter = str(request.POST.get('view_filter'))
     elif 'changeparty' in request.POST:
         request.session['partyid'] = request.POST.get('partyid')
         return redirect('changemeparty')
     elif 'apply_spontaneously' in request.POST:
-        form = IniForm(request.POST)
         if form.is_valid():
-            form.save(userdata)
+            form.save()
             return redirect('userdatapersonal')
     ap = AllParties(
      request, HParty, pytz, datetime, FormItems, Hpi, QuarterClassB,
