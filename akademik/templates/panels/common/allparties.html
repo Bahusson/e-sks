@@ -5,7 +5,8 @@
 {% load staticfiles %}
 
 {% block title %}
-<title>{{ link.1 }}</title>
+<title>{{ p_item.housing_party }}</title>
+
 {% endblock %}
 
 {% block css %}
@@ -19,18 +20,26 @@
 {% endblock aside %}
 
 {% block menu %}
-  {% include 'menus/council_menus.html' %} <!-- Menu z opcjami użytkownika -->
+{% if user.role_council > 1 %}
+ {% include 'menus/council_menus.html' %} <!-- Menu z opcjami użytkownika -->
+{% else %}
+ {% include 'menus/user_menus.html' %} <!-- Menu z opcjami użytkownika -->
+{% endif %}
 {% endblock menu %}
 
 {% block body %}
-<h2>{{ link.1 }}</h2>
+<h2>{{ p_item.housing_party }}</h2>
 <p>
 <form name="PartyViewChangeForm" method="post">
   {% csrf_token %}
   <select id="party_view">
+            {% if user.role_council > 1 %}
              <option value ="1" {% if view_filter == "1" %} selected="selected" {% endif %} >{{ p_item.all_parties }}</option>
+            {% endif %}
              <option value ="2" {% if view_filter == "2" %} selected="selected" {% endif %} >{{ p_item.active_parties }}</option>
+            {% if user.role_council > 1 %}
              <option value ="3" {% if view_filter == "3" %} selected="selected" {% endif %} >{{ p_item.past_parties }}</option>
+            {% endif %}
              <option value ="4" {% if view_filter == "4" %} selected="selected" {% endif %} >{{ p_item.future_parties }}</option>
   </select>
   <input type="hidden" name="view_filter" id="view_filter">
@@ -38,17 +47,31 @@
 </form>
 </p>
 <br><br>
+  {% if user.role_council == 1 %}
+  <p>{{ p_item.userinfo }}:</p>
+  <br>
+  {% endif %}
   {% for party in parties %}
     <h4>{{ party.title }}</h4>
-    <p><b>{{ formitem.action }}:</b> {{ setter|action:party.quarter }} </p>
+    <p><b>{{ formitem.action }}:</b> {{ setter|action:party.quarter }}
+    <!-- Guzik aplikowania na aktywną akcję kwaterunkową -->
+    {% if view_filter == "2" %}
+      <form name="SpontaneousApply" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="quarter" value="{{ party.quarter }}">
+        <input class="button" name="apply_spontaneously" type="submit" value="{{ p_item.change_and_apply }}">
+      </form>
+    {% endif %}
     <p><b>{{ p_item.p_from }}:</b> {{ party.date_start }} <br><b>{{ p_item.p_to }}:</b>{{ party.date_end }}</p>
+   {% if user.role_council > 1 %}
     <p><b>{{ p_item.comment }}:</b> {{ party.comment }} </p>
+   {% endif %}
     <p><b>{{ p_item.announce }}:</b> {{ party.announcement }} </p>
     <p><b>{{ p_item.owner }}:</b> {{ party.owner.first_name }} {{ party.owner.last_name }} </p>
     {% if user.role_council > 2 %}
     <form name="ChangePartyForm" method="post">
       {% csrf_token %}
-      <input type="hidden" name="partyid"" value="{{ party.id }}">
+      <input type="hidden" name="partyid" value="{{ party.id }}">
       <input class="button" name="changeparty" type="submit" value="{{ p_item.changeme }}">
     </form>
     {% endif %}

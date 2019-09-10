@@ -1,4 +1,6 @@
 <!-- Dane toku studiów - tylko jeśli student. Domyślnie: nie dotyczy. -->
+{% load staticfiles %}
+
 <h4> {{ formitem.pref_as_stud }} </h4>
 <p> {{ formitem.faculty }}
     <select {% if service %} required {% endif %} id="faculty">
@@ -31,3 +33,18 @@
 {% endif %}
 <p>
 <br>
+
+<!--Ukryte pola formularza-->
+{{ form.faculty }}{{ form.degree }}{{ form.semester }}
+<!--Skrypt zapełniający pola-->
+<script>
+  $(document).ready(function()
+  {
+    $('#send').click(function()
+   {
+     formfill("faculty", "id_faculty")
+     formfill("degree", "id_degree")
+     formfill("semester", "id_semester")
+  });
+});
+</script>

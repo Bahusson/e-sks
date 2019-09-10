@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404 as G404
 from strona.models import Pageitem as P
 from strona.models import PageSkin as S
 from esks.settings import LANGUAGES as L
-from esks.special.classes import PortalLoad, PageElement, AllParties
+from esks.special.classes import PortalLoad, PageElement, PartyMaster
 from .models import PortalBaseItem as Pbi
 from .models import CouncilMenuItem as Cmi
 from .models import CouncilLinkItem as Cli
@@ -19,7 +19,7 @@ from rekruter.models import SpouseCohabitant as Sch
 from rekruter.models import SpecialCase as Scs
 from esks.special.decorators import council_only
 from rekruter.models import User, FormItems, QuarterClassB
-from rekruter.forms import PartyForm, IniForm
+from rekruter.forms import PartyForm
 import datetime
 import pytz
 
@@ -93,8 +93,8 @@ def changemeparty(request):
         instance2 = G404(HParty, id=int(party_id))
         form = PartyForm(request.POST, instance=instance2)
         if form.is_valid():
-            form.save()
-            return redirect('dsapply')
+            form.save(userdata)
+            return redirect('allparties')
     else:
         party_id = request.session.get('partyid')
         varlist = []
@@ -139,21 +139,11 @@ def changemeparty(request):
 def allparties(request):
     userdata = User.objects.get(
      id=request.user.id)
-    view_filter = "2"
-    form = IniForm(request.POST)
-    if 'subbutton' in request.POST:
-        view_filter = str(request.POST.get('view_filter'))
-    elif 'changeparty' in request.POST:
-        request.session['partyid'] = request.POST.get('partyid')
-        return redirect('changemeparty')
-    elif 'apply_spontaneously' in request.POST:
-        if form.is_valid():
-            form.save()
-            return redirect('userdatapersonal')
-    ap = AllParties(
-     request, HParty, pytz, datetime, FormItems, Hpi, QuarterClassB,
-     view_filter=view_filter, )
+    pm = PartyMaster(HParty)
+    pct = pm.partycontext(
+     request, FormItems, Hpi, QuarterClassB, view_filter="2")
+    pm.coreparties(request, userdata)
     pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli)
-    context_lazy = pl.lazy_context(skins=S, context=ap.context)
+    context_lazy = pl.lazy_context(skins=S, context=pct)
     template = 'panels/common/allparties.html'
     return render(request, template, context_lazy)

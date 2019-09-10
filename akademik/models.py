@@ -163,3 +163,6 @@ class HousingPartyItems(models.Model):
     future_parties = models.CharField(blank=True, max_length=200)
     new_party_view = models.CharField(blank=True, max_length=200)
     owner = models.CharField(blank=True, max_length=200)
+    userinfo = models.CharField(blank=True, max_length=250)
+    housing_party = models.CharField(blank=True, max_length=200)
+    change_and_apply = models.CharField(blank=True, max_length=200)

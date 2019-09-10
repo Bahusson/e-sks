@@ -19,3 +19,17 @@
     </select>
 </p>
 <br>
+
+<!--Ukryte pola formularza-->
+{{ form.spouse_cohabitant }}{{ form.special_case_docs }}
+<!--Skrypt zapełniający pola-->
+<script>
+  $(document).ready(function()
+  {
+    $('#send').click(function()
+   {
+     formfill("spouse_cohabitant", "id_spouse_cohabitant")
+     formfill("special_case_docs", "id_special_case_docs")
+  });
+});
+</script>

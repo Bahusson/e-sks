@@ -4,7 +4,7 @@ from strona.models import Pageitem as P
 from strona.models import PageSkin as S
 from esks.settings import LANGUAGES as L
 from esks.special.classes import PortalLoad, PageElement, PartyMaster
-from esks.special.classes import AllParties
+# from esks.special.classes import AllParties
 from .models import PortalBaseItem as Pbi
 from .models import UserMenuItem as Umi
 from .models import UserLinkItem as Uli
@@ -153,21 +153,21 @@ def dormapply(request):
 def showparties(request):
     userdata = User.objects.get(
      id=request.user.id)
-    view_filter = "2"
+    pm = PartyMaster(HParty)
+    pct = pm.partycontext(
+     request, FormItems, Hpi, QuarterClassB, HParty, view_filter="2")
     if 'subbutton' in request.POST:
         view_filter = str(request.POST.get('view_filter'))
+        return view_filter
     elif 'changeparty' in request.POST:
-        request.session['partyid'] = request.POST.get('partyid')
+        request.session['partyid'] = int(request.POST.get('partyid'))
         return redirect('changemeparty')
     elif 'apply_spontaneously' in request.POST:
-        form = IniForm(request.POST, instance=userdata)
+        form = IniForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('dsapply')
-    ap = AllParties(
-     request, HParty, pytz, datetime, FormItems, Hpi, QuarterClassB,
-     view_filter=view_filter, )
-    pl = PortalLoad(P, L, Pbi, 0, Umi, Uli)
-    context_lazy = pl.lazy_context(skins=S, context=ap.context)
+            form.save(userdata)
+            return redirect('userdatapersonal')
+    pl = PortalLoad(P, L, Pbi, 0, Umi, Uli, )
+    context_lazy = pl.lazy_context(skins=S, context=pct)
     template = 'panels/common/allparties.html'
     return render(request, template, context_lazy)

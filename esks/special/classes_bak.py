@@ -1,4 +1,7 @@
 from django.shortcuts import redirect
+from rekruter.forms import IniForm
+import datetime as dt
+import pytz as py_tz
 
 
 class PageLoad(object):
@@ -45,15 +48,15 @@ class PageLoad(object):
     # Funkcja tworzy za nas podstwwowy kontekst,
     # który rozszerza się o dany w funkcji.
     def lazy_context(self, **kwargs):
-        self.context = {
+        context = {
          'items': self.items,
          'langs': self.langs, }
         if 'skins' in kwargs:
             self.page_dress(**kwargs)
-            self.context.update(self.skinctx)
+            context.update(self.skinctx)
         if 'context' in kwargs:
-            self.context.update(kwargs['context'])
-        return self.context
+            context.update(kwargs['context'])
+        return context
 
 
 # Klasa ładowania widoków /strony/
@@ -135,8 +138,8 @@ class PartyMaster(object):
     # Podstawka zwraca wszystkie akcje kwaterunkowe
     def __init__(self, *args):
         H_Party = args[0]
-        py_tz = args[1]
-        dt = args[2]
+        # py_tz = args[1]
+        # dt = args[2]
         self.all_parties = PageElement(H_Party)
         tz_UTC = py_tz.timezone('Europe/Warsaw')
         self.dt_now = dt.datetime.now(tz_UTC)
@@ -189,30 +192,26 @@ class PartyMaster(object):
             x = x+1
         return future_parties
 
-
-class AllParties(object):
-    def __init__(self, request, *args, **kwargs):
-        HParty = args[0]
-        pytz = args[1]
-        datetime = args[2]
-        FormItems = args[3]
-        Hpi = args[4]
-        QuarterClassB = args[5]
+    def partycontext(self, request,  *args, **kwargs):
+        HParty = args[3]
+        FormItems = args[0]
+        Hpi = args[1]
+        QuarterClassB = args[2]
         view_filter = kwargs['view_filter']
-        pm = PartyMaster(HParty, pytz, datetime)
-        all_parties = pm.all_parties
+        all_parties = PageElement(HParty)
+        #all_parties = self.all_parties
         range = {
-         "1": pm.full_party(attrname="id"),
-         "2": pm.active_party(attrname="id"),
-         "3": pm.past_party(attrname="id"),
-         "4": pm.future_party(attrname="id"),
+         "1": self.full_party(attrname="id"),
+         "2": self.active_party(attrname="id"),
+         "3": self.past_party(attrname="id"),
+         "4": self.future_party(attrname="id"),
         }
         active_parties = []
         for item in range[view_filter]:
             obj = all_parties.elements.get(pk=item)
             active_parties.append(obj)
         pe_fi = PageElement(FormItems)
-        all_parties = PageElement(HParty)
+
         hpi = PageElement(Hpi)
         peqc = PageElement(QuarterClassB)
         self.context = {
@@ -222,3 +221,17 @@ class AllParties(object):
          'setter': peqc.listed,
          'view_filter': view_filter,
          }
+        return self.context
+
+    def coreparties(self, request, userdata):
+        if 'subbutton' in request.POST:
+            view_filter = str(request.POST.get('view_filter'))
+            return view_filter
+        elif 'changeparty' in request.POST:
+            request.session['partyid'] = request.POST.get('partyid')
+            return redirect('changemeparty')
+        elif 'apply_spontaneously' in request.POST:
+            form = IniForm(request.POST)
+            if form.is_valid():
+                form.save(userdata)
+                return redirect('userdatapersonal')
