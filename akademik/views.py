@@ -126,6 +126,7 @@ def dormapply(request):
             return redirect('userpanel')
     else:
         redir = party_switch(request)
+        party_form_id = request.session['partyformid']
         if redir == 1:
             return redirect('showparties')  # Gdzie przekierować?
         else:
@@ -138,6 +139,8 @@ def dormapply(request):
             std = PageElement(Std)
             sch = PageElement(Sch)
             scs = PageElement(Scs)
+            hp = PageElement(HParty)
+            puzzle = hp.by_id(G404=G404, id=party_form_id)
             context = {
              'udata': userdata,
              'formitem': pe_fi.baseattrs,
@@ -149,7 +152,8 @@ def dormapply(request):
              'degreelist': std.listed,
              'spouselist': sch.listed,
              'scaselist': scs.listed,
-             'service': service
+             'service': service,
+             'puzzle': puzzle
              }
             pl = PortalLoad(P, L, Pbi, 0, Umi, Uli, )
             context_lazy = pl.lazy_context(skins=S, context=context)
@@ -169,7 +173,6 @@ def showparties(request):
         return redirect('changemeparty')
     elif 'apply_spontaneously' in request.POST:
         form = IniForm(request.POST, instance=userdata)
-        request.session['partyformid'] = request.POST.get('partyid')
         if form.is_valid():
             form.save()
             return redirect('dsapply')
