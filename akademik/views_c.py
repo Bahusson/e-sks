@@ -140,16 +140,16 @@ def allparties(request):
     userdata = User.objects.get(
      id=request.user.id)
     view_filter = "2"
-    form = IniForm(request.POST)
     if 'subbutton' in request.POST:
         view_filter = str(request.POST.get('view_filter'))
     elif 'changeparty' in request.POST:
         request.session['partyid'] = request.POST.get('partyid')
         return redirect('changemeparty')
     elif 'apply_spontaneously' in request.POST:
+        form = IniForm(request.POST, instance=userdata)
         if form.is_valid():
             form.save()
-            return redirect('userdatapersonal')
+            return redirect('dsapply')
     ap = AllParties(
      request, HParty, pytz, datetime, FormItems, Hpi, QuarterClassB,
      view_filter=view_filter, )
