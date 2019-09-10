@@ -4,6 +4,7 @@ from strona.models import Pageitem as P
 from strona.models import PageSkin as S
 from esks.settings import LANGUAGES as L
 from esks.special.classes import PortalLoad, PageElement, PartyMaster
+from esks.special.classes import AllParties
 from .models import PortalBaseItem as Pbi
 from .models import UserMenuItem as Umi
 from .models import UserLinkItem as Uli
@@ -12,6 +13,7 @@ from .models import TranslatorLinkItem as Tli
 from .models import HotelMenuItem as Hmi
 from .models import HotelLinkItem as Hli
 from .models import HousingParty as HParty
+from .models import HousingPartyItems as Hpi
 from rekruter.models import StudentHouse as Sh
 from rekruter.models import IfRoomChange as Ifr
 from rekruter.models import TimePeriod as Tper
@@ -117,7 +119,7 @@ def dormapply(request):
     else:
         redir = party_switch(request)
         if redir == 1:
-            return redirect('initial')  # Gdzie przekierować?
+            return redirect('showparties')  # Gdzie przekierować?
         else:
             pe_fi = PageElement(FormItems)
             form = ApplicationForm()
@@ -145,3 +147,14 @@ def dormapply(request):
             context_lazy = pl.lazy_context(skins=S, context=context)
             template = 'forms/dormapply.html'
             return render(request, template, context_lazy)
+
+
+# Pokazuje różne akcje kwaterunkowe - widok oparty na klasach.
+def showparties(request):
+    ap = AllParties(
+     request, HParty, pytz, datetime, FormItems, Hpi, QuarterClassB,
+     view_filter="2", )
+    pl = PortalLoad(P, L, Pbi, 0, Umi, Uli)
+    context_lazy = pl.lazy_context(skins=S, context=ap.context)
+    template = 'panels/common/allparties.html'
+    return render(request, template, context_lazy)

@@ -1,3 +1,6 @@
+from django.shortcuts import redirect
+
+
 class PageLoad(object):
     ''' Zwraca tyle języków ile mamy zainstalowane
     w ustawieniach w zakładce LANGUAGES w formacie naprzemiennym
@@ -185,3 +188,42 @@ class PartyMaster(object):
                  str(self.list_parties[x].__dict__[attrname]))
             x = x+1
         return future_parties
+
+
+class AllParties(object):
+    def __init__(self, request, *args, **kwargs):
+        HParty = args[0]
+        pytz = args[1]
+        datetime = args[2]
+        FormItems = args[3]
+        Hpi = args[4]
+        QuarterClassB = args[5]
+        view_filter = kwargs['view_filter']
+        pm = PartyMaster(HParty, pytz, datetime)
+        all_parties = pm.all_parties
+        range = {
+         "1": pm.full_party(attrname="id"),
+         "2": pm.active_party(attrname="id"),
+         "3": pm.past_party(attrname="id"),
+         "4": pm.future_party(attrname="id"),
+        }
+        if 'subbutton' in request.POST:
+            view_filter = str(request.POST.get('view_filter'))
+        elif 'changeparty' in request.POST:
+            request.session['partyid'] = request.POST.get('partyid')
+            return redirect('changemeparty')
+        active_parties = []
+        for item in range[view_filter]:
+            obj = all_parties.elements.get(pk=item)
+            active_parties.append(obj)
+        pe_fi = PageElement(FormItems)
+        all_parties = PageElement(HParty)
+        hpi = PageElement(Hpi)
+        peqc = PageElement(QuarterClassB)
+        self.context = {
+         'formitem': pe_fi.baseattrs,
+         'parties': active_parties,
+         'p_item': hpi.baseattrs,
+         'setter': peqc.listed,
+         'view_filter': view_filter,
+         }

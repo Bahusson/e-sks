@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404 as G404
 from strona.models import Pageitem as P
 from strona.models import PageSkin as S
 from esks.settings import LANGUAGES as L
-from esks.special.classes import PortalLoad, PageElement, PartyMaster
+from esks.special.classes import PortalLoad, PageElement, AllParties
 from .models import PortalBaseItem as Pbi
 from .models import CouncilMenuItem as Cmi
 from .models import CouncilLinkItem as Cli
@@ -135,39 +135,12 @@ def changemeparty(request):
         return render(request, template, context_lazy)
 
 
-# Na razie pokazuje tylko akcje aktywne.
-# Do zmiany, żeby był wybór.
-@council_only(login_url='logger')
-def allparties(request, view_filter="2"):
-    pm = PartyMaster(HParty, pytz, datetime)
-    all_parties = pm.all_parties
-    range = {
-     "1": pm.full_party(attrname="id"),
-     "2": pm.active_party(attrname="id"),
-     "3": pm.past_party(attrname="id"),
-     "4": pm.future_party(attrname="id"),
-    }
-    if 'subbutton' in request.POST:
-        view_filter = str(request.POST.get('view_filter'))
-    elif 'changeparty' in request.POST:
-        request.session['partyid'] = request.POST.get('partyid')
-        return redirect('changemeparty')
-    active_parties = []
-    for item in range[view_filter]:
-        obj = all_parties.elements.get(pk=item)
-        active_parties.append(obj)
-    pe_fi = PageElement(FormItems)
-    all_parties = PageElement(HParty)
-    hpi = PageElement(Hpi)
-    peqc = PageElement(QuarterClassB)
-    context = {
-     'formitem': pe_fi.baseattrs,
-     'parties': active_parties,
-     'p_item': hpi.baseattrs,
-     'setter': peqc.listed,
-     'view_filter': view_filter,
-     }
+# Pokazuje różne akcje kwaterunkowe - widok oparty na klasach.
+def allparties(request):
+    ap = AllParties(
+     request, HParty, pytz, datetime, FormItems, Hpi, QuarterClassB,
+     view_filter="2", )
     pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli)
-    context_lazy = pl.lazy_context(skins=S, context=context)
-    template = 'panels/council/allparties.html'
+    context_lazy = pl.lazy_context(skins=S, context=ap.context)
+    template = 'panels/common/allparties.html'
     return render(request, template, context_lazy)
