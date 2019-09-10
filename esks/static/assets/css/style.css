@@ -356,7 +356,7 @@ a:hover .imgshdw {
     position: absolute;
     top: 0;
     width: 225px;
-    margin-top: 100px;
+    margin-top: 150px;
     font-size: 14px;
     text-align: center;
     margin: 10;
@@ -455,6 +455,14 @@ a:hover .imgshdw {
     background: #333333 !important;
     color: #fff !important;
 }
+
+.sidebar-nav li a {
+    background: #333333 !important;
+    color: #fff !important;
+}
+
+.sidebar-nav li:hover  a {
+    color: #e98328;
 /***** MEDIA QUERIES *****/
 @media (min-width: 992px) and (max-width: 1199px) {
     @media (min-width: 768px) and (max-width: 991px) {
