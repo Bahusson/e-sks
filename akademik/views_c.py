@@ -19,7 +19,7 @@ from rekruter.models import SpouseCohabitant as Sch
 from rekruter.models import SpecialCase as Scs
 from esks.special.decorators import council_only
 from rekruter.models import User, FormItems, QuarterClassB
-from rekruter.forms import PartyForm
+from rekruter.forms import PartyForm, IniForm
 import datetime
 import pytz
 
@@ -137,9 +137,22 @@ def changemeparty(request):
 
 # Pokazuje różne akcje kwaterunkowe - widok oparty na klasach.
 def allparties(request):
+    userdata = User.objects.get(
+     id=request.user.id)
+    view_filter = "2"
+    if 'subbutton' in request.POST:
+        view_filter = str(request.POST.get('view_filter'))
+    elif 'changeparty' in request.POST:
+        request.session['partyid'] = request.POST.get('partyid')
+        return redirect('changemeparty')
+    elif 'apply_spontaneously' in request.POST:
+        form = IniForm(request.POST)
+        if form.is_valid():
+            form.save(userdata)
+            return redirect('userdatapersonal')
     ap = AllParties(
      request, HParty, pytz, datetime, FormItems, Hpi, QuarterClassB,
-     view_filter="2", )
+     view_filter=view_filter, )
     pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli)
     context_lazy = pl.lazy_context(skins=S, context=ap.context)
     template = 'panels/common/allparties.html'

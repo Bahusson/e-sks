@@ -151,9 +151,22 @@ def dormapply(request):
 
 # Pokazuje różne akcje kwaterunkowe - widok oparty na klasach.
 def showparties(request):
+    userdata = User.objects.get(
+     id=request.user.id)
+    view_filter = "2"
+    if 'subbutton' in request.POST:
+        view_filter = str(request.POST.get('view_filter'))
+    elif 'changeparty' in request.POST:
+        request.session['partyid'] = request.POST.get('partyid')
+        return redirect('changemeparty')
+    elif 'apply_spontaneously' in request.POST:
+        form = IniForm(request.POST)
+        if form.is_valid():
+            form.save(userdata)
+            return redirect('userdatapersonal')
     ap = AllParties(
      request, HParty, pytz, datetime, FormItems, Hpi, QuarterClassB,
-     view_filter="2", )
+     view_filter=view_filter, )
     pl = PortalLoad(P, L, Pbi, 0, Umi, Uli)
     context_lazy = pl.lazy_context(skins=S, context=ap.context)
     template = 'panels/common/allparties.html'

@@ -207,11 +207,6 @@ class AllParties(object):
          "3": pm.past_party(attrname="id"),
          "4": pm.future_party(attrname="id"),
         }
-        if 'subbutton' in request.POST:
-            view_filter = str(request.POST.get('view_filter'))
-        elif 'changeparty' in request.POST:
-            request.session['partyid'] = request.POST.get('partyid')
-            return redirect('changemeparty')
         active_parties = []
         for item in range[view_filter]:
             obj = all_parties.elements.get(pk=item)
