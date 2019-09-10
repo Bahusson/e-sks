@@ -1,13 +1,15 @@
 
 
 <!-- Fragment generujący menu z podpunktami dla Panelu Usera. Rozszerzaj dodając Divy -->
-<div class="p-3">
-  <h4 class="font-italic">Pierwsze MenU</h4>
-    <ol class="list-unstyled mb-0">
+<div id="wrapper">
+<div id="sidebar-wrapper">
+<aside id="sidebar">
+<h4 class="font-italic">Pierwsze MenU</h4>
+<ul id="sidemenu" class="sidebar-nav">
       <li>
         <a href="#">
           <span class="sidebar-icon"><i class="fa fa-dashboard"></i></span>
-          <span class="sidebar-title">Home</span
+          <span class="sidebar-title">Home</span>
         </a>
       </li>
       <li>
@@ -45,5 +47,7 @@
         </a>
     </li>
     <li><a href="{% url 'userdatapersonal' %}">Moje dane</a></li>
-    </ol>
+    </ul>
+    </aside>
+</div>
 </div>
