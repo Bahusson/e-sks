@@ -165,3 +165,4 @@ class HousingPartyItems(models.Model):
     owner = models.CharField(blank=True, max_length=200)
     userinfo = models.CharField(blank=True, max_length=250)
     housing_party = models.CharField(blank=True, max_length=200)
+    change_and_apply = models.CharField(blank=True, max_length=200)

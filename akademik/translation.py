@@ -81,7 +81,7 @@ class HousingPartyItemsTranslate(TranslationOptions):
         'party_title', 'choose_party', 'time_start', 'time_end', 'comment',
         'announce', 'tick_form', 'p_from', 'p_to', 'changeme', 'all_parties',
         'active_parties', 'past_parties', 'future_parties', 'new_party_view',
-        'owner', 'userinfo', 'housing_party',
+        'owner', 'userinfo', 'housing_party', 'change_and_apply',
     )
 
 

@@ -56,7 +56,11 @@
     <p><b>{{ formitem.action }}:</b> {{ setter|action:party.quarter }}
     <!-- Guzik aplikowania na aktywną akcję kwaterunkową -->
     {% if view_filter == "2" %}
-
+      <form name="SpontaneousApply" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="quarter" value="{{ party.id }}">
+        <input class="button" name="apply_spontaneously" type="submit" value="{{ p_item.change_and_apply }}">
+      </form>
     {% endif %}
     <p><b>{{ p_item.p_from }}:</b> {{ party.date_start }} <br><b>{{ p_item.p_to }}:</b>{{ party.date_end }}</p>
    {% if user.role_council > 1 %}
@@ -67,7 +71,7 @@
     {% if user.role_council > 2 %}
     <form name="ChangePartyForm" method="post">
       {% csrf_token %}
-      <input type="hidden" name="partyid"" value="{{ party.id }}">
+      <input type="hidden" name="partyid" value="{{ party.id }}">
       <input class="button" name="changeparty" type="submit" value="{{ p_item.changeme }}">
     </form>
     {% endif %}
