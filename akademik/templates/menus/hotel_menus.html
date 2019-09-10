@@ -4,14 +4,14 @@
     <div class="col-sm-12 text wow fadeInLeft"></div>
 </div>
 <div class="row">
-    <div class="col-sm-12 text wow fadeInLeft"></div>
+    <div class="col-sm-12 text wow fadeInLeft"><br><br></div>
 </div>
 <!-- KONIEC PUSTY DIV  -->
 <!-- Fragment generujący menu z podpunktami dla Panelu Usera. Rozszerzaj dodając Divy -->
 <div id="wrapper">
 <div id="sidebar-wrapper">
 <aside id="sidebar">
-<h4 class="font-italic">Pierwsze MenU</h4>
+
 <ul id="sidemenu" class="sidebar-nav">
       <li>
         <a href="#">
@@ -47,13 +47,12 @@
           <span class="sidebar-title">Data</span>
         </a>
      </li>
-    <li>
-        <a href="#">
-          <span class="sidebar-icon"><i class="fa fa-terminal"></i></span>
-          <span class="sidebar-title">Console</span>
-        </a>
-    </li>
-    <li><a href="{% url 'userdatapersonal' %}">Moje dane</a></li>
+     <li>
+         <a href="{% url 'userdatapersonal' %}">
+           <span class="sidebar-icon"><i class="fa fa-terminal"></i></span>
+           <span class="sidebar-title">Moje dane</span>
+     </li>
+
     </ul>
     </aside>
 </div>

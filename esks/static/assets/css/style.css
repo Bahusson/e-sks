@@ -342,10 +342,10 @@ a:hover .imgshdw {
     left: 225px;
     width: 0;
     height: 100%;
-    
+
     margin-bottom: 100px;
     overflow-y: auto;
-    background: #f8f8f8;
+
     -webkit-transition: all .5s ease;
     -moz-transition: all .5s ease;
     -o-transition: all .5s ease;
@@ -357,7 +357,6 @@ a:hover .imgshdw {
     top: 0;
     width: 225px;
     margin-top: 100px;
-
     font-size: 14px;
     text-align: center;
     margin: 10;
@@ -377,20 +376,20 @@ a:hover .imgshdw {
 }
 
 .sidebar-nav li:first-child a {
-    background: #92bce0 !important;
+    background: #333333 !important;
     color: #fff !important;
 }
 
 #sidebar-wrapper .sidebar-nav li a .sidebar-icon {
-    width: 45px;
+    width: 30px;
     height: 45px;
     font-size: 14px;
     padding: 0 2px;
     display: inline-block;
     text-indent: 7px;
-    margin-right: 10px;
+    margin-right: 0px;
     color: #fff;
-    float: left;
+    float: right;
 }
 
 #sidebar-wrapper .sidebar-nav li a .caret {
@@ -433,27 +432,27 @@ a:hover .imgshdw {
 }
 
 .sidebar-nav li:first-child a {
-    background: #92bce0 !important;
+    background: #333333 !important;
     color: #fff !important;
 }
 
 .sidebar-nav li:nth-child(2) a {
-    background: #6aa3d5 !important;
+    background: #333333 !important;
     color: #fff !important;
 }
 
 .sidebar-nav li:nth-child(3) a {
-    background: #428bca !important;
+    background: #333333 !important;
     color: #fff !important;
 }
 
 .sidebar-nav li:nth-child(4) a {
-    background: #3071a9 !important;
+    background: #333333 !important;
     color: #fff !important;
 }
 
 .sidebar-nav li:nth-child(5) a {
-    background: #245682 !important;
+    background: #333333 !important;
     color: #fff !important;
 }
 /***** MEDIA QUERIES *****/
