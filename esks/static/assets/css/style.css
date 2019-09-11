@@ -220,6 +220,10 @@ a:hover .imgshdw {
     -webkit-box-shadow: 5px 5px 5px #999;
     box-shadow: 2px 2px 4px #999;
 }
+
+.blog-image img {
+    margin: 10 10 10 px;
+}
 /******CARDS*********/
 * {
     box-sizing: border-box;
