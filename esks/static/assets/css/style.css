@@ -221,8 +221,9 @@ a:hover .imgshdw {
     box-shadow: 2px 2px 4px #999;
 }
 
-.blog-image img {
-    margin: 10 10 10 px;
+.shdwn img {
+    width: 350px;
+    height: 250px;
 }
 /******CARDS*********/
 * {
