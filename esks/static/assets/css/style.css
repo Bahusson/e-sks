@@ -470,9 +470,13 @@ a:hover .imgshdw {
 .sidebar-nav li:hover  {
     color: #e98328;
 }
+
 .sidem {
-  width: 250px;
-  right: 10px;
+  z-index: 1000;
+  position: static;
+  left: 225px;
+  width: 200px;
+  margin-bottom: 30px;
 }
 /***** MEDIA QUERIES *****/
 @media (min-width: 992px) and (max-width: 1199px) {

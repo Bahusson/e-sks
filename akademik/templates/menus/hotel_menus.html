@@ -8,6 +8,7 @@
 </div>
 <!-- KONIEC PUSTY DIV  -->
 <!-- Fragment generujący menu z podpunktami dla Panelu Usera. Rozszerzaj dodając Divy -->
+<!--  MENU WERSJA 1 -->
 <div id="wrapper">
 <div id="sidebar-wrapper">
 <aside id="sidebar">
@@ -57,15 +58,19 @@
     </aside>
 </div>
 </div>
+<!--  KONIEC MENU WERSJA 1 -->
+
+<!--  MENU WERSJA 2 -->
 <div class="row float-left">
 <div class="column">
-    <div class="card sidem responsive" width= "250">
-        <p class="head-card">WAŻNE DOKUMENTY</p>
-        <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Formularz rejstracyjny</a></p>
-        <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Wzór podania</a></p>
-        <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Wniosek akomodacyjny</a></p>
-        <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Wzór formularza</a></p>
-        <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Karta studenta</a></p>
+    <div class="card sidem float-left" width= "250">
+        <p class="head-card">MENU ADMINISRACJI</p>
+        <p class="head-foot"><a href="#">NOCLEGI</a></p>
+        <p class="head-foot"><a href="#">MOJE DANE</a></p>
+        <p class="head-foot"><a href="#">USTAWIENIA</a></p>
+        <p class="head-foot"><a href="#">MOJE REZERWACJE</a></p>
+        <p class="head-foot"><a href="{% url 'userdatapersonal' %}">MOJE DANE</a></p>
     </div>
 </div>
 </div>
+<!--  KONIEC MENU WERSJA 2 -->
