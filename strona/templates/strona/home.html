@@ -6,10 +6,13 @@
 <!-- Null -->
 {% block body %}
 
-
+<br>
+<br>
+<br>
+<br>
 <div class="alert alert-dismissible">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <img width=100% src="https://pics.tinypic.pl/i/00987/f1s60f69at4r.png" class="img-responsive">
+    <img width=100% src="https://pics.tinypic.pl/i/00987/f1s60f69at4r.png" class="img-responsive" width="100%" >
 </div>
 
 <!-- POCZĄTEK AKTUALNÓŚĆ -->
@@ -21,9 +24,9 @@
     <div class="col">
         {% if blog.image %}
         <!-- Jeśli nie ma obrazka zwróć default ze skórki Usera -->
-        <a href="{% url 'blog' blog.id %}"><img class="blog-image imgshdw float-left" src="{{ blog.image.url }}" width="400" height="250" /></a>
+        <a href="{% url 'blog' blog.id %}"><img class="blog-image imgshdw float-left img-responsive" src="{{ blog.image.url }}" /></a>
         {% else %}
-        <a href="{% url 'blog' blog.id %}"><img class="blog-image" src="{{ skin.blogimagedefault.url }}" width="400" height="250" /></a>
+        <a href="{% url 'blog' blog.id %}"><img class="blog-image img-responsive" src="{{ skin.blogimagedefault.url }}" /></a>
         {% endif %}
         <div class="desc ">
             <h4 class="head-news"><a href="{% url 'blog' blog.id %}">{{ blog.title }}</a></h4>
@@ -42,9 +45,9 @@
       <div class="col">
           {% if blogs.3.image %}
            <!-- Jeśli nie ma obrazka zwróć default ze skórki Usera -->
-           <a href="{% url 'blog' blogs.3.id %}"><img class="blog-image imgshdw float-left" src="{{ blogs.3.image.url }}" width="400" height="250" /></a>
+           <a href="{% url 'blog' blogs.3.id %}"><img class="blog-image imgshdw float-left img-responsive" src="{{ blogs.3.image.url }}"  /></a>
           {% else %}
-           <a href="{% url 'blog' blog.id %}"><img class="blog-image imgshdw float-left" src="{{ skin.blogimagedefault.url }}" width="400" height="250" /></a>
+           <a href="{% url 'blog' blog.id %}"><img class="blog-image imgshdw float-left img-responsive" src="{{ skin.blogimagedefault.url }}" /></a>
           {% endif %}
           <div class="desc">
               <h4 class="head-news"><a href="{% url 'blog' blogs.3.id %}">{{ blogs.3.title }}</a></h4>
@@ -70,8 +73,8 @@
 
 <div class="row float-center">
     <div class="column">
-        <div class="card">
-            <img src="https://files.tinypic.pl/i/00987/bs9sqh7nh5y0.jpg" width="100%" height="253px">
+        <div class="card shdwn2">
+            <img src="https://files.tinypic.pl/i/00987/bs9sqh7nh5y0.jpg" class="img-responsive " width="100%" height="100%">
         </div>
     </div>
     <div class="column">
@@ -85,8 +88,8 @@
         </div>
     </div>
     <div class="column">
-        <div class="card">
-            <img src="https://pics.tinypic.pl/i/00987/mq8mztkye64g.jpg" width="100%" height="253px">
+        <div class="card shdwn2">
+            <img src="https://pics.tinypic.pl/i/00987/mq8mztkye64g.jpg" class="img-responsive" width="100%" height="100%">
         </div>
     </div>
     <div class="column">
