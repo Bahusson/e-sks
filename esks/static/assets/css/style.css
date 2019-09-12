@@ -247,7 +247,7 @@ a:hover .imgshdw {
 }
 .card {
     padding: 0px;
-    height: 253px;
+    height: auto;
     width: auto;
     background-color: #333333;
     color: #ffffff;
@@ -345,7 +345,7 @@ a:hover .imgshdw {
     z-index: 1000;
     position: static;
 
-    left: 225px;
+    left: 325px;
     width: 0;
     height: 100%;
 

@@ -1,26 +1,20 @@
-<!-- Fragment generujący menu z podpunktami dla Panelu Usera. Rozszerzaj dodając Divy -->
-<div class="p-3">
-  <h4 class="font-italic">{{ menu.0 }}</h4>
-    <ol class="list-unstyled mb-0">
-      <li><a href="">{{ link.0 }}</a></li><!--Poczta-->
-      <li><a href="{% url 'allparties' %}">{{ link.1 }}</a></li><!--Akcje Kwaterunkowe-->
-      <li><a href="">{{ link.2 }}</a></li><!--Zarządzaj Stroną-->
-
-    </ol>
+<!--  MENU WERSJA 2 -->
+<div class="row float-left">
+<div class="column">
+    <div class="card sidem float-left" width= "250">
+        <p class="head-card">{{ menu.0 }}</p>
+        <p class="head-foot"> {{ link.0 }}</p><!--Poczta-->
+        <p class="head-foot"><a href="{% url 'allparties' %}">{{ link.1 }}</a></p><!--Akcje Kwaterunkowe-->
+        <p class="head-foot">{{ link.2 }}</p>
+        <p class="head-card">{{ menu.1 }}</p>
+        <p class="head-foot">{{ link.3 }}</p><!--Lista Wniosków-->
+        <!-- Tylko dla Szefa Rady -->
+        {% if user.role_council > 2 %}
+        <p class="head-card">{{ menu.2 }}</p>
+        <p class="head-foot"><a href="{% url 'makemeparty' %}">{{ link.4 }}</a></p><!--Lista Wniosków-->
+        {% endif %}
+        <!-- End tylko dla Szefa Rady -->
+    </div>
 </div>
-<div class="p-3">
-  <h4 class="font-italic">{{ menu.1 }}</h4>
-    <ol class="list-unstyled mb-0">
-      <li><a href="">{{ link.3 }}</a></li><!--Lista Wniosków-->
-    </ol>
 </div>
-<!-- Tylko dla Szefa Rady -->
-{% if user.role_council > 2 %}
-  <div class="p-3">
-    <h4 class="font-italic">{{ menu.2 }}</h4>
-      <ol class="list-unstyled mb-0">
-        <li><a href="{% url 'makemeparty' %}">{{ link.4 }}</a></li> <!--Stwórz akcję kwaterunkową -->
-      </ol>
-  </div>
-{% endif %}
-<!-- End tylko dla Szefa Rady -->
+<!--  KONIEC MENU WERSJA 2 -->

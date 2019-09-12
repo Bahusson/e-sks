@@ -1,13 +1,16 @@
-<!-- Fragment generujący menu z podpunktami dla Panelu Usera. Rozszerzaj dodając Divy -->
-<div class="p-3">
-  <h4 class="font-italic">{{ menu.0 }}</h4>
-    <ol class="list-unstyled mb-0">
-      <li><a href="">{{ link.0 }}</a></li>
-      <li><a href="">{{ link.1 }}</a></li>
-      <li><a href="{% url 'dsapply' %}">{{ link.2 }}</a></li>
-      <li><a href="">{{ link.3 }}</a></li>
-      <li><a href="">{{ link.4 }}</a></li>
-      <li><a href="">{{ link.5 }}</a></li>
-      <li><a href="{% url 'userdatapersonal' %}">{{ link.6 }}</a></li>
-    </ol>
+<!--  MENU WERSJA 2 -->
+<div class="row float-left">
+<div class="column">
+    <div class="card sidem float-left" width= "250">
+        <p class="head-card">{{ menu.0 }}</p>
+        <p class="head-foot">{{ link.0 }}</p><!--Natalia-->
+        <p class="head-foot">{{ link.1 }}</p><!--Poczta-->
+        <p class="head-foot"><a href="{% url 'dsapply' %}">{{ link.2 }}</a></p><!--Wniosek o DS-->
+        <p class="head-foot">{{ link.3 }}</p><!--Szczegóły pokoju-->
+        <p class="head-foot">{{ link.4 }}</p><!--Preferencje pokoju0-->
+        <p class="head-foot">{{ link.5 }}</p><!--Lista Wniosków-->
+        <p class="head-foot"><a href="{% url 'userdatapersonal' %}">{{ link.6 }}</a></p><!--Profil Użytkownika-->
+    </div>
 </div>
+</div>
+<!--  KONIEC MENU WERSJA 2 -->
