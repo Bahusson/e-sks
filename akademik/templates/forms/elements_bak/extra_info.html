@@ -1,0 +1,35 @@
+<!-- Dodatkowe dane: Czy chce mieszkać z małżonkiem i czy jest niepełnosprawny/a -->
+<!-- Domyślnie: Nie składa -->
+<h4> {{ formitem.additional_info }} </h4>
+<p> {{ formitem.spouse_cohabitant }}:</p>
+<p>    <select {% if service %} required {% endif %} id="spouse_cohabitant">
+             <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
+           {% for item in spouselist %}
+              <option value ="{{ forloop.counter }}">{{ item }}</option>
+           {% endfor %}
+    </select>
+</p>
+<p> {{ formitem.special_case_docs }}:</p>
+<p>
+    <select {% if service %} required {% endif %} id="special_case_docs">
+             <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
+           {% for item in scaselist %}
+              <option value ="{{ forloop.counter }}">{{ item }}</option>
+           {% endfor %}
+    </select>
+</p>
+<br>
+
+<!--Ukryte pola formularza-->
+{{ form.spouse_cohabitant }}{{ form.special_case_docs }}
+<!--Skrypt zapełniający pola-->
+<script>
+  $(document).ready(function()
+  {
+    $('#send').click(function()
+   {
+     formfill("spouse_cohabitant", "id_spouse_cohabitant")
+     formfill("special_case_docs", "id_special_case_docs")
+  });
+});
+</script>

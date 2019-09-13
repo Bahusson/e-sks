@@ -1,0 +1,50 @@
+<!-- Dane toku studiów - tylko jeśli student. Domyślnie: nie dotyczy. -->
+{% load staticfiles %}
+
+<h4> {{ formitem.pref_as_stud }} </h4>
+<p> {{ formitem.faculty }}
+    <select {% if service %} required {% endif %} id="faculty">
+             <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
+           {% for item in facultylist %}
+              <option value ="{{ forloop.counter }}">{{ item }}</option>
+           {% endfor %}
+    </select>
+</p>
+<p> {{ formitem.degree }}
+    <select {% if service %} required {% endif %} id="degree">
+             <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
+           {% for item in degreelist %}
+              <option value ="{{ forloop.counter }}">{{ item }}</option>
+           {% endfor %}
+    </select>
+</p>
+<p> {{ formitem.deangroup }} {{ form.deangroup }} </p>
+<p> {{ formitem.semester }}
+  <select {% if service %} required {% endif %} id="semester">
+           <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
+           <option value ="0">-</option>
+         {% for item in "1"|rjust:"12"  %}
+            <option value ="{{ forloop.counter }}">{{ forloop.counter }}</option>
+         {% endfor %}
+  </select>
+</p>
+{% if udata.album %}
+<p> {{ formitem.album }} {{ udata.album }}</p>
+{% endif %}
+<p>
+<br>
+
+<!--Ukryte pola formularza-->
+{{ form.faculty }}{{ form.degree }}{{ form.semester }}
+<!--Skrypt zapełniający pola-->
+<script>
+  $(document).ready(function()
+  {
+    $('#send').click(function()
+   {
+     formfill("faculty", "id_faculty")
+     formfill("degree", "id_degree")
+     formfill("semester", "id_semester")
+  });
+});
+</script>
