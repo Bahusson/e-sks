@@ -10,24 +10,8 @@ from esks.special.classes import PageElement as pe
 from esks.special.classes import PageLoad
 
 
-# Strona główna.
-def home(request):
-    pe_b = pe(B)
-    pe_i = pe(In)
-    pe_f = pe(F)
-    context = {
-     'blogs': pe_b.listed,
-     'infos': pe_i.elements,
-     'files': pe_f.elements, }
-    pl = PageLoad(P, L)
-    context_lazy = pl.lazy_context(
-     skins=S, context=context)
-    template = 'strona/home.html'
-    return render(request, template, context_lazy)
-
-
 # Pojedyńcze aktualności w zbliżeniu.
-def blog(request, blog_id):
+def make_blog(request, blog_id):
     pe_b = pe(B)
     pe_b_id = pe_b.by_id(
      G404=G404, id=blog_id)
@@ -40,12 +24,12 @@ def blog(request, blog_id):
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(
      skins=S, context=context)
-    template = 'strona/blog.html'
+    template = 'strona/manage/makeblog.html'
     return render(request, template, context_lazy)
 
 
 # Pojedyńcze informacje w zbliżeniu.
-def info(request, info_id):
+def make_info(request, info_id):
     pe_i = pe(In)
     pe_b = pe(B)
     pe_i_id = pe_i.by_id(
@@ -60,69 +44,83 @@ def info(request, info_id):
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(
      skins=S, context=context)
-    template = 'strona/info.html'
+    template = 'strona/manage/makeinfo.html'
     return render(request, template, context_lazy)
 
 
-# Wszystkie aktualności.
-def allblogs(request):
-    pe_b = pe(B)
+# Pojedyńcze informacje w zbliżeniu.
+def make_file(request, info_id):
     pe_i = pe(In)
+    pe_b = pe(B)
+    pe_i_id = pe_i.by_id(
+     G404=G404,
+     id=info_id)
     pe_f = pe(F)
     context = {
      'blogs': pe_b.elements,
+     'info': pe_i_id,
      'infos': pe_i.elements,
      'files': pe_f.elements, }
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(
      skins=S, context=context)
-    template = 'strona/allblogs.html'
+    template = 'strona/manage/makefile.html'
     return render(request, template, context_lazy)
 
 
-# Wszystkie informacje.
-def allinfos(request):
-    pe_i = pe(In)
+# Pojedyńcze aktualności w zbliżeniu.
+def change_blog(request, blog_id):
     pe_b = pe(B)
+    pe_b_id = pe_b.by_id(
+     G404=G404, id=blog_id)
+    pe_i = pe(In)
     pe_f = pe(F)
     context = {
-     'blogs': pe_b.elements,
+     'blog': pe_b_id,
      'infos': pe_i.elements,
      'files': pe_f.elements, }
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(
      skins=S, context=context)
-    template = 'strona/allinfos.html'
+    template = 'strona/manage/makeblog.html'
     return render(request, template, context_lazy)
 
 
-# Wszystkie pliki.
-def allfiles(request):
+# Pojedyńcze informacje w zbliżeniu.
+def change_info(request, info_id):
     pe_i = pe(In)
     pe_b = pe(B)
+    pe_i_id = pe_i.by_id(
+     G404=G404,
+     id=info_id)
     pe_f = pe(F)
     context = {
      'blogs': pe_b.elements,
+     'info': pe_i_id,
      'infos': pe_i.elements,
      'files': pe_f.elements, }
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(
      skins=S, context=context)
-    template = 'strona/allfiles.html'
+    template = 'strona/manage/makeinfo.html'
     return render(request, template, context_lazy)
 
 
-# Wszystkie pliki.
-def pagemap(request):
+# Pojedyńcze informacje w zbliżeniu.
+def change_file(request, info_id):
     pe_i = pe(In)
     pe_b = pe(B)
+    pe_i_id = pe_i.by_id(
+     G404=G404,
+     id=info_id)
     pe_f = pe(F)
     context = {
      'blogs': pe_b.elements,
+     'info': pe_i_id,
      'infos': pe_i.elements,
      'files': pe_f.elements, }
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(
      skins=S, context=context)
-    template = 'strona/pagemap.html'
+    template = 'strona/manage/makefile.html'
     return render(request, template, context_lazy)
