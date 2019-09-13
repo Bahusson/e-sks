@@ -65,7 +65,7 @@ def info(request, info_id):
 
 
 # Wszystkie aktualności.
-def blogs(request):
+def allblogs(request):
     pe_b = pe(B)
     pe_i = pe(In)
     pe_f = pe(F)
@@ -76,12 +76,28 @@ def blogs(request):
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(
      skins=S, context=context)
-    template = 'strona/blog.html'
+    template = 'strona/allblogs.html'
+    return render(request, template, context_lazy)
+
+
+# Wszystkie informacje.
+def allinfos(request):
+    pe_i = pe(In)
+    pe_b = pe(B)
+    pe_f = pe(F)
+    context = {
+     'blogs': pe_b.elements,
+     'infos': pe_i.elements,
+     'files': pe_f.elements, }
+    pl = PageLoad(P, L)
+    context_lazy = pl.lazy_context(
+     skins=S, context=context)
+    template = 'strona/allinfos.html'
     return render(request, template, context_lazy)
 
 
 # Wszystkie pliki.
-def infos(request):
+def allfiles(request):
     pe_i = pe(In)
     pe_b = pe(B)
     pe_f = pe(F)
@@ -92,7 +108,7 @@ def infos(request):
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(
      skins=S, context=context)
-    template = 'strona/info.html'
+    template = 'strona/allfiles.html'
     return render(request, template, context_lazy)
 
 
@@ -108,5 +124,5 @@ def pagemap(request):
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(
      skins=S, context=context)
-    template = 'strona/info.html'
+    template = 'strona/pagemap.html'
     return render(request, template, context_lazy)

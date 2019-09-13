@@ -24,7 +24,7 @@ def make_blog(request, blog_id):
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(
      skins=S, context=context)
-    template = 'strona/blog.html'
+    template = 'strona/manage/makeblog.html'
     return render(request, template, context_lazy)
 
 
@@ -44,7 +44,7 @@ def make_info(request, info_id):
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(
      skins=S, context=context)
-    template = 'strona/info.html'
+    template = 'strona/manage/makeinfo.html'
     return render(request, template, context_lazy)
 
 
@@ -64,7 +64,7 @@ def make_file(request, info_id):
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(
      skins=S, context=context)
-    template = 'strona/info.html'
+    template = 'strona/manage/makefile.html'
     return render(request, template, context_lazy)
 
 
@@ -82,7 +82,7 @@ def change_blog(request, blog_id):
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(
      skins=S, context=context)
-    template = 'strona/blog.html'
+    template = 'strona/manage/makeblog.html'
     return render(request, template, context_lazy)
 
 
@@ -102,7 +102,7 @@ def change_info(request, info_id):
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(
      skins=S, context=context)
-    template = 'strona/info.html'
+    template = 'strona/manage/makeinfo.html'
     return render(request, template, context_lazy)
 
 
@@ -122,5 +122,5 @@ def change_file(request, info_id):
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(
      skins=S, context=context)
-    template = 'strona/info.html'
+    template = 'strona/manage/makefile.html'
     return render(request, template, context_lazy)

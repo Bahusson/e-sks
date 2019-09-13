@@ -3,11 +3,12 @@ from . import views, views_c
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('aktualnosci', views.blogs, name='blogs'),
-    path('aktualnosc/<int:blog_id>/', views.blog, name='blog'),
-    path('informacje', views.infos, name='infos'),
-    path('informacja/<int:info_id>/', views.info, name='info'),
     path('mapa_strony', views.pagemap, name='pagemap'),
+    path('aktualnosci', views.allblogs, name='allblogs'),
+    path('informacje', views.allinfos, name='allinfos'),
+    path('wazne_pliki', views.allfiles, name='allfiles'),
+    path('aktualnosc/<int:blog_id>/', views.blog, name='blog'),
+    path('informacja/<int:info_id>/', views.info, name='info'),
     # Widoki edytorskie dla rady studentów:
     path('zrob_akt/<int:blog_id>/', views_c.make_blog, name='make_blog'),
     path('zrob_info/<int:blog_id>/', views_c.make_info, name='make_info'),
