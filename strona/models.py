@@ -1,4 +1,5 @@
 from django.db import models
+from esks.settings import AUTH_USER_MODEL
 
 
 class Pageitem(models.Model):
@@ -19,43 +20,71 @@ class Pageitem(models.Model):
     backtouserpanel = models.CharField(max_length=200)
 
 
+# Aktualności widoczne na głównych kafelkach na stronie.
 class Blog(models.Model):
     title = models.CharField(max_length=200)
-    pubdate = models.DateTimeField()
+    pubdate = models.DateTimeField(blank=True, null=True)  # Data widoczności w publikacji
     body = models.TextField()
     image = models.ImageField(upload_to='images', blank=True, null=True)
     video = models.CharField(max_length=500, blank=True, null=True)
+    lastmod = models.DateTimeField(blank=True, null=True)
+    owner = models.ForeignKey(
+     AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['-pubdate']
 
     def __str__(self):
         return self.title
 
     def summary(self):
-        return self.body[:110]
+        return self.body[:150]
 
     def pubdate_short(self):
         return self.pubdate.strftime('%a %d %b %Y')
 
+
+# Bardziej permanentne "ważne informacje" ze strony E-SKS.
+class Info (models.Model):
+    title = models.CharField(max_length=200)
+    pubdate = models.DateTimeField(blank=True, null=True)  # Data widoczności w publikacji
+    body = models.TextField()
+    image = models.ImageField(upload_to='images', blank=True, null=True)
+    lastmod = models.DateTimeField(blank=True, null=True)
+    owner = models.ForeignKey(
+     AUTH_USER_MODEL, on_delete=models.CASCADE)
+
     class Meta:
         ordering = ['-pubdate']
 
-
-class Info (models.Model):  # Katalog "informacje" ze strony SEKS
-    title = models.CharField(max_length=200)
-    body = models.TextField()
-    image = models.ImageField(upload_to='images', blank=True, null=True)
-
     def __str__(self):
         return self.title
 
+    def summary(self):
+        return self.body[:150]
 
-class Fileserve(models.Model):  # serwowanie plików niestatycznych
+    def pubdate_short(self):
+        return self.pubdate.strftime('%a %d %b %Y')
+
+
+# Ważne pliki do pobrania ze strony.
+class Fileserve(models.Model):
     title = models.CharField(max_length=200)
-    pubdate = models.DateTimeField()
+    pubdate = models.DateTimeField(blank=True, null=True)  # Data widoczności w publikacji
     body = models.TextField()
     file = models.FileField(upload_to='assets', blank=True, null=True)
+    lastmod = models.DateTimeField(blank=True, null=True)
+    owner = models.ForeignKey(
+     AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['-pubdate']
 
     def __str__(self):
         return self.title
+
+    def summary(self):
+        return self.body[:150]
 
     def pubdate_short(self):
         return self.pubdate.strftime('%a %d %b %Y')

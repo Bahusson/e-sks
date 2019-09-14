@@ -160,7 +160,6 @@ class PartyForm(forms.ModelForm):
          'formmap', 'faculty_data', 'extra_info', 'agreements1')
 
     def save(self, uid, commit=True):
-        print('Hello!')
         party = super(PartyForm, self).save(commit=False)
         party.owner = uid
         party.title_pl = self.cleaned_data["title_pl"]
