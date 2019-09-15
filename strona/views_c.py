@@ -19,9 +19,10 @@ from .forms import BlogForm, InfoForm, FileserveForm
 
 # Tworzy wpis w aktualnościach.
 @council_only(login_url='staffpanel_c', power_level=1)
-def make_element(request, form_type):
+def make_element(request):
     userdata = User.objects.get(
      id=request.user.id)
+    
     formdict = {
       'blog': BlogForm,
       'info': InfoForm,
