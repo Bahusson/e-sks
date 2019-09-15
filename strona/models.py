@@ -93,3 +93,14 @@ class Fileserve(models.Model):
 # Klasa skórek do naszej apki. Pola nienulowalne.
 class PageSkin(models.Model):
     blogimagedefault = models.ImageField(upload_to='skins')
+
+
+# klasa tłumaczeniowa dla Blog, Info, Fileserve.
+class FormElement(models.Model):
+    title = models.CharField(max_length=200)
+    pubdate = models.CharField(max_length=200)
+    body = models.CharField(max_length=200)
+    image = models.CharField(max_length=200)
+    video = models.CharField(max_length=200)
+    lastmod = models.CharField(max_length=200)
+    by = models.CharField(max_length=200)

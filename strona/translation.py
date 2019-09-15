@@ -1,5 +1,5 @@
 from modeltranslation.translator import translator, TranslationOptions
-from strona.models import Pageitem, Blog, Info, Fileserve
+from strona.models import Pageitem, Blog, Info, Fileserve, FormElement
 
 
 class PageitemsTranslate(TranslationOptions):
@@ -13,7 +13,7 @@ translator.register(Pageitem, PageitemsTranslate)
 
 
 class BlogsTranslate(TranslationOptions):
-    fields = ('title', 'body')
+    fields = ('title', 'body', 'image', 'video')
 
 
 translator.register(Blog, BlogsTranslate)
@@ -27,7 +27,16 @@ translator.register(Info, InfosTranslate)
 
 
 class FileserveTranslate(TranslationOptions):
-    fields = ('title', 'body')
+    fields = ('title', 'body', 'file')
 
 
 translator.register(Fileserve, FileserveTranslate)
+
+
+class FormElementTranslate(TranslationOptions):
+    fields = (
+     'title', 'pubdate', 'body', 'image', 'video', 'lastmod', 'by',
+     )
+
+
+translator.register(FormElement, FormElementTranslate)

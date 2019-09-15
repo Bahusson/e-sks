@@ -1,0 +1,51 @@
+<!--Wzornik do tworzenia i edycji Aktulności-->
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+<title>{{ link.2 }} - {{ diff }}</title>
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+{% block css2 %}
+{% endblock %}
+
+<!--Zwraca oryginalną kompozycję menu z bazy. Potem podstawiasz zmienne,-->
+{% block aside %}
+ {{ block.super }}
+{% endblock aside %}
+
+{% block menu %}
+ {% include 'menus/council_menus.html' %} <!-- Menu z opcjami użytkownika -->
+{% endblock menu %}
+
+{% block body %}
+  <form enctype="multipart/form-data" method="post"> <!-- Do wysyłania plików -->
+    {% csrf_token %}
+    <p>{{ f_item.title }}(PL): {{ form.title_pl }}</p>
+    <p>{{ f_item.title }}(EN): {{ form.title_en }}</p>
+    <p>{{ f_item.pubdate }}: {{ form.date }}</p>
+    <p>{{ f_item.body }}(PL): {{ form.body_pl }}</p>
+    <p>{{ f_item.body }}(EN): {{ form.body_en }}</p>
+    {% if form.video_pl %}
+     <p>{{ f_item.video }}(PL): {{ form.video_pl }}</p>
+     <p>{{ f_item.video }}(EN): {{ form.video_en }}</p>
+    {% endif %}
+    {% if form.image_pl %}
+     <p>{{ f_item.image }}(PL): {{ form.image_pl }}</p>
+     <p>{{ f_item.image }}(EN): {{ form.image_en }}</p>
+    {% elif form.file_pl %}
+     <p>{{ formitem.ufile }}(PL): {{ form.file_pl }}</p>
+     <p>{{ formitem.ufile }}(EN): {{ form.file_en }}</p>
+    {% endif %}
+    <input id="send" class="button" name="subbutton" type="submit" value="{{ formitem.sendme }}">
+  </form>
+{% endblock body %}
+
+
+{% block scripts %}
+{% include 'forms/widgets/date_event.html' %}
+{% endblock %}
+
+{% block scripts2 %}
+{% endblock %}
