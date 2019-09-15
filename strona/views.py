@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404 as G404
 from .models import PageSkin as S
 from .models import Blog as B
@@ -112,11 +112,28 @@ def allfiles(request):
     return render(request, template, context_lazy)
 
 
-# Wszystkie pliki.
+# Mapa strony. I wyjście na edycję elementów dla rady.
 def pagemap(request):
-    if request.method == POST:
+    pe_i = pe(In)
+    pe_b = pe(B)
+    pe_f = pe(F)
+    context = {
+     'blogs': pe_b.elements,
+     'infos': pe_i.elements,
+     'files': pe_f.elements, }
+    pl = PageLoad(P, L)
+    context_lazy = pl.lazy_context(
+     skins=S, context=context)
+    template = 'strona/pagemap.html'
+    return render(request, template, context_lazy)
+
+
+# backup wysyłki przez sesję. Do usunięcia w kolejnym wydaniu.
+def pagemap_bak(request):
+    if request.method == 'POST':
         p = request.POST.get('element_sent')
         request.session['make_element'] = p
+        return redirect('make_element')
     else:
         pe_i = pe(In)
         pe_b = pe(B)
