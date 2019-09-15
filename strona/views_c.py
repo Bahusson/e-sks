@@ -19,6 +19,42 @@ from .forms import BlogForm, InfoForm, FileserveForm
 
 # Tworzy wpis w aktualnościach.
 @council_only(login_url='staffpanel_c', power_level=1)
+def make_element(request, form_type):
+    userdata = User.objects.get(
+     id=request.user.id)
+    formdict = {
+      'blog': BlogForm,
+      'info': InfoForm,
+      'file': FileserveForm,
+     }
+    if request.method == 'POST':
+        # form = BlogForm(request.POST)
+        form_from_dict = formdict[form_type]
+        form = form_from_dict(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save(userdata)
+            return redirect('staffpanel_c')
+    else:
+        # form = BlogForm()
+        form = formdict[form_type]
+        pe_fi = pe(FormItems)
+        pe_fe = pe(FormElement)
+    pe_fi = pe(FormItems)
+    context = {
+     'diff': form_type,
+     'udata': userdata,
+     'form': form,
+     'formitem': pe_fi.baseattrs,
+     'f_item': pe_fe.baseattrs,
+     }
+    pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
+    context_lazy = pl.lazy_context(
+     skins=S, context=context)
+    template = 'strona/manage/makeelement.html'
+    return render(request, template, context_lazy)
+
+
+@council_only(login_url='staffpanel_c', power_level=1)
 def make_blog(request):
     userdata = User.objects.get(
      id=request.user.id)
@@ -36,12 +72,12 @@ def make_blog(request):
      'udata': userdata,
      'form': form,
      'formitem': pe_fi.baseattrs,
-     'formelement': pe_fe.baseattrs,
+     'f_item': pe_fe.baseattrs,
      }
     pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
     context_lazy = pl.lazy_context(
      skins=S, context=context)
-    template = 'strona/manage/makeblog.html'
+    template = 'strona/manage/makeelement.html'
     return render(request, template, context_lazy)
 
 
@@ -61,7 +97,7 @@ def make_info(request, info_id):
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(
      skins=S, context=context)
-    template = 'strona/manage/makeinfo.html'
+    template = 'strona/manage/makeelement.html'
     return render(request, template, context_lazy)
 
 
@@ -81,7 +117,7 @@ def make_file(request, info_id):
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(
      skins=S, context=context)
-    template = 'strona/manage/makefile.html'
+    template = 'strona/manage/makeelement.html'
     return render(request, template, context_lazy)
 
 

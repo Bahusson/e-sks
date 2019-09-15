@@ -13,7 +13,7 @@ translator.register(Pageitem, PageitemsTranslate)
 
 
 class BlogsTranslate(TranslationOptions):
-    fields = ('title', 'body', 'image')
+    fields = ('title', 'body', 'image', 'video')
 
 
 translator.register(Blog, BlogsTranslate)

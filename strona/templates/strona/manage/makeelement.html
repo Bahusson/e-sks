@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block title %}
-<title>Zarządzanie stroną - roboczy</title>
+<title>{{ link.2 }} - {{ diff }}</title>
 {% endblock %}
 
 {% block css %}
@@ -27,13 +27,14 @@
     <p>{{ f_item.pubdate }}: {{ form.date }}</p>
     <p>{{ f_item.body }}(PL): {{ form.body_pl }}</p>
     <p>{{ f_item.body }}(EN): {{ form.body_en }}</p>
-    {% if form.video %}
+    {% if form.video_pl %}
      <p>{{ f_item.video }}(PL): {{ form.video_pl }}</p>
      <p>{{ f_item.video }}(EN): {{ form.video_en }}</p>
-    {% if form.image %}
+    {% endif %}
+    {% if form.image_pl %}
      <p>{{ f_item.image }}(PL): {{ form.image_pl }}</p>
      <p>{{ f_item.image }}(EN): {{ form.image_en }}</p>
-    {% elif form.file %}
+    {% elif form.file_pl %}
      <p>{{ formitem.ufile }}(PL): {{ form.file_pl }}</p>
      <p>{{ formitem.ufile }}(EN): {{ form.file_en }}</p>
     {% endif %}
