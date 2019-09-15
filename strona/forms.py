@@ -16,7 +16,6 @@ class BlogForm(forms.ModelForm):
     video_pl = forms.CharField(max_length=500, required=False)
     video_en = forms.CharField(max_length=500, required=False)
 
-
     class Meta:
         model = Blog
         fields = (
@@ -34,7 +33,7 @@ class BlogForm(forms.ModelForm):
         blog.body_pl = self.cleaned_data["body_pl"]
         blog.body_en = self.cleaned_data["body_en"]
         blog.image_pl = self.cleaned_data["image_pl"]
-        blog.image_pl = self.cleaned_data["image_en"]
+        blog.image_en = self.cleaned_data["image_en"]
         blog.video_pl = self.cleaned_data["video_pl"]
         blog.video_en = self.cleaned_data["video_en"]
 
@@ -70,7 +69,7 @@ class InfoForm(forms.ModelForm):
         info.body_pl = self.cleaned_data["body_pl"]
         info.body_en = self.cleaned_data["body_en"]
         info.image_pl = self.cleaned_data["image_pl"]
-        info.image_pl = self.cleaned_data["image_en"]
+        info.image_en = self.cleaned_data["image_en"]
 
         if commit:
             info.save()
@@ -103,8 +102,8 @@ class FileserveForm(forms.ModelForm):
         filesv.pubdate = self.cleaned_data["date"]
         filesv.body_pl = self.cleaned_data["body_pl"]
         filesv.body_en = self.cleaned_data["body_en"]
-        filesv.file = self.cleaned_data["file_pl"]
-        filesv.file = self.cleaned_data["file_en"]
+        filesv.file_pl = self.cleaned_data["file_pl"]
+        filesv.file_en = self.cleaned_data["file_en"]
 
         if commit:
             filesv.save()

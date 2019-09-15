@@ -29,7 +29,7 @@ def make_element(request, form_type):
      }
     if request.method == 'POST':
         form_from_dict = formdict[form_type]
-        form = form_from_dict(data=request.POST, files=request.FILES)
+        form = form_from_dict(request.POST, request.FILES)
         if form.is_valid():
             form.save(userdata)
             return redirect('staffpanel_c')
