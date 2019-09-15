@@ -114,15 +114,19 @@ def allfiles(request):
 
 # Wszystkie pliki.
 def pagemap(request):
-    pe_i = pe(In)
-    pe_b = pe(B)
-    pe_f = pe(F)
-    context = {
-     'blogs': pe_b.elements,
-     'infos': pe_i.elements,
-     'files': pe_f.elements, }
-    pl = PageLoad(P, L)
-    context_lazy = pl.lazy_context(
-     skins=S, context=context)
-    template = 'strona/pagemap.html'
-    return render(request, template, context_lazy)
+    if request.method == POST:
+        p = request.POST.get('element_sent')
+        request.session['make_element'] = p
+    else:
+        pe_i = pe(In)
+        pe_b = pe(B)
+        pe_f = pe(F)
+        context = {
+         'blogs': pe_b.elements,
+         'infos': pe_i.elements,
+         'files': pe_f.elements, }
+        pl = PageLoad(P, L)
+        context_lazy = pl.lazy_context(
+         skins=S, context=context)
+        template = 'strona/pagemap.html'
+        return render(request, template, context_lazy)

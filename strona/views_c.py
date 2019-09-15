@@ -22,7 +22,7 @@ from .forms import BlogForm, InfoForm, FileserveForm
 def make_element(request):
     userdata = User.objects.get(
      id=request.user.id)
-    
+    form_type = request.session['make_element']
     formdict = {
       'blog': BlogForm,
       'info': InfoForm,
