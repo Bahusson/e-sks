@@ -48,7 +48,7 @@ class InfoForm(forms.ModelForm):
     image = forms.ImageField(upload_to='images', required=False)
 
     class Meta:
-        model = Blog
+        model = Info
         fields = (
          'title_pl', 'title_en', 'pubdate', 'body_pl', 'body_en', 'image',
          )
@@ -76,12 +76,12 @@ class FileServeForm(forms.ModelForm):
     pubdate = forms.DateTimeField(input_formats=['%d.%m.%Y %H:%M:%S'])
     body_pl = forms.CharField(widget=forms.Textarea, required=False)
     body_en = forms.CharField(widget=forms.Textarea, required=False)
-    image = forms.ImageField(upload_to='images', required=False)
+    file = forms.FileField(upload_to='assets', required=False)
 
     class Meta:
         model = FileServe
         fields = (
-         'title_pl', 'title_en', 'pubdate', 'body_pl', 'body_en', 'image',
+         'title_pl', 'title_en', 'pubdate', 'body_pl', 'body_en', 'file',
          )
 
     def save(self, uid, commit=True):
@@ -93,7 +93,7 @@ class FileServeForm(forms.ModelForm):
         filesv.pubdate = self.cleaned_data["pubdate"]
         filesv.body_pl = self.cleaned_data["body_pl"]
         filesv.body_en = self.cleaned_data["body_en"]
-        filesv.image = self.cleaned_data["image"]
+        filesv.file = self.cleaned_data["file"]
 
         if commit:
             filesv.save()

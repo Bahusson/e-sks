@@ -1,0 +1,22 @@
+<!--Wzornik do tworzenia i edycji Aktulności-->
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+<title>Zarządzanie stroną - roboczy</title>
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+{% block css2 %}
+{% endblock %}
+
+<!--Zwraca oryginalną kompozycję menu z bazy. Potem podstawiasz zmienne,-->
+{% block aside %}
+ {{ block.super }}
+{% endblock aside %}
+
+{% block menu %}
+ {% include 'menus/council_menus.html' %} <!-- Menu z opcjami użytkownika -->
+{% endblock menu %}
+
+{% block body %}
