@@ -104,4 +104,3 @@ class FormElement(models.Model):
     video = models.CharField(max_length=200)
     lastmod = models.CharField(max_length=200)
     by = models.CharField(max_length=200)
-    file = models.CharField(max_length=200)

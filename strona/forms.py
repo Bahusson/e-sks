@@ -1,6 +1,6 @@
 # Formularze obsługi strony dla panelu admina.
 from django import forms
-from .models import Blog, Info, FileServe
+from .models import Blog, Info, Fileserve
 import datetime
 
 
@@ -11,7 +11,7 @@ class BlogForm(forms.ModelForm):
     pubdate = forms.DateTimeField(input_formats=['%d.%m.%Y %H:%M:%S'])
     body_pl = forms.CharField(widget=forms.Textarea, required=False)
     body_en = forms.CharField(widget=forms.Textarea, required=False)
-    image = forms.ImageField(upload_to='images', required=False)
+    image = forms.ImageField(required=False)
     video = forms.CharField(max_length=500, required=False)
 
     class Meta:
@@ -45,7 +45,7 @@ class InfoForm(forms.ModelForm):
     pubdate = forms.DateTimeField(input_formats=['%d.%m.%Y %H:%M:%S'])
     body_pl = forms.CharField(widget=forms.Textarea, required=False)
     body_en = forms.CharField(widget=forms.Textarea, required=False)
-    image = forms.ImageField(upload_to='images', required=False)
+    image = forms.ImageField(required=False)
 
     class Meta:
         model = Info
@@ -70,22 +70,22 @@ class InfoForm(forms.ModelForm):
 
 
 # Dla dla tworzenia i edycji plików.
-class FileServeForm(forms.ModelForm):
+class FileserveForm(forms.ModelForm):
     title_pl = forms.CharField(max_length=200)
     title_en = forms.CharField(max_length=200)
     pubdate = forms.DateTimeField(input_formats=['%d.%m.%Y %H:%M:%S'])
     body_pl = forms.CharField(widget=forms.Textarea, required=False)
     body_en = forms.CharField(widget=forms.Textarea, required=False)
-    file = forms.FileField(upload_to='assets', required=False)
+    file = forms.FileField(required=False)
 
     class Meta:
-        model = FileServe
+        model = Fileserve
         fields = (
          'title_pl', 'title_en', 'pubdate', 'body_pl', 'body_en', 'file',
          )
 
     def save(self, uid, commit=True):
-        filesv = super(FileServeForm, self).save(commit=False)
+        filesv = super(FileserveForm, self).save(commit=False)
         filesv.owner = uid
         filesv.lastmod = datetime.datetime.now()
         filesv.title_pl = self.cleaned_data["title_pl"]

@@ -35,7 +35,7 @@ translator.register(Fileserve, FileserveTranslate)
 
 class FormElementTranslate(TranslationOptions):
     fields = (
-     'title', 'pubdate', 'body', 'image', 'video', 'lastmod', 'by', 'file'
+     'title', 'pubdate', 'body', 'image', 'video', 'lastmod', 'by',
      )
 
 
