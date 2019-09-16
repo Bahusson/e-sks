@@ -11,4 +11,7 @@ urlpatterns = [
     path('informacja/<int:info_id>/', views.info, name='info'),
     # Widoki edytorskie dla rady studentów:
     path('dodaj/<form_type>/', views_c.make_element, name='make_element'),
+    path(
+     'zmien/<form_type>/<int:form_id>',
+     views_c.change_element, name='change_element'),
 ]

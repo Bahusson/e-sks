@@ -31,17 +31,17 @@ kolejny zbiór tego typu etc.
 {% block body %}
  <!-- Tu mają się wyświetlać dane z różnych opcji po kliknięciu -->
  <p>Tymczasowy przełącznik - widok serwisowy</p>
-<br><br><br>
-
  {% if user.role_council > 1 %}
  <a class="btn" href="{% url 'make_element' 'blog' %}">Nowy wpis w aktualnościach.</a>
  {% endif %}
  <ul>
  {% for blog in blogs.all %}
+  <form method="post">
   <li><a href="{% url 'blog' blog.id %}">{{ blog.title }}!</a></li>
- {% if user.role_council > 1 %}
-  <button><a href="{% url 'change_element' 'blog' blog.id %}">Edytuj</a></button>
- {% endif %}
+  <input class="hidden" name="elem_type" value="blog">
+  <input class="hidden" name="elem_id" value="{{ blog.id }}">
+  <input class="button" name="subbutton" type="submit" value="Dodaj nową informację">
+  {% csrf_token %} </form>
  {% endfor %}
  </ul>
  <a href="{% url 'make_element' 'info' %}">Zrób se nowe ważne info!</a>
