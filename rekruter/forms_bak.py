@@ -84,7 +84,7 @@ class ApplicationForm(forms.ModelForm):
     sh_choice3 = forms.CharField(widget=forms.HiddenInput(), required=False)
     if_room_change = forms.CharField(widget=forms.HiddenInput(), required=False)
     duration = forms.CharField(widget=forms.HiddenInput(), required=False)
-    location = forms.CharField(widget=forms.HiddenInput(), required=False)
+    # location = forms.CharField(widget=forms.HiddenInput())
     faculty = forms.CharField(widget=forms.HiddenInput(), required=False)
     degree = forms.CharField(widget=forms.HiddenInput(), required=False)
     deangroup = forms.CharField(max_length=30, required=False)
@@ -99,31 +99,37 @@ class ApplicationForm(forms.ModelForm):
     class Meta:
         model = ApplicationFormFields
         fields = (
-
+         'sh_choice1', 'sh_choice2', 'sh_choice3', 'if_room_change',
+         'duration',
+         # 'location',
+         'faculty', 'deangroup', 'semester',
+         'spouse_cohabitant', 'special_case_docs', 'international_placement',
+         'mailinglist', 'dataprocessing',  # 'attachment',
         )
 
     def save(self, uid, commit=True):
         application = super(ApplicationForm, self).save(commit=False)
         application.owner = uid
-        application.sh_choice1 = self.cleaned_data["sh_choice1"]
-        application.sh_choice2 = self.cleaned_data["sh_choice2"]
-        application.sh_choice3 = self.cleaned_data["sh_choice3"]
-        application.if_room_change = self.cleaned_data["if_room_change"]
-        application.duration = self.cleaned_data["duration"]
-        application.location = self.cleaned_data["location"]
-        application.faculty = self.cleaned_data["faculty"]
-        application.degree = self.cleaned_data["degree"]
+        application.sh_choice1 = int(self.cleaned_data["sh_choice1"])
+        application.sh_choice2 = int(self.cleaned_data["sh_choice2"])
+        application.sh_choice3 = int(self.cleaned_data["sh_choice3"])
+        application.if_room_change = int(self.cleaned_data["if_room_change"])
+        application.duration = int(self.cleaned_data["duration"])
+        # application.location = self.cleaned_data["location"]
+        application.faculty = int(self.cleaned_data["faculty"])
+        application.degree = int(self.cleaned_data["degree"])
         application.deangroup = self.cleaned_data["deangroup"]
-        application.semester = self.cleaned_data["semester"]
-        application.spouse_cohabitant = self.cleaned_data["spouse_cohabitant"]
-        application.special_case_docs = self.cleaned_data["special_case_docs"]
-        application.international_placement = self.cleaned_data["international_placement"]
-        application.mailinglist = self.cleaned_data["mailinglist"]
-        application.dataprocessing = self.cleaned_data["dataprocessing"]
+        application.semester = int(self.cleaned_data["semester"])
+        application.spouse_cohabitant = int(self.cleaned_data["spouse_cohabitant"])
+        application.special_case_docs = int(self.cleaned_data["special_case_docs"])
+        application.international_placement = int(self.cleaned_data["international_placement"])
+        application.mailinglist = int(self.cleaned_data["mailinglist"])
+        application.dataprocessing = int(self.cleaned_data["dataprocessing"])
         # application.attachment = self.cleaned_data["attachment"]
         if commit:
             application.save()
         return application
+
 
 
 class PartyForm(forms.ModelForm):
