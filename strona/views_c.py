@@ -22,6 +22,7 @@ from .forms import BlogForm, InfoForm, FileserveForm
 def make_element(request, form_type):
     userdata = User.objects.get(
      id=request.user.id)
+    create = True
     formdict = {
       'blog': BlogForm,
       'info': InfoForm,
@@ -39,6 +40,7 @@ def make_element(request, form_type):
         pe_fe = pe(FormElement)
     pe_fi = pe(FormItems)
     context = {
+     'creator_form': create,
      'diff': form_type,
      'udata': userdata,
      'form': form,
@@ -54,24 +56,22 @@ def make_element(request, form_type):
 
 # Backup tworzenia za pomocą sesji. Do usunięcia przy updacie.
 @council_only(login_url='staffpanel_c', power_level=1)
-def make_element_bak(request):
+def change_element(request, element_id):
     userdata = User.objects.get(
      id=request.user.id)
-    form_type = request.session['make_element']
+    form_type = request.session['element_type']
     formdict = {
       'blog': BlogForm,
       'info': InfoForm,
       'file': FileserveForm,
      }
     if request.method == 'POST':
-        # form = BlogForm(request.POST)
         form_from_dict = formdict[form_type]
         form = form_from_dict(data=request.POST, files=request.FILES)
         if form.is_valid():
             form.save(userdata)
             return redirect('staffpanel_c')
     else:
-        # form = BlogForm()
         form = formdict[form_type]
         pe_fi = pe(FormItems)
         pe_fe = pe(FormElement)

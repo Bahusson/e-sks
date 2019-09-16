@@ -20,6 +20,12 @@
 {% endblock menu %}
 
 {% block body %}
+<h4>
+  {% if creator_form %} {{ f_item.new }} {% else %} {{ f_item.change }} {% endif %}
+  {% if diff == 'blog' %} {{ f_item.blog }} {% elif diff == 'info' %}
+  {{ f_item.info }} {% elif diff == 'file' %} {{ f_item.file }} {% endif %}
+</h4>
+
   <form enctype="multipart/form-data" method="post"> <!-- Do wysyłania plików -->
     {% csrf_token %}
     <p>{{ f_item.title }}(PL): {{ form.title_pl }}</p>
