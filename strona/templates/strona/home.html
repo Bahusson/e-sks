@@ -26,7 +26,7 @@
         <!-- Jeśli nie ma obrazka zwróć default ze skórki Usera -->
         <a href="{% url 'blog' blog.id %}"><img class="blog-image imgshdw float-left img-responsive" src="{{ blog.image.url }}" /></a>
         {% else %}
-        <a href="{% url 'blog' blog.id %}"><img class="blog-image img-responsive" src="{{ skin.blogimagedefault.url }}" /></a>
+        <a href="{% url 'blog' blog.id %}"><img class="blog-image imgshdw float-left img-responsive" src="{{ skin.blogimagedefault.url }}" /></a>
         {% endif %}
         <div class="desc ">
             <h4 class="head-news"><a href="{% url 'blog' blog.id %}">{{ blog.title }}</a></h4>
