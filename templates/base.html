@@ -114,6 +114,9 @@
     </main><!-- end container -->
   {% endblock aside %}
 
+  {% block body2 %}
+  {% endblock body2 %}
+
     <!-- START Bootstrap-Cookie-Alert -->
     <div class="alert text-center cookiealert" role="alert">
         <b>Lubisz ciasteczka?</b> &#x1F36A; Ten serwis wykorzystuje pliki cookies. Korzystanie z witryny oznacza zgodę na ich zapis lub odczyt wg ustawień przeglądarki.
@@ -130,9 +133,9 @@
                 <div class="col-lg-5 col-xs-12"></div>
                 <!-- koniec pusty DIV -->
                 <div class="col-lg-3 col-xs-12 head-foot">
-                    <p class="head-foot"><a href="">MAPA STRONY</a></p>
+                    <p class="head-foot"><a href="{% url 'pagemap' %}">MAPA STRONY</a></p>
                     <p class="head-foot"><a href="">MAPA AKADEMIKÓW</a></p>
-                    <p class="head-foot"><a href="">STRONA GŁÓWNA</a></p>
+                    <p class="head-foot"><a href="{% url 'home' %}">STRONA GŁÓWNA</a></p>
                 </div>
                 <div class="col-lg-4 col-xs-12 location head-foot2">
                     <div class="line col-lg-4 col-xs-12"></div>

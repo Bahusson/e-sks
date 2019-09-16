@@ -128,12 +128,14 @@ def pagemap(request):
     return render(request, template, context_lazy)
 
 
-# backup wysyłki przez sesję. Do usunięcia w kolejnym wydaniu.
+# Do usunięcia w kolejnym wydaniu.
 def pagemap_bak(request):
     if request.method == 'POST':
-        p = request.POST.get('element_sent')
-        request.session['make_element'] = p
-        return redirect('make_element')
+        type_el = request.POST.get('elem_type')
+        id_el = request.POST.get('elem_id')
+        request.session['element_type'] = type_el
+        request.session['element_id'] = id_el
+        return redirect('change_element')
     else:
         pe_i = pe(In)
         pe_b = pe(B)

@@ -1,0 +1,55 @@
+<!--Tutaj userzy widzą mapę strony a Rada Studentów ma wejście na dodawanie/edycję jej poszczególnych elementów-->
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+<!--Schemat:
+Nazwa zbioru elementów/linkdozbioru/
+[rada-dodaj nowu element tego typu]
+skrócony zbiór elementów w punktach(tytuły)/linki/[rada-edytuj/usuń]
+
+kolejny zbiór tego typu etc.
+  -->
+
+{% block title %}
+<title>Panel Rady</title>
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+{% block css2 %}
+{% endblock %}
+
+<!--Zwraca oryginalną kompozycję menu z bazy. Potem podstawiasz zmienne,-->
+{% block aside %}
+ {{ block.super }}
+{% endblock aside %}
+
+{% block menu %}
+  {% include 'menus/council_menus.html' %} <!-- Menu z opcjami użytkownika -->
+{% endblock menu %}
+
+{% block body %}
+ <!-- Tu mają się wyświetlać dane z różnych opcji po kliknięciu -->
+ <p>Tymczasowy przełącznik - widok serwisowy</p>
+ {% if user.role_council > 1 %}
+ <a class="btn" href="{% url 'make_element' 'blog' %}">Nowy wpis w aktualnościach.</a>
+ {% endif %}
+ <ul>
+ {% for blog in blogs.all %}
+  <form method="post">
+  <li><a href="{% url 'blog' blog.id %}">{{ blog.title }}!</a></li>
+  <input class="hidden" name="elem_type" value="blog">
+  <input class="hidden" name="elem_id" value="{{ blog.id }}">
+  <input class="button" name="subbutton" type="submit" value="Dodaj nową informację">
+  {% csrf_token %} </form>
+ {% endfor %}
+ </ul>
+ <a href="{% url 'make_element' 'info' %}">Zrób se nowe ważne info!</a>
+ <a href="{% url 'make_element' 'file' %}">Wstaw sobie nowy plik!</a>
+{% endblock body %}
+
+
+{% block scripts %}
+{% endblock %}
+{% block scripts2 %}
+{% endblock %}
