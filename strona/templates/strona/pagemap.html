@@ -31,7 +31,19 @@ kolejny zbiór tego typu etc.
 {% block body %}
  <!-- Tu mają się wyświetlać dane z różnych opcji po kliknięciu -->
  <p>Tymczasowy przełącznik - widok serwisowy</p>
- <a href="{% url 'make_element' 'blog' %}">Zrób se nowy wpis w aktualnościach!</a>
+ {% if user.role_council > 1 %}
+ <a class="btn" href="{% url 'make_element' 'blog' %}">Nowy wpis w aktualnościach.</a>
+ {% endif %}
+ <ul>
+ {% for blog in blogs %}
+  <form method="post">
+  <li><a href="{% url 'blog' blog.id %}">{{ blog.title }}!</a></li>
+  <input class="hidden" name="elem_type" value="blog">
+  <input class="hidden" name="elem_id" value="{{ blog.id }}">
+  <input class="button" name="subbutton" type="submit" value="Dodaj nową informację">
+  {% csrf_token %} </form>
+ {% endfor %}
+ </ul>
  <a href="{% url 'make_element' 'info' %}">Zrób se nowe ważne info!</a>
  <a href="{% url 'make_element' 'file' %}">Wstaw sobie nowy plik!</a>
 {% endblock body %}

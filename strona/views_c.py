@@ -56,10 +56,11 @@ def make_element(request, form_type):
 
 # Backup tworzenia za pomocą sesji. Do usunięcia przy updacie.
 @council_only(login_url='staffpanel_c', power_level=1)
-def change_element(request, element_id):
+def change_element(request):
     userdata = User.objects.get(
      id=request.user.id)
     form_type = request.session['element_type']
+    form_id = request.session['element_id']
     formdict = {
       'blog': BlogForm,
       'info': InfoForm,
@@ -73,6 +74,7 @@ def change_element(request, element_id):
             return redirect('staffpanel_c')
     else:
         form = formdict[form_type]
+        form = form(instance=form_id)
         pe_fi = pe(FormItems)
         pe_fe = pe(FormElement)
     pe_fi = pe(FormItems)
@@ -88,9 +90,6 @@ def change_element(request, element_id):
      skins=S, context=context)
     template = 'strona/manage/makeelement.html'
     return render(request, template, context_lazy)
-
-
-
 
 
 # Pojedyńcze aktualności w zbliżeniu.

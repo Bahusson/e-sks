@@ -114,26 +114,12 @@ def allfiles(request):
 
 # Mapa strony. I wyjście na edycję elementów dla rady.
 def pagemap(request):
-    pe_i = pe(In)
-    pe_b = pe(B)
-    pe_f = pe(F)
-    context = {
-     'blogs': pe_b.elements,
-     'infos': pe_i.elements,
-     'files': pe_f.elements, }
-    pl = PageLoad(P, L)
-    context_lazy = pl.lazy_context(
-     skins=S, context=context)
-    template = 'strona/pagemap.html'
-    return render(request, template, context_lazy)
-
-
-# backup wysyłki przez sesję. Do usunięcia w kolejnym wydaniu.
-def pagemap_bak(request):
     if request.method == 'POST':
-        p = request.POST.get('element_sent')
-        request.session['make_element'] = p
-        return redirect('make_element')
+        type_el = request.POST.get('elem_type')
+        id_el = request.POST.get('elem_id')
+        request.session['element_type'] = type_el
+        request.session['element_id'] = id_el
+        return redirect('change_element')
     else:
         pe_i = pe(In)
         pe_b = pe(B)
@@ -147,3 +133,19 @@ def pagemap_bak(request):
          skins=S, context=context)
         template = 'strona/pagemap.html'
         return render(request, template, context_lazy)
+
+
+# Do usunięcia w kolejnym wydaniu.
+def pagemap_bak(request):
+    pe_i = pe(In)
+    pe_b = pe(B)
+    pe_f = pe(F)
+    context = {
+     'blogs': pe_b.listed,
+     'infos': pe_i.elements,
+     'files': pe_f.elements, }
+    pl = PageLoad(P, L)
+    context_lazy = pl.lazy_context(
+     skins=S, context=context)
+    template = 'strona/pagemap.html'
+    return render(request, template, context_lazy)
