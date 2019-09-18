@@ -90,111 +90,20 @@ p {
     margin: 0 auto;
     border-bottom: 1px dashed #ccc;
 }
-/***** Top menu *****/
-.navbar {
-    margin-bottom: 0;
-    padding-top: 0;
-    background: white;
-    border: 0;
-    -moz-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
-    -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
-    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
-    -moz-border-radius: 0;
-    -webkit-border-radius: 0;
-    border-radius: 0;
-    -o-transition: all .6s;
-    -moz-transition: all .6s;
-    -webkit-transition: all .6s;
-    -ms-transition: all .6s;
-    transition: all .6s;
-}
-.navbar-no-bg {
-    padding-top: 10px;
+/*******NAVBAR 2.0************/
+.navbar{
 
-    background: #333333 ;
-   /* #e98328 pomarańcza */
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
+    background: #070000;
+    background: -webkit-linear-gradient(to right, #070000, #4C0001, #070000);
+    background: linear-gradient(to right, #070000, #4C0001, #070000);
+
 }
 ul.navbar-nav {
+    text-transform: uppercase;
     font-family: 'Ubuntu';
     font-size: 16px;
-    color: white;
-    height: 140px;
-    font-weight: bold;
-    margin: 0px 0 0 0px;
-    padding-top: 30px;
-    position: relative;
-    text-transform: uppercase;
+}
 
-}
-ul.navbar-nav li a {
-    background: none;
-    color: #333333;
-    border: 0;
-}
-ul.navbar-nav li a:hover {
-    background: none;
-    color: #e98328;
-    border: 0;
-}
-ul.navbar-nav li a:focus {
-    background: none;
-    color: #aaa;
-    outline: 0;
-    border: 0;
-    height: 40px;
-}
-.navbar-no-bg ul.navbar-nav {
-    color: #fff;
-}
-.navbar-no-bg ul.navbar-nav li a {
-    color: #fff;
-}
-.navbar-no-bg ul.navbar-nav li a:hover {
-    color: #e98328;
-}
-.navbar-no-bg ul.navbar-nav li a:focus {
-    color: #e98328;
-}
-ul.navbar-nav li a.btn-link-3 {
-    position: relative;
-    display: inline-block;
-    margin: center;
-    padding: center;
-    text-align: center;
-    background: none;
-    border: 1px solid #ffffff;
-    font-family: 'Ubuntu';
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    text-transform: uppercase;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
-    border-radius: 6px;
-}
-ul.navbar-nav li a.btn-link-3:hover, ul.navbar-nav li a.btn-link-3:focus, ul.navbar-nav li a.btn-link-3:active, ul.navbar-nav li a.btn-link-3:active:focus {
-    outline: 0;
-    color: #e98328;
-}
-.navbar-brand {
-    width: 275px;
-    height:73px;
-    background: url(https://images.tinypic.pl/i/00987/ife9ep2mrlac.png);
-    text-indent: -99999px;
-    float: left;
-}
-.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
-    margin-left: 0;
-}
-.navbar-no-bg .navbar-brand {
-    float: left;
-}
-.navbar-toggle .icon-bar {
-    background: #555;
-}
 /***** Top content - navbar zmienia kolor *****/
 .top-content {
     padding: 10px 0 10px 0;
