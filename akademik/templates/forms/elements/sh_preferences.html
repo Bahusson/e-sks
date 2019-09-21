@@ -1,10 +1,11 @@
-
-<br>
-<h4> {{ formitem.preferences }} xxxxxxxxxyyyy</h4>
-<p> {{ formitem.match_prefs }} <a href="">{{ formitem.see_map }}</a></p>
-<p>
+<div class="container">
+<div class="row justify-content-md-center box">
+<div class="col-md-auto">
+<p class="head-form"> {{ formitem.preferences }}</p>
+<p class="pref"> {{ formitem.match_prefs }} <a href="#" class="badge badge-light">{{ formitem.see_map }}</a></p>
+<p class="pref">
    1:
-    <select {% if service %} required {% endif %} id="sh_choice1">
+    <select {% if service %} required {% endif %} id="sh_choice1" >
              <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            {% for item in houselist %}
               <option value ="{{ forloop.counter }}">{{ item }}</option>
@@ -25,25 +26,27 @@
            {% endfor %}
     </select>
 </p>
-<p>
+<p class="pref">
     {{ formitem.i_ask }} :
-    <select {% if service %} required {% endif %} id="if_room_change">
+    <select {% if service %} required {% endif %} id="if_room_change" class="form-control">
              <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            {% for item in staylist %}
               <option value ="{{ forloop.counter }}">{{ item }}</option>
            {% endfor %}
     </select>
 </p>
-<p>
+<p class="pref">
     {{ formitem.time_in_sh }} :
-    <select {% if service %} required {% endif %} id="duration">
+    <select {% if service %} required {% endif %} id="duration" class="form-control">
              <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            {% for item in periodlist %}
               <option value ="{{ forloop.counter }}">{{ item }}</option>
            {% endfor %}
     </select>
 </p>
-<br>
+</div>
+</div>
+<div>
 <!--Ukryte pola formularza-->
 {{ form.sh_choice1 }}{{ form.sh_choice2 }}{{ form.sh_choice3 }}
 {{ form.duration }}{{ form.if_room_change }}
