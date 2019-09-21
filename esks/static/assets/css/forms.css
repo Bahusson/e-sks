@@ -1,28 +1,47 @@
 .head-form {
   font: "Roboto";
   font-size: 24px;
+  color: black;
   text-transform: uppercase;
   font-weight: bold;
   background-color:#e98328;
   overflow-wrap: normal;
-  padding: 0px;
+  padding: 0px 0px 0px;
+  text-align: center;
+  border-radius: 25px;
 }
 
 .box {
   background-color: #333333;
   padding: 10px;
+  border-radius: 25px;
 }
 
 .bolder {
   font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  font-size: 20px;
+  border-radius: 5px;
+}
+.bolder2 {
+  font-weight: lighter;
   color: black;
   background: #ffffff;
   text-transform: uppercase;
   font-size: 20px;
+  border-radius: 5px;
 }
-
-.userdata {
+.boldererror {
+  font-weight: bold;
+  color: white;
+  background: red;
+  text-transform: uppercase;
   font-size: 20px;
+  border-radius: 5px;
+)
+.userdata {
+
   color: #ffffff;
 }
 
