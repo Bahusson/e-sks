@@ -1,5 +1,7 @@
 <!-- Wyświetla podstawowe aktualne dane usera. Do formularza i innych miejsc. -->
-<div class="box">
+<div class="container">
+<div class="row justify-content-md-center box">
+<div class="col-md-auto">
 <p class="head-form">{{ formitem.personal_data }} </p>
 <p class ="userdata"><b class="bolder">{{ formitem.name }}: </b> <b class="bolder2"> {{ udata.first_name }}  </b> <b class="bolder">{{ formitem.surname }}: </b><b class="bolder2"> {{ udata.last_name }}</b></p>
 <p class ="userdata"><b class="bolder">{{ formitem.citizenship }}: </b><b class="bolder2"> {{ udata.citizenship }}</b>
@@ -26,4 +28,6 @@
   <b class="boldererror">{{ formitem.tel_mandatory }}!! </b>
 {% endif %}
 <p class ="userdata"><b class="bolder">{{ formitem.warning_f }}: <a href="https://core2.sspw.pl/login" target="blank">{{ formitem.data_correct }}</a></b></p>
+</div>
+</div>
 </div>
