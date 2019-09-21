@@ -1,29 +1,29 @@
 <!-- Wyświetla podstawowe aktualne dane usera. Do formularza i innych miejsc. -->
 <div class="box">
-<h4 class="head-form">{{ formitem.personal_data }} </h4>
-<p class ="userdata"><b class="bolder">{{ formitem.name }}</b>: {{ udata.first_name }}  <b class="bolder">{{ formitem.surname }}:</b> {{ udata.last_name }}</p>
-<p class ="userdata"><b class="bolder">{{ formitem.citizenship }}:</b> {{ udata.citizenship }}
-<b class="bolder">{{ formitem.gender }}</b>:
+<p class="head-form">{{ formitem.personal_data }} </p>
+<p class ="userdata"><b class="bolder">{{ formitem.name }}: </b> <b class="bolder2"> {{ udata.first_name }}  </b> <b class="bolder">{{ formitem.surname }}: </b><b class="bolder2"> {{ udata.last_name }}</b></p>
+<p class ="userdata"><b class="bolder">{{ formitem.citizenship }}: </b><b class="bolder2"> {{ udata.citizenship }}</b>
+<b class="bolder">{{ formitem.gender }}: </b>
   {% if udata.gender == 0 %}
-    {{ formitem.other }}
+    <b class="bolder2">{{ formitem.other }}<b>
  {% elif udata.gender == 1 %}
-    {{ formitem.male }}
+    <b class="bolder2">{{ formitem.male }}</b>
  {% elif udata.gender == 2 %}
-    {{ formitem.female }}
+    <b class="bolder2">{{ formitem.female }}</b>
  {% endif %}
 </p>
 {% if udata.dowod %}
-  <p class ="userdata"><b class="bolder">{{ formitem.dowod }}:</b> {{ udata.dowod }}</p>
+  <p class ="userdata"><b class="bolder">{{ formitem.dowod }}: </b> <b class="bolder2">{{ udata.dowod }}</b></p>
 {% elif udata.passport %}
-  <p class ="userdata"><b class="bolder">{{ formitem.passport }}:</b> {{ udata.passport }}</p>
+  <p class ="userdata"><b class="bolder">{{ formitem.passport }}: </b> <b class="bolder2">{{ udata.passport }}</b></p>
 {% endif %}
 
-<p class ="userdata"><b class="bolder">{{ formitem.defaul_t }} {{ formitem.email }}:</b> {{ udata.email }} <b class="bolder">{{ formitem.defaul_t }} {{ formitem.telephone }}</b>:
+<p class ="userdata"><b class="bolder">{{ formitem.defaul_t }} {{ formitem.email }}: </b><b class="bolder2"> {{ udata.email }} </b></p>
+<p><b class="bolder">{{ formitem.defaul_t }} {{ formitem.telephone }}: </b>
 {% if udata.telephone %}
-  {{ udata.telephone }}</p>
+  <b class="bolder2">{{ udata.telephone }}</b></p>
 {% else %}
-  <b class="bolder">{{ formitem.tel_mandatory }}!!</b>
+  <b class="boldererror">{{ formitem.tel_mandatory }}!! </b>
 {% endif %}
-<p class ="userdata"><b class="bolder">{{ formitem.warning_f }}:<a href="https://core2.sspw.pl/login" target="blank">{{ formitem.data_correct }}</a></b></p>
-<br>
+<p class ="userdata"><b class="bolder">{{ formitem.warning_f }}: <a href="https://core2.sspw.pl/login" target="blank">{{ formitem.data_correct }}</a></b></p>
 </div>
