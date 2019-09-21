@@ -1,8 +1,9 @@
 <!-- Wyświetla podstawowe aktualne dane usera. Do formularza i innych miejsc. -->
-<h4>{{ formitem.personal_data }}</h4>
-<p><b>{{ formitem.name }}</b>: {{ udata.first_name }}  <b>{{ formitem.surname }}</b>: {{ udata.last_name }}</p>
-<p><b>{{ formitem.citizenship }}</b>: {{ udata.citizenship }}
-<b>{{ formitem.gender }}</b>:
+<div class="box">
+<h4 class="head-form">{{ formitem.personal_data }} </h4>
+<p class ="userdata"><b class="bolder">{{ formitem.name }}</b>: {{ udata.first_name }}  <b class="bolder">{{ formitem.surname }}:</b> {{ udata.last_name }}</p>
+<p class ="userdata"><b class="bolder">{{ formitem.citizenship }}:</b> {{ udata.citizenship }}
+<b class="bolder">{{ formitem.gender }}</b>:
   {% if udata.gender == 0 %}
     {{ formitem.other }}
  {% elif udata.gender == 1 %}
@@ -12,16 +13,17 @@
  {% endif %}
 </p>
 {% if udata.dowod %}
-  <p><b>{{ formitem.dowod }}</b>: {{ udata.dowod }}</p>
+  <p class ="userdata"><b class="bolder">{{ formitem.dowod }}:</b> {{ udata.dowod }}</p>
 {% elif udata.passport %}
-  <p><b>{{ formitem.passport }}</b>: {{ udata.passport }}</p>
+  <p class ="userdata"><b class="bolder">{{ formitem.passport }}:</b> {{ udata.passport }}</p>
 {% endif %}
 
-<p><b>{{ formitem.defaul_t }} {{ formitem.email }}</b>: {{ udata.email }} <b>{{ formitem.defaul_t }} {{ formitem.telephone }}</b>:
+<p class ="userdata"><b class="bolder">{{ formitem.defaul_t }} {{ formitem.email }}:</b> {{ udata.email }} <b class="bolder">{{ formitem.defaul_t }} {{ formitem.telephone }}</b>:
 {% if udata.telephone %}
   {{ udata.telephone }}</p>
 {% else %}
-  <b>{{ formitem.tel_mandatory }}!!</b>
+  <b class="bolder">{{ formitem.tel_mandatory }}!!</b>
 {% endif %}
-<p><b>{{ formitem.warning_f }}:</b> <b><a href="https://core2.sspw.pl/login" target="blank">{{ formitem.data_correct }}</a></b></p>
+<p class ="userdata"><b class="bolder">{{ formitem.warning_f }}:<a href="https://core2.sspw.pl/login" target="blank">{{ formitem.data_correct }}</a></b></p>
 <br>
+</div>
