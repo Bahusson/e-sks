@@ -1,7 +1,7 @@
 <!-- Dane toku studiów - tylko jeśli student. Domyślnie: nie dotyczy. -->
 {% load staticfiles %}
 
-<h4> {{ formitem.pref_as_stud }} </h4>
+<h4> {{ formitem.pref_as_stud }}XXXXXXXXXX </h4>
 <p> {{ formitem.faculty }}
     <select {% if service %} required {% endif %} id="faculty">
              <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
