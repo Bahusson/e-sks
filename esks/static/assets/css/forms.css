@@ -1,24 +1,24 @@
-/*****DANE OSOBOWE userdata1.html***/
-.head-form {
-  font: "Roboto";
-  font-size: 24px;
-  color: black;
-  text-transform: uppercase;
-  font-weight: bold;
-  background-color:#e98328;
-  overflow-wrap: normal;
-  padding: 0px 0px 0px;
-  text-align: center;
-  border-radius: 25px;
-}
-
+/*****OGÓLNE********/
 .box {
   background-color: #333333;
   padding: 10px;
   border-radius: 25px;
   width: 100%;
-
 }
+.head-form {
+  font: "Roboto";
+  font-size: 24px;
+  color: black;
+  width: 100%;
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color:#e98328;
+  overflow-wrap: normal;
+  padding: none;
+  text-align: center;
+  border-radius: 25px;
+}
+/*****DANE OSOBOWE userdata1.html***/
 .card {
   border-radius: 25px;
   margin-bottom: 0px;
@@ -68,4 +68,24 @@
 
 .numb {
   width: 150px;
+}
+/*******Dodatkowe informacje extra_info.html**********/
+.extras {
+  font: "Roboto";
+  font-size: 16px;
+  color: white;
+}
+
+.plus {
+  width: 100%;
+}
+/********agreements.html*************/
+.agree {
+  font: "Roboto";
+  font-size: 13px;
+  color: white;
+}
+
+.plus {
+  width: 100%;
 }
