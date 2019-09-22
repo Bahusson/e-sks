@@ -1,4 +1,4 @@
-/*****DANE OSOBOWE***/
+/*****DANE OSOBOWE userdata1.html***/
 .head-form {
   font: "Roboto";
   font-size: 24px;
@@ -16,6 +16,8 @@
   background-color: #333333;
   padding: 10px;
   border-radius: 25px;
+  width: 100%;
+
 }
 .card {
   border-radius: 25px;
@@ -47,7 +49,7 @@
   font-size: 20px;
   border-radius: 5px;
 }
-/****PREFERENCJE*******/
+/****PREFERENCJE sh_preferences.html*******/
  .pref {
    font: "Roboto";
    font-size: 16px;
@@ -56,3 +58,14 @@
  .badge {
    text-transform: uppercase;
  }
+
+/****Składam preferencje jako student wydziału faculty_data.html*****/
+.pref2 {
+  font: "Roboto";
+  font-size: 16px;
+  color: white;
+}
+
+.numb {
+  width: 150px;
+}
