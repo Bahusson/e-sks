@@ -1,24 +1,28 @@
 <!-- Dodatkowe dane: Czy chce mieszkać z małżonkiem i czy jest niepełnosprawny/a -->
 <!-- Domyślnie: Nie składa -->
-<h4> {{ formitem.additional_info }} XXXXXXXXXXXXXXXX</h4>
-<p> {{ formitem.spouse_cohabitant }}:</p>
-<p>    <select {% if service %} required {% endif %} id="spouse_cohabitant">
+<div class="container plus">
+<div class="row justify-content-md-center box">
+<div class="col-md-auto box">
+<p class="head-form">  {{ formitem.additional_info }}</p>
+<p class="extras"> {{ formitem.spouse_cohabitant }}:
+  <select {% if service %} required {% endif %} id="spouse_cohabitant" class="form-control">
              <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            {% for item in spouselist %}
               <option value ="{{ forloop.counter }}">{{ item }}</option>
            {% endfor %}
     </select>
 </p>
-<p> {{ formitem.special_case_docs }}:</p>
-<p>
-    <select {% if service %} required {% endif %} id="special_case_docs">
+<p class="extras"> {{ formitem.special_case_docs }}:
+    <select {% if service %} required {% endif %} id="special_case_docs" class="form-control">
              <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            {% for item in scaselist %}
               <option value ="{{ forloop.counter }}">{{ item }}</option>
            {% endfor %}
     </select>
 </p>
-<br>
+</div>
+</div>
+</div>
 
 <!--Ukryte pola formularza-->
 {{ form.spouse_cohabitant }}{{ form.special_case_docs }}
