@@ -136,9 +136,11 @@ def changemeparty(request):
 
 
 # Pokazuje różne akcje kwaterunkowe - widok oparty na klasach.
+@council_only(login_url='showparties', power_level=1)  # Tylko rada. Bliżniak.
 def allparties(request):
     userdata = User.objects.get(
      id=request.user.id)
+    # userlevel = User.objects.get(request.user.role_council)
     view_filter = "2"
     if 'subbutton' in request.POST:
         view_filter = str(request.POST.get('view_filter'))

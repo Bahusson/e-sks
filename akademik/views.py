@@ -21,7 +21,7 @@ from rekruter.models import StudyFaculty as Stf
 from rekruter.models import StudyDegree as Std
 from rekruter.models import SpouseCohabitant as Sch
 from rekruter.models import SpecialCase as Scs
-from esks.special.decorators import hotel_staff_only, translators_only
+from esks.special.decorators import hotel_staff_only, translators_only, user_only
 from rekruter.models import User, FormItems, QuarterClassB
 from rekruter.forms import IniForm, ApplicationForm
 import datetime
@@ -160,6 +160,7 @@ def dormapply(request):
 
 
 # Pokazuje różne akcje kwaterunkowe - widok oparty na klasach.
+@user_only(login_url='allparties')  # Bliźniak 'views_c.allparties'
 def showparties(request):
     userdata = User.objects.get(
      id=request.user.id)
