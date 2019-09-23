@@ -171,29 +171,3 @@ def allparties(request):
     context_lazy = pl.lazy_context(skins=S, context=ap.context)
     template = 'panels/common/allparties.html'
     return render(request, template, context_lazy)
-
-
-# Backup starego widoku. Do usunięcia.
-# Pokazuje różne akcje kwaterunkowe - widok oparty na klasach.
-@council_only(login_url='showparties', power_level=1)  # Tylko rada. Bliżniak.
-def allparties_bak(request):
-    userdata = User.objects.get(
-     id=request.user.id)
-    view_filter = "2"
-    if 'subbutton' in request.POST:
-        view_filter = str(request.POST.get('view_filter'))
-    elif 'changeparty' in request.POST:
-        request.session['partyid'] = request.POST.get('partyid')
-        return redirect('changemeparty')
-    elif 'apply_spontaneously' in request.POST:
-        form = IniForm(request.POST, instance=userdata)
-        if form.is_valid():
-            form.save()
-            return redirect('dsapply')
-    ap = AllParties(
-     request, HParty, pytz, datetime, FormItems, Hpi, QuarterClassB,
-     view_filter=view_filter, )
-    pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli)
-    context_lazy = pl.lazy_context(skins=S, context=ap.context)
-    template = 'panels/common/allparties.html'
-    return render(request, template, context_lazy)

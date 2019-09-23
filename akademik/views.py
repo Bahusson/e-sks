@@ -157,29 +157,3 @@ def dormapply(request):
             context_lazy = pl.lazy_context(skins=S, context=context)
             template = 'forms/dormapply.html'
             return render(request, template, context_lazy)
-
-
-# Backup starego widoku. Do usunięcia.
-# Pokazuje różne akcje kwaterunkowe - widok oparty na klasach.
-@user_only(login_url='allparties')  # Bliźniak 'views_c.allparties'
-def showparties_bak(request):
-    userdata = User.objects.get(
-     id=request.user.id)
-    view_filter = "2"
-    if 'subbutton' in request.POST:
-        view_filter = str(request.POST.get('view_filter'))
-    elif 'changeparty' in request.POST:
-        request.session['partyid'] = request.POST.get('partyid')
-        return redirect('changemeparty')
-    elif 'apply_spontaneously' in request.POST:
-        form = IniForm(request.POST, instance=userdata)
-        if form.is_valid():
-            form.save()
-            return redirect('dsapply')
-    ap = AllParties(
-     request, HParty, pytz, datetime, FormItems, Hpi, QuarterClassB,
-     view_filter=view_filter, )
-    pl = PortalLoad(P, L, Pbi, 0, Umi, Uli)
-    context_lazy = pl.lazy_context(skins=S, context=ap.context)
-    template = 'panels/common/allparties.html'
-    return render(request, template, context_lazy)
