@@ -1,5 +1,4 @@
 
-
 def menu_switcher(*args):
     # Podajesz listy argumentów w formacie:
     # [numer menu, menu_item, link_item]

@@ -126,7 +126,7 @@ def dormapply(request):
     else:
         redir = party_switch(request)
         if redir == 1:
-            return redirect('showparties')  # Gdzie przekierować?
+            return redirect('allparties')  # Gdzie przekierować?
         else:
             pe_fi = PageElement(FormItems)
             form = ApplicationForm()
@@ -159,9 +159,10 @@ def dormapply(request):
             return render(request, template, context_lazy)
 
 
+# Backup starego widoku. Do usunięcia.
 # Pokazuje różne akcje kwaterunkowe - widok oparty na klasach.
 @user_only(login_url='allparties')  # Bliźniak 'views_c.allparties'
-def showparties(request):
+def showparties_bak(request):
     userdata = User.objects.get(
      id=request.user.id)
     view_filter = "2"
