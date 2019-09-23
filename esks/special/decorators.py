@@ -83,3 +83,22 @@ def council_only(
     if function:
         return actual_decorator(function)
     return actual_decorator
+
+
+# Szybki fix dla zduplikowanych widoków. Do usunięcia w przyszłości.
+def user_only(
+ function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url=None,
+ power_level=0
+ ):
+    """
+    Decorator for views that checks that the user belongs to the council
+    , redirecting  to the log-in page if necessary.
+    """
+    actual_decorator = user_passes_test(
+        lambda u: u.role_council == power_level,
+        login_url=login_url,
+        redirect_field_name=redirect_field_name
+    )
+    if function:
+        return actual_decorator(function)
+    return actual_decorator

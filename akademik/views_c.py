@@ -8,6 +8,8 @@ from esks.special.classes import PortalLoad, PageElement, AllParties
 from .models import PortalBaseItem as Pbi
 from .models import CouncilMenuItem as Cmi
 from .models import CouncilLinkItem as Cli
+from .models import UserMenuItem as Umi
+from .models import UserLinkItem as Uli
 from .models import HousingParty as HParty
 from .models import HousingPartyItems as Hpi
 from rekruter.models import StudentHouse as Sh
@@ -18,6 +20,7 @@ from rekruter.models import StudyDegree as Std
 from rekruter.models import SpouseCohabitant as Sch
 from rekruter.models import SpecialCase as Scs
 from esks.special.decorators import council_only
+from esks.special.snippets import menu_switcher
 from rekruter.models import User, FormItems, QuarterClassB
 from rekruter.forms import PartyForm, IniForm
 import datetime
@@ -139,6 +142,7 @@ def changemeparty(request):
 def allparties(request):
     userdata = User.objects.get(
      id=request.user.id)
+    print(userdata)
     view_filter = "2"
     if 'subbutton' in request.POST:
         view_filter = str(request.POST.get('view_filter'))
@@ -153,7 +157,17 @@ def allparties(request):
     ap = AllParties(
      request, HParty, pytz, datetime, FormItems, Hpi, QuarterClassB,
      view_filter=view_filter, )
-    pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli)
+    userlevel = request.user.role_council
+    if userlevel > 1:
+        userlevel = 1
+    cmenu = [1, Cmi, Cli]
+    umenu = [0, Umi, Uli]
+    menusdict = menu_switcher(cmenu, umenu)
+    userkey = 'menu'+str(userlevel)
+    d_num = menusdict[userkey][0]
+    d_menu = menusdict[userkey][1]
+    d_list = menusdict[userkey][2]
+    pl = PortalLoad(P, L, Pbi, d_num, d_menu, d_list)
     context_lazy = pl.lazy_context(skins=S, context=ap.context)
     template = 'panels/common/allparties.html'
     return render(request, template, context_lazy)

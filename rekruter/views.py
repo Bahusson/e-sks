@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login  # , logout
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
 from .models import Sito
 from strona.models import Pageitem as P
 from esks.settings import LANGUAGES as L
@@ -48,10 +49,10 @@ def register(request):
             # Przekierowuje na stronę główną zalogowanego usera.
     else:
         form = ExtendedCreationForm()
-        locations = list(FormItems.objects.all())
-        items = locations[0]
-        context = {'form': form,
-                   'item': items, }
+    locations = list(FormItems.objects.all())
+    items = locations[0]
+    context = {'form': form,
+               'item': items, }
     template = 'registration/register.html'
     return render(request, template, context)
 
@@ -59,25 +60,24 @@ def register(request):
 # Formularz logowania. Do przeróbki po zmienie autentykacji.
 def logger(request):
     if request.method == 'POST':
+        form = AuthenticationForm(request.POST)
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
             return redirect('home')
-        else:
-            # Tutaj trzeba wstawić jakiś error message.
-            pass
+
     else:
         form = AuthenticationForm()
-        locations = list(FormItems.objects.all())
-        items = locations[0]
-        locations1 = list(P.objects.all())
-        items1 = locations1[0]
-        context = {'form': form,
-                   'item': items,
-                   'item1': items1, }
-        template = 'registration/login.html'
+    locations = list(FormItems.objects.all())
+    items = locations[0]
+    locations1 = list(P.objects.all())
+    items1 = locations1[0]
+    template = 'registration/login.html'
+    context = {'form': form,
+               'item': items,
+               'item1': items1, }
     return render(request, template, context)
 
 # def unlogger(request):

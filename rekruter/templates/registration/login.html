@@ -19,13 +19,9 @@
     <main role="main">
       <section class="jumbotron text-center">
         <div class="container">
-          {% if form.errors %}
-          <p>Ups! Coś poszło nie tak!</p>
-          {% endif %}
-
-          {% if next %}
-          <p>Ta strona jest niedostępna.</p>
-          {% endif %}
+            {% if next %}
+             <p>Ta strona jest niedostępna bez logowania.</p>
+            {% endif %}
 
           <form method="post" action="{% url 'logger' %}">
             {% csrf_token %}
@@ -45,7 +41,6 @@
 
     <footer class="text-muted">
       <div class="container text-center">
-        <p>*docelowo będzie formularz logowania do Core2</p>
         <p> &copy; Jakub Kozdrowicz {% now "Y" %}</p>
       </div>
     </footer>

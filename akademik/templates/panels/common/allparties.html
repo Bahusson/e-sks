@@ -63,11 +63,11 @@
       </form>
     {% endif %}
     <p><b>{{ p_item.p_from }}:</b> {{ party.date_start }} <br><b>{{ p_item.p_to }}:</b>{{ party.date_end }}</p>
+    <p><b>{{ p_item.announce }}:</b> {{ party.announcement }} </p>
    {% if user.role_council > 1 %}
     <p><b>{{ p_item.comment }}:</b> {{ party.comment }} </p>
-   {% endif %}
-    <p><b>{{ p_item.announce }}:</b> {{ party.announcement }} </p>
     <p><b>{{ p_item.owner }}:</b> {{ party.owner.first_name }} {{ party.owner.last_name }} </p>
+   {% endif %}
     {% if user.role_council > 2 %}
     <form name="ChangePartyForm" method="post">
       {% csrf_token %}

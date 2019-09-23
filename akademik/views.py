@@ -21,7 +21,7 @@ from rekruter.models import StudyFaculty as Stf
 from rekruter.models import StudyDegree as Std
 from rekruter.models import SpouseCohabitant as Sch
 from rekruter.models import SpecialCase as Scs
-from esks.special.decorators import hotel_staff_only, translators_only
+from esks.special.decorators import hotel_staff_only, translators_only, user_only
 from rekruter.models import User, FormItems, QuarterClassB
 from rekruter.forms import IniForm, ApplicationForm
 import datetime
@@ -126,7 +126,7 @@ def dormapply(request):
     else:
         redir = party_switch(request)
         if redir == 1:
-            return redirect('showparties')  # Gdzie przekierować?
+            return redirect('allparties')  # Gdzie przekierować?
         else:
             pe_fi = PageElement(FormItems)
             form = ApplicationForm()
@@ -157,27 +157,3 @@ def dormapply(request):
             context_lazy = pl.lazy_context(skins=S, context=context)
             template = 'forms/dormapply.html'
             return render(request, template, context_lazy)
-
-
-# Pokazuje różne akcje kwaterunkowe - widok oparty na klasach.
-def showparties(request):
-    userdata = User.objects.get(
-     id=request.user.id)
-    view_filter = "2"
-    if 'subbutton' in request.POST:
-        view_filter = str(request.POST.get('view_filter'))
-    elif 'changeparty' in request.POST:
-        request.session['partyid'] = request.POST.get('partyid')
-        return redirect('changemeparty')
-    elif 'apply_spontaneously' in request.POST:
-        form = IniForm(request.POST, instance=userdata)
-        if form.is_valid():
-            form.save()
-            return redirect('dsapply')
-    ap = AllParties(
-     request, HParty, pytz, datetime, FormItems, Hpi, QuarterClassB,
-     view_filter=view_filter, )
-    pl = PortalLoad(P, L, Pbi, 0, Umi, Uli)
-    context_lazy = pl.lazy_context(skins=S, context=ap.context)
-    template = 'panels/common/allparties.html'
-    return render(request, template, context_lazy)

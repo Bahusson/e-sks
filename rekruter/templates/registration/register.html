@@ -23,7 +23,7 @@
             {% csrf_token %}
 
             {% if form.errors %}
-            <p>Formularz zawiera błędy!</p>
+            <p>Formularz zawiera błędy! Hasło nie może być zbyt proste.</p>
             {% endif %}
 
             <p>{{ item.email }} {{ form.email }}</p>
