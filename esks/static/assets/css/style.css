@@ -154,13 +154,14 @@ a:hover .imgshdw {
     display: table;
     clear: both;
 }
-.card {
+.cardo {
     padding: 0px;
-    height: auto;
+    height: 100%;
     width: auto;
     background-color: #333333;
     color: #ffffff;
     text-transform: uppercase;
+    border-radius: 10px;
 }
 .card1 {
     padding: 0px;
@@ -170,12 +171,12 @@ a:hover .imgshdw {
     color: #ffffff;
     text-transform: uppercase;
 }
-.head-card {
+.head-cardo {
     border: 1px;
     border-color: #ffffff;
     background: #e98328;
 }
-.card p {
+.cardo p {
     color: #ffffff;
     text-align: center;
 }
@@ -184,6 +185,10 @@ a:hover .imgshdw {
 }
 .cardo a:hover {
     color: #e98328;
+}
+.cardos {
+  height: 100%;
+  width: 100%;
 }
 @media screen and (max-width: 600px) {
     .column {
