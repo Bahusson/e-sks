@@ -208,6 +208,8 @@ AWS_ACCESS_KEY_ID = 'UY25DNGAOVVGCA2UUK2L'
 
 AWS_SECRET_ACCESS_KEY = 'TtICSTYds/ipCuhUfmxZ2cpiV2sp+N+xR6Cp95dN1fw'
 
+AWS_STORAGE_BUCKET_NAME = 'esks'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 STATICFILES_DIRS = [
