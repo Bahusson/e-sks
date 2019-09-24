@@ -193,9 +193,23 @@ MODELTRANSLATION_TRANSLATION_FILES = (
     'strona.translation',
 )
 
+
+# Konfiguracja CDN
+# https://github.com/jschneier/django-storages
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_S3_REGION_NAME = 'fra1'
+
+AWS_S3_ENDPOINT_URL = '$fra1.digitaloceanspaces.com'
+
+AWS_ACCESS_KEY_ID = 'UY25DNGAOVVGCA2UUK2L'
+
+AWS_SECRET_ACCESS_KEY = 'TtICSTYds/ipCuhUfmxZ2cpiV2sp+N+xR6Cp95dN1fw'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
-
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'esks/static')
 ]
