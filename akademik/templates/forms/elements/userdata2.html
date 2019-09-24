@@ -1,15 +1,20 @@
 <!-- Wyświetla dane adresowe usera - widoczne tylko w niektórych formularzach -->
-<h4>{{ formitem.adress_data }}44444444</h4>
-<p>
+<div class="card">
+<div class="card-header">{{ formitem.adress_data }}</div>
+<div class="card-body">
+<p class="pref">
   <b>{{ formitem.street }}</b>: {{ udata.street }}
   <b>{{ formitem.building_no }}</b>: {{ udata.building_no }}
   {% if udata.local_no %}
    <b>{{ formitem.local_no }}</b>: {{ udata.local_no }}
   {% endif %}
 </p>
-<p>
+<p class="pref">
   <b>{{ formitem.postcode }}</b>: {{ udata.postcode }}
   <b>{{ formitem.city }}</b>: {{ udata.city }}
 </p>
-<p><b>{{ formitem.warning_f }}:</b> <b><a href="https://core2.sspw.pl/login" target="blank">{{ formitem.data_correct }}</a></b></p>
+<p class="pref"><b>{{ formitem.warning_f }}:</b> <b><a href="https://core2.sspw.pl/login" target="blank">{{ formitem.data_correct }}</a></b></p>
+</div>
+</div>
+
 <br>
