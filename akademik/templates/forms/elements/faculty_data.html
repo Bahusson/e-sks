@@ -1,9 +1,8 @@
 <!-- Dane toku studiów - tylko jeśli student. Domyślnie: nie dotyczy. -->
 {% load staticfiles %}
-<div class="container">
-<div class="row justify-content-md-center box">
-<div class="col-md-auto box">
-<p class="head-form"> {{ formitem.pref_as_stud }}: </p>
+<div class="card">
+<div class="card-header"> {{ formitem.pref_as_stud }}: </div>
+<div class="card-body">
 <p class="pref2"> {{ formitem.faculty }}:
     <select {% if service %} required {% endif %} id="faculty" class="form-control">
              <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
@@ -20,7 +19,10 @@
            {% endfor %}
     </select>
 </p>
-<p class="pref2"> {{ formitem.deangroup }}: {{ form.deangroup }} </p>
+
+<p class="dziek"><label for="id_deangroup">{{ formitem.deangroup }}: </label>
+<input type="text" name="deangroup" maxlength="30" id="id_deangroup" class="form-control"> </p>
+
 <p class="pref2"> {{ formitem.semester }}:
   <select {% if service %} required {% endif %} id="semester" class="form-control numb">
            <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
@@ -36,7 +38,7 @@
 
 </div>
 </div>
-<div>
+<br>
 
 <!--Ukryte pola formularza-->
 {{ form.faculty }}{{ form.degree }}{{ form.semester }}

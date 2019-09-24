@@ -2,25 +2,23 @@
 .box {
   background-color: #333333;
   padding: 10px;
-  border-radius: 25px;
+  border-radius: 0px 0px 0px;
   width: 100%;
 }
-.head-form {
+.card-header {
   font: "Roboto";
   font-size: 24px;
-  color: black;
-  width: 100%;
+  color: white;
   text-transform: uppercase;
   font-weight: bold;
-  background-color:#e98328;
-  overflow-wrap: normal;
-  padding: none;
   text-align: center;
-  border-radius: 25px;
+  background-color: #e98328;
+  width:auto;
+
 }
 /*****DANE OSOBOWE userdata1.html***/
 .card {
-  border-radius: 25px;
+  border-radius: 0px 0px 25px 25px;
   margin-bottom: 0px;
 }
 .bolder {
@@ -67,8 +65,9 @@
 }
 
 .numb {
-  width: 150px;
+  width: 40%;
 }
+
 /*******Dodatkowe informacje extra_info.html**********/
 .extras {
   font: "Roboto";

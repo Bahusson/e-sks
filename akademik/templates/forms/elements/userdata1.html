@@ -1,8 +1,7 @@
 <!-- Wyświetla podstawowe aktualne dane usera. Do formularza i innych miejsc. -->
-<div class="container">
-<div class="row justify-content-md-center box">
-<div class="col-md-auto">
-<p class="head-form">{{ formitem.personal_data }} </p>
+<div class="card">
+<div class="card-header">{{ formitem.personal_data }} </div>
+<div class="card-body">
 <p class ="userdata"><b class="bolder">{{ formitem.name }}: </b> <b class="bolder2"> {{ udata.first_name }}  </b> <b class="bolder">{{ formitem.surname }}: </b><b class="bolder2"> {{ udata.last_name }}</b></p>
 <p class ="userdata"><b class="bolder">{{ formitem.citizenship }}: </b><b class="bolder2"> {{ udata.citizenship }}</b>
 <b class="bolder">{{ formitem.gender }}: </b>
@@ -30,4 +29,4 @@
 <p class ="userdata"><b class="bolder">{{ formitem.warning_f }}: <a href="https://core2.sspw.pl/login" target="blank">{{ formitem.data_correct }}</a></b></p>
 </div>
 </div>
-</div>
+<br>

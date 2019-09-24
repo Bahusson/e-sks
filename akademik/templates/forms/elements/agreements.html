@@ -1,11 +1,10 @@
 <!-- Zgody do celów demonstracyjnych. Potem do zmiany na bardziej modularne. -->
 {% load staticfiles %}
-<div class="container plus">
-<div class="row justify-content-md-center box">
-<div class="col-md-auto box">
-<p class="head-form">{{ formitem.statement }}</p>
+<div class="card">
+<div class="card-header">{{ formitem.statement }}</div>
+<div class="card-body">
 <p class="agree">
-  <select {% if service %} required {% endif %}  id="international_placement">
+  <select {% if service %} required {% endif %}  id="international_placement" class="form-control form-control-sm">
              <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
              <option value ="0">{{ formitem.disagree }}</option>
              <option value ="1">{{ formitem.agree }}</option>
@@ -22,7 +21,7 @@
 </p>
 </div>
 </div>
-</div>
+<br>
 
 <!--Ukryte pola formularza-->
 {{ form.international_placement }}{{ form.mailinglist }}{{ form.dataprocessing }}

@@ -1,7 +1,6 @@
-<div class="container">
-<div class="row justify-content-md-center box">
-<div class="col-md-auto">
-<p class="head-form"> {{ formitem.preferences }}</p>
+<div class="card">
+<div class="card-header">{{ formitem.preferences }}</div>
+<div class="card-body">
 <p class="pref"> {{ formitem.match_prefs }} <a href="#" class="badge badge-light">{{ formitem.see_map }}</a></p>
 <p class="pref">
    1:
@@ -46,7 +45,7 @@
 </p>
 </div>
 </div>
-<div>
+<br>
 <!--Ukryte pola formularza-->
 {{ form.sh_choice1 }}{{ form.sh_choice2 }}{{ form.sh_choice3 }}
 {{ form.duration }}{{ form.if_room_change }}
