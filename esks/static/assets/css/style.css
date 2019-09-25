@@ -96,12 +96,16 @@ p {
     background: #070000;
     background: -webkit-linear-gradient(to right, #070000, #4C0001, #070000);
     background: linear-gradient(to right, #070000, #4C0001, #070000);
-
+    z-index: 1;
+    height: auto;
 }
 ul.navbar-nav {
     text-transform: uppercase;
     font-family: 'Ubuntu';
     font-size: 16px;
+}
+.btn-link-3 {
+  text-transform: uppercase;
 }
 
 /***** Top content - navbar zmienia kolor *****/
