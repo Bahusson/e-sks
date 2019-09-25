@@ -1,70 +1,9 @@
 
-<!-- PUSTY DIV  -->
-<div class="row">
-    <div class="col-sm-12 text wow fadeInLeft"></div>
-</div>
-<div class="row">
-    <div class="col-sm-12 text wow fadeInLeft"><br><br></div>
-</div>
-<!-- KONIEC PUSTY DIV  -->
-<!-- Fragment generujący menu z podpunktami dla Panelu Usera. Rozszerzaj dodając Divy -->
-<!--  MENU WERSJA 1 -->
-<div id="wrapper">
-<div id="sidebar-wrapper">
-<aside id="sidebar">
-
-<ul id="sidemenu" class="sidebar-nav">
-      <li>
-        <a href="#">
-          <span class="sidebar-icon"><i class="fa fa-dashboard"></i></span>
-          <span class="sidebar-title">PANEL UŻYTKOWNIKA</span>
-        </a>
-      </li>
-      <li>
-        <a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" href="#submenu-2">
-          <span class="sidebar-icon"><i class="fa fa-users"></i></span>
-          <span class="sidebar-title">PROFIL</span>
-          <b class="caret"></b>
-        </a>
-        <ul id="submenu-2" class="panel-collapse collapse panel-switch" role="menu">
-            <li><a href="#"><i class="fa fa-caret-right"></i>DANE</a></li>
-            <li><a href="#"><i class="fa fa-caret-right"></i>WIADOMOŚCI</a></li>
-        </ul>
-      </li>
-      <li>
-        <a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" href="#submenu-3">
-          <span class="sidebar-icon"><i class="fa fa-newspaper-o"></i></span>
-          <span class="sidebar-title">USTAWIENIA</span>
-          <b class="caret"></b>
-        </a>
-        <ul id="submenu-3" class="panel-collapse collapse panel-switch" role="menu">
-            <li><a href="#"><i class="fa fa-caret-right"></i>LOKALNE</a></li>
-            <li><a href="#"><i class="fa fa-caret-right"></i>GLOBALNE</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">
-          <span class="sidebar-icon"><i class="fa fa-database"></i></span>
-          <span class="sidebar-title">MOJE REZERWACJE</span>
-        </a>
-     </li>
-     <li>
-         <a href="{% url 'userdatapersonal' %}">
-           <span class="sidebar-icon"><i class="fa fa-terminal"></i></span>
-           <span class="sidebar-title">MOJE DANE</span>
-     </li>
-
-    </ul>
-    </aside>
-</div>
-</div>
-<!--  KONIEC MENU WERSJA 1 -->
-
 <!--  MENU WERSJA 2 -->
 <div class="row float-left">
 <div class="column">
-    <div class="card sidem float-left" width= "250">
-        <p class="head-card">MENU ADMINISRACJI</p>
+    <div class="cardo sidem float-left" width= "250">
+        <p class="head-cardo">MENU ADMINISRACJI</p>
         <p class="head-foot"><a href="#">NOCLEGI</a></p>
         <p class="head-foot"><a href="#">MOJE DANE</a></p>
         <p class="head-foot"><a href="#">USTAWIENIA</a></p>

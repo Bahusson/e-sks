@@ -1,16 +1,16 @@
 <!--  MENU WERSJA 2 -->
 <div class="row float-left">
 <div class="column">
-    <div class="card sidem float-left" width= "250">
-        <p class="head-card">{{ menu.0 }}</p>
+    <div class="cardo sidem float-left" width= "250">
+        <p class="head-cardo">{{ menu.0 }}</p>
         <p class="head-foot"> {{ link.0 }}</p><!--Poczta-->
         <p class="head-foot"><a href="{% url 'allparties' %}">{{ link.1 }}</a></p><!--Akcje Kwaterunkowe-->
         <p class="head-foot"><a href="{% url 'pagemap' %}">{{ link.2 }}</a></p><!--Zarządzaj stroną-->
-        <p class="head-card">{{ menu.1 }}</p>
+        <p class="head-cardo">{{ menu.1 }}</p>
         <p class="head-foot">{{ link.3 }}</p><!--Lista Wniosków-->
         <!-- Tylko dla Szefa Rady -->
         {% if user.role_council > 2 %}
-        <p class="head-card">{{ menu.2 }}</p>
+        <p class="head-cardo">{{ menu.2 }}</p>
         <p class="head-foot"><a href="{% url 'makemeparty' %}">{{ link.4 }}</a></p><!--Lista Wniosków-->
         {% endif %}
         <!-- End tylko dla Szefa Rady -->
