@@ -199,7 +199,7 @@ MODELTRANSLATION_TRANSLATION_FILES = (
 # https://github.com/jschneier/django-storages
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 AWS_S3_REGION_NAME = 'fra1'
 
@@ -210,6 +210,8 @@ AWS_ACCESS_KEY_ID = 'UY25DNGAOVVGCA2UUK2L'
 AWS_SECRET_ACCESS_KEY = 'TtICSTYds/ipCuhUfmxZ2cpiV2sp+N+xR6Cp95dN1fw'
 
 AWS_STORAGE_BUCKET_NAME = 'esks'
+
+AWS_DEFAULT_ACL = None
 
 # AWS_S3_CUSTOM_DOMAIN = 'https://esks.fra1.cdn.digitaloceanspaces.com'
 
