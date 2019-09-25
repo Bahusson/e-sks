@@ -11,7 +11,7 @@ kolejny zbiór tego typu etc.
   -->
 
 {% block title %}
-<title>Panel Rady</title>
+<title>PANEL RADY</title>
 {% endblock %}
 
 {% block css %}
@@ -30,38 +30,44 @@ kolejny zbiór tego typu etc.
 {% block body2 %}
  <!-- Tu mają się wyświetlać dane z różnych opcji po kliknięciu -->
  <p>Tymczasowy przełącznik - widok serwisowy</p>
- <br><br>
- <main role="main" class="container">
-   <div class="row">
 
-     <div class="col-lg-4">
-       <br>
-      <h4>Aktualności</h4>
+ <main role="main" class="container">
+   <div class="row mapsite no-gutters ">
+
+     <div class="col-lg-4 ">
+
+      <h4 class="maphead mapsitepliki">AKTUALNOŚCI</h4>
       {% if user.role_council > 1 %}
-       <button><a class="btn" href="{% url 'make_element' 'blog' %}">Nowy wpis w aktualnościach.</a></button>
+      <br>
+       <button><a class="btn btn-light" href="{% url 'make_element' 'blog' %}">DODAJ WPIS W AKTUALNOŚCIACH</a></button>
+       <br>
+       <br>
       {% endif %}
-      <ul>
+      <ul class="maplist">
       {% for blog in blogs.all %}
-       <li><a href="{% url 'blog' blog.id %}">{{ blog.title }}!</a>
+       <li><a class="maplink" href="{% url 'blog' blog.id %}">{{ blog.title }}!</a>
        {% if user.role_council > 1 %}
-        <button><a href="{% url 'change_element' 'blog' blog.id %}">Edytuj</a></button>
+        <button><a class="btn btn-light" ref="{% url 'change_element' 'blog' blog.id %}">EDYTUJ</a></button>
        {% endif %}
        </li>
       {% endfor %}
       </ul>
     </div><!--End column1-->
 
-  <div class="col-lg-4">
-    <br>
-   <h4>Informacje</h4>
+  <div class="col-lg-4 mapsiteinfo">
+
+   <h4 class="maphead mapsiteinfo">INFORMACJE</h4>
    {% if user.role_council > 1 %}
-    <button><a class="btn" href="{% url 'make_element' 'info' %}">Nowa informacja</a></button>
+   <br>
+    <button><a class="btn btn-light" href="{% url 'make_element' 'info' %}">NOWA INFORMACJA </a></button>
+    <br>
+    <br>
    {% endif %}
-   <ul>
+   <ul class="maplist">
     {% for info in infos.all %}
-     <li><a href="{% url 'info' info.id %}">{{ info.title }}!</a>
+     <li><a class="maplink" href="{% url 'info' info.id %}">{{ info.title }}!  </a>
      {% if user.role_council > 1 %}
-      <button><a href="{% url 'change_element' 'info' info.id %}">Edytuj</a></button>
+      <button><a class="btn btn-light" href="{% url 'change_element' 'info' info.id %}">EDYTUJ</a></button>
      {% endif %}
      </li>
     {% endfor %}
@@ -69,15 +75,19 @@ kolejny zbiór tego typu etc.
    </div><!--end column2-->
 
    <div class="col-lg-4">
-    <h4>Pliki</h4>
+
+    <h4 class="maphead">PLIKI</h4>
     {% if user.role_council > 1 %}
-     <button><a class="btn" href="{% url 'make_element' 'file' %}">Nowy plik do ściągnięcia</a></button>
+    <br>
+     <button><a class="btn btn-light" href="{% url 'make_element' 'file' %}">NOWY PLIK DO ŚCIĄGNIĘCIA</a></button>
+     <br>
+     <br>
     {% endif %}
-    <ul>
+    <ul class="maplist">
     {% for file in files.all %}
-     <li><a href="">{{ file.title }}!</a> <!--Poprawić URL tak, żeby ściągał plik automatycznie -->
+     <li><a class="maplink" href="">{{ file.title }}!  </a> <!--Poprawić URL tak, żeby ściągał plik automatycznie -->
       {% if user.role_council > 1 %}
-       <button><a href="{% url 'change_element' 'file' file.id %}">Edytuj</a></button>
+       <button><a class="btn btn-light" href="{% url 'change_element' 'file' file.id %}">EDYTUJ</a></button>
       {% endif %}
      </li>
     {% endfor %}
@@ -86,28 +96,7 @@ kolejny zbiór tego typu etc.
 
  </div><!--end row-->
 </main><!-- end container -->
-<div class="card-deck">
-  <div class="card bg-primary">
-    <div class="card-body text-center">
-      <p class="card-text">Some text inside the first card</p>
-    </div>
-  </div>
-  <div class="card bg-warning">
-    <div class="card-body text-center">
-      <p class="card-text">Some text inside the second card</p>
-    </div>
-  </div>
-  <div class="card bg-success">
-    <div class="card-body text-center">
-      <p class="card-text">Some text inside the third card</p>
-    </div>
-  </div>
-  <div class="card bg-danger">
-    <div class="card-body text-center">
-      <p class="card-text">Some text inside the fourth card</p>
-    </div>
-  </div>
-</div>
+
 {% endblock body2 %}
 
 

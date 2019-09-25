@@ -24,9 +24,9 @@
     <div class="col">
         {% if blog.image %}
         <!-- Jeśli nie ma obrazka zwróć default ze skórki Usera -->
-        <a href="{% url 'blog' blog.id %}"><img class="blog-image imgshdw float-left img-fluid" src="{{ blog.image.url }}" /></a>
+        <a href="{% url 'blog' blog.id %}"><img class="imgshdw float-left img-fluid" src="{{ blog.image.url }}" /></a>
         {% else %}
-        <a href="{% url 'blog' blog.id %}"><img class="blog-image img-fluid" src="{{ skin.blogimagedefault.url }}" /></a>
+        <a href="{% url 'blog' blog.id %}"><img class="imgshdw float-left img-fluid" src="{{ skin.blogimagedefault.url }}" /></a>
         {% endif %}
         <div class="desc ">
             <h4 class="head-news"><a href="{% url 'blog' blog.id %}">{{ blog.title }}</a></h4>
@@ -45,9 +45,9 @@
       <div class="col">
           {% if blogs.3.image %}
            <!-- Jeśli nie ma obrazka zwróć default ze skórki Usera -->
-           <a href="{% url 'blog' blogs.3.id %}"><img class="blog-image imgshdw float-left img-fluid" src="{{ blogs.3.image.url }}"  /></a>
+           <a href="{% url 'blog' blogs.3.id %}"><img class="imgshdw float-left img-fluid" src="{{ blogs.3.image.url }}"  /></a>
           {% else %}
-           <a href="{% url 'blog' blog.id %}"><img class="blog-image imgshdw float-left img-fluid" src="{{ skin.blogimagedefault.url }}" /></a>
+           <a href="{% url 'blog' blog.id %}"><img class="imgshdw float-left img-fluid" src="{{ skin.blogimagedefault.url }}" /></a>
           {% endif %}
           <div class="desc">
               <h4 class="head-news"><a href="{% url 'blog' blogs.3.id %}">{{ blogs.3.title }}</a></h4>
