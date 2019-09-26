@@ -4,11 +4,11 @@ Jak będziesz miał czas to to skróć i zrób tak,
 żeby nie trzeba się grzebać w kodzie,
 jak się ustawi nowy język.*/
 
-var domain = "127.0.0.1" // Tu zmień domenę z localhost albo podepnij to jakoś lepiej.
+// var domain = "127.0.0.1" // Tu zmień domenę z localhost albo podepnij to jakoś lepiej.
 
 function setCookie(cvalue)
 {
-  document.cookie = "esks_language = " + cvalue + ";domain=" + domain + ";path=/";
+  document.cookie = "esks_language = " + cvalue + ";domain=" + ";path=/";
   location.reload();
 }
 
