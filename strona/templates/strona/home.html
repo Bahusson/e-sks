@@ -11,20 +11,22 @@
     <img width=100% src="https://images.tinypic.pl/i/00989/zt0xvyfot0su.png" class="img-fluid" >
 </div>
 
-
 <!-- POCZĄTEK AKTUALNÓŚĆ -->
 <h3 class="font-weight-bolder">{{ items.news }}</h3>
-<div class="row"> <!-- Start blog row -->
+<div class="row">
+
 {% for blog in blogs|slice:":3" %}
 <!-- Iterator aktualności 1-3 -->
 {% if blog %}
+
+
 <div class="col-md-3 shdwn">
     <div class="col">
         {% if blog.image %}
         <!-- Jeśli nie ma obrazka zwróć default ze skórki Usera -->
-        <a href="{% url 'blog' blog.id %}"><img class="blog-image imgshdw float-left img-fluid" src="{{ blog.image.url }}" /></a>
+        <a href="{% url 'blog' blog.id %}"><img class="imgshdw float-left img-fluid" src="{{ blog.image.url }}" /></a>
         {% else %}
-        <a href="{% url 'blog' blog.id %}"><img class="blog-image img-fluid" src="{{ skin.blogimagedefault.url }}" /></a>
+        <a href="{% url 'blog' blog.id %}"><img class="imgshdw float-left img-fluid" src="{{ skin.blogimagedefault.url }}" /></a>
         {% endif %}
         <div class="desc ">
             <h4 class="head-news"><a href="{% url 'blog' blog.id %}">{{ blog.title }}</a></h4>
@@ -43,19 +45,21 @@
       <div class="col">
           {% if blogs.3.image %}
            <!-- Jeśli nie ma obrazka zwróć default ze skórki Usera -->
-           <a href="{% url 'blog' blogs.3.id %}"><img class="blog-image imgshdw float-left img-fluid" src="{{ blogs.3.image.url }}"  /></a>
+           <a href="{% url 'blog' blogs.3.id %}"><img class="imgshdw float-left img-fluid" src="{{ blogs.3.image.url }}"  /></a>
           {% else %}
-           <a href="{% url 'blog' blog.id %}"><img class="blog-image imgshdw float-left img-fluid" src="{{ skin.blogimagedefault.url }}" /></a>
+           <a href="{% url 'blog' blog.id %}"><img class="imgshdw float-left img-fluid" src="{{ skin.blogimagedefault.url }}" /></a>
           {% endif %}
           <div class="desc">
               <h4 class="head-news"><a href="{% url 'blog' blogs.3.id %}">{{ blogs.3.title }}</a></h4>
           </div>
       </div>
   </div>
+
+
+
 {% endif %}
 <!-- Koniec dodatkowego bloga -->
-</div> <!-- End blog row -->
-
+</div>
 <!-- BUTTON -->
 <button type="button" class="btn-sm btn-outline-warning float-right view">
      <a href="">ZOBACZ WIĘCEJ >>> </a>

@@ -96,12 +96,16 @@ p {
     background: #070000;
     background: -webkit-linear-gradient(to right, #070000, #4C0001, #070000);
     background: linear-gradient(to right, #070000, #4C0001, #070000);
-
+    z-index: 1;
+    height: auto;
 }
 ul.navbar-nav {
     text-transform: uppercase;
     font-family: 'Ubuntu';
     font-size: 16px;
+}
+.btn-link-3 {
+  text-transform: uppercase;
 }
 
 /***** Top content - navbar zmienia kolor *****/
@@ -131,8 +135,8 @@ a:hover .imgshdw {
 }
 
 .shdwn img {
-    width: 350px;
-    height: 250px;
+    width: 450px;
+    height: 200px;
 }
 /******CARDS*********/
 * {
@@ -265,18 +269,19 @@ a:hover .imgshdw {
 #sidebar-wrapper {
     border-right: 1px solid #e7e7e7;
 }
+.sidebar {
+  background: #333333;
+}
 
 #sidebar-wrapper {
     z-index: 1000;
     position: static;
-
     left: 325px;
     width: 0;
     height: 100%;
-
+    background: #333333;
     margin-bottom: 100px;
     overflow-y: auto;
-
     -webkit-transition: all .5s ease;
     -moz-transition: all .5s ease;
     -o-transition: all .5s ease;
