@@ -142,7 +142,6 @@ def changemeparty(request):
 def allparties(request):
     userdata = User.objects.get(
      id=request.user.id)
-    print(userdata)
     view_filter = "2"
     if 'subbutton' in request.POST:
         view_filter = str(request.POST.get('view_filter'))

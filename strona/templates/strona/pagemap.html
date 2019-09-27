@@ -44,7 +44,7 @@ kolejny zbiór tego typu etc.
        <br>
       {% endif %}
       <ul class="maplist">
-      {% for blog in blogs.all %}
+      {% for blog in blogs %}
        <li><a class="maplink" href="{% url 'blog' blog.id %}">{{ blog.title }}!</a>
        {% if user.role_council > 1 %}
         <button><a class="btn btn-light" ref="{% url 'change_element' 'blog' blog.id %}">EDYTUJ</a></button>

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404 as G404
+from rekruter.models import User
 from .models import PageSkin as S
 from .models import Blog as B
 from .models import Info as In
@@ -7,7 +8,9 @@ from .models import Fileserve as F
 from strona.models import Pageitem as P
 from esks.settings import LANGUAGES as L
 from esks.special.classes import PageElement as pe
-from esks.special.classes import PageLoad
+from esks.special.classes import PageLoad, ActivePageItems
+import pytz
+import datetime
 
 
 # Strona główna.
@@ -66,11 +69,13 @@ def info(request, info_id):
 
 # Wszystkie aktualności.
 def allblogs(request):
-    pe_b = pe(B)
+    # pe_b = pe(B)
     pe_i = pe(In)
     pe_f = pe(F)
+    api = ActivePageItems(request, B, pytz, datetime)
+    active_blogs = api.active_items
     context = {
-     'blogs': pe_b.elements,
+     'blogs': active_blogs,
      'infos': pe_i.elements,
      'files': pe_f.elements, }
     pl = PageLoad(P, L)
@@ -117,8 +122,14 @@ def pagemap(request):
     pe_i = pe(In)
     pe_b = pe(B)
     pe_f = pe(F)
+    api = ActivePageItems(request, B, pytz, datetime)
+    active_blogs = api.active_items
+    if request.user.is_authenticated:
+        userlevel = request.user.role_council
+        if userlevel > 0:
+            active_blogs = pe_b.listed
     context = {
-     'blogs': pe_b.elements,
+     'blogs': active_blogs,
      'infos': pe_i.elements,
      'files': pe_f.elements, }
     pl = PageLoad(P, L)
@@ -126,26 +137,3 @@ def pagemap(request):
      skins=S, context=context)
     template = 'strona/pagemap.html'
     return render(request, template, context_lazy)
-
-
-# Do usunięcia w kolejnym wydaniu.
-def pagemap_bak(request):
-    if request.method == 'POST':
-        type_el = request.POST.get('elem_type')
-        id_el = request.POST.get('elem_id')
-        request.session['element_type'] = type_el
-        request.session['element_id'] = id_el
-        return redirect('change_element')
-    else:
-        pe_i = pe(In)
-        pe_b = pe(B)
-        pe_f = pe(F)
-        context = {
-         'blogs': pe_b.elements,
-         'infos': pe_i.elements,
-         'files': pe_f.elements, }
-        pl = PageLoad(P, L)
-        context_lazy = pl.lazy_context(
-         skins=S, context=context)
-        template = 'strona/pagemap.html'
-        return render(request, template, context_lazy)

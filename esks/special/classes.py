@@ -184,9 +184,12 @@ class PartyMaster(object):
     def past_party(self, **kwargs):
         inactive_parties = []
         attrname = kwargs['attrname']
+        date_end = 'date_end'
+        if 'date_end' in kwargs:
+            date_end = kwargs['date_end']
         x = 0
         for item in self.list_parties:
-            if self.list_parties[x].__dict__['date_end'] < self.dt_now:
+            if self.list_parties[x].__dict__[date_end] < self.dt_now:
                 inactive_parties.append(
                  str(self.list_parties[x].__dict__[attrname]))
             x = x+1
@@ -195,10 +198,13 @@ class PartyMaster(object):
     # Tylko zaplanowane akcje względem czasu serwera (atrybuty)
     def future_party(self, **kwargs):
         future_parties = []
+        date_start = 'date_start'
         attrname = kwargs['attrname']
+        if 'date_start' in kwargs:
+            date_start = kwargs['date_start']
         x = 0
         for item in self.list_parties:
-            if self.list_parties[x].__dict__['date_start'] > self.dt_now:
+            if self.list_parties[x].__dict__[date_start] > self.dt_now:
                 future_parties.append(
                  str(self.list_parties[x].__dict__[attrname]))
             x = x+1
@@ -237,3 +243,17 @@ class AllParties(object):
          'setter': peqc.listed,
          'view_filter': view_filter,
          }
+
+
+class ActivePageItems(object):
+    def __init__(self, request, *args, **kwargs):
+        Item = args[0]
+        pytz = args[1]
+        datetime = args[2]
+        pm = PartyMaster(Item, pytz, datetime)
+        all_items = pm.all_parties
+        irange = pm.past_party(attrname="id", date_end='pubdate')
+        self.active_items = []
+        for item in irange:
+            obj = all_items.elements.get(pk=item)
+            self.active_items.append(obj)
