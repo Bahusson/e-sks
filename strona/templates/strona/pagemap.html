@@ -39,7 +39,7 @@ kolejny zbiór tego typu etc.
       <h4 class="maphead mapsitepliki">AKTUALNOŚCI</h4>
       {% if user.role_council > 1 %}
       <br>
-       <button><a class="btn btn-light" href="{% url 'make_element' 'blog' %}">DODAJ WPIS W AKTUALNOŚCIACH</a></button>
+       <a class="btn btn-dark" href="{% url 'make_element' 'blog' %}">DODAJ WPIS W AKTUALNOŚCIACH</a>
        <br>
        <br>
       {% endif %}
@@ -47,7 +47,7 @@ kolejny zbiór tego typu etc.
       {% for blog in blogs %}
        <li><a class="maplink" href="{% url 'blog' blog.id %}">{{ blog.title }}!</a>
        {% if user.role_council > 1 %}
-        <button><a class="btn btn-light" ref="{% url 'change_element' 'blog' blog.id %}">EDYTUJ</a></button>
+        <a class="btn btn-dark" href="{% url 'change_element' 'blog' blog.id %}">EDYTUJ</a>
        {% endif %}
        </li>
       {% endfor %}
@@ -59,7 +59,7 @@ kolejny zbiór tego typu etc.
    <h4 class="maphead mapsiteinfo">INFORMACJE</h4>
    {% if user.role_council > 1 %}
    <br>
-    <button><a class="btn btn-light" href="{% url 'make_element' 'info' %}">NOWA INFORMACJA </a></button>
+    <a class="btn btn-dark" href="{% url 'make_element' 'info' %}">NOWA INFORMACJA </a>
     <br>
     <br>
    {% endif %}
@@ -67,7 +67,7 @@ kolejny zbiór tego typu etc.
     {% for info in infos.all %}
      <li><a class="maplink" href="{% url 'info' info.id %}">{{ info.title }}!  </a>
      {% if user.role_council > 1 %}
-      <button><a class="btn btn-light" href="{% url 'change_element' 'info' info.id %}">EDYTUJ</a></button>
+      <a class="btn btn-dark" href="{% url 'change_element' 'info' info.id %}">EDYTUJ</a>
      {% endif %}
      </li>
     {% endfor %}
@@ -79,7 +79,7 @@ kolejny zbiór tego typu etc.
     <h4 class="maphead">PLIKI</h4>
     {% if user.role_council > 1 %}
     <br>
-     <button><a class="btn btn-light" href="{% url 'make_element' 'file' %}">NOWY PLIK DO ŚCIĄGNIĘCIA</a></button>
+     <a class="btn btn-dark" href="{% url 'make_element' 'file' %}">NOWY PLIK DO ŚCIĄGNIĘCIA</a>
      <br>
      <br>
     {% endif %}
@@ -87,7 +87,7 @@ kolejny zbiór tego typu etc.
     {% for file in files.all %}
      <li><a class="maplink" href="">{{ file.title }}!  </a> <!--Poprawić URL tak, żeby ściągał plik automatycznie -->
       {% if user.role_council > 1 %}
-       <button><a class="btn btn-light" href="{% url 'change_element' 'file' file.id %}">EDYTUJ</a></button>
+       <a class="btn btn-dark" href="{% url 'change_element' 'file' file.id %}">EDYTUJ</a>
       {% endif %}
      </li>
     {% endfor %}
