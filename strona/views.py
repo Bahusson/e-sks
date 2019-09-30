@@ -70,14 +70,10 @@ def info(request, info_id):
 # Wszystkie aktualności.
 def allblogs(request):
     # pe_b = pe(B)
-    pe_i = pe(In)
-    pe_f = pe(F)
     api = ActivePageItems(request, B, pytz, datetime)
     active_blogs = api.active_items
     context = {
-     'blogs': active_blogs,
-     'infos': pe_i.elements,
-     'files': pe_f.elements, }
+     'blogs': active_blogs, }
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(
      skins=S, context=context)
@@ -87,13 +83,11 @@ def allblogs(request):
 
 # Wszystkie informacje.
 def allinfos(request):
-    pe_i = pe(In)
-    pe_b = pe(B)
-    pe_f = pe(F)
+    # pe_i = pe(In)
+    api = ActivePageItems(request, In, pytz, datetime)
+    active_infos = api.active_items
     context = {
-     'blogs': pe_b.elements,
-     'infos': pe_i.elements,
-     'files': pe_f.elements, }
+     'infos': active_infos, }
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(
      skins=S, context=context)
@@ -103,13 +97,11 @@ def allinfos(request):
 
 # Wszystkie pliki.
 def allfiles(request):
-    pe_i = pe(In)
-    pe_b = pe(B)
-    pe_f = pe(F)
+    # pe_f = pe(F)
+    api = ActivePageItems(request, F, pytz, datetime)
+    active_files = api.active_items
     context = {
-     'blogs': pe_b.elements,
-     'infos': pe_i.elements,
-     'files': pe_f.elements, }
+     'files': active_files, }
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(
      skins=S, context=context)
@@ -124,14 +116,20 @@ def pagemap(request):
     pe_f = pe(F)
     api = ActivePageItems(request, B, pytz, datetime)
     active_blogs = api.active_items
+    api = ActivePageItems(request, In, pytz, datetime)
+    active_infos = api.active_items
+    api = ActivePageItems(request, F, pytz, datetime)
+    active_files = api.active_items
     if request.user.is_authenticated:
         userlevel = request.user.role_council
         if userlevel > 0:
             active_blogs = pe_b.listed
+            active_infos = pe_i.listed
+            active_files = pe_f.listed
     context = {
      'blogs': active_blogs,
-     'infos': pe_i.elements,
-     'files': pe_f.elements, }
+     'infos': active_infos,
+     'files': active_files, }
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(
      skins=S, context=context)

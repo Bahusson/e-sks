@@ -36,7 +36,7 @@ kolejny zbiór tego typu etc.
 
      <div class="col-lg-4 ">
 
-      <h4 class="maphead mapsitepliki">AKTUALNOŚCI</h4>
+      <a href="{% url 'allblogs' %}"><h4 class="maphead mapsitepliki">AKTUALNOŚCI</h4></a>
       {% if user.role_council > 1 %}
       <br>
        <a class="btn btn-dark" href="{% url 'make_element' 'blog' %}">DODAJ WPIS W AKTUALNOŚCIACH</a>
@@ -56,7 +56,7 @@ kolejny zbiór tego typu etc.
 
   <div class="col-lg-4 mapsiteinfo">
 
-   <h4 class="maphead mapsiteinfo">INFORMACJE</h4>
+   <a href="{% url 'allinfos' %}"><h4 class="maphead mapsiteinfo">INFORMACJE</h4></a>
    {% if user.role_council > 1 %}
    <br>
     <a class="btn btn-dark" href="{% url 'make_element' 'info' %}">NOWA INFORMACJA </a>
@@ -64,7 +64,7 @@ kolejny zbiór tego typu etc.
     <br>
    {% endif %}
    <ul class="maplist">
-    {% for info in infos.all %}
+    {% for info in infos %}
      <li><a class="maplink" href="{% url 'info' info.id %}">{{ info.title }}!  </a>
      {% if user.role_council > 1 %}
       <a class="btn btn-dark" href="{% url 'change_element' 'info' info.id %}">EDYTUJ</a>
@@ -76,7 +76,7 @@ kolejny zbiór tego typu etc.
 
    <div class="col-lg-4">
 
-    <h4 class="maphead">PLIKI</h4>
+    <a href="{% url 'allfiles' %}"><h4 class="maphead">PLIKI</h4></a>
     {% if user.role_council > 1 %}
     <br>
      <a class="btn btn-dark" href="{% url 'make_element' 'file' %}">NOWY PLIK DO ŚCIĄGNIĘCIA</a>
@@ -84,8 +84,8 @@ kolejny zbiór tego typu etc.
      <br>
     {% endif %}
     <ul class="maplist">
-    {% for file in files.all %}
-     <li><a class="maplink" href="">{{ file.title }}!  </a> <!--Poprawić URL tak, żeby ściągał plik automatycznie -->
+    {% for file in files %}
+     <li><a class="maplink" href="">{{ file.title }}</a> <!--Poprawić URL tak, żeby ściągał plik automatycznie -->
       {% if user.role_council > 1 %}
        <a class="btn btn-dark" href="{% url 'change_element' 'file' file.id %}">EDYTUJ</a>
       {% endif %}

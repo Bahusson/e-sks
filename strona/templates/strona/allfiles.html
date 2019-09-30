@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+<title>Wszystkie pliki - Roboczy</title>
+{% endblock %}
+
+ <!-- Nullifikator bocznego menu z base.html Nie ruszaj tego, jak i end-taga!-->
+{% block aside %}
+<!-- Null -->
+{% block body %}
+
+    <main role="main">
+      <div class="row">
+        <div class="container">
+        {% for file in files %}
+          <hr class="featurette-divider">
+           <div class="row featurette">
+             <div class="col-md-5">
+               <!-- Jakiś placeholder -->
+             </div>
+             <div class="col-md-7">
+               <a href="{{ file.file.url }}"><h2 class="featurette-heading">{{ file.title }}</h2></a> <h5 class="text-muted">{{ file.pubdate_short }}</h5>
+               <p class="lead">{{ file.body }}</p>
+             </div>
+           </div>
+        {% endfor %}
+        </div>
+      </div><!-- /.row -->
+
+    </main>
+    <!-- empty div -->
+      <div class="top-content">
+        <div class="container">
+      <div class="row">	<div class="col-sm-12 text wow fadeInLeft"></div></div>
+
+
+    </div>
+    </div>
+    <!-- end of empty div -->
+{% endblock %}
+{% endblock aside %}
