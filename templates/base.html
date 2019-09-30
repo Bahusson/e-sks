@@ -135,9 +135,9 @@
                 <div class="col-lg-5 col-xs-12"></div>
                 <!-- koniec pusty DIV -->
                 <div class="col-lg-3 col-xs-12 head-foot">
-                    <p class="head-foot"><a href="{% url 'pagemap' %}">MAPA STRONY</a></p>
-                    <p class="head-foot"><a href="">MAPA AKADEMIKÓW</a></p>
-                    <p class="head-foot"><a href="{% url 'home' %}">STRONA GŁÓWNA</a></p>
+                    <p class="head-foot"><a href="{% url 'pagemap' %}">{{ items.pagemap }}</a></p>
+                    <p class="head-foot"><a href="">{{ items.akamap_c }}</a></p>
+                    <p class="head-foot"><a href="{% url 'home' %}">{{ items.mainpage_c }}</a></p>
                 </div>
                 <div class="col-lg-4 col-xs-12 location head-foot2">
                     <p>Grójecka 39, 02-031 Warszawa</p>

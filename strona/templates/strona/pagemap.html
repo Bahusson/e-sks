@@ -11,7 +11,7 @@ kolejny zbiór tego typu etc.
   -->
 
 {% block title %}
-<title>PANEL RADY</title>
+<title>{{ items.pagemap }}</title>
 {% endblock %}
 
 {% block css %}
@@ -29,17 +29,17 @@ kolejny zbiór tego typu etc.
 
 {% block body2 %}
  <!-- Tu mają się wyświetlać dane z różnych opcji po kliknięciu -->
- <p>Tymczasowy przełącznik - widok serwisowy</p>
+ <h1>{{ items.pagemap }}</h1>
 
  <main role="main" class="container">
    <div class="row mapsite no-gutters ">
 
      <div class="col-lg-4 ">
 
-      <a href="{% url 'allblogs' %}"><h4 class="maphead mapsitepliki">AKTUALNOŚCI</h4></a>
+      <a href="{% url 'allblogs' %}"><h4 class="maphead mapsitepliki">{{ items.news }}</h4></a>
       {% if user.role_council > 1 %}
       <br>
-       <a class="btn btn-dark" href="{% url 'make_element' 'blog' %}">DODAJ WPIS W AKTUALNOŚCIACH</a>
+       <a class="btn btn-dark" href="{% url 'make_element' 'blog' %}">{{ items.addblog }}</a>
        <br>
        <br>
       {% endif %}
@@ -47,7 +47,7 @@ kolejny zbiór tego typu etc.
       {% for blog in blogs %}
        <li><a class="maplink" href="{% url 'blog' blog.id %}">{{ blog.title }}!</a>
        {% if user.role_council > 1 %}
-        <a class="btn btn-dark" href="{% url 'change_element' 'blog' blog.id %}">EDYTUJ</a>
+        <a class="btn btn-dark" href="{% url 'change_element' 'blog' blog.id %}">{{ items.editme }}</a>
        {% endif %}
        </li>
       {% endfor %}
@@ -56,10 +56,10 @@ kolejny zbiór tego typu etc.
 
   <div class="col-lg-4 mapsiteinfo">
 
-   <a href="{% url 'allinfos' %}"><h4 class="maphead mapsiteinfo">INFORMACJE</h4></a>
+   <a href="{% url 'allinfos' %}"><h4 class="maphead mapsiteinfo">{{ items.information }}</h4></a>
    {% if user.role_council > 1 %}
    <br>
-    <a class="btn btn-dark" href="{% url 'make_element' 'info' %}">NOWA INFORMACJA </a>
+    <a class="btn btn-dark" href="{% url 'make_element' 'info' %}">{{ items.addinfo }}</a>
     <br>
     <br>
    {% endif %}
@@ -67,7 +67,7 @@ kolejny zbiór tego typu etc.
     {% for info in infos %}
      <li><a class="maplink" href="{% url 'info' info.id %}">{{ info.title }}!  </a>
      {% if user.role_council > 1 %}
-      <a class="btn btn-dark" href="{% url 'change_element' 'info' info.id %}">EDYTUJ</a>
+      <a class="btn btn-dark" href="{% url 'change_element' 'info' info.id %}">{{ items.editme }}</a>
      {% endif %}
      </li>
     {% endfor %}
@@ -76,10 +76,10 @@ kolejny zbiór tego typu etc.
 
    <div class="col-lg-4">
 
-    <a href="{% url 'allfiles' %}"><h4 class="maphead">PLIKI</h4></a>
+    <a href="{% url 'allfiles' %}"><h4 class="maphead">{{ items.docs }}</h4></a>
     {% if user.role_council > 1 %}
     <br>
-     <a class="btn btn-dark" href="{% url 'make_element' 'file' %}">NOWY PLIK DO ŚCIĄGNIĘCIA</a>
+     <a class="btn btn-dark" href="{% url 'make_element' 'file' %}">{{ items.addfile }}</a>
      <br>
      <br>
     {% endif %}
@@ -87,7 +87,7 @@ kolejny zbiór tego typu etc.
     {% for file in files %}
      <li><a class="maplink" href="">{{ file.title }}</a> <!--Poprawić URL tak, żeby ściągał plik automatycznie -->
       {% if user.role_council > 1 %}
-       <a class="btn btn-dark" href="{% url 'change_element' 'file' file.id %}">EDYTUJ</a>
+       <a class="btn btn-dark" href="{% url 'change_element' 'file' file.id %}">{{ items.editme }}</a>
       {% endif %}
      </li>
     {% endfor %}

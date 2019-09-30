@@ -18,6 +18,18 @@ class Pageitem(models.Model):
     panel_staff = models.CharField(max_length=200)
     panel_translator = models.CharField(max_length=200)
     backtouserpanel = models.CharField(max_length=200)
+    see_more = models.CharField(max_length=200)
+    pagemap = models.CharField(max_length=200)
+    addblog = models.CharField(max_length=200)
+    addinfo = models.CharField(max_length=200)
+    addfile = models.CharField(max_length=200)
+    editme = models.CharField(max_length=200)
+
+    def akamap_c(self):
+        return self.akamap.upper()
+
+    def mainpage_c(self):
+        return self.mainpage.upper()
 
 
 # Aktualności widoczne na głównych kafelkach na stronie.

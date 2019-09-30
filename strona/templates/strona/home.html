@@ -62,7 +62,7 @@
 </div>
 <!-- BUTTON -->
 <button type="button" class="btn-sm btn-outline-warning float-right view">
-     <a href="{% url 'allblogs' %}">ZOBACZ WIĘCEJ >>> </a>
+     <a href="{% url 'allblogs' %}">{{ items.see_more }} >>> </a>
 </button>
 <!--KONIEC BUTTONA -->
 <!-- KONIEC AKTUALNOŚCI -->
@@ -81,7 +81,7 @@
     </div>
     <div class="column">
         <div class="cardo">
-            <p class="head-cardo">WAŻNE DOKUMENTY - roboczy</p>
+            <p class="head-cardo">{{ items.docs }}</p>
             {% for file in files %}
              <p class="head-foot"><a href="{{ file.file.url }}">{{ file.title }}</a></p>
             {% endfor %}
@@ -94,7 +94,7 @@
     </div>
     <div class="column">
         <div class="cardo">
-            <p class="head-cardo">INFORMACJE - roboczy</p>
+            <p class="head-cardo">{{ items.information }}</p>
             {% for info in infos %}
              <p class="head-foot"><a href="{% url 'info' info.id %}">{{ info.title }}</a></p>
             {% endfor %}

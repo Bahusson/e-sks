@@ -6,7 +6,8 @@ class PageitemsTranslate(TranslationOptions):
     fields = (
      'lang_flag', 'headtitle', 'mainpage', 'information', 'akamap', 'contact',
      'logout', 'news', 'docs', 'login', 'panel_user', 'panel_council',
-     'panel_staff', 'panel_translator', 'backtouserpanel', )
+     'panel_staff', 'panel_translator', 'backtouserpanel', 'see_more',
+     'pagemap', 'addblog', 'addinfo', 'addfile', 'editme',)
 
 
 translator.register(Pageitem, PageitemsTranslate)
