@@ -15,13 +15,16 @@ import datetime
 
 # Strona główna.
 def home(request):
-    pe_b = pe(B)
-    pe_i = pe(In)
-    pe_f = pe(F)
+    api = ActivePageItems(request, B, pytz, datetime)
+    active_blogs = api.active_items
+    api = ActivePageItems(request, In, pytz, datetime)
+    active_infos = api.active_items
+    api = ActivePageItems(request, F, pytz, datetime)
+    active_files = api.active_items
     context = {
-     'blogs': pe_b.listed,
-     'infos': pe_i.elements,
-     'files': pe_f.elements, }
+     'blogs': active_blogs,
+     'infos': active_infos,
+     'files': active_files, }
     pl = PageLoad(P, L)
     context_lazy = pl.lazy_context(
      skins=S, context=context)

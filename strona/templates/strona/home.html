@@ -81,12 +81,10 @@
     </div>
     <div class="column">
         <div class="cardo">
-            <p class="head-cardo">WAŻNE DOKUMENTY</p>
-            <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Formularz rejstracyjny</a></p>
-            <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Wzór podania</a></p>
-            <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Wniosek akomodacyjny</a></p>
-            <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Wzór formularza</a></p>
-            <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Karta studenta</a></p>
+            <p class="head-cardo">WAŻNE DOKUMENTY - roboczy</p>
+            {% for file in files %}
+             <p class="head-foot"><a href="{{ file.file.url }}">{{ file.title }}</a></p>
+            {% endfor %}
         </div>
     </div>
     <div class="column">
@@ -96,12 +94,10 @@
     </div>
     <div class="column">
         <div class="cardo">
-            <p class="head-cardo">INFORMACJE</p>
-            <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Regulamin </a></p>
-            <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Plan akademika</a></p>
-            <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Regulaminu rekrutacji</a></p>
-            <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Kalendarz</a></p>
-            <p class="head-foot"><a href="https://www.ichip.pw.edu.pl/sites/default/files/files/Regulamin_DS.pdf">Szczegóły rekrutacji 2019</a></p>
+            <p class="head-cardo">INFORMACJE - roboczy</p>
+            {% for info in infos %}
+             <p class="head-foot"><a href="{% url 'info' info.id %}">{{ info.title }}</a></p>
+            {% endfor %}
         </div>
     </div>
 </div>
