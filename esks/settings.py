@@ -245,9 +245,28 @@ LOGIN_REQUIRED_IGNORE_PATHS = [
      r'^admin/.*$',
 ]
 
+
+# Mailing Django. Do podmianki w local_settings.py
+# https://www.tutorialspoint.com/django/django_sending_emails.htm
+# https://docs.djangoproject.com/en/2.2/topics/email/
+EMAIL_HOST = 'localhost'
+
+EMAIL_HOST_USER = ''
+
+EMAIL_HOST_PASSWORD = ''
+
+EMAIL_PORT = 25
+
+EMAIL_USE_SSL = False
+
+EMAIL_SSL_CERTFILE = None
+
+# FILE_UPLOAD_HANDLERS = []
+
 # Ściągnij ustawienia lokalne gdybyśmy chcieli udostępnić kod i wejść na OpenSource
 # na serwerze obok "settings" robisz plik .local_settings i ustalasz od nowa:
 # SECRET_KEY, DEBUG = False, DATABASES, oraz CACHES jeśli używasz Memccache.
+# edit: oraz inne o których było wspomniane wcześniej.
 try:
     from .local_settings import *
 except ImportError:
