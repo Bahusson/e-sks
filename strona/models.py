@@ -92,7 +92,16 @@ class Fileserve(models.Model):
 
 # Klasa skórek do naszej apki. Pola nienulowalne.
 class PageSkin(models.Model):
-    blogimagedefault = models.ImageField(upload_to='skins')
+    blogimagedefault = models.ImageField(
+     upload_to='skins', blank=True, null=True)
+    infoimagedefault = models.ImageField(
+     upload_to='skins', blank=True, null=True)
+    infosideimage = models.ImageField(
+     upload_to='skins', blank=True, null=True)
+    filesideimage = models.ImageField(
+     upload_to='skins', blank=True, null=True)
+    welcomebanner = models.ImageField(
+     upload_to='skins', blank=True, null=True)
 
 
 # klasa tłumaczeniowa dla Blog, Info, Fileserve.
