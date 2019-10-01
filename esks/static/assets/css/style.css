@@ -96,7 +96,7 @@ p {
     background: #070000;
     background: -webkit-linear-gradient(to right, #070000, #4C0001, #070000);
     background: linear-gradient(to right, #070000, #4C0001, #070000);
-    z-index: 1;
+
     height: auto;
 }
 ul.navbar-nav {
@@ -108,9 +108,19 @@ ul.navbar-nav {
   text-transform: uppercase;
 }
 
+.langmenu {
+  position: static;
+  height: 100px;
+  width: 150px;
+  padding-bottom: 0px;
+}
 /***** Top content - navbar zmienia kolor *****/
 .top-content {
     padding: 10px 0 10px 0;
+}
+
+.navbar-item {
+  position: absolute;
 }
 /***** SRODEK *****/
 .infobox {
