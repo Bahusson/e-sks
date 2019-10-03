@@ -96,7 +96,7 @@ p {
     background: #070000;
     background: -webkit-linear-gradient(to right, #070000, #4C0001, #070000);
     background: linear-gradient(to right, #070000, #4C0001, #070000);
-
+    width: auto;
     height: auto;
 }
 ul.navbar-nav {
@@ -106,13 +106,15 @@ ul.navbar-nav {
 }
 .btn-link-3 {
   text-transform: uppercase;
+  width: 100px;
 }
 
 .langmenu {
   position: static;
   height: 100px;
   width: 150px;
-  padding-bottom: 0px;
+  margin-bottom: 0px;
+
 }
 /***** Top content - navbar zmienia kolor *****/
 .top-content {
@@ -122,6 +124,8 @@ ul.navbar-nav {
 .navbar-item {
   position: absolute;
 }
+/***** RESPONSIVE IMAGES ******/
+
 /***** SRODEK *****/
 .infobox {
     background-color: #333333;
