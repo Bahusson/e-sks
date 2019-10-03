@@ -93,9 +93,10 @@ p {
 /*******NAVBAR 2.0************/
 .navbar{
 
-    background: #070000;
-    background: -webkit-linear-gradient(to right, #070000, #4C0001, #070000);
-    background: linear-gradient(to right, #070000, #4C0001, #070000);
+    background: rgb(125,126,125); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     width: auto;
     height: auto;
 }
@@ -149,8 +150,14 @@ a:hover .imgshdw {
 }
 
 .shdwn img {
-    width: 450px;
-    height: 200px;
+    width: 400px;
+    height: 175px;
+}
+@media screen and (max-width: 600px) {
+.shdwn img {
+      width: 300px;
+      height: 150px;
+  }
 }
 /******CARDS*********/
 * {
@@ -217,7 +224,10 @@ a:hover .imgshdw {
 }
 /***** Footer *****/
 .footer{
-    background: #333333;
+  background: rgb(125,126,125); /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     height: auto;
     width: 100%;
     margin-bottom: 3px;
@@ -231,15 +241,21 @@ a:hover .imgshdw {
     margin-top: 3px;
     color: #ffffff;
 }
+
+.head-foot p {
+    text-align: right;
+    margin-top: 3px;
+    color: #ffffff;
+}
 .head-foot2 p {
     color:#ffffff;
     text-align: left;
     margin-top: 3px;
 }
-.head-foot a {
+.head-foot li a {
     color:#ffffff;
 }
-.head-foot a:hover {
+.head-foot li a:hover {
     color: #e98328;
 }
 .head-news a {
