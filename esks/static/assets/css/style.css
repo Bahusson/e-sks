@@ -158,6 +158,11 @@ a:hover .imgshdw {
       width: 300px;
       height: 150px;
   }
+.head-news{
+  font-size: 16px;
+  text-transform: uppercase;
+  font-style: normal;
+}
 }
 /******CARDS*********/
 * {
