@@ -1,16 +1,56 @@
 <!--  MENU WERSJA 2 -->
-<div class="row float-left">
-<div class="column">
-    <div class="cardo sidem float-left" width= "250">
-        <p class="head-cardo">{{ menu.0 }}</p>
-        <p class="head-foot">{{ link.0 }}</p><!--Natalia-->
-        <p class="head-foot">{{ link.1 }}</p><!--Poczta-->
-        <p class="head-foot"><a href="{% url 'dsapply' %}">{{ link.2 }}</a></p><!--Wniosek o DS-->
-        <p class="head-foot">{{ link.3 }}</p><!--Szczegóły pokoju-->
-        <p class="head-foot">{{ link.4 }}</p><!--Preferencje pokoju0-->
-        <p class="head-foot">{{ link.5 }}</p><!--Lista Wniosków-->
-        <p class="head-foot"><a href="{% url 'userdatapersonal' %}">{{ link.6 }}</a></p><!--Profil Użytkownika-->
-    </div>
-</div>
-</div>
+
 <!--  KONIEC MENU WERSJA 2 -->
+<div class="nav-side-menu">
+    <div class="brand">{{ menu.0 }}</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+        <div class="menu-list">
+
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                  <a href="#">
+                  <i class="fa fa-dashboard fa-lg"></i> {{ link.0 }}
+                  </a><!--Natalia-->
+                </li>
+
+                <li  data-toggle="collapse" data-target="#products" class="collapsed active">
+                  <a href="#"><i class="fa fa-gift fa-lg"></i> {{ link.1 }} <span class="arrow"></span></a> <!--Poczta-->
+                </li>
+                <ul class="sub-menu collapse" id="products">
+                    <li class="active"><a href="#">AAA</a></li>
+                    <li><a href="#">BBB</a></li>
+                    <li><a href="#">CCC</a></li>
+                    <li><a href="#">DDD</a></li>
+                </ul>
+
+
+                 <li>
+                  <a href="{% url 'dsapply' %}">
+                  <i class="fa fa-user fa-lg"></i>{{ link.2 }}
+                  </a> <!--Wniosek o DS-->
+                  </li>
+
+                  <li>
+                   <a href="">
+                   <i class="fa fa-user fa-lg"></i>{{ link.3 }}
+                   </a><!--Szczegóły pokoju-->
+                   </li>
+                   <li>
+                    <a href="">
+                    <i class="fa fa-user fa-lg"></i>{{ link.4 }}
+                    </a><!--Preferencje pokoju0-->
+                    </li>
+                    <li>
+                     <a href="">
+                     <i class="fa fa-user fa-lg"></i>{{ link.5 }}
+                     </a><!--Lista Wniosków-->
+                     </li>
+                     <li>
+                      <a href="{% url 'userdatapersonal' %}">
+                      <i class="fa fa-user fa-lg"></i>{{ link.6 }}
+                      </a><!--Profil Użytkownika-->
+                      </li>
+            </ul>
+     </div>
+</div>
