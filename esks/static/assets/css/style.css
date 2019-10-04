@@ -115,7 +115,9 @@ ul.navbar-nav {
   height: 100px;
   width: 150px;
   margin-bottom: 0px;
-
+}
+.navbar-collapse {
+    max-height: 475px;
 }
 /***** Top content - navbar zmienia kolor *****/
 .top-content {
