@@ -48,7 +48,7 @@
 
 {% if blogs.3 %}
 <!--- DODATKOWY BLOG -->
-  <div class="col-md-3 shdwn">
+  <div class="col-md-3 shdwn extrablog">
       <div class="col">
           {% if blogs.3.image %}
            <!-- Jeśli nie ma obrazka zwróć default ze skórki Usera -->
@@ -68,9 +68,11 @@
 <!-- Koniec dodatkowego bloga -->
 </div>
 <!-- BUTTON -->
+
 <button type="button" class="btn-sm btn-outline-warning float-right view">
      <a href="{% url 'allblogs' %}">ZOBACZ WIĘCEJ >>> </a>
 </button>
+
 <!--KONIEC BUTTONA -->
 <!-- KONIEC AKTUALNOŚCI -->
 </div>
