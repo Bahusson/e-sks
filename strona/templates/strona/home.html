@@ -5,8 +5,7 @@
 {% block aside %}
 <!-- Null -->
 {% block body %}
-<br>
-<br>
+
 <br>
 <div class="alert alert-primary alert-dismissible fade show">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
@@ -19,7 +18,8 @@
 </div>
 
 <!-- POCZĄTEK AKTUALNÓŚĆ -->
-<h3 class="font-weight-bolder">{{ items.news }}</h3>
+<h6 class="strong">{{ items.news }}</h6>
+<div class="news jumbotron">
 <div class="row">
 
 {% for blog in blogs|slice:":3" %}
@@ -73,9 +73,8 @@
 </button>
 <!--KONIEC BUTTONA -->
 <!-- KONIEC AKTUALNOŚCI -->
+</div>
 
-<br>
-<br>
 <div class="row float-center">
     <div class="column">
         <div class="cardo cardos">
