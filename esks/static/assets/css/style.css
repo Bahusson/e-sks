@@ -47,8 +47,8 @@ h3 {
 }
 h4 {
     font-family: 'Ubuntu',sans-serif;
-    font-size: 20px;
-    text-align: left;
+    font-size: 18px;
+    text-align: center;
 
 }
 h6 {
@@ -115,7 +115,7 @@ p {
     background: -webkit-linear-gradient(top, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     width: auto;
-    height: auto;
+    height: 130px;
     padding-top: 0px;
 }
 .navbar-brand img {
@@ -159,7 +159,11 @@ ul li.navbar-nav a:hover {
   background:  #dfdcdc;
   padding-top: 10px;
 }
-
+.aktu {
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+}
 .infobox {
     background-color: #333333;
     margin-right: 30px;
