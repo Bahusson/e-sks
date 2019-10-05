@@ -148,7 +148,7 @@ ul li.navbar-nav a:hover {
   position: static;
   height: 100px;
   width: 210px;
-  margin-bottom: 0px;
+  margin-bottom: 15px;
 }
 .navbar-collapse {
     max-height: 500px;

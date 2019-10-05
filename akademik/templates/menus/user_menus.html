@@ -9,13 +9,11 @@
 
             <ul id="menu-content" class="menu-content collapse out">
                 <li>
-                  <a href="#">
-                  <i class="fa fa-dashboard fa-lg"></i> {{ link.0 }}
-                  </a><!--Natalia-->
+                  <a href="#">{{ link.0 }}</a><!--Natalia-->
                 </li>
 
                 <li  data-toggle="collapse" data-target="#products" class="collapsed active">
-                  <a href="#"><i class="fa fa-gift fa-lg"></i> {{ link.1 }} <span class="arrow"></span></a> <!--Poczta-->
+                  <a href="#"> {{ link.1 }} </a> <!--Poczta-->
                 </li>
                 <ul class="sub-menu collapse" id="products">
                     <li class="active"><a href="#">AAA</a></li>
@@ -26,29 +24,27 @@
 
 
                  <li>
-                  <a href="{% url 'dsapply' %}">
-                  <i class="fa fa-user fa-lg"></i>{{ link.2 }}
+                  <a href="{% url 'dsapply' %}">{{ link.2 }}
                   </a> <!--Wniosek o DS-->
                   </li>
 
                   <li>
                    <a href="">
-                   <i class="fa fa-user fa-lg"></i>{{ link.3 }}
+                   {{ link.3 }}
                    </a><!--Szczegóły pokoju-->
                    </li>
                    <li>
                     <a href="">
-                    <i class="fa fa-user fa-lg"></i>{{ link.4 }}
+                    {{ link.4 }}
                     </a><!--Preferencje pokoju0-->
                     </li>
                     <li>
                      <a href="">
-                     <i class="fa fa-user fa-lg"></i>{{ link.5 }}
+                     {{ link.5 }}
                      </a><!--Lista Wniosków-->
                      </li>
                      <li>
-                      <a href="{% url 'userdatapersonal' %}">
-                      <i class="fa fa-user fa-lg"></i>{{ link.6 }}
+                      <a href="{% url 'userdatapersonal' %}">{{ link.6 }}
                       </a><!--Profil Użytkownika-->
                       </li>
             </ul>

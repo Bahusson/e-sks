@@ -1,6 +1,6 @@
 .nav-side-menu {
   overflow: auto;
-  font-family: 'Ubuntu';
+  font-family: 'Ubuntu', sans-serif;
   font-size: 12px;
   text-align: center;
   font-weight: 200;
@@ -46,7 +46,7 @@
 }
 .nav-side-menu ul :not(collapsed) .arrow:before,
 .nav-side-menu li :not(collapsed) .arrow:before {
-  font-family: FontAwesome;
+  font-family: 'Ubuntu', sans-serif;
   content: "\f078";
   display: inline-block;
   padding-left: 10px;
@@ -82,7 +82,7 @@
 }
 .nav-side-menu ul .sub-menu li:before,
 .nav-side-menu li .sub-menu li:before {
-  font-family: Fontawesome;
+  font-family: 'Ubuntu', sans-serif;
   content: "\f105";
   display: inline-block;
   padding-left: 20px;
@@ -171,7 +171,7 @@ body {
 }
 .nav-side-menu ul .sub-menu li .sub-line li:before,
 .nav-side-menu li .sub-menu li .sub-line li:before {
-  font-family: FontAwesome;
+  font-family: 'Ubuntu', sans-serif;
   content: "\f105";
   display: inline-block;
   padding-left: 100px;
@@ -245,7 +245,7 @@ body {
 }
 .sub-line ul .sub-press li:before,
 .sub-line li .sub-press li:before {
-  font-family: Arial;
+  font-family: 'Ubuntu', sans-serif;
   content: "\f105";
   display: inline-block;
   padding-left: 50px;
@@ -276,7 +276,7 @@ body {
   -ms-transition: all 1s ease;
   transition: all 1s ease;
 }
-@media (max-width: 767px) {
+@media (max-width: 600px) {
   .sub-line {
     position: relative;
     width: 100%;
@@ -295,3 +295,7 @@ body {
     width: 40px;
     text-align: center;
   }
+@media screen and (max-width: 600px) {
+.nav-side-menu{
+    width:100%
+}
