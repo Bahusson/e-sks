@@ -99,15 +99,31 @@ p {
     background: linear-gradient(to bottom, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     width: auto;
     height: auto;
+    padding-top: 0px;
+}
+.navbar-brand img {
+  width: 200px;
 }
 ul.navbar-nav {
     text-transform: uppercase;
     font-family: 'Ubuntu';
-    font-size: 16px;
+    font-size: 12px;
+    font-weight: bold;
 }
+
+ul.navbar-nav a:hover {
+    color: #e98328;
+}
+ul li.navbar-nav a:hover {
+    color: #e98328;
+  }
 .btn-link-3 {
   text-transform: uppercase;
-  width: 100px;
+  width: 75px;
+  height: 40px;
+  font-size: 13px;
+  text-align: center;
+  padding: 2px;
 }
 
 .langmenu {
@@ -117,17 +133,8 @@ ul.navbar-nav {
   margin-bottom: 0px;
 }
 .navbar-collapse {
-    max-height: 475px;
+    max-height: 500px;
 }
-/***** Top content - navbar zmienia kolor *****/
-.top-content {
-    padding: 10px 0 10px 0;
-}
-
-.navbar-item {
-  position: absolute;
-}
-/***** RESPONSIVE IMAGES ******/
 
 /***** SRODEK *****/
 .infobox {
@@ -164,6 +171,15 @@ a:hover .imgshdw {
   font-size: 16px;
   text-transform: uppercase;
   font-style: normal;
+}
+
+.langmenu {
+  position: static;
+  height: auto;
+  border-radius: 0 0 0 0 0;
+  width: 250px;
+
+  margin-left:20px;
 }
 }
 /******CARDS*********/
