@@ -119,8 +119,8 @@ p {
     padding-top: 0px;
 }
 .navbar-brand img {
-  width: 150px;
-  padding-left: 2px;
+  width: 149px;
+  margin-left: 2px;
 }
 ul.navbar-nav {
     text-transform: uppercase;
@@ -135,9 +135,10 @@ ul.navbar-nav a:hover {
 ul li.navbar-nav a:hover {
     color: #e98328;
   }
+
 .btn-link-3 {
   text-transform: uppercase;
-  width: 75px;
+  width: 70px;
   height: 40px;
   font-size: 12px;
   text-align: center;
@@ -147,11 +148,28 @@ ul li.navbar-nav a:hover {
 .langmenu {
   position: static;
   height: 100px;
-  width: 210px;
+  width: 208px;
   margin-bottom: 15px;
 }
 .navbar-collapse {
     max-height: 500px;
+}
+/*** WIDOK NAVBARA NA DUŻYM EKRANIE ***/
+@media screen and (min-width: 1400px) {
+  ul.navbar-nav {
+      text-transform: uppercase;
+      font-family: 'Ubuntu';
+      font-size: 16px;
+      font-weight: bold;
+  }
+  .navbar-brand img {
+    width: 250px;
+    margin-left: 2px;
+  }
+  .btn-link-3 {
+    width: 300px;
+    font-size: 16px;
+  }
 }
 
 /***** SRODEK *****/
@@ -284,17 +302,23 @@ a:hover .imgshdw {
 }
 /***** Footer *****/
 .footer{
-  background: rgb(125,126,125); /* Old browsers */
-  background: -moz-linear-gradient(top, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: rgb(125,126,125); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     height: auto;
     width: 100%;
-    margin-bottom: 3px;
+    position: sticky;
 
 }
 .author {
     color: #ffffff;
+}
+.head-foot a {
+    color:#ffffff;
+}
+.head-foot a:hover {
+    color: #e98328;
 }
 .head-foot p {
     text-align: right;
