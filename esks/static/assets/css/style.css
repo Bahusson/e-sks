@@ -136,6 +136,7 @@ ul li.navbar-nav a:hover {
     color: #e98328;
   }
 
+
 .btn-link-3 {
   text-transform: uppercase;
   width: 70px;
@@ -313,6 +314,11 @@ a:hover .imgshdw {
 }
 .author {
     color: #ffffff;
+}
+.nopadding{
+   padding: 0 !important;
+   margin: 0 !important;
+
 }
 .head-foot a {
     color:#ffffff;
