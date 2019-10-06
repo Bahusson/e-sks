@@ -1,3 +1,7 @@
+.blog-sidebar {
+
+}
+
 .nav-side-menu {
   overflow: auto;
   font-family: 'Ubuntu', sans-serif;
@@ -14,10 +18,21 @@
   margin-top: 0px;
   border-radius: 0px 0px 10px 10px;
 }
+@media screen and (min-width: 1400px) {
+  .nav-side-menu {
+    font-size: 16px;
+  }
+}
 @media (max-width: 600px) {
   .nav-side-menu .brand {
     width: 100%;
     text-align: center;
+}
+.blog-body {
+  width: 100%;
+  padding-left: 2px;
+  padding-right: 2px;
+
 }
 }
 .nav-side-menu .brand {
@@ -25,7 +40,7 @@
   line-height: 50px;
   display: block;
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
   text-transform: uppercase;
 }

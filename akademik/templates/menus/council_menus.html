@@ -1,20 +1,27 @@
-<!--  MENU WERSJA 2 -->
-<div class="row float-left">
-<div class="column">
-    <div class="cardo sidem float-left" width= "250">
-        <p class="head-cardo">{{ menu.0 }}</p>
-        <p class="head-foot"> {{ link.0 }}</p><!--Poczta-->
-        <p class="head-foot"><a href="{% url 'allparties' %}">{{ link.1 }}</a></p><!--Akcje Kwaterunkowe-->
-        <p class="head-foot"><a href="{% url 'pagemap' %}">{{ link.2 }}</a></p><!--Zarządzaj stroną-->
-        <p class="head-cardo">{{ menu.1 }}</p>
-        <p class="head-foot">{{ link.3 }}</p><!--Lista Wniosków-->
-        <!-- Tylko dla Szefa Rady -->
-        {% if user.role_council > 2 %}
-        <p class="head-cardo">{{ menu.2 }}</p>
-        <p class="head-foot"><a href="{% url 'makemeparty' %}">{{ link.4 }}</a></p><!--Lista Wniosków-->
-        {% endif %}
-        <!-- End tylko dla Szefa Rady -->
-    </div>
+<div class="nav-side-menu">
+  <div class="brand">{{ menu.0 }}</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+      <div class="menu-list">
+        <ul id="menu-content" class="menu-content collapse out">
+          <li>
+            <a href="#">{{ link.0 }}</a><!--Poczta-->
+          </li>
+          <li  data-toggle="collapse" data-target="#products" class="collapsed active">
+            <a href="{% url 'allparties' %}"> {{ link.1 }} </a><!--Akcje Kwaterunkowe-->
+          </li>
+          <li>
+            <a href="{% url 'pagemap' %}">{{ link.2 }}</a><!--Zarządzaj stroną-->
+          </li>
+  <div class="brand">{{ menu.1 }}</div>
+          <li>
+            <a href="#">{{ link.3 }}</a><!--Lista Wniosków-->
+            <!-- Tylko dla Szefa Rady -->
+            {% if user.role_council > 2 %}
+  <div class="brand">{{ menu.1 }}</div>
+          <li>
+            <a href="{% url 'makemeparty' %}">{{ link.4 }}</a><!--Lista Wniosków-->
+          </li>
+          {% endif %}
+        </ul>
+  </div>
 </div>
-</div>
-<!--  KONIEC MENU WERSJA 2 -->

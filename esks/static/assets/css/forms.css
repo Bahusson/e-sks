@@ -6,8 +6,8 @@
   width: 100%;
 }
 .card-header {
-  font: "Roboto";
-  font-size: 22px;
+  font: 'Ubuntu', sans-serif;
+  font-size: 13px;
   color: white;
   text-transform: uppercase;
   font-weight: bold;
@@ -18,40 +18,40 @@
 }
 /*****DANE OSOBOWE userdata1.html***/
 .cardio {
-  border-radius: 0px 0px 25px 25px;
+  border-radius: 0px 0px 10px 10px;
   margin-bottom: 0px;
   background: #333333;
 }
 .bolder {
-  font: "Roboto";
+  font: 'Ubuntu', sans-serif;
   font-weight: bold;
   color: white;
   text-transform: uppercase;
-  font-size: 20px;
+  font-size: 13px;
   border-radius: 5px;
 }
 .bolder2 {
-  font: "Roboto";
+  font: 'Ubuntu', sans-serif;
   font-weight: lighter;
   color: black;
   background: #ffffff;
   text-transform: uppercase;
-  font-size: 20px;
+  font-size: 13px;
   border-radius: 5px;
 }
 .boldererror {
-  font: "Roboto";
+  font: 'Ubuntu', sans-serif;
   font-weight: bold;
   color: white;
   background: #333333;
   text-transform: uppercase;
-  font-size: 20px;
+  font-size: 13px;
   border-radius: 5px;
 }
 /****PREFERENCJE sh_preferences.html*******/
  .pref {
-   font: "Roboto";
-   font-size: 16px;
+   font:'Ubuntu', sans-serif;
+   font-size: 13px;
    color: white;
 }
  .badge {
@@ -60,8 +60,8 @@
 
 /****Składam preferencje jako student wydziału faculty_data.html*****/
 .pref2 {
-  font: "Roboto";
-  font-size: 16px;
+  font:'Ubuntu', sans-serif;
+  font-size: 13px;
   color: white;
 }
 
@@ -71,8 +71,8 @@
 
 /*******Dodatkowe informacje extra_info.html**********/
 .extras {
-  font: "Roboto";
-  font-size: 16px;
+  font: 'Ubuntu', sans-serif;
+  font-size: 13px;
   color: white;
 }
 
@@ -81,7 +81,7 @@
 }
 /********agreements.html*************/
 .agree {
-  font: "Roboto";
+  font: 'Ubuntu', sans-serif;
   font-size: 13px;
   color: white;
 }
@@ -92,8 +92,8 @@
 
 /****** formmap.html ******/
 .butt {
-  font: "Roboto";
-  font-size: 16px;
+  font: 'Ubuntu', sans-serif;
+  font-size: 13px;
   color: black;
   text-transform: uppercase;
 }
