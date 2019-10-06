@@ -7,12 +7,21 @@
 }
 .card-header {
   font: 'Ubuntu', sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   color: white;
   text-transform: uppercase;
   font-weight: bold;
+  text-decoration-style: solid;
   text-align: center;
-  background-color: #e98328;
+  background: rgba(255,146,10,1);
+  background: -moz-radial-gradient(center, ellipse cover, rgba(255,146,10,1) 0%, rgba(255,175,75,1) 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(255,146,10,1)), color-stop(100%, rgba(255,175,75,1)));
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(255,146,10,1) 0%, rgba(255,175,75,1) 100%);
+  background: -o-radial-gradient(center, ellipse cover, rgba(255,146,10,1) 0%, rgba(255,175,75,1) 100%);
+  background: -ms-radial-gradient(center, ellipse cover, rgba(255,146,10,1) 0%, rgba(255,175,75,1) 100%);
+  background: radial-gradient(ellipse at center, rgba(255,146,10,1) 0%, rgba(255,175,75,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff920a', endColorstr='#ffaf4b', GradientType=1 );
+
   width:auto;
 
 }
@@ -28,16 +37,19 @@
   color: white;
   text-transform: uppercase;
   font-size: 13px;
-  border-radius: 5px;
+  border-radius: 1px;
+  text-align: left;
 }
 .bolder2 {
   font: 'Ubuntu', sans-serif;
   font-weight: lighter;
   color: black;
   background: #ffffff;
-  text-transform: uppercase;
+
+  padding: 2px 5px 2px 5px;
   font-size: 13px;
-  border-radius: 5px;
+  font-weight: bold;
+  border-radius: 3px;
 }
 .boldererror {
   font: 'Ubuntu', sans-serif;
@@ -69,6 +81,10 @@
   width: 40%;
 }
 
+.dziek {
+  font-size: 13px;
+  color: #ffffff;
+}
 /*******Dodatkowe informacje extra_info.html**********/
 .extras {
   font: 'Ubuntu', sans-serif;

@@ -3,12 +3,12 @@
 <div class="card-header">{{ formitem.personal_data }}</div>
 <div class="card-body">
 <p class ="userdata"><b class="bolder">{{ formitem.name }}: </b> <b class="bolder2"> {{ udata.first_name }}  </b> <b class="bolder">{{ formitem.surname }}: </b><b class="bolder2"> {{ udata.last_name }}</b></p>
-<p class ="userdata"><b class="bolder">{{ formitem.citizenship }}: </b><b class="bolder2"> {{ udata.citizenship }}</b>
-<b class="bolder">{{ formitem.gender }}: </b>
+<p class ="userdata"><b class="bolder">{{ formitem.citizenship }}:  </b><b class="bolder2"> {{ udata.citizenship }}  </b>
+<b class="bolder">{{ formitem.gender }}:  </b>
   {% if udata.gender == 0 %}
-    <b class="bolder2">{{ formitem.other }}<b>
+    <b class="bolder2">{{ formitem.other }}  <b>
  {% elif udata.gender == 1 %}
-    <b class="bolder2">{{ formitem.male }}</b>
+    <b class="bolder2">{{ formitem.male }}  </b>
  {% elif udata.gender == 2 %}
     <b class="bolder2">{{ formitem.female }}</b>
  {% endif %}
@@ -24,9 +24,9 @@
 {% if udata.telephone %}
   <b class="bolder2">{{ udata.telephone }}</b></p>
 {% else %}
-  <b class="boldererror">{{ formitem.tel_mandatory }}!! </b>
+  <b class="bolder2">{{ formitem.tel_mandatory }}!! </b>
 {% endif %}
-<p class ="userdata"><b class="bolder">{{ formitem.warning_f }}: <a href="https://core2.sspw.pl/login" target="blank">{{ formitem.data_correct }}</a></b></p>
+<p class ="userdata"><b class="bolder">{{ formitem.warning_f }}: <a  class="bolder" href="https://core2.sspw.pl/login" target="blank">{{ formitem.data_correct }}</a></b></p>
 </div>
 </div>
 <br>

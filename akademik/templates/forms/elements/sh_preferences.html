@@ -4,21 +4,21 @@
 <p class="pref"> {{ formitem.match_prefs }} <a href="#" class="badge badge-light">{{ formitem.see_map }}</a></p>
 <p class="pref">
    1:
-    <select {% if service %} required {% endif %} id="sh_choice1" >
+    <select {% if service %} required {% endif %} id="sh_choice1" class="form-control form-control-sm">
              <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            {% for item in houselist %}
               <option value ="{{ forloop.counter }}">{{ item }}</option>
            {% endfor %}
     </select>
    2:
-    <select {% if service %} required {% endif %} id="sh_choice2">
+    <select {% if service %} required {% endif %} id="sh_choice2" class="form-control form-control-sm">
              <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            {% for item in houselist %}
               <option value ="{{ forloop.counter }}">{{ item }}</option>
            {% endfor %}
     </select>
    3:
-    <select {% if service %} required {% endif %} id="sh_choice3">
+    <select {% if service %} required {% endif %} id="sh_choice3" class="form-control form-control-sm">
              <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            {% for item in houselist %}
               <option value ="{{ forloop.counter }}">{{ item }}</option>
@@ -27,7 +27,7 @@
 </p>
 <p class="pref">
     {{ formitem.i_ask }} :
-    <select {% if service %} required {% endif %} id="if_room_change" class="form-control">
+    <select {% if service %} required {% endif %} id="if_room_change" class="form-control form-control-sm">
              <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            {% for item in staylist %}
               <option value ="{{ forloop.counter }}">{{ item }}</option>
@@ -36,7 +36,7 @@
 </p>
 <p class="pref">
     {{ formitem.time_in_sh }} :
-    <select {% if service %} required {% endif %} id="duration" class="form-control">
+    <select {% if service %} required {% endif %} id="duration" class="form-control form-control-sm">
              <option value ="None" disabled="disabled" selected="selected">{{ formitem.list_select }}:</option>
            {% for item in periodlist %}
               <option value ="{{ forloop.counter }}">{{ item }}</option>
