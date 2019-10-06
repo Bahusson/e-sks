@@ -113,3 +113,12 @@
   color: black;
   text-transform: uppercase;
 }
+
+.buttonsend{
+  background-color:#333333;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 15px;
+  padding: 15px 32px;
+  border-radius: 10px;
+}
