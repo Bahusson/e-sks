@@ -139,6 +139,7 @@ def changemeparty(request):
 
 
 # Pokazuje różne akcje kwaterunkowe - widok oparty na klasach.
+# Widok zależy od tego kto patrzy. User czy Radny. (menu_switcher)
 def allparties(request):
     userdata = User.objects.get(
      id=request.user.id)
@@ -168,5 +169,21 @@ def allparties(request):
     d_list = menusdict[userkey][2]
     pl = PortalLoad(P, L, Pbi, d_num, d_menu, d_list)
     context_lazy = pl.lazy_context(skins=S, context=ap.context)
+    template = 'panels/common/allparties.html'
+    return render(request, template, context_lazy)
+
+
+# Pokazuje wszystkie wnioski o akademik i filtruje je względem kryteriów.
+@council_only(login_url='logger')
+def allapplied(request):
+    view_filter = "0"
+    if 'subbutton' in request.POST:
+        view_filter = str(request.POST.get('view_filter'))
+
+    context = {
+
+     }
+    pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
+    context_lazy = pl.lazy_context(skins=S, context=context)
     template = 'panels/common/allparties.html'
     return render(request, template, context_lazy)
