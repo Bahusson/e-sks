@@ -185,5 +185,5 @@ def allapplied(request):
      }
     pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
     context_lazy = pl.lazy_context(skins=S, context=context)
-    template = 'panels/common/allparties.html'
+    template = 'panels/common/allapplied.html'
     return render(request, template, context_lazy)

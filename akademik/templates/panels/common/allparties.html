@@ -21,7 +21,7 @@
 
 {% block menu %}
 {% if user.role_council > 1 %}
- {% include 'menus/council_menus.html' %} <!-- Menu z opcjami użytkownika -->
+ {% include 'menus/council_menus.html' %} <!-- Menu z opcjami rady -->
 {% else %}
  {% include 'menus/user_menus.html' %} <!-- Menu z opcjami użytkownika -->
 {% endif %}
