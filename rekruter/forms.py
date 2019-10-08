@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from rekruter.models import User, ApplicationFormFields
 from akademik.models import HousingParty as HParty
+import datetime
 
 
 class ExtendedCreationForm(UserCreationForm):
@@ -55,7 +56,7 @@ class ExtendedCreationForm(UserCreationForm):
         user.building_no = self.cleaned_data["building_no"]
         user.local_no = self.cleaned_data["local_no"]
         user.postcode = self.cleaned_data["postcode"]
-        user.city = self.cleaned_data["city"]
+        user.city = self.cleaned_dstateata["city"]
         user.city = self.cleaned_data["album"]
 
         if commit:
@@ -121,6 +122,10 @@ class ApplicationForm(forms.ModelForm):
         application.mailinglist = self.cleaned_data["mailinglist"]
         application.dataprocessing = self.cleaned_data["dataprocessing"]
         # application.attachment = self.cleaned_data["attachment"]
+        if application.timeapplied is None:
+            application.timeapplied = datetime.datetime.now()
+        if application.status is None:
+            application.status = 0
         if commit:
             application.save()
         return application

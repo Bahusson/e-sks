@@ -177,12 +177,17 @@ def allparties(request):
 # Pokazuje wszystkie wnioski o akademik i filtruje je względem kryteriów.
 @council_only(login_url='logger')
 def allapplied(request):
-    view_filter = "-timeapplied"
+    view_filter = ["-timeapplied", "owner__last_name", "status"]
     if 'sort' in request.POST:
-        view_filter = str(request.POST.get('view_filter'))
-    apf = Apf.objects.order_by(view_filter)
+        x = 0
+        while x < 3:
+            view_filter[x] = str(request.POST.get('view_filter'+str(x)))
+            x = x+1
+    apf = Apf.objects.order_by(view_filter[0], view_filter[1], view_filter[2])
+    # apf = Apf.objects.order_by( )
     context = {
-     'appplied': apf,
+     'applied': apf,
+     'view_filter': view_filter
      }
     pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
     context_lazy = pl.lazy_context(skins=S, context=context)

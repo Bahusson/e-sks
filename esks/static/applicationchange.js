@@ -9,8 +9,8 @@ $(document).ready(function()
 {
   $('#send').click(function()
  {
+  actionset("app_view0", "view_filter0")
   actionset("app_view1", "view_filter1")
   actionset("app_view2", "view_filter2")
-  actionset("app_view3", "view_filter3")
   });
 });

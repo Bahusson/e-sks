@@ -283,7 +283,7 @@ class ApplicationFormFields(models.Model):
     owner = models.ForeignKey(
      AUTH_USER_MODEL, on_delete=models.CASCADE)
     # Preferencje akademików 1-3
-    timeapplied = models.DateTimeField()
+    timeapplied = models.DateTimeField(blank=True, null=True)
     sh_choice1 = models.CharField(max_length=2, blank=True)
     sh_choice2 = models.CharField(max_length=2, blank=True)
     sh_choice3 = models.CharField(max_length=2, blank=True)
@@ -302,6 +302,7 @@ class ApplicationFormFields(models.Model):
     dataprocessing = models.BooleanField(blank=True, null=True)
     attachment = models.FileField(upload_to='userdocs', null=True, blank=True)
     status = models.CharField(max_length=2, blank=True, null=True)
+    
 
     class Meta:
         ordering = ['-timeapplied', 'owner']

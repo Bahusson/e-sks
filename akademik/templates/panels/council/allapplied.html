@@ -1,6 +1,7 @@
 <!-- Widok pokazuje zbiorczo wszystkie wnioski o akademik -->
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load xfilters %}
 
 {% block title %}
 <title>Wnioski o akademik - roboczy</title>
@@ -24,50 +25,52 @@
    <!-- Tytuł W nagłówku -->
    <h2>Wnioski o Akademik - roboczy</h2>
    <p>
+
+   <!-- Pierwszy rząd to przyciski sortowania ascendanten lob descendantem -->
    <form name="AppViewSwitcher" method="post">
      {% csrf_token %}
 
     {% for item in "0"|rjust:"3" %}
-       <select id="app_view{{ forloop.counter }}">
-         {% with forloop.counter as x %}
-                <option value ="-timeapplied" {% if view_filter.x == "-timeapplied" %} selected="selected" {% endif %} >Czas malejąco</option>
-                <option value ="timeapplied" {% if view_filter.x == "timeapplied" %} selected="selected" {% endif %} >Czas rosnąco</option>
-                <option value ="-owner.first_name" {% if view_filter.x == "-owner.first_name" %} selected="selected" {% endif %} >Imię malejąco</option>
-                <option value ="owner.first_name" {% if view_filter.x == "owner.first_name" %} selected="selected" {% endif %} >Imię rosnąco</option>
-                <option value ="-owner.last_name" {% if view_filter.x == "-owner.last_name" %} selected="selected" {% endif %} >Nazwisko malejąco</option>
-                <option value ="owner.last_name" {% if view_filter.x == "owner.last_name" %} selected="selected" {% endif %} >Nazwisko rosnąco</option>
-                <option value ="-sh_choice1" {% if view_filter.x == "-sh_choice1" %} selected="selected" {% endif %} >Akademik 1 malejąco</option>
-                <option value ="sh_choice1" {% if view_filter.x == "sh_choice1" %} selected="selected" {% endif %} >Akademik 1 rosnąco</option>
-                <option value ="-if_room_change" {% if view_filter.x == "-if_room_change" %} selected="selected" {% endif %} >Zmiana pokoju malejąco</option>
-                <option value ="if_room_change" {% if view_filter.x == "if_room_change" %} selected="selected" {% endif %} >Zmiana pokoju rosnąco</option>
-                <option value ="-status" {% if view_filter.x == "-status" %} selected="selected" {% endif %} >Status wniosku malejąco</option>
-                <option value ="status" {% if view_filter.x == "status" %} selected="selected" {% endif %} >Status wniosku rosnąco</option>
-                <option value ="-owner.nationality" {% if view_filter.x == "-owner.nationality" %} selected="selected" {% endif %} >Narodowość malejąco</option>
-                <option value ="owner.nationality" {% if view_filter.x == "owner.nationality" %} selected="selected" {% endif %} >Narodowość rosnąco</option
-        {% endwith %}
+       <select id="app_view{{ forloop.counter0 }}">
+          {% with forloop.counter0 as x %}
+            <option value ="-timeapplied" {% if view_filter|lookup:x == "-timeapplied" %} selected="selected" {% endif %} >Czas malejąco</option>
+            <option value ="timeapplied" {% if view_filter|lookup:x == "timeapplied" %} selected="selected" {% endif %} >Czas rosnąco</option>
+            <option value ="-owner__first_name" {% if view_filter|lookup:x == "-owner__first_name" %} selected="selected" {% endif %} >Imię malejąco</option>
+            <option value ="owner__first_name" {% if view_filter|lookup:x == "owner__first_name" %} selected="selected" {% endif %} >Imię rosnąco</option>
+            <option value ="-owner__last_name" {% if view_filter|lookup:x == "-owner__last_name" %} selected="selected" {% endif %} >Nazwisko malejąco</option>
+            <option value ="owner__last_name" {% if view_filter|lookup:x == "owner__last_name" %} selected="selected" {% endif %} >Nazwisko rosnąco</option>
+            <option value ="-sh_choice1" {% if view_filter|lookup:x == "-sh_choice1" %} selected="selected" {% endif %} >Akademik 1 malejąco</option>
+            <option value ="sh_choice1" {% if view_filter|lookup:x == "sh_choice1" %} selected="selected" {% endif %} >Akademik 1 rosnąco</option>
+            <option value ="-if_room_change" {% if view_filter|lookup:x == "-if_room_change" %} selected="selected" {% endif %} >Zmiana pokoju malejąco</option>
+            <option value ="if_room_change" {% if view_filter|lookup:x == "if_room_change" %} selected="selected" {% endif %} >Zmiana pokoju rosnąco</option>
+            <option value ="-status" {% if view_filter|lookup:x == "-status" %} selected="selected" {% endif %} >Status wniosku malejąco</option>
+            <option value ="status" {% if view_filter|lookup:x == "status" %} selected="selected" {% endif %} >Status wniosku rosnąco</option>
+            <option value ="-owner__nationality" {% if view_filter|lookup:x == "-owner__nationality" %} selected="selected" {% endif %} >Narodowość malejąco</option>
+            <option value ="owner__nationality" {% if view_filter|lookup:x == "owner__nationality" %} selected="selected" {% endif %} >Narodowość rosnąco</option
+         {% endwith %}
        </select>
-     <input type="hidden" name="view_filter" id="view_filter{{ forloop.counter }}">
+       <input type="hidden" name="view_filter{{ forloop.counter0 }}" id="view_filter{{ forloop.counter0 }}">
     {% endfor %}
-
-
-     <!--<input type="hidden" name="view_filter" id="view_filter2">
-     <input type="hidden" name="view_filter" id="view_filter3">-->
-     <input id="send" class="button" name="sort" type="submit" value="Sortuj - roboczy">
+    <input id="send" class="button" name="sort" type="submit" value="Sortuj - roboczy">
    </form>
    </p>
 
+<!-- Tutaj wyświetlają się rzędami wszystkie rzędy posortowane -->
 
-   <!-- Pierwszy rząd to przyciski sortowania ascendanten lob descendantem -->
+{% for apply in applied.all %}
 
-   <!-- Tutaj wyświetlają się rzędami wszystkie rzędy posortowane -->
+ <p>{{ apply.timeapplied }} - {{ apply.owner.last_name }} - {{ apply.owner.first_name }} -
+    {{ apply.owner.gender }} - {{ apply.sh_choice1 }} - {{ apply.if_room_change }} -
+    {{ apply.status }} - {{ apply.owner.citizenship }}</p>
 
-   <!-- Jak skończyłeś to zrób  teraz sortowanie po kilku warunkach w kolejności
-     za pomocą **kwargów-->
+{% endfor %}
+
+
 {% endblock body %}
 
 
 {% block scripts %}
-<script src="{% static "applicationchange.js" %}"></script>
+ <script src="{% static "applicationchange.js" %}"></script>
 {% endblock %}
 {% block scripts2 %}
 {% endblock %}
