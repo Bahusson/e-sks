@@ -13,6 +13,7 @@ from .models import UserLinkItem as Uli
 from .models import HousingParty as HParty
 from .models import HousingPartyItems as Hpi
 from rekruter.models import ApplicationFormFields as Apf
+from rekruter.models import ApplicationStatus as Aps
 from rekruter.models import StudentHouse as Sh
 from rekruter.models import IfRoomChange as Ifr
 from rekruter.models import TimePeriod as Tper
@@ -184,10 +185,19 @@ def allapplied(request):
             view_filter[x] = str(request.POST.get('view_filter'+str(x)))
             x = x+1
     apf = Apf.objects.order_by(view_filter[0], view_filter[1], view_filter[2])
-    # apf = Apf.objects.order_by( )
+    peqc = PageElement(QuarterClassB)
+    aps = PageElement(Aps)
+    ifr = PageElement(Ifr)
+    sh = PageElement(Sh)
+    pe_fi = PageElement(FormItems)
     context = {
      'applied': apf,
-     'view_filter': view_filter
+     'view_filter': view_filter,
+     'setter': peqc.listed,
+     'appstatus': aps.listed,
+     'roomchange': ifr.listed,
+     'hotelselector': sh.listed,
+     'formitem': pe_fi.baseattrs,
      }
     pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
     context_lazy = pl.lazy_context(skins=S, context=context)

@@ -60,8 +60,19 @@
 {% for apply in applied.all %}
 
  <p>{{ apply.timeapplied }} - {{ apply.owner.last_name }} - {{ apply.owner.first_name }} -
-    {{ apply.owner.gender }} - {{ apply.sh_choice1 }} - {{ apply.if_room_change }} -
-    {{ apply.status }} - {{ apply.owner.citizenship }}</p>
+
+  {% if apply.owner.gender == 0 %}
+        {{ formitem.other }}
+  {% elif apply.owner.gender == 1 %}
+        {{ formitem.male }}
+  {% elif apply.owner.gender == 2 %}
+        {{ formitem.female }}
+  {% endif %}
+
+  - {{ hotelselector|lookupint:apply.sh_choice1 }} -
+  {{ roomchange|lookupint:apply.if_room_change }} -
+  {{ appstatus|lookupint:apply.status }} - {{ apply.owner.citizenship }} -
+  {{ setter|lookupint:apply.quarter }}}</p>
 
 {% endfor %}
 

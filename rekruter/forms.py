@@ -79,6 +79,9 @@ class IniForm(forms.ModelForm):
         return user
 
 
+# Formularz to tworzenia i modyfikowania podań o akademik. UWAGA!
+# Rośnie Ci złożoność cyklomatyczna! - najlepiej zrób dwa formularze.
+# Jeden do tworzenia a drugi do modyfikacji.
 class ApplicationForm(forms.ModelForm):
     sh_choice1 = forms.CharField(widget=forms.HiddenInput(), required=False)
     sh_choice2 = forms.CharField(widget=forms.HiddenInput(), required=False)
@@ -103,7 +106,7 @@ class ApplicationForm(forms.ModelForm):
 
         )
 
-    def save(self, uid, commit=True):
+    def save(self, uid, commit=True, **kwargs):
         application = super(ApplicationForm, self).save(commit=False)
         application.owner = uid
         application.sh_choice1 = self.cleaned_data["sh_choice1"]
@@ -126,6 +129,9 @@ class ApplicationForm(forms.ModelForm):
             application.timeapplied = datetime.datetime.now()
         if application.status is None:
             application.status = 0
+        if application.quarter is None:
+            request = kwargs['request']
+            application.quarter = request.user.quarter
         if commit:
             application.save()
         return application
