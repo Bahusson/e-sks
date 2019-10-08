@@ -19,3 +19,10 @@ def lookup(d, key):
 @register.filter(name='lookupint')
 def lookupint(d, key):
     return d[int(key)]
+
+
+@register.filter(name='intvar')
+def intvar(l, var):
+    attribute = getattr(var, 1)
+    integerated = int(attribute)
+    return integerated

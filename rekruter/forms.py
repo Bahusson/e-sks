@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from rekruter.models import User, ApplicationFormFields
 from akademik.models import HousingParty as HParty
+from esks.special.classes import checkifnull as cn
 import datetime
 
 
@@ -109,18 +110,18 @@ class ApplicationForm(forms.ModelForm):
     def save(self, uid, commit=True, **kwargs):
         application = super(ApplicationForm, self).save(commit=False)
         application.owner = uid
-        application.sh_choice1 = self.cleaned_data["sh_choice1"]
-        application.sh_choice2 = self.cleaned_data["sh_choice2"]
-        application.sh_choice3 = self.cleaned_data["sh_choice3"]
-        application.if_room_change = self.cleaned_data["if_room_change"]
-        application.duration = self.cleaned_data["duration"]
+        application.sh_choice1 = cn(self.cleaned_data["sh_choice1"])
+        application.sh_choice2 = cn(self.cleaned_data["sh_choice2"])
+        application.sh_choice3 = cn(self.cleaned_data["sh_choice3"])
+        application.if_room_change = cn(self.cleaned_data["if_room_change"])
+        application.duration = cn(self.cleaned_data["duration"])
         application.location = self.cleaned_data["location"]
-        application.faculty = self.cleaned_data["faculty"]
-        application.degree = self.cleaned_data["degree"]
+        application.faculty = cn(self.cleaned_data["faculty"])
+        application.degree = cn(self.cleaned_data["degree"])
         application.deangroup = self.cleaned_data["deangroup"]
-        application.semester = self.cleaned_data["semester"]
-        application.spouse_cohabitant = self.cleaned_data["spouse_cohabitant"]
-        application.special_case_docs = self.cleaned_data["special_case_docs"]
+        application.semester = cn(self.cleaned_data["semester"])
+        application.spouse_cohabitant = cn(self.cleaned_data["spouse_cohabitant"])
+        application.special_case_docs = cn(self.cleaned_data["special_case_docs"])
         application.international_placement = self.cleaned_data["international_placement"]
         application.mailinglist = self.cleaned_data["mailinglist"]
         application.dataprocessing = self.cleaned_data["dataprocessing"]
