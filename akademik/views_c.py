@@ -12,6 +12,8 @@ from .models import UserMenuItem as Umi
 from .models import UserLinkItem as Uli
 from .models import HousingParty as HParty
 from .models import HousingPartyItems as Hpi
+from rekruter.models import ApplicationFormFields as Apf
+from rekruter.models import ApplicationStatus as Aps
 from rekruter.models import StudentHouse as Sh
 from rekruter.models import IfRoomChange as Ifr
 from rekruter.models import TimePeriod as Tper
@@ -37,7 +39,7 @@ def staffpanel_c(request):
     return render(request, template, context_lazy)
 
 
-# Z dwóch powyższych zrób klasę jak będziesz miał chwilę
+# Z dwóch poniższych zrób klasę jak będziesz miał chwilę
 # i powarunkuj, bo są bardzo podobne - albo niech Kenny to zrobi dla wprawy.
 # Tworzy nową akcję kwaterunkową wraz z formularzem z poziomu przew. rady.
 @council_only(login_url='staffpanel_c', power_level=2)  # Tylko Przewodniczący
@@ -139,6 +141,7 @@ def changemeparty(request):
 
 
 # Pokazuje różne akcje kwaterunkowe - widok oparty na klasach.
+# Widok zależy od tego kto patrzy. User czy Radny. (menu_switcher)
 def allparties(request):
     userdata = User.objects.get(
      id=request.user.id)
@@ -169,4 +172,34 @@ def allparties(request):
     pl = PortalLoad(P, L, Pbi, d_num, d_menu, d_list)
     context_lazy = pl.lazy_context(skins=S, context=ap.context)
     template = 'panels/common/allparties.html'
+    return render(request, template, context_lazy)
+
+
+# Pokazuje wszystkie wnioski o akademik i filtruje je względem kryteriów.
+@council_only(login_url='logger')
+def allapplied(request):
+    view_filter = ["-timeapplied", "owner__last_name", "status"]
+    if 'sort' in request.POST:
+        x = 0
+        while x < 3:
+            view_filter[x] = str(request.POST.get('view_filter'+str(x)))
+            x = x+1
+    apf = Apf.objects.order_by(view_filter[0], view_filter[1], view_filter[2])
+    peqc = PageElement(QuarterClassB)
+    aps = PageElement(Aps)
+    ifr = PageElement(Ifr)
+    sh = PageElement(Sh)
+    pe_fi = PageElement(FormItems)
+    context = {
+     'applied': apf,
+     'view_filter': view_filter,
+     'setter': peqc.listed,
+     'appstatus': aps.listed,
+     'roomchange': ifr.listed,
+     'hotelselector': sh.listed,
+     'formitem': pe_fi.baseattrs,
+     }
+    pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
+    context_lazy = pl.lazy_context(skins=S, context=context)
+    template = 'panels/council/allapplied.html'
     return render(request, template, context_lazy)

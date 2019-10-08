@@ -1,0 +1,89 @@
+<!-- Widok pokazuje zbiorczo wszystkie wnioski o akademik -->
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load xfilters %}
+
+{% block title %}
+<title>Wnioski o akademik - roboczy</title>
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+{% block css2 %}
+{% endblock %}
+
+<!--Zwraca oryginalną kompozycję menu z bazy. Potem podstawiasz zmienne,-->
+{% block aside %}
+ {{ block.super }}
+{% endblock aside %}
+
+{% block menu %}
+  {% include 'menus/council_menus.html' %} <!-- Menu z opcjami rady -->
+{% endblock menu %}
+
+{% block body %}
+   <!-- Tytuł W nagłówku -->
+   <h2>Wnioski o Akademik - roboczy</h2>
+   <p>
+
+   <!-- Pierwszy rząd to przyciski sortowania ascendanten lob descendantem -->
+   <form name="AppViewSwitcher" method="post">
+     {% csrf_token %}
+
+    {% for item in "0"|rjust:"3" %}
+       <select id="app_view{{ forloop.counter0 }}">
+          {% with forloop.counter0 as x %}
+            <option value ="-timeapplied" {% if view_filter|lookupint:x == "-timeapplied" %} selected="selected" {% endif %} >Czas malejąco</option>
+            <option value ="timeapplied" {% if view_filter|lookupint:x == "timeapplied" %} selected="selected" {% endif %} >Czas rosnąco</option>
+            <option value ="-owner__first_name" {% if view_filter|lookupint:x == "-owner__first_name" %} selected="selected" {% endif %} >Imię malejąco</option>
+            <option value ="owner__first_name" {% if view_filter|lookupint:x == "owner__first_name" %} selected="selected" {% endif %} >Imię rosnąco</option>
+            <option value ="-owner__last_name" {% if view_filter|lookupint:x == "-owner__last_name" %} selected="selected" {% endif %} >Nazwisko malejąco</option>
+            <option value ="owner__last_name" {% if view_filter|lookupint:x == "owner__last_name" %} selected="selected" {% endif %} >Nazwisko rosnąco</option>
+            <option value ="-sh_choice1" {% if view_filter|lookupint:x == "-sh_choice1" %} selected="selected" {% endif %} >Akademik 1 malejąco</option>
+            <option value ="sh_choice1" {% if view_filter|lookupint:x == "sh_choice1" %} selected="selected" {% endif %} >Akademik 1 rosnąco</option>
+            <option value ="-if_room_change" {% if view_filter|lookupint:x == "-if_room_change" %} selected="selected" {% endif %} >Zmiana pokoju malejąco</option>
+            <option value ="if_room_change" {% if view_filter|lookupint:x == "if_room_change" %} selected="selected" {% endif %} >Zmiana pokoju rosnąco</option>
+            <option value ="-status" {% if view_filter|lookupint:x == "-status" %} selected="selected" {% endif %} >Status wniosku malejąco</option>
+            <option value ="status" {% if view_filter|lookupint:x == "status" %} selected="selected" {% endif %} >Status wniosku rosnąco</option>
+            <option value ="-owner__nationality" {% if view_filter|lookupint:x == "-owner__nationality" %} selected="selected" {% endif %} >Narodowość malejąco</option>
+            <option value ="owner__nationality" {% if view_filter|lookupint:x == "owner__nationality" %} selected="selected" {% endif %} >Narodowość rosnąco</option>
+            <option value ="-quarter" {% if view_filter|lookupint:x == "-quarter" %} selected="selected" {% endif %} >Akcja Kwaterunkowa malejąco</option>
+            <option value ="quarter" {% if view_filter|lookupint:x == "quarter" %} selected="selected" {% endif %} >Akcja Kwaterunkowa rosnąco</option>
+         {% endwith %}
+       </select>
+       <input type="hidden" name="view_filter{{ forloop.counter0 }}" id="view_filter{{ forloop.counter0 }}">
+    {% endfor %}
+    <input id="send" class="button" name="sort" type="submit" value="Sortuj - roboczy">
+   </form>
+   </p>
+
+<!-- Tutaj wyświetlają się rzędami wszystkie rzędy posortowane -->
+
+{% for apply in applied.all %}
+
+ <p>{{ apply.timeapplied }} - {{ apply.owner.last_name }} - {{ apply.owner.first_name }} -
+
+  {% if apply.owner.gender == 0 %}
+        {{ formitem.other }}
+  {% elif apply.owner.gender == 1 %}
+        {{ formitem.male }}
+  {% elif apply.owner.gender == 2 %}
+        {{ formitem.female }}
+  {% endif %}
+
+  - {{ hotelselector|action:apply.sh_choice1 }} -
+  {{ roomchange|action:apply.if_room_change }} -
+  {{ appstatus|lookup:apply.status }} - {{ apply.owner.citizenship }} -
+  {{ setter|action:apply.quarter }}</p>
+
+{% endfor %}
+
+
+{% endblock body %}
+
+
+{% block scripts %}
+ <script src="{% static "applicationchange.js" %}"></script>
+{% endblock %}
+{% block scripts2 %}
+{% endblock %}

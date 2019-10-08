@@ -11,4 +11,5 @@ urlpatterns = [
     path('kreator_akcji', views_c.makemeparty, name='makemeparty'),
     path('akcje_kwaterunkowe', views_c.allparties, name='allparties'),
     path('edytuj_akcje', views_c.changemeparty, name='changemeparty'),
+    path('wnioski_o_akademik', views_c.allapplied, name='allapplied'),
 ]

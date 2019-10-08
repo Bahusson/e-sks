@@ -98,7 +98,7 @@ def allinfos(request):
     return render(request, template, context_lazy)
 
 
-# Wszystkie pliki.
+# Wszystkie pliki. Czy ten widok jest w ogóle używany?
 def allfiles(request):
     # pe_f = pe(F)
     api = ActivePageItems(request, F, pytz, datetime)

@@ -184,13 +184,12 @@ class FormItems(models.Model):
 # Wszystkie domy studenckie - nazwy i być może atrybuty.
 class StudentHouse(models.Model):
     name = models.CharField(max_length=100)
-    position = models.IntegerField()
 
     def __str__(self):
         return self.name
 
     class Meta:
-        ordering = ['position']
+        ordering = ['name']
 
 
 # Czy chce zmienić pokój czy zostać.
@@ -283,29 +282,35 @@ class ApplicationFormFields(models.Model):
     owner = models.ForeignKey(
      AUTH_USER_MODEL, on_delete=models.CASCADE)
     # Preferencje akademików 1-3
-    sh_choice1 = models.CharField(max_length=2, blank=True)
-    sh_choice2 = models.CharField(max_length=2, blank=True)
-    sh_choice3 = models.CharField(max_length=2, blank=True)
+    timeapplied = models.DateTimeField(blank=True, null=True)
+    sh_choice1 = models.IntegerField(blank=True, null=True)
+    sh_choice2 = models.IntegerField(blank=True, null=True)
+    sh_choice3 = models.IntegerField(blank=True, null=True)
     # Czy zmiana pokoju?
-    if_room_change = models.CharField(max_length=2, blank=True)
-    duration = models.CharField(max_length=2, blank=True)
+    if_room_change = models.IntegerField(blank=True, null=True)
+    duration = models.IntegerField(blank=True, null=True)
     location = models.CharField(max_length=50, blank=True)
-    faculty = models.CharField(max_length=2, blank=True)
-    degree = models.CharField(max_length=2, blank=True)
+    faculty = models.IntegerField(blank=True, null=True)
+    degree = models.IntegerField(blank=True, null=True)
     deangroup = models.CharField(max_length=50, blank=True)
-    semester = models.CharField(max_length=2, blank=True)
-    spouse_cohabitant = models.CharField(max_length=2, blank=True)
-    special_case_docs = models.CharField(max_length=2, blank=True)
+    semester = models.IntegerField(blank=True, null=True)
+    spouse_cohabitant = models.IntegerField(blank=True, null=True)
+    special_case_docs = models.IntegerField(blank=True, null=True)
     international_placement = models.BooleanField(blank=True, null=True)
     mailinglist = models.BooleanField(blank=True, null=True)
     dataprocessing = models.BooleanField(blank=True, null=True)
     attachment = models.FileField(upload_to='userdocs', null=True, blank=True)
+    status = models.IntegerField(blank=True, null=True)
+    quarter = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        ordering = ['owner', 'application_no']
+        ordering = ['-timeapplied', 'owner']
 
     def __str__(self):
         return str(self.application_no) + ' ' + str(self.owner)
+
+    def intchoice(self):
+        return int(self.sh_choice1)
 
 
 class QuarterClassB(models.Model):
@@ -314,7 +319,7 @@ class QuarterClassB(models.Model):
     position = models.IntegerField()
 
     class Meta:
-        ordering = ['position', 'id']
+        ordering = ['position', 'name']
 
     def __str__(self):
         return self.name

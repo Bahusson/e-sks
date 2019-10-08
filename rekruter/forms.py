@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from rekruter.models import User, ApplicationFormFields
 from akademik.models import HousingParty as HParty
+from esks.special.classes import checkifnull as cn
+import datetime
 
 
 class ExtendedCreationForm(UserCreationForm):
@@ -55,7 +57,7 @@ class ExtendedCreationForm(UserCreationForm):
         user.building_no = self.cleaned_data["building_no"]
         user.local_no = self.cleaned_data["local_no"]
         user.postcode = self.cleaned_data["postcode"]
-        user.city = self.cleaned_data["city"]
+        user.city = self.cleaned_dstateata["city"]
         user.city = self.cleaned_data["album"]
 
         if commit:
@@ -78,6 +80,9 @@ class IniForm(forms.ModelForm):
         return user
 
 
+# Formularz to tworzenia i modyfikowania podań o akademik. UWAGA!
+# Rośnie Ci złożoność cyklomatyczna! - najlepiej zrób dwa formularze.
+# Jeden do tworzenia a drugi do modyfikacji.
 class ApplicationForm(forms.ModelForm):
     sh_choice1 = forms.CharField(widget=forms.HiddenInput(), required=False)
     sh_choice2 = forms.CharField(widget=forms.HiddenInput(), required=False)
@@ -102,25 +107,32 @@ class ApplicationForm(forms.ModelForm):
 
         )
 
-    def save(self, uid, commit=True):
+    def save(self, uid, commit=True, **kwargs):
         application = super(ApplicationForm, self).save(commit=False)
         application.owner = uid
-        application.sh_choice1 = self.cleaned_data["sh_choice1"]
-        application.sh_choice2 = self.cleaned_data["sh_choice2"]
-        application.sh_choice3 = self.cleaned_data["sh_choice3"]
-        application.if_room_change = self.cleaned_data["if_room_change"]
-        application.duration = self.cleaned_data["duration"]
+        application.sh_choice1 = cn(self.cleaned_data["sh_choice1"])
+        application.sh_choice2 = cn(self.cleaned_data["sh_choice2"])
+        application.sh_choice3 = cn(self.cleaned_data["sh_choice3"])
+        application.if_room_change = cn(self.cleaned_data["if_room_change"])
+        application.duration = cn(self.cleaned_data["duration"])
         application.location = self.cleaned_data["location"]
-        application.faculty = self.cleaned_data["faculty"]
-        application.degree = self.cleaned_data["degree"]
+        application.faculty = cn(self.cleaned_data["faculty"])
+        application.degree = cn(self.cleaned_data["degree"])
         application.deangroup = self.cleaned_data["deangroup"]
-        application.semester = self.cleaned_data["semester"]
-        application.spouse_cohabitant = self.cleaned_data["spouse_cohabitant"]
-        application.special_case_docs = self.cleaned_data["special_case_docs"]
+        application.semester = cn(self.cleaned_data["semester"])
+        application.spouse_cohabitant = cn(self.cleaned_data["spouse_cohabitant"])
+        application.special_case_docs = cn(self.cleaned_data["special_case_docs"])
         application.international_placement = self.cleaned_data["international_placement"]
         application.mailinglist = self.cleaned_data["mailinglist"]
         application.dataprocessing = self.cleaned_data["dataprocessing"]
         # application.attachment = self.cleaned_data["attachment"]
+        if application.timeapplied is None:
+            application.timeapplied = datetime.datetime.now()
+        if application.status is None:
+            application.status = 0
+        if application.quarter is None:
+            request = kwargs['request']
+            application.quarter = request.user.quarter
         if commit:
             application.save()
         return application

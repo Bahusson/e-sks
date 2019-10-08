@@ -100,6 +100,13 @@ class PageElement(object):
         self.one_by_id = G404(self.x, pk=x_id)
         return self.one_by_id
 
+    # lista integerów.
+    def listedint(self):
+        mylist = []
+        for item in self.listed:
+            mylist.append(int(item))
+        return mylist
+
 
 class PortalLoad(PageLoad):
     def __init__(self, *args):
@@ -257,3 +264,10 @@ class ActivePageItems(object):
         for item in irange:
             obj = all_items.elements.get(pk=item)
             self.active_items.append(obj)
+
+
+def checkifnull(x):
+    if x == '':
+        return None
+    else:
+        return int(x)
