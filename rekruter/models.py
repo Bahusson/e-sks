@@ -301,6 +301,7 @@ class ApplicationFormFields(models.Model):
     mailinglist = models.BooleanField(blank=True, null=True)
     dataprocessing = models.BooleanField(blank=True, null=True)
     attachment = models.FileField(upload_to='userdocs', null=True, blank=True)
+    status = models.CharField(max_length=2, blank=True, null=True)
 
     class Meta:
         ordering = ['-timeapplied', 'owner']

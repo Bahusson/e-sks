@@ -26,15 +26,32 @@
    <p>
    <form name="AppViewSwitcher" method="post">
      {% csrf_token %}
-     <select id="app_view1">
-              <option value ="timeapplied" {% if view_filter.0 == "timeapplied" %} selected="selected" {% endif %} >Czas rosnąco</option>
-              <option value ="-timeapplied" {% if view_filter.0 == "-timeapplied" %} selected="selected" {% endif %} >Czas malejąco</option>
-              <option value ="timeapplied" {% if view_filter.0 == "timeapplied" %} selected="selected" {% endif %} >Czas rosnąco</option>
-              <option value ="-timeapplied" {% if view_filter.0 == "-timeapplied" %} selected="selected" {% endif %} >Czas malejąco</option>
-     </select>
-     <input type="hidden" name="view_filter" id="view_filter1">
-     <input type="hidden" name="view_filter" id="view_filter2">
-     <input type="hidden" name="view_filter" id="view_filter3">
+
+    {% for item in "0"|rjust:"3" %}
+       <select id="app_view{{ forloop.counter }}">
+         {% with forloop.counter as x %}
+                <option value ="-timeapplied" {% if view_filter.x == "-timeapplied" %} selected="selected" {% endif %} >Czas malejąco</option>
+                <option value ="timeapplied" {% if view_filter.x == "timeapplied" %} selected="selected" {% endif %} >Czas rosnąco</option>
+                <option value ="-owner.first_name" {% if view_filter.x == "-owner.first_name" %} selected="selected" {% endif %} >Imię malejąco</option>
+                <option value ="owner.first_name" {% if view_filter.x == "owner.first_name" %} selected="selected" {% endif %} >Imię rosnąco</option>
+                <option value ="-owner.last_name" {% if view_filter.x == "-owner.last_name" %} selected="selected" {% endif %} >Nazwisko malejąco</option>
+                <option value ="owner.last_name" {% if view_filter.x == "owner.last_name" %} selected="selected" {% endif %} >Nazwisko rosnąco</option>
+                <option value ="-sh_choice1" {% if view_filter.x == "-sh_choice1" %} selected="selected" {% endif %} >Akademik 1 malejąco</option>
+                <option value ="sh_choice1" {% if view_filter.x == "sh_choice1" %} selected="selected" {% endif %} >Akademik 1 rosnąco</option>
+                <option value ="-if_room_change" {% if view_filter.x == "-if_room_change" %} selected="selected" {% endif %} >Zmiana pokoju malejąco</option>
+                <option value ="if_room_change" {% if view_filter.x == "if_room_change" %} selected="selected" {% endif %} >Zmiana pokoju rosnąco</option>
+                <option value ="-status" {% if view_filter.x == "-status" %} selected="selected" {% endif %} >Status wniosku malejąco</option>
+                <option value ="status" {% if view_filter.x == "status" %} selected="selected" {% endif %} >Status wniosku rosnąco</option>
+                <option value ="-owner.nationality" {% if view_filter.x == "-owner.nationality" %} selected="selected" {% endif %} >Narodowość malejąco</option>
+                <option value ="owner.nationality" {% if view_filter.x == "owner.nationality" %} selected="selected" {% endif %} >Narodowość rosnąco</option
+        {% endwith %}
+       </select>
+     <input type="hidden" name="view_filter" id="view_filter{{ forloop.counter }}">
+    {% endfor %}
+
+
+     <!--<input type="hidden" name="view_filter" id="view_filter2">
+     <input type="hidden" name="view_filter" id="view_filter3">-->
      <input id="send" class="button" name="sort" type="submit" value="Sortuj - roboczy">
    </form>
    </p>
