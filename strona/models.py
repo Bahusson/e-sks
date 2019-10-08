@@ -118,6 +118,8 @@ class PageSkin(models.Model):
      upload_to='skins', blank=True, null=True)
     welcomebanner = models.ImageField(
      upload_to='skins', blank=True, null=True)
+    welcomebanner_small = models.ImageField(
+     upload_to='skins', blank=True, null=True)
 
     class Meta:
         ordering = ['position']

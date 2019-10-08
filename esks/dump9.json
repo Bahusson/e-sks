@@ -548,7 +548,7 @@
   "model": "rekruter.user",
   "fields": {
     "password": "pbkdf2_sha256$150000$Lpb5Pxw8vZUz$zxVU6NtCWsIANr2JQ1JGOqrbOCoo5trDqE712KnECWY=",
-    "last_login": "2019-09-30T09:51:50.788Z",
+    "last_login": "2019-10-08T15:08:10.273Z",
     "is_superuser": true,
     "email": "j.kozdrowicz@apdeveloper.com.pl",
     "first_name": "Jakub",
@@ -560,9 +560,9 @@
     "is_hotel": true,
     "role_council": 4,
     "avatar": "avatars/egzorcysta..jpg",
-    "quarter": "7",
-    "gender": null,
-    "citizenship": "",
+    "quarter": "3",
+    "gender": 1,
+    "citizenship": "Polskie",
     "dowod": "",
     "passport": "",
     "telephone": "",
@@ -580,7 +580,7 @@
   "model": "rekruter.user",
   "fields": {
     "password": "pbkdf2_sha256$150000$1LSjrOa9F6Nv$Or0ISehH9A9dfggK6W36N8jw2bFFURwutcclTHIHSLw=",
-    "last_login": "2019-09-23T11:54:09.029Z",
+    "last_login": "2019-10-08T14:09:47.675Z",
     "is_superuser": false,
     "email": "jakub.kozdrowicz@gmail.com",
     "first_name": "Nadzieja",
@@ -592,9 +592,9 @@
     "is_hotel": true,
     "role_council": 3,
     "avatar": "",
-    "quarter": "8",
-    "gender": null,
-    "citizenship": "",
+    "quarter": "3",
+    "gender": 2,
+    "citizenship": "Polskie",
     "dowod": "",
     "passport": "",
     "telephone": "",
@@ -1643,8 +1643,7 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null,
-    "position": 0
+    "name_hi": null
   }
 },
 {
@@ -1659,8 +1658,7 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null,
-    "position": 1
+    "name_hi": null
   }
 },
 {
@@ -1675,8 +1673,7 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null,
-    "position": 2
+    "name_hi": null
   }
 },
 {
@@ -1691,8 +1688,7 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null,
-    "position": 3
+    "name_hi": null
   }
 },
 {
@@ -1707,8 +1703,7 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null,
-    "position": 4
+    "name_hi": null
   }
 },
 {
@@ -1723,8 +1718,7 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null,
-    "position": 5
+    "name_hi": null
   }
 },
 {
@@ -1739,8 +1733,7 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null,
-    "position": 6
+    "name_hi": null
   }
 },
 {
@@ -1755,8 +1748,7 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null,
-    "position": 7
+    "name_hi": null
   }
 },
 {
@@ -1771,8 +1763,7 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null,
-    "position": 8
+    "name_hi": null
   }
 },
 {
@@ -1787,8 +1778,7 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null,
-    "position": 9
+    "name_hi": null
   }
 },
 {
@@ -1803,8 +1793,7 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null,
-    "position": 10
+    "name_hi": null
   }
 },
 {
@@ -1819,8 +1808,7 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null,
-    "position": 11
+    "name_hi": null
   }
 },
 {
@@ -2576,6 +2564,200 @@
   }
 },
 {
+  "model": "rekruter.applicationstatus",
+  "pk": 1,
+  "fields": {
+    "name": "Otrzymany",
+    "name_pl": "Otrzymany",
+    "name_en": "Received",
+    "name_de": null,
+    "name_fr": null,
+    "name_ru": null,
+    "name_uk": null,
+    "name_es": null,
+    "name_hi": null,
+    "position": 1
+  }
+},
+{
+  "model": "rekruter.applicationstatus",
+  "pk": 2,
+  "fields": {
+    "name": "Zaakceptowany",
+    "name_pl": "Zaakceptowany",
+    "name_en": "Accepted",
+    "name_de": null,
+    "name_fr": null,
+    "name_ru": null,
+    "name_uk": null,
+    "name_es": null,
+    "name_hi": null,
+    "position": 2
+  }
+},
+{
+  "model": "rekruter.applicationstatus",
+  "pk": 3,
+  "fields": {
+    "name": "Odrzucony",
+    "name_pl": "Odrzucony",
+    "name_en": "Rejected",
+    "name_de": null,
+    "name_fr": null,
+    "name_ru": null,
+    "name_uk": null,
+    "name_es": null,
+    "name_hi": null,
+    "position": 3
+  }
+},
+{
+  "model": "rekruter.applicationstatus",
+  "pk": 4,
+  "fields": {
+    "name": "Z\u0142o\u017cony",
+    "name_pl": "Z\u0142o\u017cony",
+    "name_en": "Submitted",
+    "name_de": null,
+    "name_fr": null,
+    "name_ru": null,
+    "name_uk": null,
+    "name_es": null,
+    "name_hi": null,
+    "position": 0
+  }
+},
+{
+  "model": "rekruter.applicationformfields",
+  "pk": "09c71d33-0038-4fa8-8515-34afbb9dc844",
+  "fields": {
+    "owner": 1,
+    "timeapplied": "2019-10-08T14:09:42Z",
+    "sh_choice1": 12,
+    "sh_choice2": 12,
+    "sh_choice3": 8,
+    "if_room_change": 1,
+    "duration": 3,
+    "location": "",
+    "faculty": 12,
+    "degree": 9,
+    "deangroup": "",
+    "semester": 10,
+    "spouse_cohabitant": null,
+    "special_case_docs": null,
+    "international_placement": false,
+    "mailinglist": true,
+    "dataprocessing": true,
+    "attachment": "",
+    "status": 0,
+    "quarter": 2
+  }
+},
+{
+  "model": "rekruter.applicationformfields",
+  "pk": "3b5a40df-343a-4b31-824e-4aa83248ce84",
+  "fields": {
+    "owner": 2,
+    "timeapplied": "2019-10-08T14:10:33Z",
+    "sh_choice1": 11,
+    "sh_choice2": 10,
+    "sh_choice3": 9,
+    "if_room_change": 1,
+    "duration": 2,
+    "location": "",
+    "faculty": 12,
+    "degree": 2,
+    "deangroup": "",
+    "semester": 10,
+    "spouse_cohabitant": null,
+    "special_case_docs": null,
+    "international_placement": true,
+    "mailinglist": true,
+    "dataprocessing": true,
+    "attachment": "",
+    "status": 0,
+    "quarter": 3
+  }
+},
+{
+  "model": "rekruter.applicationformfields",
+  "pk": "49d590c8-4c23-43b9-a63b-a611f26801a9",
+  "fields": {
+    "owner": 1,
+    "timeapplied": "2019-10-08T14:29:08.253Z",
+    "sh_choice1": 4,
+    "sh_choice2": 1,
+    "sh_choice3": 3,
+    "if_room_change": 3,
+    "duration": 2,
+    "location": "",
+    "faculty": 15,
+    "degree": 12,
+    "deangroup": "",
+    "semester": 12,
+    "spouse_cohabitant": null,
+    "special_case_docs": null,
+    "international_placement": false,
+    "mailinglist": true,
+    "dataprocessing": true,
+    "attachment": "",
+    "status": 0,
+    "quarter": 3
+  }
+},
+{
+  "model": "rekruter.applicationformfields",
+  "pk": "96a10939-214d-4ca4-9ac0-4ae9488c14a0",
+  "fields": {
+    "owner": 2,
+    "timeapplied": "2019-10-08T14:10:13Z",
+    "sh_choice1": 8,
+    "sh_choice2": 10,
+    "sh_choice3": 12,
+    "if_room_change": 1,
+    "duration": 1,
+    "location": "",
+    "faculty": 3,
+    "degree": 11,
+    "deangroup": "",
+    "semester": 1,
+    "spouse_cohabitant": null,
+    "special_case_docs": null,
+    "international_placement": false,
+    "mailinglist": true,
+    "dataprocessing": true,
+    "attachment": "",
+    "status": 0,
+    "quarter": 6
+  }
+},
+{
+  "model": "rekruter.applicationformfields",
+  "pk": "d6794873-6096-442d-8f08-eb006d0170ef",
+  "fields": {
+    "owner": 1,
+    "timeapplied": "2019-10-08T14:07:37Z",
+    "sh_choice1": 1,
+    "sh_choice2": 4,
+    "sh_choice3": 4,
+    "if_room_change": 2,
+    "duration": 2,
+    "location": "",
+    "faculty": 4,
+    "degree": 12,
+    "deangroup": "",
+    "semester": 10,
+    "spouse_cohabitant": null,
+    "special_case_docs": null,
+    "international_placement": false,
+    "mailinglist": true,
+    "dataprocessing": true,
+    "attachment": "",
+    "status": 0,
+    "quarter": 6
+  }
+},
+{
   "model": "rekruter.quarterclassb",
   "pk": "3312bf79-5ff6-4e5f-a40c-0f101948a610",
   "fields": {
@@ -2889,7 +3071,61 @@
     "backtouserpanel_ru": null,
     "backtouserpanel_uk": null,
     "backtouserpanel_es": null,
-    "backtouserpanel_hi": null
+    "backtouserpanel_hi": null,
+    "see_more": "ZOBACZ WI\u0118CEJ",
+    "see_more_pl": "ZOBACZ WI\u0118CEJ",
+    "see_more_en": "SEE MORE",
+    "see_more_de": null,
+    "see_more_fr": null,
+    "see_more_ru": null,
+    "see_more_uk": null,
+    "see_more_es": null,
+    "see_more_hi": null,
+    "pagemap": "MAPA STRONY",
+    "pagemap_pl": "MAPA STRONY",
+    "pagemap_en": "PAGE MAP",
+    "pagemap_de": null,
+    "pagemap_fr": null,
+    "pagemap_ru": null,
+    "pagemap_uk": null,
+    "pagemap_es": null,
+    "pagemap_hi": null,
+    "addblog": "Dodaj nowy wpis w aktualno\u015bciach",
+    "addblog_pl": "Dodaj nowy wpis w aktualno\u015bciach",
+    "addblog_en": "Add news entry",
+    "addblog_de": null,
+    "addblog_fr": null,
+    "addblog_ru": null,
+    "addblog_uk": null,
+    "addblog_es": null,
+    "addblog_hi": null,
+    "addinfo": "Dodaj now\u0105 wa\u017cn\u0105 informacj\u0119",
+    "addinfo_pl": "Dodaj now\u0105 wa\u017cn\u0105 informacj\u0119",
+    "addinfo_en": "Add new important information",
+    "addinfo_de": null,
+    "addinfo_fr": null,
+    "addinfo_ru": null,
+    "addinfo_uk": null,
+    "addinfo_es": null,
+    "addinfo_hi": null,
+    "addfile": "Dodaj nowy plik do \u015bci\u0105gni\u0119cia",
+    "addfile_pl": "Dodaj nowy plik do \u015bci\u0105gni\u0119cia",
+    "addfile_en": "Add nwe downloadable file",
+    "addfile_de": null,
+    "addfile_fr": null,
+    "addfile_ru": null,
+    "addfile_uk": null,
+    "addfile_es": null,
+    "addfile_hi": null,
+    "editme": "Edytuj",
+    "editme_pl": "Edytuj",
+    "editme_en": "Edit",
+    "editme_de": null,
+    "editme_fr": null,
+    "editme_ru": null,
+    "editme_uk": null,
+    "editme_es": null,
+    "editme_hi": null
   }
 },
 {
@@ -3504,9 +3740,10 @@
     "blogimagedefault": "skins/django_by_jow3ew0l-d5zlnyt.jpg",
     "infoimagedefault": "skins/proxy.duckduckgo.com.jpeg",
     "fileimagedefault": "skins/proxy.duckduckgo.com.png",
-    "infosideimage": "skins/tablicaogloszen.jpeg",
-    "filesideimage": "skins/plikisciagaj.jpeg",
-    "welcomebanner": "skins/Welcome-Abroad-Banners.jpg"
+    "infosideimage": "skins/side_docs.jpg",
+    "filesideimage": "skins/side_files.jpg",
+    "welcomebanner": "skins/mainbanner.png",
+    "welcomebanner_small": "skins/mainbanner_small.png"
   }
 },
 {
@@ -3666,7 +3903,7 @@
     "agreements1": true,
     "agreements2": false,
     "agreements3": false,
-    "owner": 1
+    "owner": 2
   }
 },
 {
