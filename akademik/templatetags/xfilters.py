@@ -17,5 +17,5 @@ def lookup(d, key):
 
 # Wyszukuje po liście bezwzględny integer
 @register.filter(name='lookupint')
-def lookup(d, key):
+def lookupint(d, key):
     return d[int(key)]

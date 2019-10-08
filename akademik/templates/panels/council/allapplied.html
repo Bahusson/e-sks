@@ -33,20 +33,20 @@
     {% for item in "0"|rjust:"3" %}
        <select id="app_view{{ forloop.counter0 }}">
           {% with forloop.counter0 as x %}
-            <option value ="-timeapplied" {% if view_filter|lookup:x == "-timeapplied" %} selected="selected" {% endif %} >Czas malejąco</option>
-            <option value ="timeapplied" {% if view_filter|lookup:x == "timeapplied" %} selected="selected" {% endif %} >Czas rosnąco</option>
-            <option value ="-owner__first_name" {% if view_filter|lookup:x == "-owner__first_name" %} selected="selected" {% endif %} >Imię malejąco</option>
-            <option value ="owner__first_name" {% if view_filter|lookup:x == "owner__first_name" %} selected="selected" {% endif %} >Imię rosnąco</option>
-            <option value ="-owner__last_name" {% if view_filter|lookup:x == "-owner__last_name" %} selected="selected" {% endif %} >Nazwisko malejąco</option>
-            <option value ="owner__last_name" {% if view_filter|lookup:x == "owner__last_name" %} selected="selected" {% endif %} >Nazwisko rosnąco</option>
-            <option value ="-sh_choice1" {% if view_filter|lookup:x == "-sh_choice1" %} selected="selected" {% endif %} >Akademik 1 malejąco</option>
-            <option value ="sh_choice1" {% if view_filter|lookup:x == "sh_choice1" %} selected="selected" {% endif %} >Akademik 1 rosnąco</option>
-            <option value ="-if_room_change" {% if view_filter|lookup:x == "-if_room_change" %} selected="selected" {% endif %} >Zmiana pokoju malejąco</option>
-            <option value ="if_room_change" {% if view_filter|lookup:x == "if_room_change" %} selected="selected" {% endif %} >Zmiana pokoju rosnąco</option>
-            <option value ="-status" {% if view_filter|lookup:x == "-status" %} selected="selected" {% endif %} >Status wniosku malejąco</option>
-            <option value ="status" {% if view_filter|lookup:x == "status" %} selected="selected" {% endif %} >Status wniosku rosnąco</option>
-            <option value ="-owner__nationality" {% if view_filter|lookup:x == "-owner__nationality" %} selected="selected" {% endif %} >Narodowość malejąco</option>
-            <option value ="owner__nationality" {% if view_filter|lookup:x == "owner__nationality" %} selected="selected" {% endif %} >Narodowość rosnąco</option
+            <option value ="-timeapplied" {% if view_filter|lookupint:x == "-timeapplied" %} selected="selected" {% endif %} >Czas malejąco</option>
+            <option value ="timeapplied" {% if view_filter|lookupint:x == "timeapplied" %} selected="selected" {% endif %} >Czas rosnąco</option>
+            <option value ="-owner__first_name" {% if view_filter|lookupint:x == "-owner__first_name" %} selected="selected" {% endif %} >Imię malejąco</option>
+            <option value ="owner__first_name" {% if view_filter|lookupint:x == "owner__first_name" %} selected="selected" {% endif %} >Imię rosnąco</option>
+            <option value ="-owner__last_name" {% if view_filter|lookupint:x == "-owner__last_name" %} selected="selected" {% endif %} >Nazwisko malejąco</option>
+            <option value ="owner__last_name" {% if view_filter|lookupint:x == "owner__last_name" %} selected="selected" {% endif %} >Nazwisko rosnąco</option>
+            <option value ="-sh_choice1" {% if view_filter|lookupint:x == "-sh_choice1" %} selected="selected" {% endif %} >Akademik 1 malejąco</option>
+            <option value ="sh_choice1" {% if view_filter|lookupint:x == "sh_choice1" %} selected="selected" {% endif %} >Akademik 1 rosnąco</option>
+            <option value ="-if_room_change" {% if view_filter|lookupint:x == "-if_room_change" %} selected="selected" {% endif %} >Zmiana pokoju malejąco</option>
+            <option value ="if_room_change" {% if view_filter|lookupint:x == "if_room_change" %} selected="selected" {% endif %} >Zmiana pokoju rosnąco</option>
+            <option value ="-status" {% if view_filter|lookupint:x == "-status" %} selected="selected" {% endif %} >Status wniosku malejąco</option>
+            <option value ="status" {% if view_filter|lookupint:x == "status" %} selected="selected" {% endif %} >Status wniosku rosnąco</option>
+            <option value ="-owner__nationality" {% if view_filter|lookupint:x == "-owner__nationality" %} selected="selected" {% endif %} >Narodowość malejąco</option>
+            <option value ="owner__nationality" {% if view_filter|lookupint:x == "owner__nationality" %} selected="selected" {% endif %} >Narodowość rosnąco</option
          {% endwith %}
        </select>
        <input type="hidden" name="view_filter{{ forloop.counter0 }}" id="view_filter{{ forloop.counter0 }}">
