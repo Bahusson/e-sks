@@ -46,7 +46,9 @@
             <option value ="-status" {% if view_filter|lookupint:x == "-status" %} selected="selected" {% endif %} >Status wniosku malejąco</option>
             <option value ="status" {% if view_filter|lookupint:x == "status" %} selected="selected" {% endif %} >Status wniosku rosnąco</option>
             <option value ="-owner__nationality" {% if view_filter|lookupint:x == "-owner__nationality" %} selected="selected" {% endif %} >Narodowość malejąco</option>
-            <option value ="owner__nationality" {% if view_filter|lookupint:x == "owner__nationality" %} selected="selected" {% endif %} >Narodowość rosnąco</option
+            <option value ="owner__nationality" {% if view_filter|lookupint:x == "owner__nationality" %} selected="selected" {% endif %} >Narodowość rosnąco</option>
+            <option value ="-quarter" {% if view_filter|lookupint:x == "-quarter" %} selected="selected" {% endif %} >Akcja Kwaterunkowa malejąco</option>
+            <option value ="quarter" {% if view_filter|lookupint:x == "quarter" %} selected="selected" {% endif %} >Akcja Kwaterunkowa rosnąco</option>
          {% endwith %}
        </select>
        <input type="hidden" name="view_filter{{ forloop.counter0 }}" id="view_filter{{ forloop.counter0 }}">
@@ -69,10 +71,10 @@
         {{ formitem.female }}
   {% endif %}
 
-  - {{ hotelselector|lookupint:apply.sh_choice1 }} -
-  {{ roomchange|lookupint:apply.if_room_change }} -
-  {{ appstatus|lookupint:apply.status }} - {{ apply.owner.citizenship }} -
-  {{ setter|lookupint:apply.quarter }}}</p>
+  - {{ hotelselector|action:apply.sh_choice1 }} -
+  {{ roomchange|action:apply.if_room_change }} -
+  {{ appstatus|lookup:apply.status }} - {{ apply.owner.citizenship }} -
+  {{ setter|action:apply.quarter }}</p>
 
 {% endfor %}
 
