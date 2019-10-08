@@ -142,7 +142,6 @@ CACHE_MIDDLEWARE_KEY_PREFIX = ''
 SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 # Dla sesji opartych na ciastkach:
 # "django.contrib.sessions.backends.signed_cookies"
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -185,7 +184,12 @@ MODELTRANSLATION_DEFAULT_LANGUAGE = 'pl'  # Tu możesz zmienić default language
 MODELTRANSLATION_LANGUAGES = ('pl', 'en', 'de', 'fr', 'ru', 'uk', 'es', 'hi')
 
 # W ten sposób zachowają sie języki jak nie znajdzie się jakiegoś w bazie.
-MODELTRANSLATION_FALLBACK_LANGUAGES = {'default': ('en', ), 'en': ('pl', )}
+MODELTRANSLATION_FALLBACK_LANGUAGES = {
+ 'default': ('en', 'pl', 'de', 'fr', 'ru', 'uk', 'es', 'hi'),
+ 'uk': ('ru', ), 'ru': ('uk', ), }
+
+# MODELTRANSLATION_FALLBACK_LANGUAGES = (
+#  'en', 'pl', 'de', 'fr', 'ru', 'uk', 'es', 'hi')
 
 # Tutaj rejestruje się wszystkie trackery translacyjne translation.py
 MODELTRANSLATION_TRANSLATION_FILES = (
