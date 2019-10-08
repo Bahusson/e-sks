@@ -1,15 +1,24 @@
+<div class="nav-side-menu">
+  <div class="brand">MENU ADMINISRACJI</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+      <div class="menu-list">
+        <ul id="menu-content" class="menu-content collapse out">
+          <li>
+            <a href="#">NOCLEGI</a><!--Natalia-->
+          </li>
 
-<!--  MENU WERSJA 2 -->
-<div class="row float-left">
-<div class="column">
-    <div class="cardo sidem float-left" width= "250">
-        <p class="head-cardo">MENU ADMINISRACJI</p>
-        <p class="head-foot"><a href="#">NOCLEGI</a></p>
-        <p class="head-foot"><a href="#">MOJE DANE</a></p>
-        <p class="head-foot"><a href="#">USTAWIENIA</a></p>
-        <p class="head-foot"><a href="#">MOJE REZERWACJE</a></p>
-        <p class="head-foot"><a href="{% url 'userdatapersonal' %}">MOJE DANE</a></p>
-    </div>
+          <li>
+            <a href="{% url 'dsapply' %}">MOJE DANE</a> <!--Wniosek o DS-->
+          </li>
+          <li>
+            <a href="">USTAWIENIA</a><!--Szczegóły pokoju-->
+          </li>
+          <li><a href="">MOJE REZERWACJE</a><!--Preferencje pokoju0-->
+          </li>
+
+          <li><a href="{% url 'userdatapersonal' %}">MOJE DANE</a><!--Profil Użytkownika-->
+          </li>
+        </ul>
+  </div>
 </div>
-</div>
-<!--  KONIEC MENU WERSJA 2 -->
+<br>

@@ -5,14 +5,23 @@
 {% block aside %}
 <!-- Null -->
 {% block body %}
-<br>
-<div class="alert alert-primary alert-dismissible fade show">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
-    <img width=100% src="{{ skin.welcomebanner.url }}" class="img-fluid" >
-</div>
 
+<br>
+<div class="alert alert-secondary alert-dismissible fade show">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+
+    <picture>
+      <source srcset="https://files.tinypic.pl/i/00989/bibk9fta34ey.png" media="(max-width: 600px)">
+      <source srcset="https://images.tinypic.pl/i/00989/qhnw55pqojps.png">
+      <img width="100%" src="{{ skin.welcomebanner.url }}" alt="Flowers" class="alerta img-fluid">
+    </picture>
+</div>
+<div class="alert alert-secondary alert-dismissible fade show">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+</div>
 <!-- POCZĄTEK AKTUALNÓŚĆ -->
-<h3 class="font-weight-bolder">{{ items.news }}</h3>
+<h6 class="strong ">{{ items.news }}</h6>
+<div class="news jumbotron">
 <div class="row">
 
 {% for blog in blogs|slice:":3" %}
@@ -41,7 +50,7 @@
 
 {% if blogs.3 %}
 <!--- DODATKOWY BLOG -->
-  <div class="col-md-3 shdwn">
+  <div class="col-md-3 shdwn extrablog">
       <div class="col">
           {% if blogs.3.image %}
            <!-- Jeśli nie ma obrazka zwróć default ze skórki Usera -->
@@ -61,17 +70,14 @@
 <!-- Koniec dodatkowego bloga -->
 </div>
 <!-- BUTTON -->
+
 <button type="button" class="btn-sm btn-outline-warning float-right view">
      <a href="{% url 'allblogs' %}">{{ items.see_more }} >>> </a>
 </button>
+
 <!--KONIEC BUTTONA -->
 <!-- KONIEC AKTUALNOŚCI -->
-
-<!-- PUSTY DIV  -->
-<div class="row">
-    <div class="col-sm-12 text wow fadeInLeft"></div>
 </div>
-<!-- KONIEC PUSTY DIV  -->
 
 <div class="row float-center">
     <div class="column">
