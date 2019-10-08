@@ -12,6 +12,7 @@ from .models import UserMenuItem as Umi
 from .models import UserLinkItem as Uli
 from .models import HousingParty as HParty
 from .models import HousingPartyItems as Hpi
+from rekruter.models import ApplicationFormFields as Apf
 from rekruter.models import StudentHouse as Sh
 from rekruter.models import IfRoomChange as Ifr
 from rekruter.models import TimePeriod as Tper
@@ -37,7 +38,7 @@ def staffpanel_c(request):
     return render(request, template, context_lazy)
 
 
-# Z dwóch powyższych zrób klasę jak będziesz miał chwilę
+# Z dwóch poniższych zrób klasę jak będziesz miał chwilę
 # i powarunkuj, bo są bardzo podobne - albo niech Kenny to zrobi dla wprawy.
 # Tworzy nową akcję kwaterunkową wraz z formularzem z poziomu przew. rady.
 @council_only(login_url='staffpanel_c', power_level=2)  # Tylko Przewodniczący
@@ -176,14 +177,14 @@ def allparties(request):
 # Pokazuje wszystkie wnioski o akademik i filtruje je względem kryteriów.
 @council_only(login_url='logger')
 def allapplied(request):
-    view_filter = "0"
-    if 'subbutton' in request.POST:
+    view_filter = "-timeapplied"
+    if 'sort' in request.POST:
         view_filter = str(request.POST.get('view_filter'))
-
+    apf = Apf.objects.order_by(view_filter)
     context = {
-
+     'appplied': apf,
      }
     pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
     context_lazy = pl.lazy_context(skins=S, context=context)
-    template = 'panels/common/allapplied.html'
+    template = 'panels/council/allapplied.html'
     return render(request, template, context_lazy)

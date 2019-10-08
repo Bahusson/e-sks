@@ -283,6 +283,7 @@ class ApplicationFormFields(models.Model):
     owner = models.ForeignKey(
      AUTH_USER_MODEL, on_delete=models.CASCADE)
     # Preferencje akademików 1-3
+    timeapplied = models.DateTimeField()
     sh_choice1 = models.CharField(max_length=2, blank=True)
     sh_choice2 = models.CharField(max_length=2, blank=True)
     sh_choice3 = models.CharField(max_length=2, blank=True)
@@ -302,10 +303,17 @@ class ApplicationFormFields(models.Model):
     attachment = models.FileField(upload_to='userdocs', null=True, blank=True)
 
     class Meta:
-        ordering = ['owner', 'application_no']
+        ordering = ['-timeapplied', 'owner']
 
     def __str__(self):
         return str(self.application_no) + ' ' + str(self.owner)
+
+    def new_sorter(self):
+        return self.order_by("-timeapplied")
+
+    @property
+    def new_sort(self, order):
+        return self.order_by(order)
 
 
 class QuarterClassB(models.Model):
@@ -314,7 +322,7 @@ class QuarterClassB(models.Model):
     position = models.IntegerField()
 
     class Meta:
-        ordering = ['position', 'id']
+        ordering = ['position', 'name']
 
     def __str__(self):
         return self.name
