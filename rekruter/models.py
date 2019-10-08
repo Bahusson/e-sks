@@ -308,13 +308,6 @@ class ApplicationFormFields(models.Model):
     def __str__(self):
         return str(self.application_no) + ' ' + str(self.owner)
 
-    def new_sorter(self):
-        return self.order_by("-timeapplied")
-
-    @property
-    def new_sort(self, order):
-        return self.order_by(order)
-
 
 class QuarterClassB(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
