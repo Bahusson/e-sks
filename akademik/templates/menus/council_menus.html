@@ -14,7 +14,7 @@
           </li>
   <div class="brand">{{ menu.1 }}</div>
           <li>
-            <a href="#">{{ link.3 }}</a><!--Lista Wniosków-->
+            <a href="{% url 'allapplied' %}">{{ link.3 }}</a><!--Lista Wniosków-->
             <!-- Tylko dla Szefa Rady -->
             {% if user.role_council > 2 %}
   <div class="brand">{{ menu.1 }}</div>
