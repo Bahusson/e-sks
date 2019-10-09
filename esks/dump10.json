@@ -548,7 +548,7 @@
   "model": "rekruter.user",
   "fields": {
     "password": "pbkdf2_sha256$150000$Lpb5Pxw8vZUz$zxVU6NtCWsIANr2JQ1JGOqrbOCoo5trDqE712KnECWY=",
-    "last_login": "2019-09-30T09:51:50.788Z",
+    "last_login": "2019-10-09T07:29:59.559Z",
     "is_superuser": true,
     "email": "j.kozdrowicz@apdeveloper.com.pl",
     "first_name": "Jakub",
@@ -560,9 +560,9 @@
     "is_hotel": true,
     "role_council": 4,
     "avatar": "avatars/egzorcysta..jpg",
-    "quarter": "7",
-    "gender": null,
-    "citizenship": "",
+    "quarter": "3",
+    "gender": 1,
+    "citizenship": "Polskie",
     "dowod": "",
     "passport": "",
     "telephone": "",
@@ -580,7 +580,7 @@
   "model": "rekruter.user",
   "fields": {
     "password": "pbkdf2_sha256$150000$1LSjrOa9F6Nv$Or0ISehH9A9dfggK6W36N8jw2bFFURwutcclTHIHSLw=",
-    "last_login": "2019-09-23T11:54:09.029Z",
+    "last_login": "2019-10-08T15:59:49.728Z",
     "is_superuser": false,
     "email": "jakub.kozdrowicz@gmail.com",
     "first_name": "Nadzieja",
@@ -592,9 +592,9 @@
     "is_hotel": true,
     "role_council": 3,
     "avatar": "",
-    "quarter": "8",
-    "gender": null,
-    "citizenship": "",
+    "quarter": "3",
+    "gender": 2,
+    "citizenship": "Polskie",
     "dowod": "",
     "passport": "",
     "telephone": "",
@@ -1643,8 +1643,7 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null,
-    "position": 0
+    "name_hi": null
   }
 },
 {
@@ -1659,8 +1658,7 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null,
-    "position": 1
+    "name_hi": null
   }
 },
 {
@@ -1675,8 +1673,7 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null,
-    "position": 2
+    "name_hi": null
   }
 },
 {
@@ -1691,8 +1688,7 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null,
-    "position": 3
+    "name_hi": null
   }
 },
 {
@@ -1707,8 +1703,7 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null,
-    "position": 4
+    "name_hi": null
   }
 },
 {
@@ -1723,8 +1718,7 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null,
-    "position": 5
+    "name_hi": null
   }
 },
 {
@@ -1739,8 +1733,7 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null,
-    "position": 6
+    "name_hi": null
   }
 },
 {
@@ -1755,8 +1748,7 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null,
-    "position": 7
+    "name_hi": null
   }
 },
 {
@@ -1771,8 +1763,7 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null,
-    "position": 8
+    "name_hi": null
   }
 },
 {
@@ -1787,8 +1778,7 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null,
-    "position": 9
+    "name_hi": null
   }
 },
 {
@@ -1803,8 +1793,7 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null,
-    "position": 10
+    "name_hi": null
   }
 },
 {
@@ -1819,8 +1808,7 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null,
-    "position": 11
+    "name_hi": null
   }
 },
 {
@@ -2576,6 +2564,200 @@
   }
 },
 {
+  "model": "rekruter.applicationstatus",
+  "pk": 1,
+  "fields": {
+    "name": "Otrzymany",
+    "name_pl": "Otrzymany",
+    "name_en": "Received",
+    "name_de": null,
+    "name_fr": null,
+    "name_ru": null,
+    "name_uk": null,
+    "name_es": null,
+    "name_hi": null,
+    "position": 1
+  }
+},
+{
+  "model": "rekruter.applicationstatus",
+  "pk": 2,
+  "fields": {
+    "name": "Zaakceptowany",
+    "name_pl": "Zaakceptowany",
+    "name_en": "Accepted",
+    "name_de": null,
+    "name_fr": null,
+    "name_ru": null,
+    "name_uk": null,
+    "name_es": null,
+    "name_hi": null,
+    "position": 2
+  }
+},
+{
+  "model": "rekruter.applicationstatus",
+  "pk": 3,
+  "fields": {
+    "name": "Odrzucony",
+    "name_pl": "Odrzucony",
+    "name_en": "Rejected",
+    "name_de": null,
+    "name_fr": null,
+    "name_ru": null,
+    "name_uk": null,
+    "name_es": null,
+    "name_hi": null,
+    "position": 3
+  }
+},
+{
+  "model": "rekruter.applicationstatus",
+  "pk": 4,
+  "fields": {
+    "name": "Z\u0142o\u017cony",
+    "name_pl": "Z\u0142o\u017cony",
+    "name_en": "Submitted",
+    "name_de": null,
+    "name_fr": null,
+    "name_ru": null,
+    "name_uk": null,
+    "name_es": null,
+    "name_hi": null,
+    "position": 0
+  }
+},
+{
+  "model": "rekruter.applicationformfields",
+  "pk": "09c71d33-0038-4fa8-8515-34afbb9dc844",
+  "fields": {
+    "owner": 1,
+    "timeapplied": "2019-10-08T14:09:42Z",
+    "sh_choice1": 12,
+    "sh_choice2": 12,
+    "sh_choice3": 8,
+    "if_room_change": 1,
+    "duration": 3,
+    "location": "",
+    "faculty": 12,
+    "degree": 9,
+    "deangroup": "",
+    "semester": 10,
+    "spouse_cohabitant": null,
+    "special_case_docs": null,
+    "international_placement": false,
+    "mailinglist": true,
+    "dataprocessing": true,
+    "attachment": "",
+    "status": 0,
+    "quarter": 2
+  }
+},
+{
+  "model": "rekruter.applicationformfields",
+  "pk": "3b5a40df-343a-4b31-824e-4aa83248ce84",
+  "fields": {
+    "owner": 2,
+    "timeapplied": "2019-10-08T14:10:33Z",
+    "sh_choice1": 11,
+    "sh_choice2": 10,
+    "sh_choice3": 9,
+    "if_room_change": 1,
+    "duration": 2,
+    "location": "",
+    "faculty": 12,
+    "degree": 2,
+    "deangroup": "",
+    "semester": 10,
+    "spouse_cohabitant": null,
+    "special_case_docs": null,
+    "international_placement": true,
+    "mailinglist": true,
+    "dataprocessing": true,
+    "attachment": "",
+    "status": 0,
+    "quarter": 3
+  }
+},
+{
+  "model": "rekruter.applicationformfields",
+  "pk": "49d590c8-4c23-43b9-a63b-a611f26801a9",
+  "fields": {
+    "owner": 1,
+    "timeapplied": "2019-10-08T14:29:08.253Z",
+    "sh_choice1": 4,
+    "sh_choice2": 1,
+    "sh_choice3": 3,
+    "if_room_change": 3,
+    "duration": 2,
+    "location": "",
+    "faculty": 15,
+    "degree": 12,
+    "deangroup": "",
+    "semester": 12,
+    "spouse_cohabitant": null,
+    "special_case_docs": null,
+    "international_placement": false,
+    "mailinglist": true,
+    "dataprocessing": true,
+    "attachment": "",
+    "status": 0,
+    "quarter": 3
+  }
+},
+{
+  "model": "rekruter.applicationformfields",
+  "pk": "96a10939-214d-4ca4-9ac0-4ae9488c14a0",
+  "fields": {
+    "owner": 2,
+    "timeapplied": "2019-10-08T14:10:13Z",
+    "sh_choice1": 8,
+    "sh_choice2": 10,
+    "sh_choice3": 12,
+    "if_room_change": 1,
+    "duration": 1,
+    "location": "",
+    "faculty": 3,
+    "degree": 11,
+    "deangroup": "",
+    "semester": 1,
+    "spouse_cohabitant": null,
+    "special_case_docs": null,
+    "international_placement": false,
+    "mailinglist": true,
+    "dataprocessing": true,
+    "attachment": "",
+    "status": 0,
+    "quarter": 6
+  }
+},
+{
+  "model": "rekruter.applicationformfields",
+  "pk": "d6794873-6096-442d-8f08-eb006d0170ef",
+  "fields": {
+    "owner": 1,
+    "timeapplied": "2019-10-08T14:07:37Z",
+    "sh_choice1": 1,
+    "sh_choice2": 4,
+    "sh_choice3": 4,
+    "if_room_change": 2,
+    "duration": 2,
+    "location": "",
+    "faculty": 4,
+    "degree": 12,
+    "deangroup": "",
+    "semester": 10,
+    "spouse_cohabitant": null,
+    "special_case_docs": null,
+    "international_placement": false,
+    "mailinglist": true,
+    "dataprocessing": true,
+    "attachment": "",
+    "status": 0,
+    "quarter": 6
+  }
+},
+{
   "model": "rekruter.quarterclassb",
   "pk": "3312bf79-5ff6-4e5f-a40c-0f101948a610",
   "fields": {
@@ -2767,8 +2949,8 @@
     "headtitle": "Elektroniczny System Kwaterowania Student\u00f3w",
     "headtitle_pl": "Elektroniczny System Kwaterowania Student\u00f3w",
     "headtitle_en": "Virtual System for Students Accommodation",
-    "headtitle_de": null,
-    "headtitle_fr": "Virtual System for Students Accommodation",
+    "headtitle_de": "Virtual System for Students Accommodation",
+    "headtitle_fr": null,
     "headtitle_ru": null,
     "headtitle_uk": null,
     "headtitle_es": null,
@@ -2776,8 +2958,8 @@
     "mainpage": "Strona G\u0142\u00f3wna",
     "mainpage_pl": "Strona G\u0142\u00f3wna",
     "mainpage_en": "Main Page",
-    "mainpage_de": null,
-    "mainpage_fr": "Main Page",
+    "mainpage_de": "Main Page",
+    "mainpage_fr": null,
     "mainpage_ru": null,
     "mainpage_uk": null,
     "mainpage_es": null,
@@ -2785,8 +2967,8 @@
     "information": "Informacje",
     "information_pl": "Informacje",
     "information_en": "Information",
-    "information_de": null,
-    "information_fr": "Information",
+    "information_de": "Information",
+    "information_fr": null,
     "information_ru": null,
     "information_uk": null,
     "information_es": null,
@@ -2794,8 +2976,8 @@
     "akamap": "Mapa akademik\u00f3w",
     "akamap_pl": "Mapa akademik\u00f3w",
     "akamap_en": "Student's Houses Map",
-    "akamap_de": null,
-    "akamap_fr": "Student's Houses Map",
+    "akamap_de": "Student's Houses Map",
+    "akamap_fr": null,
     "akamap_ru": null,
     "akamap_uk": null,
     "akamap_es": null,
@@ -2803,8 +2985,8 @@
     "contact": "Kontakt",
     "contact_pl": "Kontakt",
     "contact_en": "Contact",
-    "contact_de": null,
-    "contact_fr": "Contact",
+    "contact_de": "Contact",
+    "contact_fr": null,
     "contact_ru": null,
     "contact_uk": null,
     "contact_es": null,
@@ -2812,8 +2994,8 @@
     "logout": "Wyloguj",
     "logout_pl": "Wyloguj",
     "logout_en": "Log out",
-    "logout_de": null,
-    "logout_fr": "Log out",
+    "logout_de": "Log out",
+    "logout_fr": null,
     "logout_ru": null,
     "logout_uk": null,
     "logout_es": null,
@@ -2821,8 +3003,8 @@
     "news": "Aktualno\u015bci",
     "news_pl": "Aktualno\u015bci",
     "news_en": "News",
-    "news_de": null,
-    "news_fr": "News",
+    "news_de": "News",
+    "news_fr": null,
     "news_ru": null,
     "news_uk": null,
     "news_es": null,
@@ -2830,8 +3012,8 @@
     "docs": "Wa\u017cne Dokumenty",
     "docs_pl": "Wa\u017cne Dokumenty",
     "docs_en": "Important Documents",
-    "docs_de": null,
-    "docs_fr": "Important Documents",
+    "docs_de": "Important Documents",
+    "docs_fr": null,
     "docs_ru": null,
     "docs_uk": null,
     "docs_es": null,
@@ -2839,8 +3021,8 @@
     "login": "Zaloguj",
     "login_pl": "Zaloguj",
     "login_en": "Login",
-    "login_de": null,
-    "login_fr": "Login",
+    "login_de": "Login",
+    "login_fr": null,
     "login_ru": null,
     "login_uk": null,
     "login_es": null,
@@ -2848,8 +3030,8 @@
     "panel_user": "Panel U\u017cytkownika",
     "panel_user_pl": "Panel U\u017cytkownika",
     "panel_user_en": "User Panel",
-    "panel_user_de": null,
-    "panel_user_fr": "User Panel",
+    "panel_user_de": "User Panel",
+    "panel_user_fr": null,
     "panel_user_ru": null,
     "panel_user_uk": null,
     "panel_user_es": null,
@@ -2857,8 +3039,8 @@
     "panel_council": "Panel Rady Student\u00f3w",
     "panel_council_pl": "Panel Rady Student\u00f3w",
     "panel_council_en": "Student Council Panel",
-    "panel_council_de": null,
-    "panel_council_fr": "Student Council Panel",
+    "panel_council_de": "Student Council Panel",
+    "panel_council_fr": null,
     "panel_council_ru": null,
     "panel_council_uk": null,
     "panel_council_es": null,
@@ -2866,8 +3048,8 @@
     "panel_staff": "Panel Administracji",
     "panel_staff_pl": "Panel Administracji",
     "panel_staff_en": "Administrators Panel",
-    "panel_staff_de": null,
-    "panel_staff_fr": "Administrators Panel",
+    "panel_staff_de": "Administrators Panel",
+    "panel_staff_fr": null,
     "panel_staff_ru": null,
     "panel_staff_uk": null,
     "panel_staff_es": null,
@@ -2875,8 +3057,8 @@
     "panel_translator": "Panel T\u0142umacza",
     "panel_translator_pl": "Panel T\u0142umacza",
     "panel_translator_en": "Translators Panel",
-    "panel_translator_de": null,
-    "panel_translator_fr": "Translators Panel",
+    "panel_translator_de": "Translators Panel",
+    "panel_translator_fr": null,
     "panel_translator_ru": null,
     "panel_translator_uk": null,
     "panel_translator_es": null,
@@ -2884,8 +3066,8 @@
     "backtouserpanel": "Powr\u00f3t do panelu u\u017cytkownika",
     "backtouserpanel_pl": "Powr\u00f3t do panelu u\u017cytkownika",
     "backtouserpanel_en": "Return to Users Panel",
-    "backtouserpanel_de": null,
-    "backtouserpanel_fr": "Return to Users Panel",
+    "backtouserpanel_de": "Return to Users Panel",
+    "backtouserpanel_fr": null,
     "backtouserpanel_ru": null,
     "backtouserpanel_uk": null,
     "backtouserpanel_es": null,
@@ -2893,7 +3075,7 @@
     "see_more": "ZOBACZ WI\u0118CEJ",
     "see_more_pl": "ZOBACZ WI\u0118CEJ",
     "see_more_en": "SEE MORE",
-    "see_more_de": null,
+    "see_more_de": "SEE MORE",
     "see_more_fr": null,
     "see_more_ru": null,
     "see_more_uk": null,
@@ -2902,7 +3084,7 @@
     "pagemap": "MAPA STRONY",
     "pagemap_pl": "MAPA STRONY",
     "pagemap_en": "PAGE MAP",
-    "pagemap_de": null,
+    "pagemap_de": "PAGE MAP",
     "pagemap_fr": null,
     "pagemap_ru": null,
     "pagemap_uk": null,
@@ -2911,7 +3093,7 @@
     "addblog": "Dodaj nowy wpis w aktualno\u015bciach",
     "addblog_pl": "Dodaj nowy wpis w aktualno\u015bciach",
     "addblog_en": "Add news entry",
-    "addblog_de": null,
+    "addblog_de": "Add news entry",
     "addblog_fr": null,
     "addblog_ru": null,
     "addblog_uk": null,
@@ -2920,7 +3102,7 @@
     "addinfo": "Dodaj now\u0105 wa\u017cn\u0105 informacj\u0119",
     "addinfo_pl": "Dodaj now\u0105 wa\u017cn\u0105 informacj\u0119",
     "addinfo_en": "Add new important information",
-    "addinfo_de": null,
+    "addinfo_de": "Add new important information",
     "addinfo_fr": null,
     "addinfo_ru": null,
     "addinfo_uk": null,
@@ -2929,7 +3111,7 @@
     "addfile": "Dodaj nowy plik do \u015bci\u0105gni\u0119cia",
     "addfile_pl": "Dodaj nowy plik do \u015bci\u0105gni\u0119cia",
     "addfile_en": "Add nwe downloadable file",
-    "addfile_de": null,
+    "addfile_de": "Add nwe downloadable file",
     "addfile_fr": null,
     "addfile_ru": null,
     "addfile_uk": null,
@@ -2938,7 +3120,7 @@
     "editme": "Edytuj",
     "editme_pl": "Edytuj",
     "editme_en": "Edit",
-    "editme_de": null,
+    "editme_de": "Edit",
     "editme_fr": null,
     "editme_ru": null,
     "editme_uk": null,
@@ -3418,7 +3600,7 @@
     "title_uk": null,
     "title_es": null,
     "title_hi": null,
-    "pubdate": "2019-08-15T05:12:57Z",
+    "pubdate": "2019-10-08T16:22:15Z",
     "body": "Fragment 1.10.33 z \"de Finibus Bonorum et Malorum\", napisanej przez Cycerona w 45 r.p.n.e.\r\n\r\n\"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.\"",
     "body_pl": "Fragment 1.10.33 z \"de Finibus Bonorum et Malorum\", napisanej przez Cycerona w 45 r.p.n.e.\r\n\r\n\"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.\"",
     "body_en": "T\u0142umaczenie H. Rackhama z 1914 roku\r\n\r\n\"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.\"",
@@ -3428,8 +3610,8 @@
     "body_uk": "",
     "body_es": "",
     "body_hi": "",
-    "file": "assets/Regulamin_Kwaterowania_ujednolicony.pdf",
-    "file_pl": "assets/Regulamin_Kwaterowania_ujednolicony.pdf",
+    "file": "docs/Regulamin_DS.pdf",
+    "file_pl": "docs/Regulamin_DS.pdf",
     "file_en": "",
     "file_de": "",
     "file_fr": "",
@@ -3437,7 +3619,7 @@
     "file_uk": "",
     "file_es": "",
     "file_hi": "",
-    "lastmod": "2019-09-15T08:38:51Z",
+    "lastmod": "2019-10-08T16:21:25Z",
     "owner": 1
   }
 },
@@ -3464,8 +3646,8 @@
     "body_uk": "",
     "body_es": "",
     "body_hi": "",
-    "file": "assets/Regulamin_DS_WMVPhNB.pdf",
-    "file_pl": "assets/Regulamin_DS_WMVPhNB.pdf",
+    "file": "docs/Regulamin_Kwaterowania_ujednolicony_rKzUiac.pdf",
+    "file_pl": "docs/Regulamin_Kwaterowania_ujednolicony_rKzUiac.pdf",
     "file_en": "",
     "file_de": "",
     "file_fr": "",
@@ -3484,7 +3666,7 @@
     "title": "Dokument 3",
     "title_pl": "Dokument 3",
     "title_en": "Document 3",
-    "title_de": null,
+    "title_de": "Dokument 3",
     "title_fr": null,
     "title_ru": null,
     "title_uk": null,
@@ -3494,14 +3676,14 @@
     "body": "Standardowy fragment Lorem Ipsum, u\u017cywany od XV w.\r\n\r\n\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
     "body_pl": "Standardowy fragment Lorem Ipsum, u\u017cywany od XV w.\r\n\r\n\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
     "body_en": "ENG\r\n\r\n\r\nStandardowy fragment Lorem Ipsum, u\u017cywany od XV w.\r\n\r\n\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
-    "body_de": "",
+    "body_de": "Standardowy fragment Lorem Ipsum, u\u017cywany od XV w.\r\n\r\n\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
     "body_fr": "",
     "body_ru": "",
     "body_uk": "",
-    "body_es": "",
+    "body_es": "kademik/panel_rady",
     "body_hi": "",
-    "file": "assets/HarmonogramKwaterowania2019_zJrFh6Z.pdf",
-    "file_pl": "assets/HarmonogramKwaterowania2019_zJrFh6Z.pdf",
+    "file": "docs/HarmonogramKwaterowania2019_zJrFh6Z.pdf",
+    "file_pl": "docs/HarmonogramKwaterowania2019_zJrFh6Z.pdf",
     "file_en": "",
     "file_de": "",
     "file_fr": "",
@@ -3520,7 +3702,7 @@
     "title": "Test widoczno\u015bci",
     "title_pl": "Test widoczno\u015bci",
     "title_en": "Test visibility",
-    "title_de": null,
+    "title_de": "Test visibility",
     "title_fr": null,
     "title_ru": null,
     "title_uk": null,
@@ -3530,14 +3712,14 @@
     "body": "ewfewgwr",
     "body_pl": "ewfewgwr",
     "body_en": "rgwrgewgre",
-    "body_de": "",
+    "body_de": "rgwrgewgre",
     "body_fr": "",
     "body_ru": "",
     "body_uk": "",
     "body_es": "",
     "body_hi": "",
-    "file": "assets/Regulamin_Kwaterowania_ujednolicony.pdf",
-    "file_pl": "assets/Regulamin_Kwaterowania_ujednolicony.pdf",
+    "file": "docs/Regulamin_DS.pdf",
+    "file_pl": "docs/Regulamin_DS.pdf",
     "file_en": "",
     "file_de": "",
     "file_fr": "",
@@ -3558,9 +3740,10 @@
     "blogimagedefault": "skins/django_by_jow3ew0l-d5zlnyt.jpg",
     "infoimagedefault": "skins/proxy.duckduckgo.com.jpeg",
     "fileimagedefault": "skins/proxy.duckduckgo.com.png",
-    "infosideimage": "skins/tablicaogloszen.jpeg",
-    "filesideimage": "skins/plikisciagaj.jpeg",
-    "welcomebanner": "skins/Welcome-Abroad-Banners.jpg"
+    "infosideimage": "skins/side_docs.jpg",
+    "filesideimage": "skins/side_files.jpg",
+    "welcomebanner": "skins/mainbanner.png",
+    "welcomebanner_small": "skins/mainbanner_small.png"
   }
 },
 {
@@ -3720,7 +3903,7 @@
     "agreements1": true,
     "agreements2": false,
     "agreements3": false,
-    "owner": 1
+    "owner": 2
   }
 },
 {

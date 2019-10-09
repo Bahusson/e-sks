@@ -84,7 +84,7 @@ class Fileserve(models.Model):
     title = models.CharField(max_length=200)
     pubdate = models.DateTimeField(blank=True, null=True)  # Data widoczności w publikacji
     body = models.TextField()
-    file = models.FileField(upload_to='assets', blank=True, null=True)
+    file = models.FileField(upload_to='docs', blank=True, null=True)
     lastmod = models.DateTimeField(blank=True, null=True)
     owner = models.ForeignKey(
      AUTH_USER_MODEL, on_delete=models.CASCADE)
