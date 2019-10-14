@@ -234,32 +234,32 @@ def allusers(request):
 @council_only(login_url='logger')
 def changeuser(request, user_id):
     service = True
-    pe_u = PageElement(User)
-    pe_u_id = pe_u.by_id(
-     G404=G404, id=user_id)
     userdata = User.objects.get(
-     id=pe_u_id.id)
-    if request.method == 'POST':
+     id=user_id)
+    if 'quarter' in request.POST:
         form = IniForm(request.POST, instance=userdata)
         if form.is_valid():
             form.save()
             return redirect('allusers')
-    pe_fi = PageElement(FormItems)
-    quarter = pe_u_id.__dict__['quarter']
-    peqc = PageElement(QuarterClassB)
-    if quarter == '':
-        myquarter = 'Nieprzydzielony!!!'
     else:
-        myquarter = peqc.list_specific(int(quarter)-1)
-    quarterlist = peqc.listed
-    context = {
-     'service': service,
-     'setter': myquarter,
-     'setlist': quarterlist,
-     'udata': pe_u_id,
-     'formitem': pe_fi.baseattrs,
-     }
-    pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
-    context_lazy = pl.lazy_context(skins=S, context=context)
-    template = 'panels/user/mydata.html'
-    return render(request, template, context_lazy)
+        form = IniForm()
+        pe_fi = PageElement(FormItems)
+        quarter = userdata.__dict__['quarter']
+        peqc = PageElement(QuarterClassB)
+        if quarter == '':
+            myquarter = 'Nieprzydzielony!!!'
+        else:
+            myquarter = peqc.list_specific(int(quarter)-1)
+        quarterlist = peqc.listed
+        context = {
+         'form': form,
+         'service2': service,
+         'setter': myquarter,
+         'setlist': quarterlist,
+         'udata': userdata,
+         'formitem': pe_fi.baseattrs,
+         }
+        pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
+        context_lazy = pl.lazy_context(skins=S, context=context)
+        template = 'panels/user/mydata.html'
+        return render(request, template, context_lazy)

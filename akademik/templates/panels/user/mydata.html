@@ -16,7 +16,7 @@
 {% endblock aside %}
 
 {% block menu %}
-{% if service %}
+{% if service2 %}
  {% include 'menus/council_menus.html' %} <!-- Menu z opcjami użytkownika -->
 {% else %}
  {% include 'menus/user_menus.html' %}
@@ -36,10 +36,10 @@
         {% endfor %}
         </select>
       {% csrf_token %}
-      {{ form.quarter }}
+      <input type="hidden" name="quarter" id="id_quarter">
     <input id="send" class="button" name="subbutton" type="submit" value="{{ formitem.choose }}">
   </form>
-  {% if service %}
+  {% if service2 %}
    <br>
    <h4>Uprawnienia - roboczy</h4>
   {% else %}
