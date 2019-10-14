@@ -256,7 +256,7 @@ def changeuser(request, user_id):
      'service': service,
      'setter': myquarter,
      'setlist': quarterlist,
-     'user': pe_u_id,
+     'udata': pe_u_id,
      'formitem': pe_fi.baseattrs,
      }
     pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )

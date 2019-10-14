@@ -74,14 +74,13 @@ def showmydata(request):
             return redirect('userdatapersonal')
     else:
         pe_fi = PageElement(FormItems)
-        pe_fi0 = pe_fi.list_specific(0)
         peqc = PageElement(QuarterClassB)
         form = IniForm()
         quarter = userdata.__dict__['quarter']
         myquarter = peqc.list_specific(int(quarter)-1)
         quarterlist = peqc.listed
         context = {
-         'formitem': pe_fi0,
+         'formitem': pe_fi.baseattrs,
          'form': form,
          'setter': myquarter,
          'setlist': quarterlist,

@@ -39,13 +39,16 @@
       {{ form.quarter }}
     <input id="send" class="button" name="subbutton" type="submit" value="{{ formitem.choose }}">
   </form>
-  <h5>{{ formitem.or_if }}</h5>
-  <p><a href="{% url 'initial' %}" class="btn">{{ formitem.assign_again }}</a></p> <!-- Tutaj ma być button -->
-
+  {% if service %}
+   <br>
+   <h4>Uprawnienia - roboczy</h4>
+  {% else %}
+   <h5>{{ formitem.or_if }}</h5>
+   <p><a href="{% url 'initial' %}" class="btn">{{ formitem.assign_again }}</a></p> <!-- Tutaj ma być button -->
+  {% endif %}
 <!-- Tutaj jest opcja, żeby dodać userowi specjalne uprawnienia widoczna tylko dla ziomków z lvl 2+ -->
 <!-- Zmienić można tylko osobom do lvl 1 -->
-{% if user.role_council > 2 and userchanged.role_council < 2 %}
-<h4>Uprawnienia - roboczy</h4>
+{% if user.role_council > 2 and udata.role_council < 3 %}
   <form name="AccessForm" method="post">
         <!-- Checkbox pokazuje i zmienia stan uprawnień osoby do bycia w radzie z 0 na 1 i na odwrót -->
         <p>  Członek Rady</p>
@@ -54,7 +57,7 @@
       {% csrf_token %}
     <input id="send2" class="button" name="subbutton2" type="submit" value="{{ formitem.sendme }}">
   </form>
-{% elif  user.role_council > 2 and userchanged.role_council > 2 %}
+{% elif  user.role_council > 2 and udata.role_council > 2 %}
   <p>Nie można zmieniać uprawnień szefom rady i superużytkownikom! - roboczy </p>
 {% endif %}
 
