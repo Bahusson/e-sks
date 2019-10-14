@@ -217,8 +217,10 @@ def allusers(request):
             x = x+1
     usr = User.objects.order_by(view_filter[0], view_filter[1], view_filter[2])
     pe_fi = PageElement(FormItems)
+    peqc = PageElement(QuarterClassB)
     context = {
      'userdetails': usr,
+     'setter': peqc.listed,
      'view_filter': view_filter,
      'formitem': pe_fi.baseattrs,
      }
@@ -230,13 +232,34 @@ def allusers(request):
 
 # Pozwala członkom rady spojrzeć na profil innego usera.
 @council_only(login_url='logger')
-def changeuser(request):
-    
+def changeuser(request, user_id):
+    service = True
+    pe_u = PageElement(User)
+    pe_u_id = pe_u.by_id(
+     G404=G404, id=user_id)
+    userdata = User.objects.get(
+     id=pe_u_id.id)
+    if request.method == 'POST':
+        form = IniForm(request.POST, instance=userdata)
+        if form.is_valid():
+            form.save()
+            return redirect('allusers')
     pe_fi = PageElement(FormItems)
+    quarter = pe_u_id.__dict__['quarter']
+    peqc = PageElement(QuarterClassB)
+    if quarter == '':
+        myquarter = 'Nieprzydzielony!!!'
+    else:
+        myquarter = peqc.list_specific(int(quarter)-1)
+    quarterlist = peqc.listed
     context = {
+     'service': service,
+     'setter': myquarter,
+     'setlist': quarterlist,
+     'user': pe_u_id,
      'formitem': pe_fi.baseattrs,
      }
     pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
     context_lazy = pl.lazy_context(skins=S, context=context)
-    template = 'panels/council/allusers.html'
+    template = 'panels/user/mydata.html'
     return render(request, template, context_lazy)

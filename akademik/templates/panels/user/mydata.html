@@ -16,7 +16,11 @@
 {% endblock aside %}
 
 {% block menu %}
- {% include 'menus/user_menus.html' %} <!-- Menu z opcjami użytkownika -->
+{% if service %}
+ {% include 'menus/council_menus.html' %} <!-- Menu z opcjami użytkownika -->
+{% else %}
+ {% include 'menus/user_menus.html' %}
+{% endif %}
 {% endblock menu %}
 
 {% block body %}
