@@ -17,9 +17,12 @@
             <a href="{% url 'allapplied' %}">{{ link.3 }}</a><!--Lista Wniosków-->
             <!-- Tylko dla Szefa Rady -->
             {% if user.role_council > 2 %}
-  <div class="brand">{{ menu.1 }}</div>
+  <div class="brand">{{ menu.2 }}</div>
           <li>
             <a href="{% url 'makemeparty' %}">{{ link.4 }}</a><!--Stwórz Akcję Kwaterunkową-->
+          </li>
+          <li>
+            <a href="#">{{ link.5 }}</a><!--Wszyscy Użytkownicy-->
           </li>
           {% endif %}
         </ul>

@@ -203,3 +203,33 @@ def allapplied(request):
     context_lazy = pl.lazy_context(skins=S, context=context)
     template = 'panels/council/allapplied.html'
     return render(request, template, context_lazy)
+
+
+# Pokazuje zbiorczo wejście na profile wszystkich użytkowników. Sortowalne.
+@council_only(login_url='staffpanel_c', power_level=2)  # Tylko Przewodniczący
+def allusers(request):
+    view_filter = ["-timeapplied", "owner__last_name", "status"]
+    if 'sort' in request.POST:
+        x = 0
+        while x < 3:
+            view_filter[x] = str(request.POST.get('view_filter'+str(x)))
+            x = x+1
+    apf = Apf.objects.order_by(view_filter[0], view_filter[1], view_filter[2])
+    peqc = PageElement(QuarterClassB)
+    aps = PageElement(Aps)
+    ifr = PageElement(Ifr)
+    sh = PageElement(Sh)
+    pe_fi = PageElement(FormItems)
+    context = {
+     'applied': apf,
+     'view_filter': view_filter,
+     'setter': peqc.listed,
+     'appstatus': aps.listed,
+     'roomchange': ifr.listed,
+     'hotelselector': sh.listed,
+     'formitem': pe_fi.baseattrs,
+     }
+    pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
+    context_lazy = pl.lazy_context(skins=S, context=context)
+    template = 'panels/council/allusers.html'
+    return render(request, template, context_lazy)
