@@ -24,7 +24,7 @@ from rekruter.models import SpecialCase as Scs
 from esks.special.decorators import council_only
 from esks.special.snippets import menu_switcher
 from rekruter.models import User, FormItems, QuarterClassB
-from rekruter.forms import PartyForm, IniForm
+from rekruter.forms import PartyForm, IniForm, PowerForm
 import datetime
 import pytz
 
@@ -240,9 +240,15 @@ def changeuser(request, user_id):
         form = IniForm(request.POST, instance=userdata)
         if form.is_valid():
             form.save()
-            return redirect('allusers')
+            return redirect('changeuser', user_id)
+    elif 'power' in request.POST:
+        form2 = PowerForm(request.POST, instance=userdata)
+        if form2.is_valid():
+            form2.save(role)
+            return redirect('changeuser', user_id)
     else:
         form = IniForm()
+        form2 = PowerForm()
         pe_fi = PageElement(FormItems)
         quarter = userdata.__dict__['quarter']
         peqc = PageElement(QuarterClassB)
@@ -253,6 +259,7 @@ def changeuser(request, user_id):
         quarterlist = peqc.listed
         context = {
          'form': form,
+         'form2': form2,
          'service2': service,
          'setter': myquarter,
          'setlist': quarterlist,

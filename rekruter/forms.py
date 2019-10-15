@@ -65,6 +65,7 @@ class ExtendedCreationForm(UserCreationForm):
         return user
 
 
+# Zmienia akcję kwaterunkową.
 class IniForm(forms.ModelForm):
     quarter = forms.CharField(widget=forms.HiddenInput())
 
@@ -75,6 +76,24 @@ class IniForm(forms.ModelForm):
     def save(self, commit=True):
         user = super(IniForm, self).save(commit=False)
         user.quarter = self.cleaned_data["quarter"]
+        if commit:
+            user.save()
+        return user
+
+
+# Zmienia podstawowe uprawnienia dla rady studentów.
+class PowerForm(forms.ModelForm):
+    role_council = forms.BooleanField(required=False)
+    is_translator = forms.BooleanField(required=False)
+
+    class Meta:
+        model = User
+        fields = ('is_translator', )
+
+    def save(self, role, commit=True):
+        user = super(PowerForm, self).save(commit=False)
+        user.is_translator = self.cleaned_data["is_translator"]
+        user.role_council = role
         if commit:
             user.save()
         return user
