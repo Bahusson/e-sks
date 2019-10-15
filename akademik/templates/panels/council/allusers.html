@@ -1,0 +1,82 @@
+<!-- Widok pokazuje zbiorczo wszystkie wnioski o akademik -->
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load xfilters %}
+
+{% block title %}
+<title>Wnioski o akademik - roboczy</title>
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+{% block css2 %}
+{% endblock %}
+
+<!--Zwraca oryginalną kompozycję menu z bazy. Potem podstawiasz zmienne,-->
+{% block aside %}
+ {{ block.super }}
+{% endblock aside %}
+
+{% block menu %}
+  {% include 'menus/council_menus.html' %} <!-- Menu z opcjami rady -->
+{% endblock menu %}
+
+{% block body %}
+   <!-- Tytuł W nagłówku -->
+   <h2>Wyszukaj i sortuj Użytkowników - roboczy</h2>
+   <p>
+
+   <!-- Pierwszy rząd to przyciski sortowania ascendanten lob descendantem -->
+   <form name="AppViewSwitcher" method="post">
+     {% csrf_token %}
+
+    {% for item in "0"|rjust:"3" %}
+       <select id="app_view{{ forloop.counter0 }}">
+          {% with forloop.counter0 as x %}
+            <option value ="-first_name" {% if view_filter|lookupint:x == "-first_name" %} selected="selected" {% endif %} >Imię malejąco</option>
+            <option value ="first_name" {% if view_filter|lookupint:x == "first_name" %} selected="selected" {% endif %} >Imię rosnąco</option>
+            <option value ="-last_name" {% if view_filter|lookupint:x == "-last_name" %} selected="selected" {% endif %} >Nazwisko malejąco</option>
+            <option value ="last_name" {% if view_filter|lookupint:x == "last_name" %} selected="selected" {% endif %} >Nazwisko rosnąco</option>
+            <option value ="-quarter" {% if view_filter|lookupint:x == "-quarter" %} selected="selected" {% endif %} >Akcja Kwaterunkowa malejąco</option>
+            <option value ="quarter" {% if view_filter|lookupint:x == "quarter" %} selected="selected" {% endif %} >Akcja Kwaterunkowa rosnąco</option>
+         {% endwith %}
+       </select>
+       <input type="hidden" name="view_filter{{ forloop.counter0 }}" id="view_filter{{ forloop.counter0 }}">
+    {% endfor %}
+    <input id="send" class="button" name="sort" type="submit" value="Sortuj - roboczy">
+   </form>
+   </p>
+
+<!-- Tutaj wyświetlają się rzędami wszystkie rzędy posortowane -->
+
+{% for userdetail in userdetails.all %}
+
+ <p>{{ userdetail.date_joined }}
+    - <a href="{% url 'changeuser' userdetail.id %}">{{ userdetail.get_full_name }}</a> -
+
+  {% if userdetail.gender == 0 %}
+        {{ formitem.other }}
+  {% elif userdetail.gender == 1 %}
+        {{ formitem.male }}
+  {% elif userdetail.gender == 2 %}
+        {{ formitem.female }}
+  {% endif %}
+
+  {{ userdetail.citizenship }} -
+  {% if userdetail.quarter %}
+    {{ setter|actionint:userdetail.quarter }}
+  {% else %}
+    Nieprzydzielony - roboczy
+  {% endif %}
+  </p>
+{% endfor %}
+
+
+{% endblock body %}
+
+
+{% block scripts %}
+ <script src="{% static "applicationchange.js" %}"></script>
+{% endblock %}
+{% block scripts2 %}
+{% endblock %}
