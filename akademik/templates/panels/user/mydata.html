@@ -51,11 +51,13 @@
 {% if user.role_council > 2 and udata.role_council < 3 %}
   <form name="AccessForm" method="post">
         <!-- Checkbox pokazuje i zmienia stan uprawnień osoby do bycia w radzie z 0 na 1 i na odwrót -->
+        {{ form2.role_council }}
         <p>  Członek Rady</p>
         <!-- Checkbox pokazuje i zmienia stan uprawnień osoby do bycia tłumaczem z 0 na 1 i na odwrót -->
+        {{ form2.is_translator }}
         <p>  Tłumacz</p>
       {% csrf_token %}
-    <input id="send2" class="button" name="subbutton2" type="submit" value="{{ formitem.sendme }}">
+    <input id="send2" class="button" name="power" type="submit" value="{{ formitem.sendme }}">
   </form>
 {% elif  user.role_council > 2 and udata.role_council > 2 %}
   <p>Nie można zmieniać uprawnień szefom rady i superużytkownikom! - roboczy </p>

@@ -236,6 +236,8 @@ def changeuser(request, user_id):
     service = True
     userdata = User.objects.get(
      id=user_id)
+    roledict = {1: False, 2: True, 3: True, 4: True}
+    dictrole = {False: 1, True: 2}
     if 'quarter' in request.POST:
         form = IniForm(request.POST, instance=userdata)
         if form.is_valid():
@@ -244,11 +246,14 @@ def changeuser(request, user_id):
     elif 'power' in request.POST:
         form2 = PowerForm(request.POST, instance=userdata)
         if form2.is_valid():
-            form2.save(role)
+            key = request.post['role_council']
+            form2.save(dictrole[key])
             return redirect('changeuser', user_id)
     else:
         form = IniForm()
-        form2 = PowerForm()
+        key2 = userdata.role_council
+        form2 = PowerForm(
+         instance=userdata, initial={'role_council': roledict[key2]})
         pe_fi = PageElement(FormItems)
         quarter = userdata.__dict__['quarter']
         peqc = PageElement(QuarterClassB)
