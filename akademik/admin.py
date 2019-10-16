@@ -5,7 +5,8 @@ from .models import PortalBaseItem
 from .models import HotelMenuItem, CouncilMenuItem, TranslatorMenuItem
 from .models import HotelLinkItem, CouncilLinkItem, TranslatorLinkItem
 from .models import UserMenuItem, UserLinkItem, HousingParty
-from .models import HousingPartyItems
+from .models import HousingPartyItems, ApplicationListItems
+from .models import UserListItems, AdminTextTools
 
 
 admin.site.register(PortalBaseItem)
@@ -19,3 +20,6 @@ admin.site.register(TranslatorLinkItem)
 admin.site.register(UserLinkItem)
 admin.site.register(HousingParty)
 admin.site.register(HousingPartyItems)
+admin.site.register(ApplicationListItems)
+admin.site.register(UserListItems)
+admin.site.register(AdminTextTools)
