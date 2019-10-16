@@ -269,6 +269,7 @@ def changeuser(request, user_id):
         else:
             myquarter = peqc.list_specific(int(quarter)-1)
         quarterlist = peqc.listed
+        att = PageElement(Att)
         context = {
          'form': form,
          'form2': form2,
@@ -277,6 +278,7 @@ def changeuser(request, user_id):
          'setlist': quarterlist,
          'udata': userdata,
          'formitem': pe_fi.baseattrs,
+         'attools': att.baseattrs,
          }
         pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
         context_lazy = pl.lazy_context(skins=S, context=context)

@@ -104,7 +104,9 @@ translator.register(UserListItems, UserListItemsTranslate)
 
 
 class AdminTextToolsTranslate(TranslationOptions):
-    fields = ('sortme', 'ascending', 'descending', )
+    fields = (
+     'sortme', 'ascending', 'descending', 'non_assigned', 'council_member',
+     'is_translator', 'change_forbidden', 'mypermissions')
 
 
 translator.register(AdminTextTools, AdminTextToolsTranslate)

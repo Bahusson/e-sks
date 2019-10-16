@@ -200,3 +200,8 @@ class AdminTextTools(models.Model):
     sortme = models.CharField(max_length=200)
     ascending = models.CharField(max_length=200)
     descending = models.CharField(max_length=200)
+    non_assigned = models.CharField(max_length=200)
+    change_forbidden = models.CharField(max_length=200)
+    council_member = models.CharField(max_length=200)
+    is_translator = models.CharField(max_length=200)
+    mypermissions = models.CharField(max_length=200)

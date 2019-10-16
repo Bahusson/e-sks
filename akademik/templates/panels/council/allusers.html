@@ -64,7 +64,7 @@
   {% if userdetail.quarter %}
     {{ setter|actionint:userdetail.quarter }}
   {% else %}
-    Nieprzydzielony - roboczy
+    {{ attools.non_assigned }}
   {% endif %}
   </p>
 {% endfor %}
