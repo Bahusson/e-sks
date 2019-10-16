@@ -166,3 +166,42 @@ class HousingPartyItems(models.Model):
     userinfo = models.CharField(blank=True, max_length=250)
     housing_party = models.CharField(blank=True, max_length=200)
     change_and_apply = models.CharField(blank=True, max_length=200)
+
+
+# Klasa tłumaczeniowa dla elementów rozwijanego menu sortowania wniosków.
+class ApplicationListItems(models.Model):
+    realname = models.CharField(max_length=200)
+    basename = models.CharField(max_length=200)
+    position = models.IntegerField()
+
+    def __str__(self):
+        return self.realname
+
+    class Meta:
+        ordering = ['position']
+
+
+# Klasa tłumaczeniowa dla elementów rozwijanego menu sortowania uzytkowników.
+class UserListItems(models.Model):
+    realname = models.CharField(max_length=200)
+    basename = models.CharField(max_length=200)
+    position = models.IntegerField()
+
+    def __str__(self):
+        return self.realname
+
+    class Meta:
+        ordering = ['position']
+
+
+# Klasa tłumaczeniowa dla elementów strony, które będą widoczne
+# tylko w panelach administracyjnych. Tylko charfields.
+class AdminTextTools(models.Model):
+    sortme = models.CharField(max_length=200)
+    ascending = models.CharField(max_length=200)
+    descending = models.CharField(max_length=200)
+    non_assigned = models.CharField(max_length=200)
+    change_forbidden = models.CharField(max_length=200)
+    council_member = models.CharField(max_length=200)
+    is_translator = models.CharField(max_length=200)
+    mypermissions = models.CharField(max_length=200)

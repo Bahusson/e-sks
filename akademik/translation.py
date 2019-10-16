@@ -3,6 +3,7 @@ from .models import PortalBaseItem, HousingPartyItems
 from .models import HotelMenuItem, CouncilMenuItem, TranslatorMenuItem
 from .models import HotelLinkItem, CouncilLinkItem, TranslatorLinkItem
 from .models import UserMenuItem, UserLinkItem, HousingParty
+from .models import ApplicationListItems, UserListItems, AdminTextTools
 
 
 # Zmiana kolejności wynika z tego, żeby łatwiej się kopiowało między klasami.
@@ -86,3 +87,26 @@ class HousingPartyItemsTranslate(TranslationOptions):
 
 
 translator.register(HousingPartyItems, HousingPartyItemsTranslate)
+
+
+class ApplicationListItemsTranslate(TranslationOptions):
+    fields = ('realname', )
+
+
+translator.register(ApplicationListItems, ApplicationListItemsTranslate)
+
+
+class UserListItemsTranslate(TranslationOptions):
+    fields = ('realname', )
+
+
+translator.register(UserListItems, UserListItemsTranslate)
+
+
+class AdminTextToolsTranslate(TranslationOptions):
+    fields = (
+     'sortme', 'ascending', 'descending', 'non_assigned', 'council_member',
+     'is_translator', 'change_forbidden', 'mypermissions')
+
+
+translator.register(AdminTextTools, AdminTextToolsTranslate)
