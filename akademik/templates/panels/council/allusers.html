@@ -25,20 +25,19 @@
    <!-- Tytuł W nagłówku -->
    <h2>{{ link.5 }}</h2>
    <p>
-
    <!-- Pierwszy rząd to przyciski sortowania ascendanten lob descendantem -->
    <form name="AppViewSwitcher" method="post">
      {% csrf_token %}
 
     {% for item in "0"|rjust:"3" %}
        <select id="app_view{{ forloop.counter0 }}">
-          {% with forloop.counter0 as x %}
-            {% for userentry in userlist %}
-              <option value ="-{{ userentry.basename }}" {% if view_filter|lookupint:x == "-{{ userentry.basename }}" %} selected="selected" {% endif %} >{{ userentry.realname }} {{ attools.descending }}</option>
-              <option value ="{{ userentry.basename }}" {% if view_filter|lookupint:x == "{{ userentry.basename }}" %} selected="selected" {% endif %} >{{ userentry.realname }} {{ attools.ascending }}</option>
-            {% endfor %}
-         {% endwith %}
-       </select>
+           {% with forloop.counter0 as x %}
+              {% for userentry in userlist %}
+                <option value ="-{{ userentry.basename }}" {% if view_filter|lookup:x == userentry.basename %} selected="selected" {% endif %} >{{ userentry.realname }} {{ attools.descending }}</option>
+                <option value ="{{ userentry.basename }}" {% if view_filter|lookup:x == userentry.basename %} selected="selected" {% endif %} >{{ userentry.realname }} {{ attools.ascending }}</option>
+              {% endfor %}
+           {% endwith %}
+         </select>
        <input type="hidden" name="view_filter{{ forloop.counter0 }}" id="view_filter{{ forloop.counter0 }}">
     {% endfor %}
     <input id="send" class="button" name="sort" type="submit" value="Sortuj - roboczy">

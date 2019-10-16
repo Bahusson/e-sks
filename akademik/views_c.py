@@ -193,6 +193,8 @@ def allapplied(request):
     ifr = PageElement(Ifr)
     sh = PageElement(Sh)
     pe_fi = PageElement(FormItems)
+    ali = PageElement(Ali)
+    att = PageElement(Att)
     context = {
      'applied': apf,
      'view_filter': view_filter,
@@ -201,6 +203,8 @@ def allapplied(request):
      'roomchange': ifr.listed,
      'hotelselector': sh.listed,
      'formitem': pe_fi.baseattrs,
+     'applist': ali.listed,
+     'attools': att.baseattrs,
      }
     pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
     context_lazy = pl.lazy_context(skins=S, context=context)
