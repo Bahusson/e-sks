@@ -12,4 +12,7 @@ urlpatterns = [
     path('akcje_kwaterunkowe', views_c.allparties, name='allparties'),
     path('edytuj_akcje', views_c.changemeparty, name='changemeparty'),
     path('wnioski_o_akademik', views_c.allapplied, name='allapplied'),
+    path('szukaj_uzytkownikow', views_c.allusers, name='allusers'),
+    path(
+     'edycja_uzytkownika/<int:user_id>', views_c.changeuser, name='changeuser'),
 ]

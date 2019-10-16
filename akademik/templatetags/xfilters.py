@@ -20,9 +20,7 @@ def lookup(d, key):
 def lookupint(d, key):
     return d[int(key)]
 
-
-@register.filter(name='intvar')
-def intvar(l, var):
-    attribute = getattr(var, 1)
-    integerated = int(attribute)
-    return integerated
+# Wyszukuje po liście bezwzględny integer
+@register.filter(name='actionint')
+def actionint(d, key):
+    return d[int(key)-1]
