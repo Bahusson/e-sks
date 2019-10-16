@@ -34,7 +34,7 @@
        <select id="app_view{{ forloop.counter0 }}">
         {% with forloop.counter0 as x %}
            {% for appentry in applist %}
-            <option value ="-{{ appentry.basename }}" {% if view_filter|lookupint:x == appentry.basename %} selected="selected" {% endif %} >{{ appentry.realname }} {{ attools.descending }}</option>
+            <option value ="-{{ appentry.basename }}" {% if view_filter|lookupint:x == appentry.basename|negator %} selected="selected" {% endif %} >{{ appentry.realname }} {{ attools.descending }}</option>
             <option value ="{{ appentry.basename }}" {% if view_filter|lookupint:x == appentry.basename %} selected="selected" {% endif %} >{{ appentry.realname }} {{ attools.ascending }}</option>
            {% endfor %}
         {% endwith %}

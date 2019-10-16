@@ -20,7 +20,14 @@ def lookup(d, key):
 def lookupint(d, key):
     return d[int(key)]
 
+
 # Wyszukuje po liście bezwzględny integer
 @register.filter(name='actionint')
 def actionint(d, key):
     return d[int(key)-1]
+
+
+@register.filter(name='negator')
+def negator(var):
+    neg = '-' + str(var)
+    return neg

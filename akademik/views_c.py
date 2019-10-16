@@ -216,7 +216,7 @@ def allapplied(request):
 # Docelowo ma mieć wyszukiwanie czasu rzeczywistego. WIP. Niepodłączone...
 @council_only(login_url='staffpanel_c', power_level=2)  # Tylko Przewodniczący
 def allusers(request):
-    view_filter = ["last_name", "first_name", "quarter"]
+    view_filter = ["-last_name", "first_name", "quarter"]
     if 'sort' in request.POST:
         x = 0
         while x < 3:

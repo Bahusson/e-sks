@@ -33,8 +33,8 @@
        <select id="app_view{{ forloop.counter0 }}">
            {% with forloop.counter0 as x %}
               {% for userentry in userlist %}
-                <option value ="-{{ userentry.basename }}" {% if view_filter|lookup:x == userentry.basename %} selected="selected" {% endif %} >{{ userentry.realname }} {{ attools.descending }}</option>
-                <option value ="{{ userentry.basename }}" {% if view_filter|lookup:x == userentry.basename %} selected="selected" {% endif %} >{{ userentry.realname }} {{ attools.ascending }}</option>
+                <option value ="-{{ userentry.basename }}" {% if view_filter|lookupint:x == userentry.basename|negator %} selected="selected" {% endif %} >{{ userentry.realname }} {{ attools.descending }}</option>
+                <option value ="{{ userentry.basename }}" {% if view_filter|lookupint:x == userentry.basename %} selected="selected" {% endif %} >{{ userentry.realname }} {{ attools.ascending }}</option>
               {% endfor %}
            {% endwith %}
          </select>
