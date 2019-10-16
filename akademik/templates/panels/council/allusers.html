@@ -33,12 +33,10 @@
     {% for item in "0"|rjust:"3" %}
        <select id="app_view{{ forloop.counter0 }}">
           {% with forloop.counter0 as x %}
-            <option value ="-first_name" {% if view_filter|lookupint:x == "-first_name" %} selected="selected" {% endif %} >Imię malejąco</option>
-            <option value ="first_name" {% if view_filter|lookupint:x == "first_name" %} selected="selected" {% endif %} >Imię rosnąco</option>
-            <option value ="-last_name" {% if view_filter|lookupint:x == "-last_name" %} selected="selected" {% endif %} >Nazwisko malejąco</option>
-            <option value ="last_name" {% if view_filter|lookupint:x == "last_name" %} selected="selected" {% endif %} >Nazwisko rosnąco</option>
-            <option value ="-quarter" {% if view_filter|lookupint:x == "-quarter" %} selected="selected" {% endif %} >Akcja Kwaterunkowa malejąco</option>
-            <option value ="quarter" {% if view_filter|lookupint:x == "quarter" %} selected="selected" {% endif %} >Akcja Kwaterunkowa rosnąco</option>
+            {% for userentry in userlist %}
+              <option value ="-{{ userentry.basename }}" {% if view_filter|lookupint:x == "-{{ userentry.basename }}" %} selected="selected" {% endif %} >{{ userentry.realname }} {{ attools.descending }}</option>
+              <option value ="{{ userentry.basename }}" {% if view_filter|lookupint:x == "{{ userentry.basename }}" %} selected="selected" {% endif %} >{{ userentry.realname }} {{ attools.ascending }}</option>
+            {% endfor %}
          {% endwith %}
        </select>
        <input type="hidden" name="view_filter{{ forloop.counter0 }}" id="view_filter{{ forloop.counter0 }}">

@@ -12,6 +12,9 @@ from .models import UserMenuItem as Umi
 from .models import UserLinkItem as Uli
 from .models import HousingParty as HParty
 from .models import HousingPartyItems as Hpi
+from .models import ApplicationListItems as Ali
+from .models import UserListItems as Usli
+from .models import AdminTextTools as Att
 from rekruter.models import ApplicationFormFields as Apf
 from rekruter.models import ApplicationStatus as Aps
 from rekruter.models import StudentHouse as Sh
@@ -218,11 +221,15 @@ def allusers(request):
     usr = User.objects.order_by(view_filter[0], view_filter[1], view_filter[2])
     pe_fi = PageElement(FormItems)
     peqc = PageElement(QuarterClassB)
+    usli = PageElement(Usli)
+    att = PageElement(Att)
     context = {
      'userdetails': usr,
      'setter': peqc.listed,
      'view_filter': view_filter,
      'formitem': pe_fi.baseattrs,
+     'userlist': usli.listed,
+     'attools': att.baseattrs,
      }
     pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
     context_lazy = pl.lazy_context(skins=S, context=context)
