@@ -24,7 +24,8 @@
     <link href="{% static 'assets/css/forms.css' %}" rel="stylesheet">
     <link href="{% static 'assets/css/maps.css' %}" rel="stylesheet">
     <link href="{% static 'assets/css/side.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/fontawesome/css/all.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/blog.css' %}" rel="stylesheet">
+     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.css">
     {% block css %}
     {% endblock %}
@@ -58,7 +59,7 @@
           {% if user.is_authenticated %}
             <li class="nav-item active"><a class="nav-link" href="{% url 'userpanel' %}">{{ items.panel_user }}</a></li>
           {% endif %}
-    <!-- Koniec warunkowania dostępu do panelu użytkownika lub admina -->       
+    <!-- Koniec warunkowania dostępu do panelu użytkownika lub admina -->
     <li class="nav-item active"><a class="nav-link" href="">{{ items.akamap }}</a></li>
 
         <button class="btn btn-light my-2 my-sm-0 ">
@@ -137,6 +138,7 @@
                 <div class="col-lg-5 col-xs-12"></div>
                 <!-- koniec pusty DIV -->
                 <div class="col-lg-3 col-xs-12 head-foot">
+                  <br>
                     <p class="head-foot"><a href="{% url 'pagemap' %}">{{ items.pagemap }}</a></p>
                     <p class="head-foot"><a href="">{{ items.akamap_c }}</a></p>
                     <p class="head-foot"><a href="{% url 'home' %}">{{ items.mainpage_c }}</a></p>
