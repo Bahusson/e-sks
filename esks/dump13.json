@@ -250,12 +250,63 @@
   }
 },
 {
+  "model": "akademik.councillinkitem",
+  "pk": 7,
+  "fields": {
+    "title": "Aktualno\u015bci",
+    "title_pl": "Aktualno\u015bci",
+    "title_en": "News",
+    "title_de": null,
+    "title_fr": null,
+    "title_ru": null,
+    "title_uk": null,
+    "title_es": null,
+    "title_hi": null,
+    "menu": 1,
+    "position": 4
+  }
+},
+{
+  "model": "akademik.councillinkitem",
+  "pk": 8,
+  "fields": {
+    "title": "Informacje",
+    "title_pl": "Informacje",
+    "title_en": "Information",
+    "title_de": null,
+    "title_fr": null,
+    "title_ru": null,
+    "title_uk": null,
+    "title_es": null,
+    "title_hi": null,
+    "menu": 1,
+    "position": 5
+  }
+},
+{
+  "model": "akademik.councillinkitem",
+  "pk": 9,
+  "fields": {
+    "title": "Pliki",
+    "title_pl": "Pliki",
+    "title_en": "Files",
+    "title_de": null,
+    "title_fr": null,
+    "title_ru": null,
+    "title_uk": null,
+    "title_es": null,
+    "title_hi": null,
+    "menu": 1,
+    "position": 6
+  }
+},
+{
   "model": "akademik.usermenuitem",
   "pk": 1,
   "fields": {
-    "title": "Menu",
-    "title_pl": "Menu",
-    "title_en": "Menu",
+    "title": "Panel U\u017cytkownika",
+    "title_pl": "Panel U\u017cytkownika",
+    "title_en": "Userpanel",
     "title_de": null,
     "title_fr": null,
     "title_ru": null,
@@ -830,7 +881,7 @@
   "model": "rekruter.user",
   "fields": {
     "password": "pbkdf2_sha256$150000$Lpb5Pxw8vZUz$zxVU6NtCWsIANr2JQ1JGOqrbOCoo5trDqE712KnECWY=",
-    "last_login": "2019-10-16T09:04:45.020Z",
+    "last_login": "2019-10-18T07:31:16.267Z",
     "is_superuser": true,
     "email": "j.kozdrowicz@apdeveloper.com.pl",
     "first_name": "Jakub",
@@ -1078,6 +1129,38 @@
     "postcode": "21-932",
     "city": "",
     "album": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "rekruter.user",
+  "fields": {
+    "password": "pbkdf2_sha256$150000$biHLXUZAMxAf$UkFhvY//R8tx7ca6XSv94NnnpebijDqgcn2ZEXpZc14=",
+    "last_login": "2019-10-17T21:46:39.317Z",
+    "is_superuser": false,
+    "email": "cadmin@pw.pl",
+    "first_name": "Admin",
+    "last_name": "Politechniczny",
+    "date_joined": "2019-10-17T21:46:39.251Z",
+    "is_staff": false,
+    "is_active": true,
+    "is_translator": false,
+    "is_hotel": false,
+    "role_council": null,
+    "avatar": "",
+    "quarter": "",
+    "gender": 0,
+    "citizenship": "Polinarodowa",
+    "dowod": "asa121334s",
+    "passport": "",
+    "telephone": "235667235",
+    "street": "Warszawska",
+    "building_no": "12",
+    "local_no": "",
+    "postcode": "54-434",
+    "city": "214634",
+    "album": "214634",
     "groups": [],
     "user_permissions": []
   }
