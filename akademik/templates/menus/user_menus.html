@@ -1,13 +1,15 @@
+{% load xfilters %}
+
 <div class="nav-side-menu">
-  <div class="brand"><!--{{ menu.0 }}--> PANEL UŻYTKOWNIKA</div>
+  <div class="brand">{{ menu|setmenuadder }}</div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
       <div class="menu-list">
         <ul id="menu-content" class="menu-content collapse out">
           <li>
-            <a href="#">{{ link.0 }}</a><!--Natalia-->
+            <a href="#">{{ link|setlinkadder }}</a><!--Natalia-->
           </li>
           <li  data-toggle="collapse" data-target="#products" class="collapsed active">
-            <a href="#"> {{ link.1 }} </a> <!--Poczta-->
+            <a href="#"> {{ link|linkadder }} </a> <!--Poczta-->
           </li>
                 <ul class="sub-menu collapse" id="products">
                     <li><a href="#">AAA</a></li>
@@ -16,16 +18,16 @@
                     <li><a href="#">DDD</a></li>
                 </ul>
           <li>
-            <a href="{% url 'dsapply' %}">{{ link.2 }}</a> <!--Wniosek o DS-->
+            <a href="{% url 'dsapply' %}">{{ link|linkadder }}</a> <!--Wniosek o DS-->
           </li>
           <li>
-            <a href="">{{ link.3 }}</a><!--Szczegóły pokoju-->
+            <a href="">{{ link|linkadder }}</a><!--Szczegóły pokoju-->
           </li>
-          <li><a href="">{{ link.4 }}</a><!--Preferencje pokoju0-->
+          <li><a href="">{{ link|linkadder }}</a><!--Preferencje pokoju0-->
           </li>
-          <li><a href="">{{ link.5 }}</a><!--Lista Wniosków-->
+          <li><a href="">{{ link|linkadder }}</a><!--Lista Wniosków-->
           </li>
-          <li><a href="{% url 'userdatapersonal' %}">{{ link.6 }}</a><!--Profil Użytkownika-->
+          <li><a href="{% url 'userdatapersonal' %}">{{ link|linkadder }}</a><!--Profil Użytkownika-->
           </li>
         </ul>
   </div>
