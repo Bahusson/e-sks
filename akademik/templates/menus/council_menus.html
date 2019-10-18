@@ -1,32 +1,39 @@
+{% load xfilters %}
+
 <div class="nav-side-menu">
-  <div class="brand">{{ menu.0 }}</div>
+  <div class="brand">{{ menu|setmenuadder }}</div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
       <div class="menu-list">
         <ul id="menu-content" class="menu-content collapse out">
           <li>
-            <a href="#">{{ link.0 }}</a><!--Poczta-->
-          </li>
-          <li  data-toggle="collapse" data-target="#products" class="collapsed active">
-            <a href="{% url 'allparties' %}"> {{ link.1 }} </a><!--Akcje Kwaterunkowe-->
+            <a href="#">{{ link|setlinkadder }}</a><!--Poczta-->
           </li>
           <li>
-            <a href="{% url 'pagemap' %}">{{ link.2 }}</a><!--Zarządzaj stroną-->
+            <a href="{% url 'allparties' %}"> {{ link|linkadder }} </a><!--Akcje Kwaterunkowe-->
           </li>
-  <div class="brand">{{ menu.1 }}</div>
+          <li data-toggle="collapse" data-target="#products" class="collapsed active">
+            <a href="#">{{ link|linkadder }}</a><!--Zarządzaj stroną-->
+          </li>
+            <ul class="sub-menu collapse" id="products">
+                <li><a href="{% url 'allblogs' %}">{{ link|linkadder }}</a></li> <!-- Aktualności -->
+                <li><a href="{% url 'allinfos' %}">{{ link|linkadder }}</a></li> <!-- Informacje -->
+                <li><a href="{% url 'allfiles' %}">{{ link|linkadder }}</a></li> <!-- Pliki -->
+            </ul>
+  <div class="brand">{{ menu|menuadder }}</div>
           <li>
-            <a href="{% url 'allapplied' %}">{{ link.3 }}</a><!--Lista Wniosków-->
+            <a href="{% url 'allapplied' %}">{{ link|linkadder }}</a><!--Lista Wniosków-->
             <!-- Tylko dla Szefa Rady -->
             {% if user.role_council > 2 %}
-  <div class="brand">{{ menu.2 }}</div>
+          </li>
+  <div class="brand">{{ menu|menuadder }}</div>
           <li>
-            <a href="{% url 'makemeparty' %}">{{ link.4 }}</a><!--Stwórz Akcję Kwaterunkową-->
+            <a href="{% url 'makemeparty' %}">{{ link|linkadder }}</a><!--Stwórz Akcję Kwaterunkową-->
           </li>
           <li>
-            <a href="{% url 'allusers' %}">{{ link.5 }}</a><!--Wszyscy Użytkownicy-->
+            <a href="{% url 'allusers' %}">{{ link|linkadder }}</a><!--Wszyscy Użytkownicy-->
           </li>
           {% endif %}
         </ul>
-
-  </div>
+   </div>
 </div>
 <br>
