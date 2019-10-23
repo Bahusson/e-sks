@@ -86,9 +86,10 @@
     <div class="column">
         <div class="cardo">
             <p class="head-cardo">{{ items.docs }}</p>
-            {% for file in files %}
+            {% for file in files|slice:":3" %}
              <p class="head-foot"><a href="{{ file.file.url }}">{{ file.title }}</a></p>
             {% endfor %}
+            <p><a href="{% url 'allfiles' %}">{{ items.see_more }}...</a></p>
         </div>
     </div>
     <div class="column">
@@ -99,9 +100,10 @@
     <div class="column">
         <div class="cardo">
             <p class="head-cardo">{{ items.information }}</p>
-            {% for info in infos %}
+            {% for info in infos|slice:":3" %}
              <p class="head-foot"><a href="{% url 'info' info.id %}">{{ info.title }}</a></p>
             {% endfor %}
+            <p><a href="{% url 'allinfos' %}">{{ items.see_more }}...</a></p>
         </div>
     </div>
 </div>
