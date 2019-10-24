@@ -1,0 +1,38 @@
+.maintitle {
+  font: 'Ubuntu', sans-serif;
+  font-size: 14px;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-decoration-style: solid;
+  text-align: center;
+  background: rgba(255,146,10,1);
+  background: -moz-radial-gradient(center, ellipse cover, rgba(255,146,10,1) 0%, rgba(255,175,75,1) 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(255,146,10,1)), color-stop(100%, rgba(255,175,75,1)));
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(255,146,10,1) 0%, rgba(255,175,75,1) 100%);
+  background: -o-radial-gradient(center, ellipse cover, rgba(255,146,10,1) 0%, rgba(255,175,75,1) 100%);
+  background: -ms-radial-gradient(center, ellipse cover, rgba(255,146,10,1) 0%, rgba(255,175,75,1) 100%);
+  background: radial-gradient(ellipse at center, rgba(255,146,10,1) 0%, rgba(255,175,75,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff920a', endColorstr='#ffaf4b', GradientType=1 );
+  width:auto;
+
+}
+.wnioski {
+  font: 'Ubuntu', sans-serif;
+  font-size: 16px;
+  color: #ffffff;
+}
+.cardio2 {
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background: #333333;
+}
+
+.wnios {
+  border-left: 1px;
+  border-right: 1px;
+}
+.sort {
+  text-align: right;
+}

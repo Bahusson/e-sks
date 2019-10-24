@@ -23,15 +23,20 @@
 
 {% block body %}
    <!-- Tytuł W nagłówku -->
-   <h2>Wnioski o Akademik - roboczy</h2>
+   <p class="maintitle">WNIOSKI O AKADEMIK</p>
    <p>
 
    <!-- Pierwszy rząd to przyciski sortowania ascendanten lob descendantem -->
-   <form name="AppViewSwitcher" method="post">
+   <form name="AppViewSwitcher" method="post" class="form-inline" >
+
+
+
      {% csrf_token %}
 
     {% for item in "0"|rjust:"3" %}
-       <select id="app_view{{ forloop.counter0 }}">
+
+       <select id="app_view{{ forloop.counter0 }}" class="form-control form-control-sm form-inline">
+
           {% with forloop.counter0 as x %}
             <option value ="-timeapplied" {% if view_filter|lookupint:x == "-timeapplied" %} selected="selected" {% endif %} >Czas malejąco</option>
             <option value ="timeapplied" {% if view_filter|lookupint:x == "timeapplied" %} selected="selected" {% endif %} >Czas rosnąco</option>
@@ -50,18 +55,23 @@
             <option value ="-quarter" {% if view_filter|lookupint:x == "-quarter" %} selected="selected" {% endif %} >Akcja Kwaterunkowa malejąco</option>
             <option value ="quarter" {% if view_filter|lookupint:x == "quarter" %} selected="selected" {% endif %} >Akcja Kwaterunkowa rosnąco</option>
          {% endwith %}
-       </select>
-       <input type="hidden" name="view_filter{{ forloop.counter0 }}" id="view_filter{{ forloop.counter0 }}">
-    {% endfor %}
-    <input id="send" class="button" name="sort" type="submit" value="Sortuj - roboczy">
-   </form>
-   </p>
 
+       </select>
+
+       <input type="hidden" name="view_filter{{ forloop.counter0 }}" id="view_filter{{ forloop.counter0 }}" >
+    {% endfor %}
+
+   </form>
+   <div class="sort">
+     <button name="button" id="send" class="btn btn-dark btn-sm" name="sort" type="submit" value="SORTUJ">SORTUJ</button>
+
+   </div>
+ <br>
 <!-- Tutaj wyświetlają się rzędami wszystkie rzędy posortowane -->
 
 {% for apply in applied.all %}
-
- <p>{{ apply.timeapplied }} - {{ apply.owner.last_name }} - {{ apply.owner.first_name }} -
+<div class="cardio2">
+ <p class="wnioski">{{ apply.timeapplied }} - {{ apply.owner.last_name }} - {{ apply.owner.first_name }} -
 
   {% if apply.owner.gender == 0 %}
         {{ formitem.other }}
@@ -75,7 +85,7 @@
   {{ roomchange|action:apply.if_room_change }} -
   {{ appstatus|lookup:apply.status }} - {{ apply.owner.citizenship }} -
   {{ setter|action:apply.quarter }}</p>
-
+</div>
 {% endfor %}
 
 
