@@ -12,6 +12,9 @@ from .models import UserMenuItem as Umi
 from .models import UserLinkItem as Uli
 from .models import HousingParty as HParty
 from .models import HousingPartyItems as Hpi
+from .models import ApplicationListItems as Ali
+from .models import UserListItems as Usli
+from .models import AdminTextTools as Att
 from rekruter.models import ApplicationFormFields as Apf
 from rekruter.models import ApplicationStatus as Aps
 from rekruter.models import StudentHouse as Sh
@@ -190,6 +193,8 @@ def allapplied(request):
     ifr = PageElement(Ifr)
     sh = PageElement(Sh)
     pe_fi = PageElement(FormItems)
+    ali = PageElement(Ali)
+    att = PageElement(Att)
     context = {
      'applied': apf,
      'view_filter': view_filter,
@@ -198,6 +203,8 @@ def allapplied(request):
      'roomchange': ifr.listed,
      'hotelselector': sh.listed,
      'formitem': pe_fi.baseattrs,
+     'applist': ali.listed,
+     'attools': att.baseattrs,
      }
     pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
     context_lazy = pl.lazy_context(skins=S, context=context)
@@ -209,7 +216,7 @@ def allapplied(request):
 # Docelowo ma mieć wyszukiwanie czasu rzeczywistego. WIP. Niepodłączone...
 @council_only(login_url='staffpanel_c', power_level=2)  # Tylko Przewodniczący
 def allusers(request):
-    view_filter = ["last_name", "first_name", "quarter"]
+    view_filter = ["-last_name", "first_name", "quarter"]
     if 'sort' in request.POST:
         x = 0
         while x < 3:
@@ -218,11 +225,15 @@ def allusers(request):
     usr = User.objects.order_by(view_filter[0], view_filter[1], view_filter[2])
     pe_fi = PageElement(FormItems)
     peqc = PageElement(QuarterClassB)
+    usli = PageElement(Usli)
+    att = PageElement(Att)
     context = {
      'userdetails': usr,
      'setter': peqc.listed,
      'view_filter': view_filter,
      'formitem': pe_fi.baseattrs,
+     'userlist': usli.listed,
+     'attools': att.baseattrs,
      }
     pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
     context_lazy = pl.lazy_context(skins=S, context=context)
@@ -262,6 +273,7 @@ def changeuser(request, user_id):
         else:
             myquarter = peqc.list_specific(int(quarter)-1)
         quarterlist = peqc.listed
+        att = PageElement(Att)
         context = {
          'form': form,
          'form2': form2,
@@ -270,6 +282,7 @@ def changeuser(request, user_id):
          'setlist': quarterlist,
          'udata': userdata,
          'formitem': pe_fi.baseattrs,
+         'attools': att.baseattrs,
          }
         pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
         context_lazy = pl.lazy_context(skins=S, context=context)

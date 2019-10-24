@@ -57,7 +57,7 @@ class ExtendedCreationForm(UserCreationForm):
         user.building_no = self.cleaned_data["building_no"]
         user.local_no = self.cleaned_data["local_no"]
         user.postcode = self.cleaned_data["postcode"]
-        user.city = self.cleaned_dstateata["city"]
+        user.city = self.cleaned_data["city"]
         user.city = self.cleaned_data["album"]
 
         if commit:
