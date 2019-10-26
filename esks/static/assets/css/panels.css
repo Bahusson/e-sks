@@ -22,7 +22,7 @@
   font-size: 16px;
   color: #ffffff;
 }
-.cardio2 {
+.panelo {
   border-radius: 5px;
   margin-bottom: 10px;
   padding: 10px;
@@ -35,4 +35,16 @@
 }
 .sort {
   text-align: right;
+  margin-top: 5px;
+}
+.linkname {
+  font: 'Ubuntu', sans-serif;
+  font-size: 16px;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.formula {
+  text-align: center;
+  margin: 0 auto;
 }

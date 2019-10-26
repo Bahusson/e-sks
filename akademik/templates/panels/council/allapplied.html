@@ -4,7 +4,7 @@
 {% load xfilters %}
 
 {% block title %}
-<title>{{ link.3 }}</title>
+<title>Wnioski o akademik - roboczy</title>
 {% endblock %}
 
 {% block css %}
@@ -23,11 +23,7 @@
 
 {% block body %}
    <!-- Tytuł W nagłówku -->
-<<<<<<< HEAD
    <p class="maintitle">WNIOSKI O AKADEMIK</p>
-=======
-   <h2>{{ link.3 }}</h2>
->>>>>>> CSS-polygon
    <p>
 
    <!-- Pierwszy rząd to przyciski sortowania ascendanten lob descendantem -->
@@ -38,7 +34,6 @@
      {% csrf_token %}
 
     {% for item in "0"|rjust:"3" %}
-<<<<<<< HEAD
 
        <select id="app_view{{ forloop.counter0 }}" class="form-control form-control-sm form-inline">
 
@@ -61,24 +56,11 @@
             <option value ="quarter" {% if view_filter|lookupint:x == "quarter" %} selected="selected" {% endif %} >Akcja Kwaterunkowa rosnąco</option>
          {% endwith %}
 
-=======
-       <select id="app_view{{ forloop.counter0 }}">
-        {% with forloop.counter0 as x %}
-           {% for appentry in applist %}
-            <option value ="-{{ appentry.basename }}" {% if view_filter|lookupint:x == appentry.basename|negator %} selected="selected" {% endif %} >{{ appentry.realname }} {{ attools.descending }}</option>
-            <option value ="{{ appentry.basename }}" {% if view_filter|lookupint:x == appentry.basename %} selected="selected" {% endif %} >{{ appentry.realname }} {{ attools.ascending }}</option>
-           {% endfor %}
-        {% endwith %}
->>>>>>> CSS-polygon
        </select>
 
        <input type="hidden" name="view_filter{{ forloop.counter0 }}" id="view_filter{{ forloop.counter0 }}" >
     {% endfor %}
-<<<<<<< HEAD
 
-=======
-    <input id="send" class="button" name="sort" type="submit" value="{{ attools.sortme }}">
->>>>>>> CSS-polygon
    </form>
    <div class="sort">
      <button name="button" id="send" class="btn btn-dark btn-sm" name="sort" type="submit" value="SORTUJ">SORTUJ</button>
@@ -88,7 +70,7 @@
 <!-- Tutaj wyświetlają się rzędami wszystkie rzędy posortowane -->
 
 {% for apply in applied.all %}
-<div class="cardio2">
+<div class="panelo">
  <p class="wnioski">{{ apply.timeapplied }} - {{ apply.owner.last_name }} - {{ apply.owner.first_name }} -
 
   {% if apply.owner.gender == 0 %}

@@ -23,14 +23,14 @@
 
 {% block body %}
    <!-- Tytuł W nagłówku -->
-   <h2>{{ link.5 }}</h2>
+   <p class="maintitle">{{ link.5 }}</p>
    <p>
    <!-- Pierwszy rząd to przyciski sortowania ascendanten lob descendantem -->
-   <form name="AppViewSwitcher" method="post">
+   <form name="AppViewSwitcher" method="post" class="form-inline">
      {% csrf_token %}
 
     {% for item in "0"|rjust:"3" %}
-       <select id="app_view{{ forloop.counter0 }}">
+       <select id="app_view{{ forloop.counter0 }}" class="form-control form-control-sm form-inline formula">
            {% with forloop.counter0 as x %}
               {% for userentry in userlist %}
                 <option value ="-{{ userentry.basename }}" {% if view_filter|lookupint:x == userentry.basename|negator %} selected="selected" {% endif %} >{{ userentry.realname }} {{ attools.descending }}</option>
@@ -40,16 +40,18 @@
          </select>
        <input type="hidden" name="view_filter{{ forloop.counter0 }}" id="view_filter{{ forloop.counter0 }}">
     {% endfor %}
-    <input id="send" class="button" name="sort" type="submit" value="Sortuj - roboczy">
    </form>
+   <div class="sort butoneo">
+   <input id="send" class="btn btn-dark btn-sm" name="sort" type="submit" value="SORTUJ">
+   </div>
    </p>
 
 <!-- Tutaj wyświetlają się rzędami wszystkie rzędy posortowane -->
 
 {% for userdetail in userdetails.all %}
-
- <p>{{ userdetail.date_joined }}
-    - <a href="{% url 'changeuser' userdetail.id %}">{{ userdetail.get_full_name }}</a> -
+<div class="panelo">
+ <p class="wnioski">{{ userdetail.date_joined }}
+    - <a href="{% url 'changeuser' userdetail.id %}" class="linkname">{{ userdetail.get_full_name }}</a> -
 
   {% if userdetail.gender == 0 %}
         {{ formitem.other }}
@@ -66,6 +68,7 @@
     {{ attools.non_assigned }}
   {% endif %}
   </p>
+  </div>
 {% endfor %}
 
 
