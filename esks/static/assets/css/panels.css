@@ -1,6 +1,9 @@
 .maintitle {
   font: 'Ubuntu', sans-serif;
   font-size: 14px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-bottom: 0px;
   color: white;
   text-transform: uppercase;
   font-weight: bold;
@@ -21,6 +24,14 @@
   font: 'Ubuntu', sans-serif;
   font-size: 16px;
   color: #ffffff;
+}
+.allbutton {
+  font: 'Ubuntu', sans-serif;
+  font-size: 16px;
+  margin-left: 5px;
+  text-transform: uppercase;
+  color: #ffffff;
+  border-radius: 4px;
 }
 .upraw {
   font: 'Ubuntu', sans-serif;
@@ -104,4 +115,17 @@
   text-align: justify;
   color: #ffffff;
 }
+}
+.allparty {
+  background: #c1c1c1;
+  color: #ffffff;
+  padding-bottom: 20px;
+  margin-top: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.alltext {
+  color: black;
 }
