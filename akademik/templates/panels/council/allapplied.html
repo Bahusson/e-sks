@@ -27,7 +27,7 @@
    <p>
 
    <!-- Pierwszy rząd to przyciski sortowania ascendanten lob descendantem -->
-   <form name="AppViewSwitcher" method="post" class="form-inline" >
+   <form name="AppViewSwitcher" method="post" class="form-inline formula" >
 
 
 
@@ -35,7 +35,7 @@
 
     {% for item in "0"|rjust:"3" %}
 
-       <select id="app_view{{ forloop.counter0 }}" class="form-control form-control-sm form-inline">
+       <select id="app_view{{ forloop.counter0 }}" class="form-control form-control-sm form-inline formula">
 
           {% with forloop.counter0 as x %}
             <option value ="-timeapplied" {% if view_filter|lookupint:x == "-timeapplied" %} selected="selected" {% endif %} >Czas malejąco</option>
