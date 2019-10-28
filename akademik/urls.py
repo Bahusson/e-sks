@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views, views_c
+from . import views, views_c, views_t
 
 urlpatterns = [
     path('panel_rady', views_c.staffpanel_c, name='staffpanel_c'),
@@ -15,4 +15,5 @@ urlpatterns = [
     path('szukaj_uzytkownikow', views_c.allusers, name='allusers'),
     path(
      'edycja_uzytkownika/<int:user_id>', views_c.changeuser, name='changeuser'),
+    path('tlumacz_element', views_t.elementstranslate, name='elementstranslate'),
 ]
