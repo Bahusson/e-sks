@@ -157,3 +157,16 @@
 .mydatass {
   background: #d6d6d6;
 }
+
+.nopadding {
+   padding: 0 !important;
+   margin: 10px;
+   border-radius: 10px;
+}
+
+.tabelo {
+  border-radius: 10px;
+  margin-bottom: 10px;
+  color: #ffffff;
+  background: #333333;
+}

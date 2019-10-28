@@ -71,22 +71,47 @@
 <!-- Tutaj wyświetlają się rzędami wszystkie rzędy posortowane -->
 
 {% for apply in applied.all %}
-<div class="panelo">
- <p class="wnioski">{{ apply.timeapplied }} - {{ apply.owner.last_name }} - {{ apply.owner.first_name }} -
+<div class="container border nopadding tabelo">
+<div class="col nopadding ">
+  <div class="col-sm border">
+    {{ apply.timeapplied }}
+  </div>
+  <div class="col-sm border">
+    {{ apply.owner.last_name }}
+  </div>
+  <div class="col-sm border">
+    {{ apply.owner.first_name }}
+  </div>
+  <div class="col-sm border">
+    {% if apply.owner.gender == 0 %}
+          {{ formitem.other }}
+    {% elif apply.owner.gender == 1 %}
+          {{ formitem.male }}
+    {% elif apply.owner.gender == 2 %}
+          {{ formitem.female }}
+    {% endif %}
+  </div>
+  <div class="col-sm border">
+    {{ hotelselector|action:apply.sh_choice1 }}
+    </div>
+  <div class="col-sm border">
+    {{ roomchange|action:apply.if_room_change }}
+    </div>
+    <div class="col-sm border">
+      {{ appstatus|lookup:apply.status }}
+      </div>
+      </div>
+      <div class="col nopadding">
+      <div class="col-sm border">
+        {{ apply.owner.citizenship }}
+        </div>
+        <div class="col-sm border">
+          {{ setter|action:apply.quarter }}
+          </div>
+          </div>
 
-  {% if apply.owner.gender == 0 %}
-        {{ formitem.other }}
-  {% elif apply.owner.gender == 1 %}
-        {{ formitem.male }}
-  {% elif apply.owner.gender == 2 %}
-        {{ formitem.female }}
-  {% endif %}
-
-  - {{ hotelselector|action:apply.sh_choice1 }} -
-  {{ roomchange|action:apply.if_room_change }} -
-  {{ appstatus|lookup:apply.status }} - {{ apply.owner.citizenship }} -
-  {{ setter|action:apply.quarter }}</p>
 </div>
+<br>
 {% endfor %}
 
 
