@@ -60,12 +60,13 @@
 
        <input type="hidden" name="view_filter{{ forloop.counter0 }}" id="view_filter{{ forloop.counter0 }}" >
     {% endfor %}
-
+    <div class="sort">
+      <input id="send" class="button" name="sort" type="submit" value="{{ attools.sortme }}">
+    </div>
    </form>
-   <div class="sort">
-     <button name="button" id="send" class="btn btn-dark btn-sm" name="sort" type="submit" value="SORTUJ">SORTUJ</button>
 
-   </div>
+
+
  <br>
 <!-- Tutaj wyświetlają się rzędami wszystkie rzędy posortowane -->
 
