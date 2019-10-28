@@ -73,6 +73,10 @@
   text-align: center;
   margin-top: 5px;
 }
+.sort4 {
+  text-align: right;
+  margin-left: 5px;
+}
 .linkname {
   font: 'Ubuntu', sans-serif;
   font-size: 16px;
@@ -128,4 +132,20 @@
 
 .alltext {
   color: black;
+}
+
+.alerto {
+  text-transform: uppercase;
+}
+
+.czeko {
+  text-transform: uppercase;
+  margin-top: 0px;
+  margin-left: 3px;
+  margin-right: 3px;
+  color: black;
+}
+
+.mydatass {
+  background: #d6d6d6;
 }

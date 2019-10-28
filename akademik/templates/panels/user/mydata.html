@@ -26,20 +26,14 @@
 {% block body %}
  {% include 'forms/elements/userdata1.html' %} <!-- Podstawowe dane Usera -->
   <p class="maintitle">{{ formitem.action }}</p>
-<div class="alert alert-secondary alert-dismissible">
+  <div class="alert alert-secondary alert-dismissible">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <p><b class="assign"> {{ formitem.assigned_to }}</b>: {{ setter }} </p>
+  <p><b class="alerto"> {{ formitem.assigned_to }}</b>: {{ setter }} <b class="alerto"> lub {{ formitem.change_man }}:</b></p>
   </div>
-
-<div class="alert alert-secondary alert-dismissible">
-<button type="button" class="close" data-dismiss="alert">&times;</button>
-<p ><b class="assign">{{formitem.change_man }}:</b></p>
-</div>
-<div class="panelo2">
-  <form name="QuarterForm" method="post" class="form-inline">
-
-        <select id="Quarterselector" name="Quarter" class="form-control form-control-sm form-inline formula2">
-
+  <div class="mydatass">
+    <br>
+  <form name="QuarterForm" method="post" class="form form-inline">
+        <select id="Quarterselector" name="Quarter" class="form form-inline">
           <option value ="None" disabled>{{ formitem.list_select }}:</option>
         {% for item in setlist %}
            <option value ="{{ forloop.counter }}">{{ item }}</option>
@@ -47,47 +41,38 @@
         </select>
       {% csrf_token %}
       <input type="hidden" name="quarter" id="id_quarter">
-    <button id="send" class="btn btn-dark" name="subbutton" type="submit" value="{{ formitem.choose }}"> WYBIERZ</button>
-
+      <div class="sort4">
+      <button  id="send" class="btn btn-dark btn-sm" name="subbutton" type="submit" value="{{ formitem.choose }}">WYBIERZ</button>
+      </div>
   </form>
 
   {% if service2 %}
-
-<br>
-
-{% if user.role_council > 2 and udata.role_council < 3 %}
-<div name="AccessForm" method="post" class="form-check form-check-inline wnioski">
-  <b class="upraw">{{ attools.mypermissions }}: &nbsp</b>
+   <br>
+<p><b class="czeko">{{ attools.mypermissions }}: </b></p>
   {% else %}
-  <b class="upraw">{{ formitem.or_if }}: &nbsp</b>
-  <p><a href="{% url 'initial' %}" class="btn">{{ formitem.assign_again }}</a></p> <!-- Tutaj ma być button -->
+   <h5>{{ formitem.or_if }}</h5>
+   <p><a href="{% url 'initial' %}" class="btn">{{ formitem.assign_again }}</a></p> <!-- Tutaj ma być button -->
   {% endif %}
-  <!-- Tutaj jest opcja, żeby dodać userowi specjalne uprawnienia widoczna tylko dla ziomków z lvl 2+ -->
-  <!-- Zmienić można tylko osobom do lvl 1 -->
-    <div class="form-check form-check-inline">
+<!-- Tutaj jest opcja, żeby dodać userowi specjalne uprawnienia widoczna tylko dla ziomków z lvl 2+ -->
+<!-- Zmienić można tylko osobom do lvl 1 -->
+{% if user.role_council > 2 and udata.role_council < 3 %}
+  <form name="AccessForm" method="post" class="form-inline">
+
         <!-- Checkbox pokazuje i zmienia stan uprawnień osoby do bycia w radzie z 0 na 1 i na odwrót -->
-        <label class="form-check-label smolik" for="inlineCheckbox1">{{ attools.council_member }} &nbsp</label>
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="">
-      </div>
-      <!-- Checkbox pokazuje i zmienia stan uprawnień osoby do bycia tłumaczem z 0 na 1 i na odwrót -->
-      <div class="form-check form-check-inline">
-        <label class="form-check-label smolik" for="inlineCheckbox2">{{ attools.is_translator }} &nbsp</label>
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="">
+        <p class="czeko">{{ attools.council_member }}  {{ form2.role_council }}</p>
+        <!-- Checkbox pokazuje i zmienia stan uprawnień osoby do bycia tłumaczem z 0 na 1 i na odwrót -->
+        <p class="czeko">{{ attools.is_translator }}  {{ form2.is_translator }}</p>
 
-      </div>
-    {% csrf_token %}
+      {% csrf_token %}
 
+    <div class="sort4">
+      <br>
+      <br>
+    <button  id="send2" class="btn btn-dark btn-sm btn-block" name="power" type="submit" value="{{ formitem.sendme }}">WYŚLIJ</button>
+    </div>
+  </form>
+  <br>
   </div>
-
-
-
-
-</div>
-  <div class="sort2">
-  <button id="send2" class="btn btn-dark sort" name="power" type="submit" value="{{ formitem.sendme }}">WYŚLIJ</button>
-
-  </div>
-
 {% elif  user.role_council > 2 and udata.role_council > 2 %}
   <p>{{ attools.change_forbidden }}</p>
 {% endif %}
