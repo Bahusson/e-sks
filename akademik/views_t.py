@@ -26,19 +26,21 @@ def translatorpanel(request):
 # Tłumaczenie Pageitem za pomocą importu szeregu zmiennych.
 # Tłumaczenie rozwijanych menu będzie za pomocą Formsetów.
 @translators_only(login_url='logger')
-def elementstranslate(request):
+def elementstranslate(request, lang="en"):
     p_item = PageElement(P)
     p_item_names = p_item.get_attrnames(L, 2)
     p_item_names = p_item_names[1:]  # Obcinacz flagi
+    p_item_names_lang = []
     for item in p_item_names:
-        item = str(item) + "_pl"
-    print(p_item_names)
+        item = str(item) + "_" + lang
+        p_item_names_lang.append(item)
+    print(p_item_names_lang)
     p_item_objects = p_item.get_setlist(0, L, 2)
     p_item_objects = p_item_objects[1:]  # Obcinacz flagi
     form = PageItemForm
     context = {
      "trans_from_list": p_item_objects,
-     "trans_to_list": p_item_names,
+     "trans_to_list": p_item_names_lang,
      "form": form,
     }
     pl = PortalLoad(P, L, Pbi, 3, Tmi, Tli)
