@@ -32,8 +32,8 @@
   </div>
   <div class="mydatass">
     <br>
-  <form name="QuarterForm" method="post" class="form form-inline">
-        <select id="Quarterselector" name="Quarter" class="form form-inline">
+  <form name="QuarterForm" method="post" class="form form-inline formula3">
+        <select id="Quarterselector" name="Quarter" class="form form-inline formula3">
           <option value ="None" disabled>{{ formitem.list_select }}:</option>
         {% for item in setlist %}
            <option value ="{{ forloop.counter }}">{{ item }}</option>
@@ -48,15 +48,16 @@
 
   {% if service2 %}
    <br>
-<p><b class="czeko">{{ attools.mypermissions }}: </b></p>
+
+<p><b class="czeko2">{{ attools.mypermissions }}: </b></p>
   {% else %}
-   <h5>{{ formitem.or_if }}</h5>
+   <p><b class="czeko">{{ formitem.or_if }}</b></p>
    <p><a href="{% url 'initial' %}" class="btn">{{ formitem.assign_again }}</a></p> <!-- Tutaj ma być button -->
   {% endif %}
 <!-- Tutaj jest opcja, żeby dodać userowi specjalne uprawnienia widoczna tylko dla ziomków z lvl 2+ -->
 <!-- Zmienić można tylko osobom do lvl 1 -->
 {% if user.role_council > 2 and udata.role_council < 3 %}
-  <form name="AccessForm" method="post" class="form-inline">
+  <form name="AccessForm" method="post" class="form form-inline">
 
         <!-- Checkbox pokazuje i zmienia stan uprawnień osoby do bycia w radzie z 0 na 1 i na odwrót -->
         <p class="czeko">{{ attools.council_member }}  {{ form2.role_council }}</p>
