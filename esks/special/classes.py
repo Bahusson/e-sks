@@ -71,22 +71,22 @@ class PageElement(object):
 
     # Działa tylko jeśli wszystkie atrybuty są tłumaczone.
     # Zwraca gołe nazwy atrybutów bez względu na ilość języków.
-    def get_attrnames(self, langs):
+    def get_attrnames(self, langs, cut_fr=2):
         preqlist = list(self.baseattrs.__dict__.keys())
-        preqlist2 = preqlist[2:]  # Obetnij czołówkę.
+        preqlist2 = preqlist[cut_fr:]  # Obetnij czołówkę.
         self.attrnames = preqlist2[0::len(langs)+1]
         return self.attrnames
 
     # Zwraca pojedynczy przetłumaczony obiekt.
-    def get_setter(self, place, quarter, langs):
-        attrnames = self.get_attrnames(langs)
+    def get_setter(self, place, quarter, langs, cut_fr=2):
+        attrnames = self.get_attrnames(langs, cut_fr)
         attrobjects = self.list_specific(place)
         self.setter = attrobjects.__getattribute__(attrnames[int(quarter)-1])
         return self.setter
 
     # Zwraca listę przetłumaczonych atrybutów
-    def get_setlist(self, place, langs):
-        attrnames = self.get_attrnames(langs)
+    def get_setlist(self, place, langs, cut_fr=2):
+        attrnames = self.get_attrnames(langs, cut_fr)
         attrobjects = self.list_specific(place)
         self.setlist = []
         for item in attrnames:

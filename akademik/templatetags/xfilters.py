@@ -33,7 +33,7 @@ def negator(var):
     neg = '-' + str(var)
     return neg
 
-
+# Cztery poniżej do wywalenie jak poprawię menu na lepszą logikę.
 # Podnosi wartość samego siebie o 1 za każdym razem. (Dla Linków)
 @register.filter(name='setlinkadder')
 def setlinkadder(var):
@@ -64,3 +64,9 @@ def menuadder(var):
     global menuaddpoint
     menuaddpoint += 1
     return var[menuaddpoint]
+
+
+# Podnosi wartość samego siebie o 1 za każdym razem. (Dla Menu)
+@register.filter(name='zip')
+def zip_lists(a, b):
+    return zip(a, b)
