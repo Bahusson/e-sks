@@ -26,7 +26,7 @@
   <form name="PartyForm" method="post">
   {% csrf_token %}
   {% for trans_to, trans_from in trans_to_list|zip_lists:trans_from_list %}
-   <p>{{ trans_from }} : {{ trans_to }}</p>
+   <p>{{ trans_from }} : {{ form|lookup:trans_to }}</p>
   {% endfor %}
   </form>
 

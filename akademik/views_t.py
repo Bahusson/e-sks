@@ -10,6 +10,7 @@ from .models import TranslatorLinkItem as Tli
 from esks.special.decorators import translators_only
 from rekruter.models import User, FormItems, QuarterClassB
 from rekruter.forms import IniForm, ApplicationForm
+from .forms_t import PageItemForm
 
 
 # Panel Tłumaczeniowy
@@ -28,12 +29,17 @@ def translatorpanel(request):
 def elementstranslate(request):
     p_item = PageElement(P)
     p_item_names = p_item.get_attrnames(L, 2)
+    p_item_names = p_item_names[1:]  # Obcinacz flagi
+    for item in p_item_names:
+        item = str(item) + "_pl"
     print(p_item_names)
     p_item_objects = p_item.get_setlist(0, L, 2)
-    print(p_item_objects)
+    p_item_objects = p_item_objects[1:]  # Obcinacz flagi
+    form = PageItemForm
     context = {
      "trans_from_list": p_item_objects,
      "trans_to_list": p_item_names,
+     "form": form,
     }
     pl = PortalLoad(P, L, Pbi, 3, Tmi, Tli)
     context_lazy = pl.lazy_context(skins=S, context=context)
