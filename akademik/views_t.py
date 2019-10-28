@@ -22,6 +22,17 @@ def translatorpanel(request):
     template = 'panels/translator/panel_tlumacza.html'
     return render(request, template, context_lazy)
 
+
+# Zmiana języka. Nieaktywny.
+@translators_only(login_url='logger')
+def setmylanguage(request):
+    # zdefiniuj dodatkowe konteksty tutaj.
+    pl = PortalLoad(P, L, Pbi, 3, Tmi, Tli)
+    context_lazy = pl.lazy_context(skins=S)
+    template = 'panels/translator/panel_tlumacza.html'
+    return render(request, template, context_lazy)
+
+
 # Pierwszy widok testowy. To się będzie rozrastać. Może zrobimy na klasie?
 # Tłumaczenie Pageitem za pomocą importu szeregu zmiennych.
 # Tłumaczenie rozwijanych menu będzie za pomocą Formsetów.

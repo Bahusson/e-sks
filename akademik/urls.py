@@ -23,4 +23,7 @@ urlpatterns = [
     path(
      'tlumacz_element', views_t.elementstranslate, name='elementstranslate'
      ),
+    path(
+     'ustaw_jezyk', views_t.setmylanguage, name='setmylanguage'
+     ),
 ]

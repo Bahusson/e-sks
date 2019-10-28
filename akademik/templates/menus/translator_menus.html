@@ -1,13 +1,17 @@
-<!-- Fragment generujący menu z podpunktami dla Panelu Usera. Rozszerzaj dodając Divy -->
+{% load xfilters %}
+<!-- Fragment generujący menu z podpunktami dla Panelu Tłumacza. Rozszerzaj dodając Divy -->
 <div class="nav-side-menu">
-  <div class="brand">{{ menu.0 }}</div>
+  <div class="brand">{{ menu|setmenuadder }}</div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
       <div class="menu-list">
         <ul id="menu-content" class="menu-content collapse out">
           <li>
-            <a href="{% url 'elementstranslate' %}">{{ link.0 }}</a> <!--Tłumacz Elementy-->
+            <a href="{% url 'setmylanguage' %}">{{ link|setlinkadder }}</a> <!--Języki-->
           </li>
         </ul>
   </div>
+  <div class="brand">{{ menu|menuadder }}</div>
+          <li>
+            <a href="{% url 'elementstranslate' %}">{{ link|linkadder }}</a><!--Tłumacz Elementy-->
 </div>
 <br>
