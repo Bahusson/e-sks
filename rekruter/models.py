@@ -53,6 +53,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     postcode = models.CharField(_('postcode'), max_length=7, blank=True)
     city = models.CharField(_('city'), max_length=25, blank=True)
     album = models.CharField(_('album'), max_length=25, blank=True)
+    language = models.CharField(_('album'), max_length=2, blank=True)
 
     objects = UserManager()
 

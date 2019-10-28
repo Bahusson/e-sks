@@ -11,7 +11,14 @@
         </ul>
   </div>
   <div class="brand">{{ menu|menuadder }}</div>
+        {% if user.language == "" %}
+          <li>Wybierz preferowany język,<br>
+             aby mieć dostęp do tłumaczeń!</li>
+
+        {% else %}
           <li>
             <a href="{% url 'elementstranslate' %}">{{ link|linkadder }}</a><!--Tłumacz Elementy-->
+          </li>
+        {% endif %}
 </div>
 <br>

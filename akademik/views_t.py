@@ -16,9 +16,13 @@ from .forms_t import PageItemForm
 # Panel Tłumaczeniowy
 @translators_only(login_url='logger')
 def translatorpanel(request):
-    # zdefiniuj dodatkowe konteksty tutaj.
-    pl = PortalLoad(P, L, Pbi, 3, Tmi, Tli)
-    context_lazy = pl.lazy_context(skins=S)
+    language = request.user.language
+    if language == '':
+        return redirect('setmylanguage')
+    else:
+        # zdefiniuj dodatkowe konteksty tutaj.
+        pl = PortalLoad(P, L, Pbi, 3, Tmi, Tli)
+        context_lazy = pl.lazy_context(skins=S)
     template = 'panels/translator/panel_tlumacza.html'
     return render(request, template, context_lazy)
 
@@ -29,7 +33,7 @@ def setmylanguage(request):
     # zdefiniuj dodatkowe konteksty tutaj.
     pl = PortalLoad(P, L, Pbi, 3, Tmi, Tli)
     context_lazy = pl.lazy_context(skins=S)
-    template = 'panels/translator/panel_tlumacza.html'
+    template = 'panels/translator/setmylanguage.html'
     return render(request, template, context_lazy)
 
 
