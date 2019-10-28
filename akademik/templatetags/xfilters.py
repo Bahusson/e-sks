@@ -67,6 +67,6 @@ def menuadder(var):
 
 
 # Podnosi wartość samego siebie o 1 za każdym razem. (Dla Menu)
-@register.filter(name='zip')
+@register.filter(name='zip_lists')
 def zip_lists(a, b):
     return zip(a, b)
