@@ -37,5 +37,5 @@ def elementstranslate(request):
     }
     pl = PortalLoad(P, L, Pbi, 3, Tmi, Tli)
     context_lazy = pl.lazy_context(skins=S, context=context)
-    template = 'panels/translator/panel_tlumacza.html'
+    template = 'panels/translator/elementstranslate.html'
     return render(request, template, context_lazy)

@@ -23,14 +23,10 @@
 
 {% block body %}
   <!--Ten kawałek tłumaczy: Po lewej z języka, po prawej na język.-->
-  <form name="TranslationsForm" method="post">
+  <form name="PartyForm" method="post">
   {% csrf_token %}
-  {% for trans_from in trans_from_list %}
-   <p>{{ trans_from }} :</p>
-  {% endfor %}
-  <p><b>SERVICE BREAK!!!</b></p>
-  {% for trans_to in trans_to_list %}
-   <p>{{ trans_to }} :</p>
+  {% for trans_to, trans_from in trans_to_list|zip: trans_from_list %}
+   <p>{{ trans_from }}  {{ trans_to }}</p>
   {% endfor %}
   </form>
 
