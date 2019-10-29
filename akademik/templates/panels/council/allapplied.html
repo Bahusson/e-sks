@@ -62,7 +62,9 @@
     {% endfor %}
     <div class="sort">
       <button id="send" class="btn btn-dark" name="sort" type="submit" value="{{ attools.sortme }}">SORTUJ</button>
+      
     </div>
+
    </form>
 
 
@@ -74,15 +76,15 @@
 <div class="container border nopadding tabelo">
 <div class="col nopadding ">
   <div class="col-sm border">
-    {{ apply.timeapplied }}
+    <p class="tabelo2">DATA WNIOSKU: <b class="tabtxt">{{ apply.timeapplied }}</b></p>
   </div>
   <div class="col-sm border">
-    {{ apply.owner.last_name }}
+    <p class="tabelo2">NAZWISKO: <b class="tabtxt">{{ apply.owner.last_name }}</b></p>
   </div>
   <div class="col-sm border">
-    {{ apply.owner.first_name }}
+    <p class="tabelo2">IMIĘ: <b class="tabtxt">{{ apply.owner.first_name }}</b></p>
   </div>
-  <div class="col-sm border">
+  <div class="col-sm border"><p class="tabelo2"> GENDER:<b class="tabtxt">
     {% if apply.owner.gender == 0 %}
           {{ formitem.other }}
     {% elif apply.owner.gender == 1 %}
@@ -90,24 +92,25 @@
     {% elif apply.owner.gender == 2 %}
           {{ formitem.female }}
     {% endif %}
-  </div>
+</b></p>  </div>
   <div class="col-sm border">
-    {{ hotelselector|action:apply.sh_choice1 }}
+  <p class="tabelo2">AKADEMIK:  <b class="tabtxt">{{ hotelselector|action:apply.sh_choice1 }}</b></p>
     </div>
   <div class="col-sm border">
-    {{ roomchange|action:apply.if_room_change }}
+  <p class="tabelo2">  INFO: <b class="tabtxt">{{ roomchange|action:apply.if_room_change }}</b></p>
     </div>
     <div class="col-sm border">
-      {{ appstatus|lookup:apply.status }}
+    <p class="tabelo2">STATUS WNIOSKU: <b class="tabtxt"> {{ appstatus|lookup:apply.status }}</b></p>
       </div>
       </div>
-      <div class="col nopadding">
+
       <div class="col-sm border">
-        {{ apply.owner.citizenship }}
+      <p class="tabelo2">  OBYWATELSTWO: <b class="tabtxt">{{ apply.owner.citizenship }}</b></p>
         </div>
         <div class="col-sm border">
-          {{ setter|action:apply.quarter }}
+          <p class="tabelo2">GRUPA: <b class="tabtxt">{{ setter|action:apply.quarter }}</b></p>
           </div>
+          <div class="row nopadding">
           </div>
 
 </div>

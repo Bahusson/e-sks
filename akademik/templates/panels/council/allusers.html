@@ -44,32 +44,50 @@
     <button  id="send" class="btn btn-dark btn-sm" name="sort" type="submit" value="Sortuj - roboczy">SORTUJ</button>
     </div>
    </form>
-
-   </p>
+<br>
 
 <!-- Tutaj wyświetlają się rzędami wszystkie rzędy posortowane -->
 
 {% for userdetail in userdetails.all %}
-<div class="panelo">
- <p class="wnioski">{{ userdetail.date_joined }}
-    - <a href="{% url 'changeuser' userdetail.id %}" class="linkname">{{ userdetail.get_full_name }}</a> -
 
-  {% if userdetail.gender == 0 %}
-        {{ formitem.other }}
-  {% elif userdetail.gender == 1 %}
-        {{ formitem.male }}
-  {% elif userdetail.gender == 2 %}
-        {{ formitem.female }}
-  {% endif %}
+<div class="container border nopadding tabelo">
+<div class="col nopadding ">
+  <div class="col-sm border">
+    <p class="tabelo2">DATA ZAPISU: <b class="tabtxt">{{ userdetail.date_joined }}</b> </p>
+  </div>
+  <div class="col-sm border">
+    <a href="{% url 'changeuser' userdetail.id %}" class="linkname">{{ userdetail.get_full_name }}</a>
+  </div>
+  <div class="col-sm border">
+    <p class="wnioski"><p class="tabelo2">GENDER: <b class="tabtxt">
+    {% if userdetail.gender == 0 %}
+          {{ formitem.other }}
+    {% elif userdetail.gender == 1 %}
+          {{ formitem.male }}
+    {% elif userdetail.gender == 2 %}
+          {{ formitem.female }}
+    {% endif %}
+    </b></p>
 
-  {{ userdetail.citizenship }} -
-  {% if userdetail.quarter %}
+  </div>
+  <div class="col-sm border">
+      <p class="tabelo2">POCHODZENIE: <b class="tabtxt">{{ userdetail.citizenship }}</b></p>
+  </div>
+
+  <div class="col-sm border">
+    <p class="wnioski"><p class="tabelo2">GRUPA: <b class="tabtxt">
+    {% if userdetail.quarter %}
     {{ setter|actionint:userdetail.quarter }}
   {% else %}
     {{ attools.non_assigned }}
   {% endif %}
+  </b>
   </p>
+</div>
+
   </div>
+  </div>
+<br>
 {% endfor %}
 
 
