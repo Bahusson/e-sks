@@ -34,12 +34,17 @@ def setmylanguage(request, lang="en"):  # Lang weź potem od usera a to usuń!  
     p_item = PageElement(P)
     p_item_objects = p_item.baseattrs
     preqlist = list(p_item_objects.__dict__.keys())
-    # Zmień jeśli chcesz uniemożliwić tłumaczenie na Angielski.
-    flagslist = preqlist[4:len(L)+3]
-    print(flagslist)
-    #p_item_objects = P().__class__.objects.get(pk=1)
-    print(type(p_item_objects))
+    # Zmień 'langpos' na 2 jeśli chcesz uniemożliwić tłumaczenie na Angielski.
+    # Zmień na 0 jeśli chcesz umożliwić tłumaczenie na Polski (niezalecane).
+    langpos = 1
+    flagslist = preqlist[langpos+3:len(L)+3]
+    lang_tups = L[langpos:]
+    lang_ids = []
+    for lang_tup in lang_tups:
+        lang_ids.append(lang_tup[0])
+    print(lang_ids)
     context = {
+     "lang_ids": lang_ids,
      "flagsobjects": p_item_objects,
      "flagslist": flagslist,
      "MEDIA_ROOT": MEDIA_ROOT,
