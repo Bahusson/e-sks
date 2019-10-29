@@ -45,7 +45,6 @@
   font-weight: lighter;
   color: black;
   background: #ffffff;
-
   padding: 2px 5px 2px 5px;
   font-size: 13px;
   font-weight: bold;
@@ -130,4 +129,33 @@
   font-size: 15px;
   padding: 15px 32px;
   border-radius: 10px;
+}
+
+.fonteo {
+  font: 'Ubuntu', sans-serif;
+  font-size: 13px;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+}
+.fonteo2 {
+  font: 'Ubuntu', sans-serif;
+  font-size: 13px;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 2px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.bloczek {
+  align-items: center;
+  padding-left: 20%;
+  padding-right: 20%;
 }
