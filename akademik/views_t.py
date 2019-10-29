@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404 as G404
 from strona.models import Pageitem as P
 from strona.models import PageSkin as S
 from esks.settings import LANGUAGES as L
@@ -33,7 +34,6 @@ def setmylanguage(request):
     if 'sendlang' in request.POST:
         form = LangForm(request.POST, instance=userdata)
         userlang = request.POST.get('sendlang')
-        print(userlang)
         if form.is_valid():
             form.save(userlang)
         return redirect('setmylanguage')
@@ -71,23 +71,30 @@ def setmylanguage(request):
 @translators_only(login_url='logger')
 def elementstranslate(request):
     lang = request.user.language
-    p_item = PageElement(P)
-    p_item_names = p_item.get_attrnames(L, 2)
-    p_item_names = p_item_names[1:]  # Obcinacz flagi
-    p_item_names_lang = []
-    for item in p_item_names:
-        item = str(item) + "_" + lang
-        p_item_names_lang.append(item)
-    p_item_objects = p_item.get_setlist(0, L, 2)
-    p_item_objects = p_item_objects[1:]  # Obcinacz flagi
-    form = PageItemForm
-    print(type(form))
-    context = {
-     "trans_from_list": p_item_objects,
-     "trans_to_list": p_item_names_lang,
-     "form": form,
-    }
-    pl = PortalLoad(P, L, Pbi, 3, Tmi, Tli)
-    context_lazy = pl.lazy_context(skins=S, context=context)
-    template = 'panels/translator/elementstranslate.html'
-    return render(request, template, context_lazy)
+    if request.method == 'POST':
+        form = PageItemForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('elementstranslate')
+    else:
+        p_item = PageElement(P)
+        p_item_names = p_item.get_attrnames(L, 2)
+        p_item_names = p_item_names[1:]  # Obcinacz flagi
+        p_item_names_lang = []
+        for item in p_item_names:
+            item = str(item) + "_" + lang
+            p_item_names_lang.append(item)
+        p_item_objects = p_item.get_setlist(0, L, 2)
+        p_item_objects = p_item_objects[1:]  # Obcinacz flagi
+        # Dla szerszego spektrum sprawdź wzór na change_element
+        instance = G404(P, id=1)
+        form = PageItemForm(instance=instance)
+        context = {
+         "trans_from_list": p_item_objects,
+         "trans_to_list": p_item_names_lang,
+         "form": form,
+        }
+        pl = PortalLoad(P, L, Pbi, 3, Tmi, Tli)
+        context_lazy = pl.lazy_context(skins=S, context=context)
+        template = 'panels/translator/elementstranslate.html'
+        return render(request, template, context_lazy)

@@ -23,11 +23,12 @@
 
 {% block body %}
   <!--Ten kawałek tłumaczy: Po lewej z języka, po prawej na język.-->
-  <form name="PartyForm" method="post">
+  <form name="TranslateForm" method="post">
   {% csrf_token %}
   {% for trans_to, trans_from in trans_to_list|zip_lists:trans_from_list %}
    <p>{{ trans_from }} : {{ form|lookup:trans_to }}</p>
   {% endfor %}
+  <input type="submit" class="button" name="sendtrans" value="Wyślij"></input>
   </form>
 
 {% endblock body %}
