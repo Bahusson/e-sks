@@ -49,8 +49,8 @@
     {% include 'forms/elements/agreements.html' %} <!-- Zgody -->
   {% endif %}
 
-    <!-- <input id="send" class="button" name="subbutton" type="submit" value="{{ formitem.sendme }}" class="btn btn-dark"> -->
-    <a href="{{ formitem.sendme }}" class="buttonsend">WYŚLIJ</a>
+    <input id="send" class="button btn btn-dark buttonsend" name="subbutton" type="submit" value="{{ formitem.sendme }}">
+    
   </form>
 {% endblock body %}
 
