@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.shortcuts import get_object_or_404 as G404
 from strona.models import Pageitem as P
 from strona.models import PageSkin as S
 from esks.settings import LANGUAGES as L
@@ -10,8 +9,7 @@ from .models import TranslatorLinkItem as Tli
 from esks.special.decorators import translators_only
 from rekruter.models import User
 from .forms_t import PageItemForm
-from array import *
-from esks.settings import MEDIA_ROOT
+from rekruter.forms import LangForm
 
 # Panel Tłumaczeniowy - pusty.
 @translators_only(login_url='logger')
@@ -28,39 +26,51 @@ def translatorpanel(request):
 
 
 # Zmiana języka tłumaczeń.
-# ZBUGOWANE. Zrobione Obejścia z których nie jestem zadowolony. Do poprawki!      !
 @translators_only(login_url='logger')
-def setmylanguage(request, lang="en"):  # Lang weź potem od usera a to usuń!       !
-    p_item = PageElement(P)
-    p_item_objects = p_item.baseattrs
-    preqlist = list(p_item_objects.__dict__.keys())
-    # Zmień 'langpos' na 2 jeśli chcesz uniemożliwić tłumaczenie na Angielski.
-    # Zmień na 0 jeśli chcesz umożliwić tłumaczenie na Polski (niezalecane).
-    langpos = 1
-    flagslist = preqlist[langpos+3:len(L)+3]
-    lang_tups = L[langpos:]
-    lang_ids = []
-    for lang_tup in lang_tups:
-        lang_ids.append(lang_tup[0])
-    print(lang_ids)
-    context = {
-     "lang_ids": lang_ids,
-     "flagsobjects": p_item_objects,
-     "flagslist": flagslist,
-     "MEDIA_ROOT": MEDIA_ROOT,
-     # "form": form,
-    }
-    pl = PortalLoad(P, L, Pbi, 3, Tmi, Tli)
-    context_lazy = pl.lazy_context(skins=S, context=context)
-    template = 'panels/translator/setmylanguage.html'
-    return render(request, template, context_lazy)
+def setmylanguage(request):
+    userdata = User.objects.get(
+     id=request.user.id)
+    if 'sendlang' in request.POST:
+        form = LangForm(request.POST, instance=userdata)
+        userlang = request.POST.get('sendlang')
+        print(userlang)
+        if form.is_valid():
+            form.save(userlang)
+        return redirect('setmylanguage')
+    else:
+        # form = LangForm()
+        lang = request.user.language
+        userflag = "lang_flag_" + lang
+        p_item = PageElement(P)
+        p_item_objects = p_item.baseattrs
+        preqlist = list(p_item_objects.__dict__.keys())
+        # Zmień 'langpos' na 2 jeśli chcesz uniemożliwić tłumaczenie na Angielski.
+        # Zmień na 0 jeśli chcesz umożliwić tłumaczenie na Polski (niezalecane).
+        langpos = 1
+        flagslist = preqlist[langpos+3:len(L)+3]
+        lang_tups = L[langpos:]
+        lang_ids = []
+        for lang_tup in lang_tups:
+            lang_ids.append(lang_tup[0])
+        context = {
+         "userflag": userflag,
+         "lang_ids": lang_ids,
+         "flagsobjects": p_item_objects,
+         "flagslist": flagslist,
+         # "form": form,
+        }
+        pl = PortalLoad(P, L, Pbi, 3, Tmi, Tli)
+        context_lazy = pl.lazy_context(skins=S, context=context)
+        template = 'panels/translator/setmylanguage.html'
+        return render(request, template, context_lazy)
 
 
 # Pierwszy widok testowy. To się będzie rozrastać. Może zrobimy na klasie?
 # Tłumaczenie Pageitem za pomocą importu szeregu zmiennych.
 # Tłumaczenie rozwijanych menu będzie za pomocą Formsetów.
 @translators_only(login_url='logger')
-def elementstranslate(request, lang="en"):  # Lang weź potem od usera a to usuń!    !
+def elementstranslate(request):
+    lang = request.user.language
     p_item = PageElement(P)
     p_item_names = p_item.get_attrnames(L, 2)
     p_item_names = p_item_names[1:]  # Obcinacz flagi
