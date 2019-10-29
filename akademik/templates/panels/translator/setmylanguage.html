@@ -1,0 +1,35 @@
+<!-- Strona wyboru domyślnego języka tłumaczeń. Obowiązkowa dla tłumacza. -->
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+<title>Panel Tłumacza</title>
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+{% block css2 %}
+{% endblock %}
+
+<!--Zwraca oryginalną kompozycję menu z bazy. Potem podstawiasz zmienne,-->
+{% block aside %}
+ {{ block.super }}
+{% endblock aside %}
+
+{% block menu %}
+  {% include 'menus/translator_menus.html' %} <!-- Menu z opcjami Tłumacza -->
+{% endblock menu %}
+
+{% block body %}<!-- Flagi z wyborem języka. As obvious as it is.-->
+ <h4>Ustaw język na który będziesz tłumaczyć:</h4>
+ <br>
+ <p>
+
+ </p>
+{% endblock body %}
+
+
+{% block scripts %}
+{% endblock %}
+{% block scripts2 %}
+{% endblock %}
