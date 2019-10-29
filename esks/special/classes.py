@@ -1,6 +1,5 @@
 # from django.shortcuts import redirect
 
-
 class PageLoad(object):
     ''' Zwraca tyle języków ile mamy zainstalowane
     w ustawieniach w zakładce LANGUAGES w formacie naprzemiennym

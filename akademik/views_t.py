@@ -8,12 +8,11 @@ from .models import PortalBaseItem as Pbi
 from .models import TranslatorMenuItem as Tmi
 from .models import TranslatorLinkItem as Tli
 from esks.special.decorators import translators_only
-from rekruter.models import User, FormItems, QuarterClassB
-from rekruter.forms import IniForm, ApplicationForm
+from rekruter.models import User
 from .forms_t import PageItemForm
+from array import *
 
-
-# Panel Tłumaczeniowy
+# Panel Tłumaczeniowy - pusty.
 @translators_only(login_url='logger')
 def translatorpanel(request):
     language = request.user.language
@@ -27,12 +26,22 @@ def translatorpanel(request):
     return render(request, template, context_lazy)
 
 
-# Zmiana języka. Nieaktywny.
+# Zmiana języka tłumaczeń.
+# ZBUGOWANE. Zrobione Obejścia z których nie jestem zadowolony. Do poprawki!      !
 @translators_only(login_url='logger')
-def setmylanguage(request):
-    # zdefiniuj dodatkowe konteksty tutaj.
+def setmylanguage(request, lang="en"):  # Lang weź potem od usera a to usuń!       !
+    p_item = PageElement(P)
+    p_item_objects = p_item.baseattrs
+    preqlist = list(p_item_objects.__dict__.keys())
+    # Zmień jeśli chcesz uniemożliwić tłumaczenie na Angielski.
+    flagslist = preqlist[4:len(L)+3]
+    context = {
+     "flagsobjects": p_item_objects,
+     "flagslist": flagslist,
+     # "form": form,
+    }
     pl = PortalLoad(P, L, Pbi, 3, Tmi, Tli)
-    context_lazy = pl.lazy_context(skins=S)
+    context_lazy = pl.lazy_context(skins=S, context=context)
     template = 'panels/translator/setmylanguage.html'
     return render(request, template, context_lazy)
 
@@ -41,7 +50,7 @@ def setmylanguage(request):
 # Tłumaczenie Pageitem za pomocą importu szeregu zmiennych.
 # Tłumaczenie rozwijanych menu będzie za pomocą Formsetów.
 @translators_only(login_url='logger')
-def elementstranslate(request, lang="en"):
+def elementstranslate(request, lang="en"):  # Lang weź potem od usera a to usuń!    !
     p_item = PageElement(P)
     p_item_names = p_item.get_attrnames(L, 2)
     p_item_names = p_item_names[1:]  # Obcinacz flagi
@@ -49,7 +58,6 @@ def elementstranslate(request, lang="en"):
     for item in p_item_names:
         item = str(item) + "_" + lang
         p_item_names_lang.append(item)
-    print(p_item_names_lang)
     p_item_objects = p_item.get_setlist(0, L, 2)
     p_item_objects = p_item_objects[1:]  # Obcinacz flagi
     form = PageItemForm
