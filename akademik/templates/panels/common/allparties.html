@@ -49,37 +49,39 @@
 </p>
 <br><br>
   {% if user.role_council == 1 %}
-  <p>{{ p_item.userinfo }}:</p>
+  <p class="alltext bg-secondary">{{ p_item.userinfo }}:</p>
   <br>
   {% endif %}
   {% for party in parties %}
     <p class="maintitle">{{ party.title }}</p>
     <div class="allparty"
-    <p><b>{{ formitem.action }}:</b> {{ setter|action:party.quarter }}
+    <p class="alltext bg-secondary"><b>{{ formitem.action }}:</b> {{ setter|action:party.quarter }}</p>
     <!-- Guzik aplikowania na aktywną akcję kwaterunkową -->
     {% if view_filter == "2" %}
       <form name="SpontaneousApply" method="post">
         {% csrf_token %}
         <input type="hidden" name="quarter" value="{{ party.quarter }}">
-        <input class="button" name="apply_spontaneously" type="submit" value="{{ p_item.change_and_apply }}">
+        <input class="button btb btn-dark allbutton" name="apply_spontaneously" type="submit" value="{{ p_item.change_and_apply }}">
       </form>
-    {% endif %}
-    <p><b>{{ p_item.p_from }}:</b> {{ party.date_start }} <br><b>{{ p_item.p_to }}:</b>{{ party.date_end }}</p>
-    <p><b>{{ p_item.announce }}:</b> {{ party.announcement }} </p>
-   {% if user.role_council > 1 %}
-    <p><b>{{ p_item.comment }}:</b> {{ party.comment }} </p>
-    <p><b>{{ p_item.owner }}:</b> {{ party.owner.first_name }} {{ party.owner.last_name }} </p>
-   {% endif %}
+      {% endif %}
+      <p class="alltext"><b>{{ p_item.p_from }}:</b> {{ party.date_start }} <br><b>{{ p_item.p_to }}:</b>{{ party.date_end }}</p>
+      <p class="alltext"><b>{{ p_item.announce }}:</b> {{ party.announcement }} </p>
+     {% if user.role_council > 1 %}
+      <p class="alltext"><b>{{ p_item.comment }}:</b> {{ party.comment }} </p>
+      <p class="alltext"><b>{{ p_item.owner }}:</b> {{ party.owner.first_name }} {{ party.owner.last_name }} </p>
+     {% endif %}
     {% if user.role_council > 2 %}
     <form name="ChangePartyForm" method="post">
       {% csrf_token %}
       <input type="hidden" name="partyid" value="{{ party.id }}">
-      <input class="button" name="changeparty" type="submit" value="{{ p_item.changeme }}">
+      <input class="button btb btn-dark allbutton" name="changeparty" type="submit" value="{{ p_item.changeme }}">
     </form>
     {% endif %}
     <br>
     </div>
+    <br>
   {% endfor %}
+
 {% endblock body %}
 
 
