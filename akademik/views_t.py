@@ -11,6 +11,7 @@ from esks.special.decorators import translators_only
 from rekruter.models import User
 from .forms_t import PageItemForm
 from array import *
+from esks.settings import MEDIA_ROOT
 
 # Panel Tłumaczeniowy - pusty.
 @translators_only(login_url='logger')
@@ -35,9 +36,13 @@ def setmylanguage(request, lang="en"):  # Lang weź potem od usera a to usuń!  
     preqlist = list(p_item_objects.__dict__.keys())
     # Zmień jeśli chcesz uniemożliwić tłumaczenie na Angielski.
     flagslist = preqlist[4:len(L)+3]
+    print(flagslist)
+    #p_item_objects = P().__class__.objects.get(pk=1)
+    print(type(p_item_objects))
     context = {
      "flagsobjects": p_item_objects,
      "flagslist": flagslist,
+     "MEDIA_ROOT": MEDIA_ROOT,
      # "form": form,
     }
     pl = PortalLoad(P, L, Pbi, 3, Tmi, Tli)
@@ -61,6 +66,7 @@ def elementstranslate(request, lang="en"):  # Lang weź potem od usera a to usu�
     p_item_objects = p_item.get_setlist(0, L, 2)
     p_item_objects = p_item_objects[1:]  # Obcinacz flagi
     form = PageItemForm
+    print(type(form))
     context = {
      "trans_from_list": p_item_objects,
      "trans_to_list": p_item_names_lang,
