@@ -1,7 +1,7 @@
 {% load xfilters %}
 
 <div class="nav-side-menu">
-  <div class="brand">{{ menu|setmenuadder }}</div>
+  <div class="maintitle">{{ menu|setmenuadder }}</div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
       <div class="menu-list">
         <ul id="menu-content" class="menu-content collapse out">
@@ -19,13 +19,13 @@
                 <li><a href="{% url 'allinfos' %}">{{ link|linkadder }}</a></li> <!-- Informacje -->
                 <li><a href="{% url 'allfiles' %}">{{ link|linkadder }}</a></li> <!-- Pliki -->
             </ul>
-  <div class="brand">{{ menu|menuadder }}</div>
+  <div class="maintitle">{{ menu|menuadder }}</div>
           <li>
             <a href="{% url 'allapplied' %}">{{ link|linkadder }}</a><!--Lista Wniosków-->
             <!-- Tylko dla Szefa Rady -->
             {% if user.role_council > 2 %}
           </li>
-  <div class="brand">{{ menu|menuadder }}</div>
+  <div class="maintitle">{{ menu|menuadder }}</div>
           <li>
             <a href="{% url 'makemeparty' %}">{{ link|linkadder }}</a><!--Stwórz Akcję Kwaterunkową-->
           </li>

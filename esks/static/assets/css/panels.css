@@ -110,7 +110,7 @@
 
 .wnioski {
   text-align: center;
-  
+
 }
 @media screen and (max-width: 600px) {
   .wnioski {
@@ -166,6 +166,12 @@
 .nopadding {
    padding: 0 !important;
    margin: 10px;
+   
+}
+
+.nopaddingoo {
+   padding: 0 !important;
+   margin: 10px;
    border-radius: 10px;
 }
 
@@ -196,5 +202,7 @@
   text-transform: uppercase;
   font-weight: bold;
   text-align: center;
-
+}
+.linkname2 {
+  color: #ffffff;
 }

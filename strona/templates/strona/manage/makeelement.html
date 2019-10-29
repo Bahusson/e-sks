@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block title %}
-<title>{{ link.2 }} - {{ diff }}</title>
+<title>{{ link.2 }} - {{ diff }dssdcc}</title>
 {% endblock %}
 
 {% block css %}
@@ -28,7 +28,9 @@
 
   <form enctype="multipart/form-data" method="post"> <!-- Do wysyłania plików -->
     {% csrf_token %}
+    
     <p>{{ f_item.title }}(PL): {{ form.title_pl }}</p>
+
     <p>{{ f_item.title }}(EN): {{ form.title_en }}</p>
     <p>{{ f_item.pubdate }}: {{ form.date }}</p>
     <p>{{ f_item.body }}(PL): {{ form.body_pl }}</p>

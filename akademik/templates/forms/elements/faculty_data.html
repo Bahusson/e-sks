@@ -1,7 +1,7 @@
 <!-- Dane toku studiów - tylko jeśli student. Domyślnie: nie dotyczy. -->
 {% load staticfiles %}
 <div class="card cardio">
-<div class="card-header"> {{ formitem.pref_as_stud }}: </div>
+<div class="maintitle"> {{ formitem.pref_as_stud }}: </div>
 <div class="card-body">
 <p class="pref2"> {{ formitem.faculty }}:
     <select {% if service %} required {% endif %} id="faculty" class="form-control form-control-sm">
