@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block title %}
-<title>{{ link.2 }} - {{ diff }dssdcc}</title>
+<title>{{ link.2 }} - {{ diff }}</title>
 {% endblock %}
 
 {% block css %}
@@ -20,34 +20,37 @@
 {% endblock menu %}
 
 {% block body %}
-<h4>
+<p class="maintitle">
   {% if creator_form %} {{ f_item.new }} {% else %} {{ f_item.change }} {% endif %}
   {% if diff == 'blog' %} {{ f_item.blog }} {% elif diff == 'info' %}
   {{ f_item.info }} {% elif diff == 'file' %} {{ f_item.file }} {% endif %}
-</h4>
+</p>
 
   <form enctype="multipart/form-data" method="post"> <!-- Do wysyłania plików -->
     {% csrf_token %}
-    
-    <p>{{ f_item.title }}(PL): {{ form.title_pl }}</p>
 
-    <p>{{ f_item.title }}(EN): {{ form.title_en }}</p>
-    <p>{{ f_item.pubdate }}: {{ form.date }}</p>
-    <p>{{ f_item.body }}(PL): {{ form.body_pl }}</p>
-    <p>{{ f_item.body }}(EN): {{ form.body_en }}</p>
+    <p class="wnioski2">{{ f_item.title }}(PL): {{ form.title_pl }}</p>
+
+    <p class="wnioski2">{{ f_item.title }}(EN): {{ form.title_en }}</p>
+    <p class="wnioski2">{{ f_item.pubdate }}: {{ form.date }}</p>
+    <p class="wnioski2">{{ f_item.body }}(PL): {{ form.body_pl }}</p>
+    <p class="wnioski2">{{ f_item.body }}(EN): {{ form.body_en }}</p>
     {% if form.video_pl %}
-     <p>{{ f_item.video }}(PL): {{ form.video_pl }}</p>
-     <p>{{ f_item.video }}(EN): {{ form.video_en }}</p>
+     <p class="wnioski2">{{ f_item.video }}(PL): {{ form.video_pl }}</p>
+     <p class="wnioski2">{{ f_item.video }}(EN): {{ form.video_en }}</p>
     {% endif %}
     {% if form.image_pl %}
-     <p>{{ f_item.image }}(PL): {{ form.image_pl }}</p>
-     <p>{{ f_item.image }}(EN): {{ form.image_en }}</p>
+     <p class="wnioski2">{{ f_item.image }}(PL): {{ form.image_pl }}</p>
+     <p class="wnioski2">{{ f_item.image }}(EN): {{ form.image_en }}</p>
     {% elif form.file_pl %}
-     <p>{{ formitem.ufile }}(PL): {{ form.file_pl }}</p>
-     <p>{{ formitem.ufile }}(EN): {{ form.file_en }}</p>
+     <p class="wnioski2">{{ formitem.ufile }}(PL): {{ form.file_pl }}</p>
+     <p class="wnioski2">{{ formitem.ufile }}(EN): {{ form.file_en }}</p>
     {% endif %}
-    <input id="send" class="button" name="subbutton" type="submit" value="{{ formitem.sendme }}">
+    <div class="sort butoneo">
+    <button id="send" class="button btn btn-dark btn-sm" name="subbutton" type="submit" value="{{ formitem.sendme }}">{{ formitem.sendme }}</button>
+    </div>
   </form>
+
 {% endblock body %}
 
 
