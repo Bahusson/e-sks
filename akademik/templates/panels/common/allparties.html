@@ -44,42 +44,41 @@
   </select>
   <input type="hidden" name="view_filter" id="view_filter">
   <button id="send" class="btb btn-dark allbutton" name="subbutton" type="submit" value="{{ p_item.new_party_view }}">{{ p_item.new_party_view }}</button>
-</form>
 
+</form>
+</p>
 <br><br>
   {% if user.role_council == 1 %}
-  <p>{{ p_item.userinfo }}: </p>
+  <p>{{ p_item.userinfo }}:</p>
   <br>
   {% endif %}
   {% for party in parties %}
-
     <p class="maintitle">{{ party.title }}</p>
-    <div class="allparty">
-    <p class="alltext"><b>{{ formitem.action }}:</b> {{ setter|action:party.quarter }}
+    <div class="allparty"
+    <p><b>{{ formitem.action }}:</b> {{ setter|action:party.quarter }}
     <!-- Guzik aplikowania na aktywną akcję kwaterunkową -->
     {% if view_filter == "2" %}
       <form name="SpontaneousApply" method="post">
         {% csrf_token %}
         <input type="hidden" name="quarter" value="{{ party.quarter }}">
-        <button id="send" class="btb btn-dark allbutton" name="subbutton" type="submit" value="{{ p_item.change_and_apply }}">{{ p_item.change_and_apply }}</button>
+        <input class="button" name="apply_spontaneously" type="submit" value="{{ p_item.change_and_apply }}">
       </form>
     {% endif %}
-    <p class="alltext"><b>{{ p_item.p_from }}:</b> {{ party.date_start }} <br><b>{{ p_item.p_to }}:</b>{{ party.date_end }}</p>
-    <p class="alltext"><b>{{ p_item.announce }}:</b> {{ party.announcement }} </p>
+    <p><b>{{ p_item.p_from }}:</b> {{ party.date_start }} <br><b>{{ p_item.p_to }}:</b>{{ party.date_end }}</p>
+    <p><b>{{ p_item.announce }}:</b> {{ party.announcement }} </p>
    {% if user.role_council > 1 %}
-    <p class="alltext"><b>{{ p_item.comment }}:</b> {{ party.comment }} </p>
-    <p class="alltext"><b>{{ p_item.owner }}:</b> {{ party.owner.first_name }} {{ party.owner.last_name }} </p>
+    <p><b>{{ p_item.comment }}:</b> {{ party.comment }} </p>
+    <p><b>{{ p_item.owner }}:</b> {{ party.owner.first_name }} {{ party.owner.last_name }} </p>
    {% endif %}
     {% if user.role_council > 2 %}
     <form name="ChangePartyForm" method="post">
       {% csrf_token %}
       <input type="hidden" name="partyid" value="{{ party.id }}">
-    <button id="send" class="btb btn-dark allbutton" name="subbutton" type="submit" value="{{ p_item.changeme }}">{{ p_item.changeme }}</button>
-    <br>
+      <input class="button" name="changeparty" type="submit" value="{{ p_item.changeme }}">
     </form>
-    </div>
     {% endif %}
     <br>
+    </div>
   {% endfor %}
 {% endblock body %}
 
