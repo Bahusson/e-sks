@@ -38,7 +38,6 @@ def setmylanguage(request):
             form.save(userlang)
         return redirect('setmylanguage')
     else:
-        # form = LangForm()
         lang = request.user.language
         userflag = "lang_flag_" + lang
         p_item = PageElement(P)
@@ -57,7 +56,6 @@ def setmylanguage(request):
          "lang_ids": lang_ids,
          "flagsobjects": p_item_objects,
          "flagslist": flagslist,
-         # "form": form,
         }
         pl = PortalLoad(P, L, Pbi, 3, Tmi, Tli)
         context_lazy = pl.lazy_context(skins=S, context=context)
@@ -71,8 +69,9 @@ def setmylanguage(request):
 @translators_only(login_url='logger')
 def elementstranslate(request):
     lang = request.user.language
+    instance = P.objects.get(id=1)
     if request.method == 'POST':
-        form = PageItemForm(data=request.POST)
+        form = PageItemForm(request.POST, instance=instance)
         if form.is_valid():
             form.save()
             return redirect('elementstranslate')
@@ -84,10 +83,10 @@ def elementstranslate(request):
         for item in p_item_names:
             item = str(item) + "_" + lang
             p_item_names_lang.append(item)
+        print(p_item_names_lang)
         p_item_objects = p_item.get_setlist(0, L, 2)
         p_item_objects = p_item_objects[1:]  # Obcinacz flagi
         # Dla szerszego spektrum sprawdź wzór na change_element
-        instance = G404(P, id=1)
         form = PageItemForm(instance=instance)
         context = {
          "trans_from_list": p_item_objects,
@@ -98,3 +97,12 @@ def elementstranslate(request):
         context_lazy = pl.lazy_context(skins=S, context=context)
         template = 'panels/translator/elementstranslate.html'
         return render(request, template, context_lazy)
+
+
+# Hardkod do usunięcia po testach metaklasy.
+MYFIELDS = [
+ 'headtitle_en', 'mainpage_en', 'information_en', 'akamap_en', 'contact_en',
+ 'logout_en', 'news_en', 'docs_en', 'login_en', 'panel_user_en',
+ 'panel_council_en', 'panel_staff_en', 'panel_translator_en',
+ 'backtouserpanel_en', 'see_more_en', 'pagemap_en', 'addblog_en',
+ 'addinfo_en', 'addfile_en', 'editme_en']

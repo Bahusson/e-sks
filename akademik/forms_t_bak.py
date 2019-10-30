@@ -6,19 +6,11 @@ from strona.models import Pageitem
 # Klasa tłumaczeniowa tłumacza dla Pageitem
 class PageItemForm(forms.ModelForm):
 
-    # Tymczasowy fix do czasu jak zrobię tę metaklasę na poważnie tak, żeby
-    # brała te argumenty w locie albo zrobię obejście.
-    # Na razie, ponieważ nadpisuje co nie trzeba to takie obejście z hardkodem.
     class Meta:
         model = Pageitem
-        fields = (
-         'headtitle_en', 'mainpage_en', 'information_en', 'akamap_en',
-         'contact_en', 'logout_en', 'news_en', 'docs_en', 'login_en',
-         'panel_user_en', 'panel_council_en', 'panel_staff_en',
-         'panel_translator_en', 'backtouserpanel_en', 'see_more_en',
-         'pagemap_en', 'addblog_en', 'addinfo_en', 'addfile_en', 'editme_en')
+        fields = '__all__'
 
-    # Sprawia, że wszystkie elementy (tutaj) nie są wymagane.
+# Sprawia, że wszystkie elementy (tutaj) nie są wymagane.
     def __init__(self, *args, **kwargs):
         super(PageItemForm, self).__init__(*args, **kwargs)
         for field in self.fields.values():
