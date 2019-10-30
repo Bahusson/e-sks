@@ -185,6 +185,7 @@ class FormItems(models.Model):
 # Wszystkie domy studenckie - nazwy i być może atrybuty.
 class StudentHouse(models.Model):
     name = models.CharField(max_length=100)
+    position = models.IntegerField()
 
     def __str__(self):
         return self.name
@@ -284,25 +285,25 @@ class ApplicationFormFields(models.Model):
      AUTH_USER_MODEL, on_delete=models.CASCADE)
     # Preferencje akademików 1-3
     timeapplied = models.DateTimeField(blank=True, null=True)
-    sh_choice1 = models.IntegerField(blank=True, null=True)
-    sh_choice2 = models.IntegerField(blank=True, null=True)
-    sh_choice3 = models.IntegerField(blank=True, null=True)
+    sh_choice1 = models.PositiveSmallIntegerField(null=True, blank=True, default=1)
+    sh_choice2 = models.IntegerField(null=True, blank=True, default=1)
+    sh_choice3 = models.IntegerField(default=1, blank=True, null=True)
     # Czy zmiana pokoju?
-    if_room_change = models.IntegerField(blank=True, null=True)
-    duration = models.IntegerField(blank=True, null=True)
+    if_room_change = models.IntegerField(default=1, blank=True, null=True)
+    duration = models.IntegerField(default=1, blank=True, null=True)
     location = models.CharField(max_length=50, blank=True)
-    faculty = models.IntegerField(blank=True, null=True)
-    degree = models.IntegerField(blank=True, null=True)
+    faculty = models.IntegerField(default=1, blank=True, null=True)
+    degree = models.IntegerField(default=1, blank=True, null=True)
     deangroup = models.CharField(max_length=50, blank=True)
-    semester = models.IntegerField(blank=True, null=True)
-    spouse_cohabitant = models.IntegerField(blank=True, null=True)
-    special_case_docs = models.IntegerField(blank=True, null=True)
-    international_placement = models.BooleanField(blank=True, null=True)
-    mailinglist = models.BooleanField(blank=True, null=True)
-    dataprocessing = models.BooleanField(blank=True, null=True)
+    semester = models.IntegerField(default=0, blank=True, null=True)
+    spouse_cohabitant = models.IntegerField(default=1, blank=True, null=True)
+    special_case_docs = models.IntegerField(default=1, blank=True, null=True)
+    international_placement = models.BooleanField(null=True, default=False)
+    mailinglist = models.BooleanField(null=True, default=False)
+    dataprocessing = models.BooleanField(null=True, default=True)
     attachment = models.FileField(upload_to='userdocs', null=True, blank=True)
-    status = models.IntegerField(blank=True, null=True)
-    quarter = models.IntegerField(blank=True, null=True)
+    status = models.IntegerField(default=1, blank=True, null=True)
+    quarter = models.IntegerField(default=1, blank=True, null=True)
 
     class Meta:
         ordering = ['-timeapplied', 'owner']

@@ -203,7 +203,7 @@ MODELTRANSLATION_TRANSLATION_FILES = (
 # https://github.com/jschneier/django-storages
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 AWS_S3_REGION_NAME = 'fra1'
 

@@ -265,8 +265,8 @@ class ActivePageItems(object):
             self.active_items.append(obj)
 
 
-def checkifnull(x):
+def checkifnull(x, y):
     if x == '':
-        return None
+        return y
     else:
         return int(x)
