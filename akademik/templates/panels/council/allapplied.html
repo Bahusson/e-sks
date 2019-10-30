@@ -50,8 +50,8 @@
             <option value ="if_room_change" {% if view_filter|lookupint:x == "if_room_change" %} selected="selected" {% endif %} >Zmiana pokoju rosnąco</option>
             <option value ="-status" {% if view_filter|lookupint:x == "-status" %} selected="selected" {% endif %} >Status wniosku malejąco</option>
             <option value ="status" {% if view_filter|lookupint:x == "status" %} selected="selected" {% endif %} >Status wniosku rosnąco</option>
-            <option value ="-owner__nationality" {% if view_filter|lookupint:x == "-owner__nationality" %} selected="selected" {% endif %} >Narodowość malejąco</option>
-            <option value ="owner__nationality" {% if view_filter|lookupint:x == "owner__nationality" %} selected="selected" {% endif %} >Narodowość rosnąco</option>
+            <option value ="-owner__citizenship" {% if view_filter|lookupint:x == "-owner__nationality" %} selected="selected" {% endif %} >Narodowość malejąco</option>
+            <option value ="owner__citizenship" {% if view_filter|lookupint:x == "owner__nationality" %} selected="selected" {% endif %} >Narodowość rosnąco</option>
             <option value ="-quarter" {% if view_filter|lookupint:x == "-quarter" %} selected="selected" {% endif %} >Akcja Kwaterunkowa malejąco</option>
             <option value ="quarter" {% if view_filter|lookupint:x == "quarter" %} selected="selected" {% endif %} >Akcja Kwaterunkowa rosnąco</option>
          {% endwith %}
