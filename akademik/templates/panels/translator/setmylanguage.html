@@ -1,0 +1,55 @@
+<!-- Strona wyboru domyślnego języka tłumaczeń. Obowiązkowa dla tłumacza. -->
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load xfilters %}
+
+{% block title %}
+<title>Panel Tłumacza</title>
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+{% block css2 %}
+{% endblock %}
+
+<!--Zwraca oryginalną kompozycję menu z bazy. Potem podstawiasz zmienne,-->
+{% block aside %}
+ {{ block.super }}
+{% endblock aside %}
+
+{% block menu %}
+  {% include 'menus/translator_menus.html' %} <!-- Menu z opcjami Tłumacza -->
+{% endblock menu %}
+
+{% block body %}<!-- Flagi z wyborem języka.-->
+ <h4>Ustaw język na który chcesz tłumaczyć:</h4>
+ <br>
+
+<p>
+  <form name="AccessForm" method="post"> <!-- Zmienia wartość domyślnego języka dla tłumacza. -->
+  {% for langid, flag in lang_ids|zip_lists:flagslist %}
+    {% with flagsobjects|lookupdict:flag as x %}
+      <button type="submit" name="sendlang" value="{{ langid }}"><img src="{{ x.url }}" height="40" width="70"/></button>
+    {% endwith %}
+  {% endfor %}
+  {% csrf_token %}
+  </form>
+</p>
+  <!-- Pokazuje wartość domyślnego języka dla tłumacza jeśli wybrany. -->
+  {% if user.language == '' %}
+    <h5>Wybierz język, aby uzyskać dostęp do menu tłumaczeń!</h5>
+  {% else %}
+    <h5>Twój preferowany język:</h5>
+    <br>
+  {% with flagsobjects|lookupdict:userflag as x %}
+    <img src="{{ x.url }}" height="40" width="70"/>
+  {% endwith %}
+  {% endif %}
+
+{% endblock body %}
+
+
+{% block scripts %}
+{% endblock %}
+{% block scripts2 %}
+{% endblock %}

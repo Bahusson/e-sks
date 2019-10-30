@@ -15,6 +15,11 @@ def lookup(d, key):
     return d[key]
 
 
+# Wyszukuje po słowniku
+@register.filter(name='lookupdict')
+def lookupdict(d, key):
+    return d.__getattribute__(key)
+
 # Wyszukuje po liście bezwzględny integer
 @register.filter(name='lookupint')
 def lookupint(d, key):
@@ -33,7 +38,7 @@ def negator(var):
     neg = '-' + str(var)
     return neg
 
-
+# Cztery poniżej do wywalenie jak poprawię menu na lepszą logikę.
 # Podnosi wartość samego siebie o 1 za każdym razem. (Dla Linków)
 @register.filter(name='setlinkadder')
 def setlinkadder(var):
@@ -64,3 +69,9 @@ def menuadder(var):
     global menuaddpoint
     menuaddpoint += 1
     return var[menuaddpoint]
+
+
+# Podnosi wartość samego siebie o 1 za każdym razem. (Dla Menu)
+@register.filter(name='zip_lists')
+def zip_lists(a, b):
+    return zip(a, b)

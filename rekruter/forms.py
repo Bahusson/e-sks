@@ -99,6 +99,22 @@ class PowerForm(forms.ModelForm):
         return user
 
 
+# Zmienia akcję kwaterunkową.
+class LangForm(forms.ModelForm):
+    language = forms.CharField(max_length=2, required=False)
+
+    class Meta:
+        model = User
+        fields = ()
+
+    def save(self, lang, commit=True):
+        user = super(LangForm, self).save(commit=False)
+        user.language = lang
+        if commit:
+            user.save()
+        return user
+
+
 # Formularz to tworzenia i modyfikowania podań o akademik. UWAGA!
 # Rośnie Ci złożoność cyklomatyczna! - najlepiej zrób dwa formularze.
 # Jeden do tworzenia a drugi do modyfikacji.

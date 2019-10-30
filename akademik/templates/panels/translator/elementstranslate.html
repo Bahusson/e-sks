@@ -1,0 +1,40 @@
+<!--Ten wzornik służy tłumaczom do wysyłania kawałków tekstu.-->
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load xfilters %}
+
+{% block title %}
+<title>{{ link.0 }}</title>
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+{% block css2 %}
+{% endblock %}
+
+<!--Zwraca oryginalną kompozycję menu z bazy. Potem podstawiasz zmienne.-->
+{% block aside %}
+ {{ block.super }}
+{% endblock aside %}
+
+{% block menu %}
+ {% include 'menus/translator_menus.html' %} <!-- Menu z opcjami użytkownika -->
+{% endblock menu %}
+
+{% block body %}
+  <!--Ten kawałek tłumaczy: Po lewej z języka, po prawej na język.-->
+  <form name="TranslateForm" method="post">
+  {% csrf_token %}
+  {% for trans_to, trans_from in trans_to_list|zip_lists:trans_from_list %}
+   <p>{{ trans_from }} : {{ form|lookup:trans_to }}</p>
+  {% endfor %}
+  <input type="submit" class="button" name="sendtrans" value="Wyślij"></input>
+  </form>
+
+{% endblock body %}
+
+{% block scripts %}
+{% endblock %}
+
+{% block scripts2 %}
+{% endblock %}
