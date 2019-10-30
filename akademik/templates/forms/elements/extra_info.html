@@ -1,7 +1,7 @@
 <!-- Dodatkowe dane: Czy chce mieszkać z małżonkiem i czy jest niepełnosprawny/a -->
 <!-- Domyślnie: Nie składa -->
 <div class="card cardio">
-<div class="card-header"> {{ formitem.additional_info }}</div>
+<div class="maintitle"> {{ formitem.additional_info }}</div>
 <div class="card-body">
 <p class="extras"> {{ formitem.spouse_cohabitant }}:
   <select {% if service %} required {% endif %} id="spouse_cohabitant" class="form-control">
