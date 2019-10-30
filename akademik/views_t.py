@@ -71,8 +71,9 @@ def setmylanguage(request):
 @translators_only(login_url='logger')
 def elementstranslate(request):
     lang = request.user.language
+    instance = P.objects.get(id=1)
     if request.method == 'POST':
-        form = PageItemForm(data=request.POST)
+        form = PageItemForm(request.POST, instance=instance)
         if form.is_valid():
             form.save()
             return redirect('elementstranslate')
@@ -87,7 +88,6 @@ def elementstranslate(request):
         p_item_objects = p_item.get_setlist(0, L, 2)
         p_item_objects = p_item_objects[1:]  # Obcinacz flagi
         # Dla szerszego spektrum sprawdź wzór na change_element
-        instance = G404(P, id=1)
         form = PageItemForm(instance=instance)
         context = {
          "trans_from_list": p_item_objects,

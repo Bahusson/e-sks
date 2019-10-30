@@ -22,7 +22,7 @@ class PageItemForm(forms.ModelForm):
         #    field_value = self.cleaned_data[field]
             #if field_value is not None:
                 #p_item.__getattr__(field) = field_value
-
+# https://stackoverflow.com/questions/1355150/django-when-saving-how-can-you-check-if-a-field-has-changed
         if commit:
             p_item.save()
         return p_item
