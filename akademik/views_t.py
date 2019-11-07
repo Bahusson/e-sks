@@ -100,9 +100,9 @@ def elementstranslate(request):
 
 
 # Hardkod do usunięcia po testach metaklasy.
-MYFIELDS = [
+MYFIELDS = (
  'headtitle_en', 'mainpage_en', 'information_en', 'akamap_en', 'contact_en',
  'logout_en', 'news_en', 'docs_en', 'login_en', 'panel_user_en',
  'panel_council_en', 'panel_staff_en', 'panel_translator_en',
  'backtouserpanel_en', 'see_more_en', 'pagemap_en', 'addblog_en',
- 'addinfo_en', 'addfile_en', 'editme_en']
+ 'addinfo_en', 'addfile_en', 'editme_en')
