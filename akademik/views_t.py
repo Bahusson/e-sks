@@ -70,24 +70,24 @@ def setmylanguage(request):
 def elementstranslate(request):
     lang = request.user.language
     instance = P.objects.get(id=1)
+    p_item = PageElement(P)
+    p_item_names = p_item.get_attrnames(L, 2)
+    p_item_names = p_item_names[1:]  # Obcinacz flagi
+    p_item_names_lang = []
+    for item in p_item_names:
+        item = str(item) + "_" + lang
+        p_item_names_lang.append(item)
+    print(p_item_names_lang)
     if request.method == 'POST':
-        form = PageItemForm(request.POST, instance=instance)
+        form = PageItemForm(request.POST, instance=instance, upd_fields=p_item_names_lang)
         if form.is_valid():
             form.save()
             return redirect('elementstranslate')
     else:
-        p_item = PageElement(P)
-        p_item_names = p_item.get_attrnames(L, 2)
-        p_item_names = p_item_names[1:]  # Obcinacz flagi
-        p_item_names_lang = []
-        for item in p_item_names:
-            item = str(item) + "_" + lang
-            p_item_names_lang.append(item)
-        print(p_item_names_lang)
         p_item_objects = p_item.get_setlist(0, L, 2)
         p_item_objects = p_item_objects[1:]  # Obcinacz flagi
         # Dla szerszego spektrum sprawdź wzór na change_element
-        form = PageItemForm(instance=instance)
+        form = PageItemForm(instance=instance, upd_fields=p_item_names_lang)
         context = {
          "trans_from_list": p_item_objects,
          "trans_to_list": p_item_names_lang,
@@ -100,9 +100,9 @@ def elementstranslate(request):
 
 
 # Hardkod do usunięcia po testach metaklasy.
-MYFIELDS = [
+MYFIELDS = (
  'headtitle_en', 'mainpage_en', 'information_en', 'akamap_en', 'contact_en',
  'logout_en', 'news_en', 'docs_en', 'login_en', 'panel_user_en',
  'panel_council_en', 'panel_staff_en', 'panel_translator_en',
  'backtouserpanel_en', 'see_more_en', 'pagemap_en', 'addblog_en',
- 'addinfo_en', 'addfile_en', 'editme_en']
+ 'addinfo_en', 'addfile_en', 'editme_en')
