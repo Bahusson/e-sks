@@ -39,7 +39,7 @@ class TMIListForm(forms.ModelForm):
         fields = '__all__'
 
     def save(self, commit=True):
-        p_item = super(PageItemForm, self).save(commit=False)
+        p_item = super(TMIListForm, self).save(commit=False)
 
         if commit:
             p_item.save(update_fields=self.upda_fields)

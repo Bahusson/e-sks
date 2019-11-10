@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404 as G404
+from django.forms import formset_factory
 from strona.models import Pageitem as P
 from strona.models import PageSkin as S
 from esks.settings import LANGUAGES as L
@@ -118,17 +119,20 @@ def menustranslate(request):
     p_item_names_lang = p_item_names_lang[0]
     print(p_item_names_lang)
     if request.method == 'POST':
-        pass
-#        form = TMIListForm(
-#         request.POST, instance=instancelist[0], upd_fields=p_item_names_lang)
-#        if form.is_valid():
-#            form.save()
-#            return redirect('menustranslate')
+        num = 1
+        for instance in instancelist:
+            form = TMIListForm(instance=instance, upd_fields=p_item_names_lang)
+            # print(form)
+            if form.is_valid():
+                print('form is valid')
+                form.save()
+                num += 1
+            else:
+                print('form is invalid')
+        return redirect('menustranslate')
     else:
         p_item_objects = p_item.get_droplist(L, 2)
         print(p_item_objects)
-        # p_item_objects = p_item_objects[1:]  # Obcinacz flagi
-        # Dla szerszego spektrum sprawdź wzór na change_element
         forms = []
         for instance in instancelist:
             form = TMIListForm(instance=instance, upd_fields=p_item_names_lang)
