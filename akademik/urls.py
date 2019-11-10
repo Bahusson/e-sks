@@ -21,9 +21,12 @@ urlpatterns = [
     # Ścieżki Tłumacza:
     path('panel_tlumacza', views_t.translatorpanel, name='translatorpanel'),
     path(
+     'ustaw_jezyk', views_t.setmylanguage, name='setmylanguage'
+     ),
+    path(
      'tlumacz_element', views_t.elementstranslate, name='elementstranslate'
      ),
     path(
-     'ustaw_jezyk', views_t.setmylanguage, name='setmylanguage'
+     'tlumacz_liste', views_t.menustranslate, name='menustranslate'
      ),
 ]

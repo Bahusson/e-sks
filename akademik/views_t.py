@@ -10,7 +10,9 @@ from .models import TranslatorLinkItem as Tli
 from esks.special.decorators import translators_only
 from rekruter.models import User
 from .forms_t import PageItemForm
+from .forms_t import TMIListForm
 from rekruter.forms import LangForm
+
 
 # Panel Tłumaczeniowy - pusty.
 @translators_only(login_url='logger')
@@ -63,9 +65,8 @@ def setmylanguage(request):
         return render(request, template, context_lazy)
 
 
-# Pierwszy widok testowy. To się będzie rozrastać. Może zrobimy na klasie?
+# Pierwszy widok testowy.
 # Tłumaczenie Pageitem za pomocą importu szeregu zmiennych.
-# Tłumaczenie rozwijanych menu będzie za pomocą Formsetów.
 @translators_only(login_url='logger')
 def elementstranslate(request):
     lang = request.user.language
@@ -77,9 +78,10 @@ def elementstranslate(request):
     for item in p_item_names:
         item = str(item) + "_" + lang
         p_item_names_lang.append(item)
-    print(p_item_names_lang)
+    # print(p_item_names_lang)
     if request.method == 'POST':
-        form = PageItemForm(request.POST, instance=instance, upd_fields=p_item_names_lang)
+        form = PageItemForm(
+         request.POST, instance=instance, upd_fields=p_item_names_lang)
         if form.is_valid():
             form.save()
             return redirect('elementstranslate')
@@ -99,10 +101,50 @@ def elementstranslate(request):
         return render(request, template, context_lazy)
 
 
-# Hardkod do usunięcia po testach metaklasy.
-MYFIELDS = (
- 'headtitle_en', 'mainpage_en', 'information_en', 'akamap_en', 'contact_en',
- 'logout_en', 'news_en', 'docs_en', 'login_en', 'panel_user_en',
- 'panel_council_en', 'panel_staff_en', 'panel_translator_en',
- 'backtouserpanel_en', 'see_more_en', 'pagemap_en', 'addblog_en',
- 'addinfo_en', 'addfile_en', 'editme_en')
+# Drugi widok testowy. Tłumaczenie listy rozwijanej.
+@translators_only(login_url='logger')
+def menustranslate(request):
+    lang = request.user.language
+    instance = Tmi.objects.get(id=1)
+    p_item = PageElement(Tmi)
+    instancelist = p_item.listed
+    # print(instancelist)
+    p_item_names = p_item.get_attrnames(L, 2)
+    p_item_names_lang = []
+    for item in p_item_names:
+        item = str(item) + "_" + lang
+        p_item_names_lang.append(item)
+    # Monkey filter (obetnij niepotrzebne elementy):
+    p_item_names_lang = p_item_names_lang[0]
+    print(p_item_names_lang)
+    if request.method == 'POST':
+        pass
+#        form = TMIListForm(
+#         request.POST, instance=instancelist[0], upd_fields=p_item_names_lang)
+#        if form.is_valid():
+#            form.save()
+#            return redirect('menustranslate')
+    else:
+        forloopcounter = 0
+        p_item_objects = []
+        for item in instancelist:
+            item.get_setlist(forloopcounter, L, 2)
+            item = item[0]
+            p_item_objects.append(item)
+            forloopcounter += 1
+        print(p_item_objects)
+
+        # Dla szerszego spektrum sprawdź wzór na change_element
+        forms = []
+        for instance in instancelist:
+            form = TMIListForm(instance=instance, upd_fields=p_item_names_lang)
+            forms.append(form)
+        context = {
+         "trans_from_list": p_item_objects,
+         "trans_to_list": p_item_names_lang,
+         "forms": forms,
+        }
+        pl = PortalLoad(P, L, Pbi, 3, Tmi, Tli)
+        context_lazy = pl.lazy_context(skins=S, context=context)
+        template = 'panels/translator/menustranslate.html'
+        return render(request, template, context_lazy)
