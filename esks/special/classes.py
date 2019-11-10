@@ -70,9 +70,9 @@ class PageElement(object):
 
     # Działa tylko jeśli wszystkie atrybuty są tłumaczone.
     # Zwraca gołe nazwy atrybutów bez względu na ilość języków.
-    def get_attrnames(self, langs, cut_fr=2):
+    def get_attrnames(self, langs, cut_fr=2, cut_to=None):
         preqlist = list(self.baseattrs.__dict__.keys())
-        preqlist2 = preqlist[cut_fr:]  # Obetnij czołówkę.
+        preqlist2 = preqlist[cut_fr:cut_to]  # Obetnij czołówkę.
         self.attrnames = preqlist2[0::len(langs)+1]
         return self.attrnames
 
@@ -91,6 +91,18 @@ class PageElement(object):
         for item in attrnames:
             self.setlist.append(attrobjects.__getattribute__(item))
         return self.setlist
+
+    # Zwraca listę list przetłumaczonych atrybutów. (do list rozwijanych)
+    def get_droplist(self, langs, cut_fr=2, cut_to=3):
+        attrname = self.get_attrnames(langs, cut_fr, cut_to)
+        # attrname = str(attrname[0])
+        print(type(attrname))
+        attrobjects = self.listed
+        self.droplist = []
+        for item in attrobjects:
+            for attr in attrname:
+                self.droplist.append(item.__getattribute__(attr))
+        return self.droplist
 
     # Elementy po Id.
     def by_id(self, **kwargs):
