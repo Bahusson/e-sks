@@ -125,15 +125,9 @@ def menustranslate(request):
 #            form.save()
 #            return redirect('menustranslate')
     else:
-        forloopcounter = 0
-        p_item_objects = []
-        for item in instancelist:
-            item.get_setlist(forloopcounter, L, 2)
-            item = item[0]
-            p_item_objects.append(item)
-            forloopcounter += 1
+        p_item_objects = p_item.get_droplist(L, 2)
         print(p_item_objects)
-
+        # p_item_objects = p_item_objects[1:]  # Obcinacz flagi
         # Dla szerszego spektrum sprawdź wzór na change_element
         forms = []
         for instance in instancelist:
