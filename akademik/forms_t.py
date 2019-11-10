@@ -1,16 +1,10 @@
 # Formularze tłumaczenia strony dla panelu tłumacza.
 from django import forms
 from strona.models import Pageitem
-
-fields2 = (
- 'headtitle_en', 'mainpage_en', 'information_en', 'akamap_en',
- 'contact_en', 'logout_en', 'news_en', 'docs_en', 'login_en',
- 'panel_user_en', 'panel_council_en', 'panel_staff_en',
- 'panel_translator_en', 'backtouserpanel_en', 'see_more_en',
- 'pagemap_en', 'addblog_en', 'addinfo_en', 'addfile_en', 'editme_en')
+from .models import TranslatorMenuItem
 
 
-# Klasa tłumaczeniowa tłumacza dla Pageitem
+# Klasa tłumaczeniowa tłumacza dla elementów szeregowych (Pageitem)
 class PageItemForm(forms.ModelForm):
 
     def __init__(self, *args, upd_fields=0, **kwargs):
@@ -21,6 +15,27 @@ class PageItemForm(forms.ModelForm):
 
     class Meta:
         model = Pageitem
+        fields = '__all__'
+
+    def save(self, commit=True):
+        p_item = super(PageItemForm, self).save(commit=False)
+
+        if commit:
+            p_item.save(update_fields=self.upda_fields)
+        return p_item
+
+
+# Klasa tłumaczeniowa tłumacza dla listy rozwijanej ()
+class TMIListForm(forms.ModelForm):
+
+    def __init__(self, *args, upd_fields=0, **kwargs):
+        super(TMIListForm, self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.required = False
+        self.upda_fields = upd_fields
+
+    class Meta:
+        model = TranslatorMenuItem
         fields = '__all__'
 
     def save(self, commit=True):
