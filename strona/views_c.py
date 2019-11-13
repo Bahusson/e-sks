@@ -102,9 +102,14 @@ def change_element(request, form_type, form_id):
 
 # Pozwala członkom rady zmieniać i edytować elementy strony danego typu.
 @council_only(login_url='logger')
-def allelements(request):
-    # service = True
-    api = ActivePageItems(request, Blog, pytz, datetime)
+def allelements(request, elem_type):
+    elemdict = {
+       'blog': Blog,
+       'info': Info,
+       'file': Fileserve,
+     }
+    element = elemdict[elem_type]
+    api = ActivePageItems(request, element, pytz, datetime)
     active_blogs = api.active_items
     context = {
      'blogs': active_blogs, }
