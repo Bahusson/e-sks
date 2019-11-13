@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load xfilters %}
 
 {% block title %}
 <title>Wszystkie Elementy - Roboczy</title>
@@ -19,20 +20,23 @@
     <main role="main kol">
       <div class="row kol">
         <div class="container kol">
-        {% for blog in blogs %}
+        {% for element in elements %}
           <hr class="featurette-divider">
            <div class="row featurette kol">
              <div class="col-md-5 kol">
-               {% if blog.image %}
+               {% if element.image %}
                <!-- Jeśli nie ma obrazka zwróć default ze skórki Usera -->
-               <a href="{% url 'blog' blog.id %}"><img class="img-fluid allimg" src="{{ blog.image.url }}" /></a>
+               <img class="img-fluid allimg" src="{{ element.image.url }}" />
                {% else %}
-               <a href="{% url 'blog' blog.id %}"><img class="img-fluid allimg" src="{{ skin.blogimagedefault.url }}" /></a>
+               <img class="img-fluid allimg" src="{{ skin.elementimagedefault.url }}" />
                {% endif %}
              </div>
              <div class="col-md-7 kol">
-               <a href="{% url 'blog' blog.id %}"><h2 class="featurette-heading title">{{ blog.title }}</h2></a> <h5 class="text-muted">{{ blog.pubdate_short }}</h5>
-               <p class="lead">{{ blog.summary }}</p> <a href="{% url 'blog' blog.id %}">Czytaj dalej...-roboczy</a>
+               <h2 class="featurette-heading title">{{ element.title }}</h2> <h5 class="text-muted">{{ element.pubdate_short }}</h5>
+               <p class="lead">{{ element.summary }}</p>
+               {% if element_type != 'file' %}
+                <a href="{% url element_type element.id %}">Czytaj dalej...-roboczy</a>
+               {% endif %}
              </div>
            </div>
         {% endfor %}

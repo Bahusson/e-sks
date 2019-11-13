@@ -110,9 +110,10 @@ def allelements(request, elem_type):
      }
     element = elemdict[elem_type]
     api = ActivePageItems(request, element, pytz, datetime)
-    active_blogs = api.active_items
+    active_elements = api.active_items
     context = {
-     'blogs': active_blogs, }
+     'element_type': elem_type,
+     'elements': active_elements, }
     pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
     context_lazy = pl.lazy_context(
      skins=S, context=context)
