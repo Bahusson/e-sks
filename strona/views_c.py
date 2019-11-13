@@ -10,10 +10,12 @@ from strona.models import Pageitem as P
 from esks.settings import LANGUAGES as L
 from esks.special.classes import PageElement as pe
 from esks.special.classes import PortalLoad
+from esks.special.classes import ActivePageItems
 from esks.special.decorators import council_only
 from .models import FormElement
 from .forms import BlogForm, InfoForm, FileserveForm
-
+import pytz
+import datetime
 
 # Tworzy wpis w aktualnościach.
 @council_only(login_url='staffpanel_c', power_level=1)
@@ -95,4 +97,29 @@ def change_element(request, form_type, form_id):
     context_lazy = pl.lazy_context(
      skins=S, context=context)
     template = 'strona/manage/makeelement.html'
+    return render(request, template, context_lazy)
+
+
+# Pozwala członkom rady zmieniać i edytować elementy strony danego typu.
+@council_only(login_url='logger')
+def allelements(request, elem_type):
+    elemdict = {
+       'blog': Blog,
+       'info': Info,
+       'file': Fileserve,
+     }
+    element = elemdict[elem_type]
+    api = ActivePageItems(request, element, pytz, datetime)
+    active_elements = api.active_items
+    addvariable = 'add' + elem_type
+    varimagedefault = elem_type + 'imagedefault'
+    context = {
+     'addvar': addvariable,
+     'varimgdef': varimagedefault,
+     'element_type': elem_type,
+     'elements': active_elements, }
+    pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )
+    context_lazy = pl.lazy_context(
+     skins=S, context=context)
+    template = 'strona/manage/allelements.html'
     return render(request, template, context_lazy)

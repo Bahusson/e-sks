@@ -15,9 +15,9 @@
             <a href="#">{{ link|linkadder }}</a><!--Zarządzaj stroną-->
           </li>
             <ul class="sub-menu collapse" id="products">
-                <li><a href="{% url 'allblogs' %}">{{ link|linkadder }}</a></li> <!-- Aktualności -->
-                <li><a href="{% url 'allinfos' %}">{{ link|linkadder }}</a></li> <!-- Informacje -->
-                <li><a href="{% url 'allfiles' %}">{{ link|linkadder }}</a></li> <!-- Pliki -->
+                <li><a href="{% url 'allelements' 'blog' %}">{{ link|linkadder }}</a></li> <!-- Aktualności -->
+                <li><a href="{% url 'allelements' 'info' %}">{{ link|linkadder }}</a></li> <!-- Informacje -->
+                <li><a href="{% url 'allelements' 'file' %}">{{ link|linkadder }}</a></li> <!-- Pliki -->
             </ul>
   <div class="maintitle">{{ menu|menuadder }}</div>
           <li>

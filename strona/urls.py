@@ -14,4 +14,6 @@ urlpatterns = [
     path(
      'zmien/<form_type>/<int:form_id>',
      views_c.change_element, name='change_element'),
+    path(
+     'zmien_elemenent/<elem_type>/', views_c.allelements, name='allelements'),
 ]

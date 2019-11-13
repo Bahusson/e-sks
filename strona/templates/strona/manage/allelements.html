@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load xfilters %}
+
+{% block title %}
+<title>Wszystkie Elementy - Roboczy</title>
+{% endblock %}
+
+ <!-- Nullifikator bocznego menu z base.html Nie ruszaj tego, jak i end-taga!-->
+{% block aside %}
+ {{ block.super }}
+{% endblock aside %}
+
+{% block menu %}
+  {% include 'menus/council_menus.html' %} <!-- Menu z opcjami rady -->
+{% endblock menu %}
+
+{% block body %}
+
+    <main role="main kol">
+      <div class="row kol">
+
+        <a class="btn btn-dark" href="{% url 'make_element' element_type %}">{{ items|lookupdict:addvar }}</a>
+
+
+        <div class="container kol">
+        {% for element in elements %}
+          <hr class="featurette-divider">
+           <div class="row featurette kol">
+
+             <div class="col-md-5 kol">
+               {% if element.image %}
+               <!-- Jeśli nie ma obrazka zwróć default ze skórki Usera -->
+               <img class="img-fluid allimg" src="{{ element.image.url }}" />
+               {% else %}
+                {% with skin|lookupdict:varimgdef as sv %}
+                <img class="img-fluid allimg" src="{{ sv.url }}" />
+                {% endwith %}
+               {% endif %}
+             </div>
+             <div class="col-md-7 kol">
+               <h2 class="featurette-heading title">{{ element.title }}</h2> <h5 class="text-muted">{{ element.pubdate_short }}</h5>
+               <p class="lead">{{ element.summary }}</p>
+               <a class="btn btn-dark" href="{% url 'change_element' element_type element.id %}">{{ items.editme }}</a>
+               {% if element_type != 'file' %}
+                <a href="{% url element_type element.id %}">Czytaj dalej...-roboczy</a>
+               {% endif %}
+             </div>
+           </div>
+        {% endfor %}
+        </div>
+      </div><!-- /.row -->
+    </main>
+    <!-- empty div -->
+      <div class="top-content">
+        <div class="container">
+      <div class="row">	<div class="col-sm-12 text wow fadeInLeft"></div></div>
+
+
+    </div>
+    </div>
+    <!-- end of empty div -->
+{% endblock %}
