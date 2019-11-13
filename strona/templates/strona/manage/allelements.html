@@ -33,7 +33,9 @@
                <!-- Jeśli nie ma obrazka zwróć default ze skórki Usera -->
                <img class="img-fluid allimg" src="{{ element.image.url }}" />
                {% else %}
-               <img class="img-fluid allimg" src="{{ skin.blogimagedefault.url }}" />
+                {% with skin|lookupdict:varimgdef as sv %}
+                <img class="img-fluid allimg" src="{{ sv.url }}" />
+                {% endwith %}
                {% endif %}
              </div>
              <div class="col-md-7 kol">
