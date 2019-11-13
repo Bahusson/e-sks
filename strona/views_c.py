@@ -111,7 +111,9 @@ def allelements(request, elem_type):
     element = elemdict[elem_type]
     api = ActivePageItems(request, element, pytz, datetime)
     active_elements = api.active_items
+    addvariable = 'add' + elem_type
     context = {
+     'addvar': addvariable,
      'element_type': elem_type,
      'elements': active_elements, }
     pl = PortalLoad(P, L, Pbi, 1, Cmi, Cli, )

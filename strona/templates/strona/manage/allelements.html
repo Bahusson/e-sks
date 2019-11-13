@@ -19,21 +19,27 @@
 
     <main role="main kol">
       <div class="row kol">
+
+        <a class="btn btn-dark" href="{% url 'make_element' element_type %}">{{ items|lookupdict:addvar }}</a>
+
+
         <div class="container kol">
         {% for element in elements %}
           <hr class="featurette-divider">
            <div class="row featurette kol">
+
              <div class="col-md-5 kol">
                {% if element.image %}
                <!-- Jeśli nie ma obrazka zwróć default ze skórki Usera -->
                <img class="img-fluid allimg" src="{{ element.image.url }}" />
                {% else %}
-               <img class="img-fluid allimg" src="{{ skin.elementimagedefault.url }}" />
+               <img class="img-fluid allimg" src="{{ skin.blogimagedefault.url }}" />
                {% endif %}
              </div>
              <div class="col-md-7 kol">
                <h2 class="featurette-heading title">{{ element.title }}</h2> <h5 class="text-muted">{{ element.pubdate_short }}</h5>
                <p class="lead">{{ element.summary }}</p>
+               <a class="btn btn-dark" href="{% url 'change_element' element_type element.id %}">{{ items.editme }}</a>
                {% if element_type != 'file' %}
                 <a href="{% url element_type element.id %}">Czytaj dalej...-roboczy</a>
                {% endif %}

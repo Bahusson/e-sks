@@ -15,7 +15,7 @@ def lookup(d, key):
     return d[key]
 
 
-# Wyszukuje po słowniku
+# Wyszukuje po atrybucie
 @register.filter(name='lookupdict')
 def lookupdict(d, key):
     return d.__getattribute__(key)
