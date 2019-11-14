@@ -3,7 +3,7 @@ from django import template
 register = template.Library()
 
 
-# Wyszukuje po liście -1
+# Wyszukuje po liście -1 (Nieużywany?)
 @register.filter(name='action')
 def action(d, key):
     return d[key-1]

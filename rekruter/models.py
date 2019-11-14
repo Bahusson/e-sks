@@ -185,12 +185,13 @@ class FormItems(models.Model):
 # Wszystkie domy studenckie - nazwy i być może atrybuty.
 class StudentHouse(models.Model):
     name = models.CharField(max_length=100)
+    position = models.IntegerField(null=True)
 
     def __str__(self):
         return self.name
 
     class Meta:
-        ordering = ['name']
+        ordering = ['position']
 
 
 # Czy chce zmienić pokój czy zostać.
@@ -265,6 +266,7 @@ class SpecialCase(models.Model):
         ordering = ['position']
 
 
+# Status aplikacji w systemie
 class ApplicationStatus(models.Model):
     name = models.CharField(max_length=100)
     position = models.IntegerField()

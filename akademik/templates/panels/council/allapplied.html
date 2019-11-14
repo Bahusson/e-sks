@@ -94,10 +94,10 @@
     {% endif %}
 </b></p>  </div>
   <div class="col-sm border">
-  <p class="tabelo2">AKADEMIK:  <b class="tabtxt">{{ hotelselector|action:apply.sh_choice1 }}</b></p>
+  <p class="tabelo2">AKADEMIK:  <b class="tabtxt">{{ hotelselector|lookup:apply.sh_choice1 }}</b></p>
     </div>
   <div class="col-sm border">
-  <p class="tabelo2">  INFO: <b class="tabtxt">{{ roomchange|action:apply.if_room_change }}</b></p>
+  <p class="tabelo2">  INFO: <b class="tabtxt">{{ roomchange|lookup:apply.if_room_change }}</b></p>
     </div>
     <div class="col-sm border">
     <p class="tabelo2">STATUS WNIOSKU: <b class="tabtxt"> {{ appstatus|lookup:apply.status }}</b></p>
