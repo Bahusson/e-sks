@@ -68,6 +68,19 @@ class PageElement(object):
         self.listed_specific = self.listed[num]
         return self.listed_specific
 
+    # Obcina listę obiektów w konretnych miejscach.
+    def list_shorter(self, **kwargs):
+        if 'cut_fr' in kwargs:
+            cut_from = kwargs['cut_fr']
+        else:
+            cut_to = None
+        if 'cut_to' in kwargs:
+            cut_to = kwargs['cut_to']
+        else:
+            cut_to = None
+        cut_list = self.listed[cut_from:cut_to]
+        return cut_list
+
     # Działa tylko jeśli wszystkie atrybuty są tłumaczone.
     # Zwraca gołe nazwy atrybutów bez względu na ilość języków.
     def get_attrnames(self, langs, cut_fr=2):

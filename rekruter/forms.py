@@ -145,18 +145,18 @@ class ApplicationForm(forms.ModelForm):
     def save(self, uid, commit=True, **kwargs):
         application = super(ApplicationForm, self).save(commit=False)
         application.owner = uid
-        application.sh_choice1 = cn(self.cleaned_data["sh_choice1"], 1)
-        application.sh_choice2 = cn(self.cleaned_data["sh_choice2"], 1)
-        application.sh_choice3 = cn(self.cleaned_data["sh_choice3"], 1)
-        application.if_room_change = cn(self.cleaned_data["if_room_change"], 1)
-        application.duration = cn(self.cleaned_data["duration"], 1)
+        application.sh_choice1 = cn(self.cleaned_data["sh_choice1"], 0)
+        application.sh_choice2 = cn(self.cleaned_data["sh_choice2"], 0)
+        application.sh_choice3 = cn(self.cleaned_data["sh_choice3"], 0)
+        application.if_room_change = cn(self.cleaned_data["if_room_change"], 0)
+        application.duration = cn(self.cleaned_data["duration"], 0)
         application.location = self.cleaned_data["location"]
-        application.faculty = cn(self.cleaned_data["faculty"], 1)
-        application.degree = cn(self.cleaned_data["degree"], 1)
+        application.faculty = cn(self.cleaned_data["faculty"], 0)
+        application.degree = cn(self.cleaned_data["degree"], 0)
         application.deangroup = self.cleaned_data["deangroup"]
         application.semester = cn(self.cleaned_data["semester"], 0)
-        application.spouse_cohabitant = cn(self.cleaned_data["spouse_cohabitant"], 1)
-        application.special_case_docs = cn(self.cleaned_data["special_case_docs"], 1)
+        application.spouse_cohabitant = cn(self.cleaned_data["spouse_cohabitant"], 0)
+        application.special_case_docs = cn(self.cleaned_data["special_case_docs"], 0)
         application.international_placement = self.cleaned_data["international_placement"]
         application.mailinglist = self.cleaned_data["mailinglist"]
         application.dataprocessing = self.cleaned_data["dataprocessing"]
