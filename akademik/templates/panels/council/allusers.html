@@ -4,7 +4,7 @@
 {% load xfilters %}
 
 {% block title %}
-<title>{{ link.5 }}</title>
+<title>{{ link.8 }}</title>
 {% endblock %}
 
 {% block css %}
@@ -23,8 +23,14 @@
 
 {% block body %}
    <!-- Tytuł W nagłówku -->
-   <p class="maintitle">{{ link.5 }}</p>
+   <p class="maintitle">{{ link.8 }}</p>
    <p>
+
+   <!-- Wyszukiwarka!!! :D -->
+   <form method='GET' action='/akademik/szukaj_uzytkownikow'>
+   <input type='text' name='q' placeholder={{ attools.searchme }} >
+   </form>
+
    <!-- Pierwszy rząd to przyciski sortowania ascendanten lob descendantem -->
    <form name="AppViewSwitcher" method="post" class="form-inline formula">
      {% csrf_token %}
@@ -41,7 +47,7 @@
        <input type="hidden" name="view_filter{{ forloop.counter0 }}" id="view_filter{{ forloop.counter0 }}">
     {% endfor %}
     <div class="sort butoneo">
-    <button  id="send" class="btn btn-dark btn-sm" name="sort" type="submit" value="Sortuj - roboczy">SORTUJ</button>
+    <button  id="send" class="btn btn-dark btn-sm" name="sort" type="submit">{{ attools.sortme }}</button>
     </div>
    </form>
 <br>

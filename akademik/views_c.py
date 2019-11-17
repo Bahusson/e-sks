@@ -1,6 +1,7 @@
 # Widoki Rady Studentów
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404 as G404
+from django.db.models import Q
 from strona.models import Pageitem as P
 from strona.models import PageSkin as S
 from esks.settings import LANGUAGES as L
@@ -216,6 +217,7 @@ def allapplied(request):
 # Docelowo ma mieć wyszukiwanie czasu rzeczywistego. WIP. Niepodłączone...
 @council_only(login_url='staffpanel_c', power_level=2)  # Tylko Przewodniczący
 def allusers(request):
+    query = request.GET.get('q', None)
     view_filter = ["-last_name", "first_name", "quarter"]
     if 'sort' in request.POST:
         x = 0
@@ -223,6 +225,11 @@ def allusers(request):
             view_filter[x] = str(request.POST.get('view_filter'+str(x)))
             x = x+1
     usr = User.objects.order_by(view_filter[0], view_filter[1], view_filter[2])
+    if query is not None:
+        usr = usr.filter(
+         Q(first_name__icontains=query)|
+         Q(last_name__icontains=query)|
+         Q(citizenship__icontains=query))
     pe_fi = PageElement(FormItems)
     peqc = PageElement(QuarterClassB)
     usli = PageElement(Usli)
