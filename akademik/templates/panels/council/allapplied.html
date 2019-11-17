@@ -23,50 +23,30 @@
 
 {% block body %}
    <!-- Tytuł W nagłówku -->
-   <p class="maintitle">WNIOSKI O AKADEMIK</p>
+   <p class="maintitle">{{ link.6 }}</p>
    <p>
 
    <!-- Pierwszy rząd to przyciski sortowania ascendanten lob descendantem -->
    <form name="AppViewSwitcher" method="post" class="form-inline formula" >
 
 
+        <!-- Pierwszy rząd to przyciski sortowania ascendanten lob descendantem -->
+        <form name="AppViewSwitcher" method="post">
+          {% csrf_token %}
 
-     {% csrf_token %}
-
-    {% for item in "0"|rjust:"3" %}
-
-       <select id="app_view{{ forloop.counter0 }}" class="form-control form-control-sm form-inline formula">
-
-          {% with forloop.counter0 as x %}
-            <option value ="-timeapplied" {% if view_filter|lookupint:x == "-timeapplied" %} selected="selected" {% endif %} >Czas malejąco</option>
-            <option value ="timeapplied" {% if view_filter|lookupint:x == "timeapplied" %} selected="selected" {% endif %} >Czas rosnąco</option>
-            <option value ="-owner__first_name" {% if view_filter|lookupint:x == "-owner__first_name" %} selected="selected" {% endif %} >Imię malejąco</option>
-            <option value ="owner__first_name" {% if view_filter|lookupint:x == "owner__first_name" %} selected="selected" {% endif %} >Imię rosnąco</option>
-            <option value ="-owner__last_name" {% if view_filter|lookupint:x == "-owner__last_name" %} selected="selected" {% endif %} >Nazwisko malejąco</option>
-            <option value ="owner__last_name" {% if view_filter|lookupint:x == "owner__last_name" %} selected="selected" {% endif %} >Nazwisko rosnąco</option>
-            <option value ="-sh_choice1" {% if view_filter|lookupint:x == "-sh_choice1" %} selected="selected" {% endif %} >Akademik 1 malejąco</option>
-            <option value ="sh_choice1" {% if view_filter|lookupint:x == "sh_choice1" %} selected="selected" {% endif %} >Akademik 1 rosnąco</option>
-            <option value ="-if_room_change" {% if view_filter|lookupint:x == "-if_room_change" %} selected="selected" {% endif %} >Zmiana pokoju malejąco</option>
-            <option value ="if_room_change" {% if view_filter|lookupint:x == "if_room_change" %} selected="selected" {% endif %} >Zmiana pokoju rosnąco</option>
-            <option value ="-status" {% if view_filter|lookupint:x == "-status" %} selected="selected" {% endif %} >Status wniosku malejąco</option>
-            <option value ="status" {% if view_filter|lookupint:x == "status" %} selected="selected" {% endif %} >Status wniosku rosnąco</option>
-            <option value ="-owner__citizenship" {% if view_filter|lookupint:x == "-owner__nationality" %} selected="selected" {% endif %} >Narodowość malejąco</option>
-            <option value ="owner__citizenship" {% if view_filter|lookupint:x == "owner__nationality" %} selected="selected" {% endif %} >Narodowość rosnąco</option>
-            <option value ="-quarter" {% if view_filter|lookupint:x == "-quarter" %} selected="selected" {% endif %} >Akcja Kwaterunkowa malejąco</option>
-            <option value ="quarter" {% if view_filter|lookupint:x == "quarter" %} selected="selected" {% endif %} >Akcja Kwaterunkowa rosnąco</option>
-         {% endwith %}
-
-       </select>
-
-       <input type="hidden" name="view_filter{{ forloop.counter0 }}" id="view_filter{{ forloop.counter0 }}" >
-    {% endfor %}
-    <div class="sort">
-      <button id="send" class="btn btn-dark" name="sort" type="submit" value="{{ attools.sortme }}">SORTUJ</button>
-
-    </div>
-
-   </form>
-
+         {% for item in "0"|rjust:"3" %}
+            <select id="app_view{{ forloop.counter0 }}">
+             {% with forloop.counter0 as x %}
+                {% for appentry in applist %}
+                 <option value ="-{{ appentry.basename }}" {% if view_filter|lookupint:x == appentry.basename|negator %} selected="selected" {% endif %} >{{ appentry.realname }} {{ attools.descending }}</option>
+                 <option value ="{{ appentry.basename }}" {% if view_filter|lookupint:x == appentry.basename %} selected="selected" {% endif %} >{{ appentry.realname }} {{ attools.ascending }}</option>
+                {% endfor %}
+             {% endwith %}
+            </select>
+            <input type="hidden" name="view_filter{{ forloop.counter0 }}" id="view_filter{{ forloop.counter0 }}">
+         {% endfor %}
+           <button id="send" class="btn btn-dark" name="sort" type="submit">{{ attools.sortme }}</button>
+  </form>
 
 
  <br>
