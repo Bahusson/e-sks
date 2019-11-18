@@ -16,7 +16,7 @@ from rekruter.models import (
 from esks.special.decorators import council_only
 from esks.special.snippets import menu_switcher
 from rekruter.models import User, FormItems, QuarterClassB
-from rekruter.forms import PartyForm, IniForm, PowerForm
+from rekruter.forms import PartyForm, IniForm, PowerForm, BasicPowerForm
 import datetime
 import pytz
 
@@ -256,8 +256,13 @@ def changeuser(request, user_id):
             form2.save(dictrole[key])
             return redirect('changeuser', user_id)
     else:
-        form = IniForm()
+        if userdata.role_council is None:
+            cform = BasicPowerForm(request.POST, instance=userdata)
+            if cform.is_valid():
+                cform.save(1)
+                return redirect('changeuser', user_id)
         key2 = userdata.role_council
+        form = IniForm()
         form2 = PowerForm(
          instance=userdata, initial={'role_council': roledict[key2]})
         pe_fi = PageElement(FormItems)
