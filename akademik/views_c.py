@@ -1,33 +1,22 @@
 # Widoki Rady Studentów
-from django.shortcuts import render, redirect
-from django.shortcuts import get_object_or_404 as G404
-from strona.models import Pageitem as P
-from strona.models import PageSkin as S
+from django.shortcuts import (render, redirect, get_object_or_404 as G404)
+from django.db.models import Q
+from strona.models import (Pageitem as P, PageSkin as S)
 from esks.settings import LANGUAGES as L
 from esks.special.classes import PortalLoad, PageElement, AllParties
-from .models import PortalBaseItem as Pbi
-from .models import CouncilMenuItem as Cmi
-from .models import CouncilLinkItem as Cli
-from .models import UserMenuItem as Umi
-from .models import UserLinkItem as Uli
-from .models import HousingParty as HParty
-from .models import HousingPartyItems as Hpi
-from .models import ApplicationListItems as Ali
-from .models import UserListItems as Usli
-from .models import AdminTextTools as Att
-from rekruter.models import ApplicationFormFields as Apf
-from rekruter.models import ApplicationStatus as Aps
-from rekruter.models import StudentHouse as Sh
-from rekruter.models import IfRoomChange as Ifr
-from rekruter.models import TimePeriod as Tper
-from rekruter.models import StudyFaculty as Stf
-from rekruter.models import StudyDegree as Std
-from rekruter.models import SpouseCohabitant as Sch
-from rekruter.models import SpecialCase as Scs
+from .models import (
+ PortalBaseItem as Pbi, CouncilMenuItem as Cmi, CouncilLinkItem as Cli,
+ UserMenuItem as Umi, UserLinkItem as Uli, HousingParty as HParty,
+ HousingPartyItems as Hpi, ApplicationListItems as Ali, UserListItems as Usli,
+ AdminTextTools as Att)
+from rekruter.models import (
+ ApplicationFormFields as Apf, ApplicationStatus as Aps, StudentHouse as Sh,
+ IfRoomChange as Ifr, TimePeriod as Tper, StudyFaculty as Stf,
+ StudyDegree as Std, SpouseCohabitant as Sch, SpecialCase as Scs)
 from esks.special.decorators import council_only
 from esks.special.snippets import menu_switcher
 from rekruter.models import User, FormItems, QuarterClassB
-from rekruter.forms import PartyForm, IniForm, PowerForm
+from rekruter.forms import PartyForm, IniForm, PowerForm, BasicPowerForm
 import datetime
 import pytz
 
@@ -216,6 +205,7 @@ def allapplied(request):
 # Docelowo ma mieć wyszukiwanie czasu rzeczywistego. WIP. Niepodłączone...
 @council_only(login_url='staffpanel_c', power_level=2)  # Tylko Przewodniczący
 def allusers(request):
+    query = request.GET.get('q', None)
     view_filter = ["-last_name", "first_name", "quarter"]
     if 'sort' in request.POST:
         x = 0
@@ -223,6 +213,11 @@ def allusers(request):
             view_filter[x] = str(request.POST.get('view_filter'+str(x)))
             x = x+1
     usr = User.objects.order_by(view_filter[0], view_filter[1], view_filter[2])
+    if query is not None:
+        usr = usr.filter(
+         Q(first_name__icontains=query)|
+         Q(last_name__icontains=query)|
+         Q(citizenship__icontains=query))
     pe_fi = PageElement(FormItems)
     peqc = PageElement(QuarterClassB)
     usli = PageElement(Usli)
@@ -261,8 +256,13 @@ def changeuser(request, user_id):
             form2.save(dictrole[key])
             return redirect('changeuser', user_id)
     else:
-        form = IniForm()
+        if userdata.role_council is None:
+            cform = BasicPowerForm(request.POST, instance=userdata)
+            if cform.is_valid():
+                cform.save(1)
+                return redirect('changeuser', user_id)
         key2 = userdata.role_council
+        form = IniForm()
         form2 = PowerForm(
          instance=userdata, initial={'role_council': roledict[key2]})
         pe_fi = PageElement(FormItems)

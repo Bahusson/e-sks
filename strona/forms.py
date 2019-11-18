@@ -8,7 +8,7 @@ import datetime
 class BlogForm(forms.ModelForm):
     title_pl = forms.CharField(max_length=200)
     title_en = forms.CharField(max_length=200)
-    date = forms.DateTimeField(input_formats=['%d.%m.%Y %H:%M:%S'])
+    pubdate = forms.DateTimeField(input_formats=['%d.%m.%Y %H:%M:%S'])
     body_pl = forms.CharField(widget=forms.Textarea, required=False)
     body_en = forms.CharField(widget=forms.Textarea, required=False)
     image_pl = forms.ImageField(required=False)
@@ -19,7 +19,7 @@ class BlogForm(forms.ModelForm):
     class Meta:
         model = Blog
         fields = (
-         'title_pl', 'title_en', 'date', 'body_pl', 'body_en', 'image_pl',
+         'title_pl', 'title_en', 'pubdate', 'body_pl', 'body_en', 'image_pl',
          'image_en', 'video_pl', 'video_en',
          )
 
@@ -29,7 +29,7 @@ class BlogForm(forms.ModelForm):
         blog.lastmod = datetime.datetime.now()
         blog.title_pl = self.cleaned_data["title_pl"]
         blog.title_en = self.cleaned_data["title_en"]
-        blog.pubdate = self.cleaned_data["date"]
+        blog.pubdate = self.cleaned_data["pubdate"]
         blog.body_pl = self.cleaned_data["body_pl"]
         blog.body_en = self.cleaned_data["body_en"]
         blog.image_pl = self.cleaned_data["image_pl"]
@@ -46,7 +46,7 @@ class BlogForm(forms.ModelForm):
 class InfoForm(forms.ModelForm):
     title_pl = forms.CharField(max_length=200)
     title_en = forms.CharField(max_length=200)
-    date = forms.DateTimeField(input_formats=['%d.%m.%Y %H:%M:%S'])
+    pubdate = forms.DateTimeField(input_formats=['%d.%m.%Y %H:%M:%S'])
     body_pl = forms.CharField(widget=forms.Textarea, required=False)
     body_en = forms.CharField(widget=forms.Textarea, required=False)
     image_pl = forms.ImageField(required=False)
@@ -55,7 +55,7 @@ class InfoForm(forms.ModelForm):
     class Meta:
         model = Info
         fields = (
-         'title_pl', 'title_en', 'date', 'body_pl', 'body_en',  'image_pl',
+         'title_pl', 'title_en', 'pubdate', 'body_pl', 'body_en',  'image_pl',
          'image_en',
          )
 
@@ -65,7 +65,7 @@ class InfoForm(forms.ModelForm):
         info.lastmod = datetime.datetime.now()
         info.title_pl = self.cleaned_data["title_pl"]
         info.title_en = self.cleaned_data["title_en"]
-        info.pubdate = self.cleaned_data["date"]
+        info.pubdate = self.cleaned_data["pubdate"]
         info.body_pl = self.cleaned_data["body_pl"]
         info.body_en = self.cleaned_data["body_en"]
         info.image_pl = self.cleaned_data["image_pl"]
@@ -80,7 +80,7 @@ class InfoForm(forms.ModelForm):
 class FileserveForm(forms.ModelForm):
     title_pl = forms.CharField(max_length=200)
     title_en = forms.CharField(max_length=200)
-    date = forms.DateTimeField(input_formats=['%d.%m.%Y %H:%M:%S'])
+    pubdate = forms.DateTimeField(input_formats=['%d.%m.%Y %H:%M:%S'])
     body_pl = forms.CharField(widget=forms.Textarea, required=False)
     body_en = forms.CharField(widget=forms.Textarea, required=False)
     file_pl = forms.FileField(required=False)
@@ -89,7 +89,7 @@ class FileserveForm(forms.ModelForm):
     class Meta:
         model = Fileserve
         fields = (
-         'title_pl', 'title_en', 'date', 'body_pl', 'body_en', 'file_pl',
+         'title_pl', 'title_en', 'pubdate', 'body_pl', 'body_en', 'file_pl',
          'file_en',
          )
 
@@ -99,7 +99,7 @@ class FileserveForm(forms.ModelForm):
         filesv.lastmod = datetime.datetime.now()
         filesv.title_pl = self.cleaned_data["title_pl"]
         filesv.title_en = self.cleaned_data["title_en"]
-        filesv.pubdate = self.cleaned_data["date"]
+        filesv.pubdate = self.cleaned_data["pubdate"]
         filesv.body_pl = self.cleaned_data["body_pl"]
         filesv.body_en = self.cleaned_data["body_en"]
         filesv.file_pl = self.cleaned_data["file_pl"]

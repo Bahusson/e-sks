@@ -99,6 +99,23 @@ class PowerForm(forms.ModelForm):
         return user
 
 
+# Nadaje podstawowe uprawnienia Userowi stworzonemu z poziomu panelu admina.
+# Ogólnie nie powinno być tego w kodzie, ale dzięki temu unikniemy problemów.
+class BasicPowerForm(forms.ModelForm):
+    # role_council = forms.BooleanField(required=False)
+
+    class Meta:
+        model = User
+        fields = ('role_council', )
+
+    def save(self, role, commit=True):
+        user = super(BasicPowerForm, self).save(commit=False)
+        user.role_council = role
+        if commit:
+            user.save()
+        return user
+
+
 # Zmienia akcję kwaterunkową.
 class LangForm(forms.ModelForm):
     language = forms.CharField(max_length=2, required=False)

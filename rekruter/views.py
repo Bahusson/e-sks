@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from django.contrib import messages
-from .models import Sito
+# from django.contrib import messages
+from .models import Sito, FormItems, User
 from strona.models import Pageitem as P
 from esks.settings import LANGUAGES as L
 from esks.special.classes import PageLoad
-from .models import FormItems, User
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import ExtendedCreationForm, IniForm
 

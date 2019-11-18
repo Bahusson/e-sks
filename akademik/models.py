@@ -205,3 +205,4 @@ class AdminTextTools(models.Model):
     council_member = models.CharField(max_length=200)
     is_translator = models.CharField(max_length=200)
     mypermissions = models.CharField(max_length=200)
+    searchme = models.CharField(max_length=200)

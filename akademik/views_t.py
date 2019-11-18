@@ -1,12 +1,9 @@
-from django.shortcuts import render, redirect
-from django.shortcuts import get_object_or_404 as G404
-from strona.models import Pageitem as P
-from strona.models import PageSkin as S
+from django.shortcuts import (render, redirect, get_object_or_404 as G404)
+from strona.models import (Pageitem as P, PageSkin as S)
 from esks.settings import LANGUAGES as L
 from esks.special.classes import PortalLoad, PageElement
-from .models import PortalBaseItem as Pbi
-from .models import TranslatorMenuItem as Tmi
-from .models import TranslatorLinkItem as Tli
+from .models import (
+ PortalBaseItem as Pbi, TranslatorMenuItem as Tmi, TranslatorLinkItem as Tli)
 from esks.special.decorators import translators_only
 from rekruter.models import User
 from .forms_t import PageItemForm
