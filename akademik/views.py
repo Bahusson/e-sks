@@ -1,26 +1,15 @@
-from django.shortcuts import render, redirect
-from django.shortcuts import get_object_or_404 as G404
-from strona.models import Pageitem as P
-from strona.models import PageSkin as S
+from django.shortcuts import (render, redirect, get_object_or_404 as G404)
+from strona.models import (Pageitem as P, PageSkin as S)
 from esks.settings import LANGUAGES as L
 from esks.special.classes import PortalLoad, PageElement, PartyMaster
-from .models import PortalBaseItem as Pbi
-from .models import UserMenuItem as Umi
-from .models import UserLinkItem as Uli
-from .models import TranslatorMenuItem as Tmi
-from .models import TranslatorLinkItem as Tli
-from .models import HotelMenuItem as Hmi
-from .models import HotelLinkItem as Hli
-from .models import HousingParty as HParty
-from rekruter.models import StudentHouse as Sh
-from rekruter.models import IfRoomChange as Ifr
-from rekruter.models import TimePeriod as Tper
-from rekruter.models import StudyFaculty as Stf
-from rekruter.models import StudyDegree as Std
-from rekruter.models import SpouseCohabitant as Sch
-from rekruter.models import SpecialCase as Scs
-from esks.special.decorators import hotel_staff_only, translators_only
-from rekruter.models import User, FormItems, QuarterClassB
+from .models import (
+ PortalBaseItem as Pbi, UserMenuItem as Umi, UserLinkItem as Uli,
+ HotelMenuItem as Hmi, HotelLinkItem as Hli, HousingParty as HParty)
+from rekruter.models import (
+ StudentHouse as Sh, IfRoomChange as Ifr, TimePeriod as Tper,
+ StudyFaculty as Stf, StudyDegree as Std, SpouseCohabitant as Sch,
+ SpecialCase as Scs, User, FormItems, QuarterClassB)
+from esks.special.decorators import hotel_staff_only
 from rekruter.forms import IniForm, ApplicationForm
 import datetime
 import pytz
@@ -34,6 +23,7 @@ def staffpanel_h(request):
     context_lazy = pl.lazy_context(skins=S)
     template = 'panels/hotel/panel_akademika.html'
     return render(request, template, context_lazy)
+
 
 # Panel użytkownika.
 # Jeśli nie masz jeszcze przydzielonej kwatery,

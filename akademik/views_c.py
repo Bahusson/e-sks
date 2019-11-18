@@ -1,30 +1,18 @@
 # Widoki Rady Studentów
-from django.shortcuts import render, redirect
-from django.shortcuts import get_object_or_404 as G404
+from django.shortcuts import (render, redirect, get_object_or_404 as G404)
 from django.db.models import Q
-from strona.models import Pageitem as P
-from strona.models import PageSkin as S
+from strona.models import (Pageitem as P, PageSkin as S)
 from esks.settings import LANGUAGES as L
 from esks.special.classes import PortalLoad, PageElement, AllParties
-from .models import PortalBaseItem as Pbi
-from .models import CouncilMenuItem as Cmi
-from .models import CouncilLinkItem as Cli
-from .models import UserMenuItem as Umi
-from .models import UserLinkItem as Uli
-from .models import HousingParty as HParty
-from .models import HousingPartyItems as Hpi
-from .models import ApplicationListItems as Ali
-from .models import UserListItems as Usli
-from .models import AdminTextTools as Att
-from rekruter.models import ApplicationFormFields as Apf
-from rekruter.models import ApplicationStatus as Aps
-from rekruter.models import StudentHouse as Sh
-from rekruter.models import IfRoomChange as Ifr
-from rekruter.models import TimePeriod as Tper
-from rekruter.models import StudyFaculty as Stf
-from rekruter.models import StudyDegree as Std
-from rekruter.models import SpouseCohabitant as Sch
-from rekruter.models import SpecialCase as Scs
+from .models import (
+ PortalBaseItem as Pbi, CouncilMenuItem as Cmi, CouncilLinkItem as Cli,
+ UserMenuItem as Umi, UserLinkItem as Uli, HousingParty as HParty,
+ HousingPartyItems as Hpi, ApplicationListItems as Ali, UserListItems as Usli,
+ AdminTextTools as Att)
+from rekruter.models import (
+ ApplicationFormFields as Apf, ApplicationStatus as Aps, StudentHouse as Sh,
+ IfRoomChange as Ifr, TimePeriod as Tper, StudyFaculty as Stf,
+ StudyDegree as Std, SpouseCohabitant as Sch, SpecialCase as Scs)
 from esks.special.decorators import council_only
 from esks.special.snippets import menu_switcher
 from rekruter.models import User, FormItems, QuarterClassB

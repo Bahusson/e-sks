@@ -1,14 +1,9 @@
-from django.shortcuts import render, redirect
-from django.shortcuts import get_object_or_404 as G404
-from rekruter.models import User
-from .models import PageSkin as S
-from .models import Blog as B
-from .models import Info as In
-from .models import Fileserve as F
+from django.shortcuts import (render, get_object_or_404 as G404)
+# from rekruter.models import User
+from .models import (PageSkin as S, Blog as B, Info as In, Fileserve as F)
 from strona.models import Pageitem as P
 from esks.settings import LANGUAGES as L
-from esks.special.classes import PageElement as pe
-from esks.special.classes import PageLoad, ActivePageItems
+from esks.special.classes import (PageElement as pe, PageLoad, ActivePageItems)
 import pytz
 import datetime
 

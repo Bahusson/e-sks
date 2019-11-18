@@ -1,18 +1,13 @@
-from django.shortcuts import render, redirect
-from django.shortcuts import get_object_or_404 as G404
-from akademik.models import PortalBaseItem as Pbi
-from akademik.models import CouncilMenuItem as Cmi
-from akademik.models import CouncilLinkItem as Cli
-from .models import PageSkin as S
-from .models import Blog, Info, Fileserve
+from django.shortcuts import (render, redirect, get_object_or_404 as G404)
+from akademik.models import (
+ PortalBaseItem as Pbi, CouncilMenuItem as Cmi, CouncilLinkItem as Cli)
+from .models import (PageSkin as S, Blog, Info, Fileserve, FormElement)
 from rekruter.models import User, FormItems
 from strona.models import Pageitem as P
 from esks.settings import LANGUAGES as L
-from esks.special.classes import PageElement as pe
-from esks.special.classes import PortalLoad
-from esks.special.classes import ActivePageItems
+from esks.special.classes import (
+ PageElement as pe, PortalLoad, ActivePageItems)
 from esks.special.decorators import council_only
-from .models import FormElement
 from .forms import BlogForm, InfoForm, FileserveForm
 import pytz
 import datetime
