@@ -301,6 +301,89 @@
   }
 },
 {
+  "model": "akademik.translatormenuitem",
+  "pk": 1,
+  "fields": {
+    "title": "Preferencje",
+    "title_pl": "Preferencje",
+    "title_en": "Preferences",
+    "title_de": null,
+    "title_fr": null,
+    "title_ru": null,
+    "title_uk": null,
+    "title_es": null,
+    "title_hi": null,
+    "position": 1
+  }
+},
+{
+  "model": "akademik.translatormenuitem",
+  "pk": 2,
+  "fields": {
+    "title": "T\u0142umaczenia",
+    "title_pl": "T\u0142umaczenia",
+    "title_en": "Translations",
+    "title_de": null,
+    "title_fr": null,
+    "title_ru": null,
+    "title_uk": null,
+    "title_es": null,
+    "title_hi": null,
+    "position": 2
+  }
+},
+{
+  "model": "akademik.translatorlinkitem",
+  "pk": 1,
+  "fields": {
+    "title": "Elementy Strony",
+    "title_pl": "Elementy Strony",
+    "title_en": "Page Elements",
+    "title_de": null,
+    "title_fr": null,
+    "title_ru": null,
+    "title_uk": null,
+    "title_es": null,
+    "title_hi": null,
+    "menu": 2,
+    "position": 1
+  }
+},
+{
+  "model": "akademik.translatorlinkitem",
+  "pk": 2,
+  "fields": {
+    "title": "J\u0119zyki",
+    "title_pl": "J\u0119zyki",
+    "title_en": "Languages",
+    "title_de": null,
+    "title_fr": null,
+    "title_ru": null,
+    "title_uk": null,
+    "title_es": null,
+    "title_hi": null,
+    "menu": 1,
+    "position": 1
+  }
+},
+{
+  "model": "akademik.translatorlinkitem",
+  "pk": 3,
+  "fields": {
+    "title": "T\u0142umacz Menu",
+    "title_pl": "T\u0142umacz Menu",
+    "title_en": "Translate Menus",
+    "title_de": null,
+    "title_fr": null,
+    "title_ru": null,
+    "title_uk": null,
+    "title_es": null,
+    "title_hi": null,
+    "menu": 2,
+    "position": 2
+  }
+},
+{
   "model": "akademik.usermenuitem",
   "pk": 1,
   "fields": {
@@ -874,14 +957,23 @@
     "mypermissions_ru": null,
     "mypermissions_uk": null,
     "mypermissions_es": null,
-    "mypermissions_hi": null
+    "mypermissions_hi": null,
+    "searchme": "Szukaj",
+    "searchme_pl": "Szukaj",
+    "searchme_en": "Search",
+    "searchme_de": null,
+    "searchme_fr": null,
+    "searchme_ru": null,
+    "searchme_uk": null,
+    "searchme_es": null,
+    "searchme_hi": null
   }
 },
 {
   "model": "rekruter.user",
   "fields": {
     "password": "pbkdf2_sha256$150000$Lpb5Pxw8vZUz$zxVU6NtCWsIANr2JQ1JGOqrbOCoo5trDqE712KnECWY=",
-    "last_login": "2019-10-18T07:31:16.267Z",
+    "last_login": "2019-11-18T14:51:00.171Z",
     "is_superuser": true,
     "email": "j.kozdrowicz@apdeveloper.com.pl",
     "first_name": "Jakub",
@@ -905,6 +997,7 @@
     "postcode": "",
     "city": "",
     "album": "",
+    "language": "de",
     "groups": [],
     "user_permissions": []
   }
@@ -937,6 +1030,7 @@
     "postcode": "",
     "city": "",
     "album": "",
+    "language": "",
     "groups": [],
     "user_permissions": []
   }
@@ -969,6 +1063,7 @@
     "postcode": "",
     "city": "",
     "album": "",
+    "language": "",
     "groups": [],
     "user_permissions": []
   }
@@ -1001,6 +1096,7 @@
     "postcode": "",
     "city": "",
     "album": "",
+    "language": "",
     "groups": [],
     "user_permissions": []
   }
@@ -1021,7 +1117,7 @@
     "is_hotel": true,
     "role_council": 2,
     "avatar": "",
-    "quarter": "9",
+    "quarter": "1",
     "gender": 0,
     "citizenship": "Muszkata\u0142owiec",
     "dowod": "AW\u0141192n3hus",
@@ -1033,6 +1129,7 @@
     "postcode": "03-123",
     "city": "Wi\u015blice",
     "album": "",
+    "language": "",
     "groups": [],
     "user_permissions": []
   }
@@ -1065,6 +1162,7 @@
     "postcode": "01-011",
     "city": "12345",
     "album": "12345",
+    "language": "",
     "groups": [],
     "user_permissions": []
   }
@@ -1097,6 +1195,7 @@
     "postcode": "4t35t3",
     "city": "",
     "album": "",
+    "language": "",
     "groups": [],
     "user_permissions": []
   }
@@ -1117,7 +1216,7 @@
     "is_hotel": false,
     "role_council": 1,
     "avatar": "",
-    "quarter": "8",
+    "quarter": "9",
     "gender": 0,
     "citizenship": "hypatetyk",
     "dowod": "fff234el",
@@ -1129,6 +1228,7 @@
     "postcode": "21-932",
     "city": "",
     "album": "",
+    "language": "",
     "groups": [],
     "user_permissions": []
   }
@@ -1147,7 +1247,7 @@
     "is_active": true,
     "is_translator": false,
     "is_hotel": false,
-    "role_council": null,
+    "role_council": 1,
     "avatar": "",
     "quarter": "",
     "gender": 0,
@@ -1161,6 +1261,40 @@
     "postcode": "54-434",
     "city": "214634",
     "album": "214634",
+    "language": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "rekruter.user",
+  "fields": {
+    "password": "pbkdf2_sha256$150000$ESYE3O0pCtdL$justrfnYVfocsBfaFzEPZHcQM90QNWmva8Bxw2Udhu0=",
+    "last_login": "2019-10-30T17:17:03.878Z",
+    "is_superuser": false,
+    "email": "tester@klaster.pl",
+    "first_name": "Jaaqw",
+    "last_name": "34r24",
+    "date_joined": "2019-10-30T17:17:03.818Z",
+    "is_staff": false,
+    "is_active": true,
+    "is_translator": false,
+    "is_hotel": false,
+    "role_council": 1,
+    "avatar": "",
+    "quarter": "5",
+    "gender": 1,
+    "citizenship": "rgewrgerre",
+    "dowod": "4t423434",
+    "passport": "rerfger",
+    "telephone": "r452354235",
+    "street": "fferfew",
+    "building_no": "452",
+    "local_no": "252",
+    "postcode": "43542",
+    "city": "253255",
+    "album": "253255",
+    "language": "",
     "groups": [],
     "user_permissions": []
   }
@@ -2008,7 +2142,8 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null
+    "name_hi": null,
+    "position": 1
   }
 },
 {
@@ -2023,7 +2158,8 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null
+    "name_hi": null,
+    "position": 2
   }
 },
 {
@@ -2038,7 +2174,8 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null
+    "name_hi": null,
+    "position": 3
   }
 },
 {
@@ -2053,7 +2190,8 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null
+    "name_hi": null,
+    "position": 4
   }
 },
 {
@@ -2068,7 +2206,8 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null
+    "name_hi": null,
+    "position": 5
   }
 },
 {
@@ -2083,7 +2222,8 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null
+    "name_hi": null,
+    "position": 6
   }
 },
 {
@@ -2098,7 +2238,8 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null
+    "name_hi": null,
+    "position": 7
   }
 },
 {
@@ -2113,7 +2254,8 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null
+    "name_hi": null,
+    "position": 8
   }
 },
 {
@@ -2128,7 +2270,8 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null
+    "name_hi": null,
+    "position": 9
   }
 },
 {
@@ -2143,7 +2286,8 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null
+    "name_hi": null,
+    "position": 10
   }
 },
 {
@@ -2158,7 +2302,8 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null
+    "name_hi": null,
+    "position": 11
   }
 },
 {
@@ -2173,7 +2318,24 @@
     "name_ru": null,
     "name_uk": null,
     "name_es": null,
-    "name_hi": null
+    "name_hi": null,
+    "position": 12
+  }
+},
+{
+  "model": "rekruter.studenthouse",
+  "pk": 13,
+  "fields": {
+    "name": "N/D",
+    "name_pl": "N/D",
+    "name_en": "N/A",
+    "name_de": null,
+    "name_fr": null,
+    "name_ru": null,
+    "name_uk": null,
+    "name_es": null,
+    "name_hi": null,
+    "position": 0
   }
 },
 {
@@ -2189,7 +2351,7 @@
     "name_uk": null,
     "name_es": null,
     "name_hi": null,
-    "position": 0
+    "position": 1
   }
 },
 {
@@ -2205,7 +2367,7 @@
     "name_uk": null,
     "name_es": null,
     "name_hi": null,
-    "position": 1
+    "position": 2
   }
 },
 {
@@ -2221,7 +2383,7 @@
     "name_uk": null,
     "name_es": null,
     "name_hi": null,
-    "position": 2
+    "position": 3
   }
 },
 {
@@ -2237,7 +2399,23 @@
     "name_uk": null,
     "name_es": null,
     "name_hi": null,
-    "position": 3
+    "position": 4
+  }
+},
+{
+  "model": "rekruter.ifroomchange",
+  "pk": 5,
+  "fields": {
+    "name": "N/D",
+    "name_pl": "N/D",
+    "name_en": "N/A",
+    "name_de": null,
+    "name_fr": null,
+    "name_ru": null,
+    "name_uk": null,
+    "name_es": null,
+    "name_hi": null,
+    "position": 0
   }
 },
 {
@@ -2286,6 +2464,22 @@
     "name_es": null,
     "name_hi": null,
     "position": 3
+  }
+},
+{
+  "model": "rekruter.timeperiod",
+  "pk": 4,
+  "fields": {
+    "name": "N/D",
+    "name_pl": "N/D",
+    "name_en": "N/A",
+    "name_de": null,
+    "name_fr": null,
+    "name_ru": null,
+    "name_uk": null,
+    "name_es": null,
+    "name_hi": null,
+    "position": 0
   }
 },
 {
@@ -2625,6 +2819,22 @@
   }
 },
 {
+  "model": "rekruter.studyfaculty",
+  "pk": 22,
+  "fields": {
+    "name": "N/D",
+    "name_pl": "N/D",
+    "name_en": "N/A",
+    "name_de": null,
+    "name_fr": null,
+    "name_ru": null,
+    "name_uk": null,
+    "name_es": null,
+    "name_hi": null,
+    "position": -1
+  }
+},
+{
   "model": "rekruter.studydegree",
   "pk": 1,
   "fields": {
@@ -2833,6 +3043,22 @@
   }
 },
 {
+  "model": "rekruter.studydegree",
+  "pk": 14,
+  "fields": {
+    "name": "N/D",
+    "name_pl": "N/D",
+    "name_en": "N/A",
+    "name_de": null,
+    "name_fr": null,
+    "name_ru": null,
+    "name_uk": null,
+    "name_es": null,
+    "name_hi": null,
+    "position": -1
+  }
+},
+{
   "model": "rekruter.spousecohabitant",
   "pk": 1,
   "fields": {
@@ -2881,6 +3107,22 @@
   }
 },
 {
+  "model": "rekruter.spousecohabitant",
+  "pk": 4,
+  "fields": {
+    "name": "N/D",
+    "name_pl": "N/D",
+    "name_en": "N/A",
+    "name_de": null,
+    "name_fr": null,
+    "name_ru": null,
+    "name_uk": null,
+    "name_es": null,
+    "name_hi": null,
+    "position": -1
+  }
+},
+{
   "model": "rekruter.specialcase",
   "pk": 1,
   "fields": {
@@ -2926,6 +3168,22 @@
     "name_es": null,
     "name_hi": null,
     "position": 2
+  }
+},
+{
+  "model": "rekruter.specialcase",
+  "pk": 4,
+  "fields": {
+    "name": "N/D",
+    "name_pl": "N/D",
+    "name_en": "N/A",
+    "name_de": null,
+    "name_fr": null,
+    "name_ru": null,
+    "name_uk": null,
+    "name_es": null,
+    "name_hi": null,
+    "position": -1
   }
 },
 {
@@ -2994,132 +3252,54 @@
 },
 {
   "model": "rekruter.applicationformfields",
-  "pk": "09c71d33-0038-4fa8-8515-34afbb9dc844",
+  "pk": "3cf7c03e-3adb-4383-ad04-5b5301412d9e",
   "fields": {
     "owner": 1,
-    "timeapplied": "2019-10-08T14:09:42Z",
-    "sh_choice1": 12,
-    "sh_choice2": 12,
-    "sh_choice3": 8,
-    "if_room_change": 1,
-    "duration": 3,
+    "timeapplied": "2019-11-14T15:26:56.478Z",
+    "sh_choice1": 0,
+    "sh_choice2": 0,
+    "sh_choice3": 0,
+    "if_room_change": 0,
+    "duration": 0,
     "location": "",
-    "faculty": 12,
-    "degree": 9,
+    "faculty": 0,
+    "degree": 0,
     "deangroup": "",
-    "semester": 10,
-    "spouse_cohabitant": null,
-    "special_case_docs": null,
-    "international_placement": false,
-    "mailinglist": true,
-    "dataprocessing": true,
+    "semester": 0,
+    "spouse_cohabitant": 0,
+    "special_case_docs": 0,
+    "international_placement": null,
+    "mailinglist": null,
+    "dataprocessing": null,
     "attachment": "",
     "status": 0,
-    "quarter": 2
+    "quarter": 1
   }
 },
 {
   "model": "rekruter.applicationformfields",
-  "pk": "3b5a40df-343a-4b31-824e-4aa83248ce84",
-  "fields": {
-    "owner": 2,
-    "timeapplied": "2019-10-08T14:10:33Z",
-    "sh_choice1": 11,
-    "sh_choice2": 10,
-    "sh_choice3": 9,
-    "if_room_change": 1,
-    "duration": 2,
-    "location": "",
-    "faculty": 12,
-    "degree": 2,
-    "deangroup": "",
-    "semester": 10,
-    "spouse_cohabitant": null,
-    "special_case_docs": null,
-    "international_placement": true,
-    "mailinglist": true,
-    "dataprocessing": true,
-    "attachment": "",
-    "status": 0,
-    "quarter": 3
-  }
-},
-{
-  "model": "rekruter.applicationformfields",
-  "pk": "49d590c8-4c23-43b9-a63b-a611f26801a9",
+  "pk": "4d917fd5-97e2-4828-b74d-5344aa74266f",
   "fields": {
     "owner": 1,
-    "timeapplied": "2019-10-08T14:29:08.253Z",
-    "sh_choice1": 4,
-    "sh_choice2": 1,
-    "sh_choice3": 3,
-    "if_room_change": 3,
-    "duration": 2,
-    "location": "",
-    "faculty": 15,
-    "degree": 12,
-    "deangroup": "",
-    "semester": 12,
-    "spouse_cohabitant": null,
-    "special_case_docs": null,
-    "international_placement": false,
-    "mailinglist": true,
-    "dataprocessing": true,
-    "attachment": "",
-    "status": 0,
-    "quarter": 3
-  }
-},
-{
-  "model": "rekruter.applicationformfields",
-  "pk": "96a10939-214d-4ca4-9ac0-4ae9488c14a0",
-  "fields": {
-    "owner": 2,
-    "timeapplied": "2019-10-08T14:10:13Z",
-    "sh_choice1": 8,
-    "sh_choice2": 10,
-    "sh_choice3": 12,
-    "if_room_change": 1,
-    "duration": 1,
-    "location": "",
-    "faculty": 3,
-    "degree": 11,
-    "deangroup": "",
-    "semester": 1,
-    "spouse_cohabitant": null,
-    "special_case_docs": null,
-    "international_placement": false,
-    "mailinglist": true,
-    "dataprocessing": true,
-    "attachment": "",
-    "status": 0,
-    "quarter": 6
-  }
-},
-{
-  "model": "rekruter.applicationformfields",
-  "pk": "d6794873-6096-442d-8f08-eb006d0170ef",
-  "fields": {
-    "owner": 1,
-    "timeapplied": "2019-10-08T14:07:37Z",
+    "timeapplied": "2019-11-14T15:29:52.802Z",
     "sh_choice1": 1,
     "sh_choice2": 4,
-    "sh_choice3": 4,
+    "sh_choice3": 12,
     "if_room_change": 2,
-    "duration": 2,
+    "duration": 3,
     "location": "",
-    "faculty": 4,
-    "degree": 12,
+    "faculty": 2,
+    "degree": 1,
     "deangroup": "",
-    "semester": 10,
-    "spouse_cohabitant": null,
-    "special_case_docs": null,
+    "semester": 1,
+    "spouse_cohabitant": 1,
+    "special_case_docs": 3,
     "international_placement": false,
     "mailinglist": true,
     "dataprocessing": true,
     "attachment": "",
     "status": 0,
-    "quarter": 6
+    "quarter": 3
   }
 },
 {
@@ -3314,7 +3494,7 @@
     "headtitle": "Elektroniczny System Kwaterowania Student\u00f3w",
     "headtitle_pl": "Elektroniczny System Kwaterowania Student\u00f3w",
     "headtitle_en": "Virtual System for Students Accommodation",
-    "headtitle_de": "Virtual System for Students Accommodation",
+    "headtitle_de": "Sprechen w dechen",
     "headtitle_fr": null,
     "headtitle_ru": null,
     "headtitle_uk": null,
@@ -3323,7 +3503,7 @@
     "mainpage": "Strona G\u0142\u00f3wna",
     "mainpage_pl": "Strona G\u0142\u00f3wna",
     "mainpage_en": "Main Page",
-    "mainpage_de": "Main Page",
+    "mainpage_de": null,
     "mainpage_fr": null,
     "mainpage_ru": null,
     "mainpage_uk": null,
@@ -3332,7 +3512,7 @@
     "information": "Informacje",
     "information_pl": "Informacje",
     "information_en": "Information",
-    "information_de": "Information",
+    "information_de": null,
     "information_fr": null,
     "information_ru": null,
     "information_uk": null,
@@ -3341,7 +3521,7 @@
     "akamap": "Mapa akademik\u00f3w",
     "akamap_pl": "Mapa akademik\u00f3w",
     "akamap_en": "Student's Houses Map",
-    "akamap_de": "Student's Houses Map",
+    "akamap_de": null,
     "akamap_fr": null,
     "akamap_ru": null,
     "akamap_uk": null,
@@ -3350,7 +3530,7 @@
     "contact": "Kontakt",
     "contact_pl": "Kontakt",
     "contact_en": "Contact",
-    "contact_de": "Contact",
+    "contact_de": null,
     "contact_fr": null,
     "contact_ru": null,
     "contact_uk": null,
@@ -3359,7 +3539,7 @@
     "logout": "Wyloguj",
     "logout_pl": "Wyloguj",
     "logout_en": "Log out",
-    "logout_de": "Log out",
+    "logout_de": null,
     "logout_fr": null,
     "logout_ru": null,
     "logout_uk": null,
@@ -3368,7 +3548,7 @@
     "news": "Aktualno\u015bci",
     "news_pl": "Aktualno\u015bci",
     "news_en": "News",
-    "news_de": "News",
+    "news_de": null,
     "news_fr": null,
     "news_ru": null,
     "news_uk": null,
@@ -3377,7 +3557,7 @@
     "docs": "Wa\u017cne Dokumenty",
     "docs_pl": "Wa\u017cne Dokumenty",
     "docs_en": "Important Documents",
-    "docs_de": "Important Documents",
+    "docs_de": null,
     "docs_fr": null,
     "docs_ru": null,
     "docs_uk": null,
@@ -3386,7 +3566,7 @@
     "login": "Zaloguj",
     "login_pl": "Zaloguj",
     "login_en": "Login",
-    "login_de": "Login",
+    "login_de": null,
     "login_fr": null,
     "login_ru": null,
     "login_uk": null,
@@ -3395,7 +3575,7 @@
     "panel_user": "Panel U\u017cytkownika",
     "panel_user_pl": "Panel U\u017cytkownika",
     "panel_user_en": "User Panel",
-    "panel_user_de": "User Panel",
+    "panel_user_de": null,
     "panel_user_fr": null,
     "panel_user_ru": null,
     "panel_user_uk": null,
@@ -3404,7 +3584,7 @@
     "panel_council": "Panel Rady Student\u00f3w",
     "panel_council_pl": "Panel Rady Student\u00f3w",
     "panel_council_en": "Student Council Panel",
-    "panel_council_de": "Student Council Panel",
+    "panel_council_de": null,
     "panel_council_fr": null,
     "panel_council_ru": null,
     "panel_council_uk": null,
@@ -3413,7 +3593,7 @@
     "panel_staff": "Panel Administracji",
     "panel_staff_pl": "Panel Administracji",
     "panel_staff_en": "Administrators Panel",
-    "panel_staff_de": "Administrators Panel",
+    "panel_staff_de": null,
     "panel_staff_fr": null,
     "panel_staff_ru": null,
     "panel_staff_uk": null,
@@ -3422,7 +3602,7 @@
     "panel_translator": "Panel T\u0142umacza",
     "panel_translator_pl": "Panel T\u0142umacza",
     "panel_translator_en": "Translators Panel",
-    "panel_translator_de": "Translators Panel",
+    "panel_translator_de": null,
     "panel_translator_fr": null,
     "panel_translator_ru": null,
     "panel_translator_uk": null,
@@ -3431,7 +3611,7 @@
     "backtouserpanel": "Powr\u00f3t do panelu u\u017cytkownika",
     "backtouserpanel_pl": "Powr\u00f3t do panelu u\u017cytkownika",
     "backtouserpanel_en": "Return to Users Panel",
-    "backtouserpanel_de": "Return to Users Panel",
+    "backtouserpanel_de": null,
     "backtouserpanel_fr": null,
     "backtouserpanel_ru": null,
     "backtouserpanel_uk": null,
@@ -3440,7 +3620,7 @@
     "see_more": "ZOBACZ WI\u0118CEJ",
     "see_more_pl": "ZOBACZ WI\u0118CEJ",
     "see_more_en": "SEE MORE",
-    "see_more_de": "SEE MORE",
+    "see_more_de": null,
     "see_more_fr": null,
     "see_more_ru": null,
     "see_more_uk": null,
@@ -3449,7 +3629,7 @@
     "pagemap": "MAPA STRONY",
     "pagemap_pl": "MAPA STRONY",
     "pagemap_en": "PAGE MAP",
-    "pagemap_de": "PAGE MAP",
+    "pagemap_de": null,
     "pagemap_fr": null,
     "pagemap_ru": null,
     "pagemap_uk": null,
@@ -3458,7 +3638,7 @@
     "addblog": "Dodaj nowy wpis w aktualno\u015bciach",
     "addblog_pl": "Dodaj nowy wpis w aktualno\u015bciach",
     "addblog_en": "Add news entry",
-    "addblog_de": "Add news entry",
+    "addblog_de": null,
     "addblog_fr": null,
     "addblog_ru": null,
     "addblog_uk": null,
@@ -3467,7 +3647,7 @@
     "addinfo": "Dodaj now\u0105 wa\u017cn\u0105 informacj\u0119",
     "addinfo_pl": "Dodaj now\u0105 wa\u017cn\u0105 informacj\u0119",
     "addinfo_en": "Add new important information",
-    "addinfo_de": "Add new important information",
+    "addinfo_de": null,
     "addinfo_fr": null,
     "addinfo_ru": null,
     "addinfo_uk": null,
@@ -3475,8 +3655,8 @@
     "addinfo_hi": null,
     "addfile": "Dodaj nowy plik do \u015bci\u0105gni\u0119cia",
     "addfile_pl": "Dodaj nowy plik do \u015bci\u0105gni\u0119cia",
-    "addfile_en": "Add nwe downloadable file",
-    "addfile_de": "Add nwe downloadable file",
+    "addfile_en": "Add new downloadable file",
+    "addfile_de": null,
     "addfile_fr": null,
     "addfile_ru": null,
     "addfile_uk": null,
@@ -3485,7 +3665,7 @@
     "editme": "Edytuj",
     "editme_pl": "Edytuj",
     "editme_en": "Edit",
-    "editme_de": "Edit",
+    "editme_de": null,
     "editme_fr": null,
     "editme_ru": null,
     "editme_uk": null,
@@ -4115,8 +4295,8 @@
   "model": "strona.formelement",
   "pk": 1,
   "fields": {
-    "title": "Tuty\u0142 wpisu",
-    "title_pl": "Tuty\u0142 wpisu",
+    "title": "Tytu\u0142 wpisu",
+    "title_pl": "Tytu\u0142 wpisu",
     "title_en": "Entry title",
     "title_de": null,
     "title_fr": null,
@@ -4379,18 +4559,18 @@
     "quarter": 1,
     "date_start": "2029-09-10T09:00:00Z",
     "date_end": "2030-09-12T07:51:00Z",
-    "comment": "przysz\u0142a akcja kwaterunkowa",
-    "comment_pl": "przysz\u0142a akcja kwaterunkowa",
-    "comment_en": "future housing session",
+    "comment": "",
+    "comment_pl": "",
+    "comment_en": "",
     "comment_de": null,
     "comment_fr": null,
     "comment_ru": null,
     "comment_uk": null,
     "comment_es": null,
     "comment_hi": null,
-    "announcement": "xxx",
-    "announcement_pl": "xxx",
-    "announcement_en": "xxx",
+    "announcement": "",
+    "announcement_pl": "",
+    "announcement_en": "",
     "announcement_de": null,
     "announcement_fr": null,
     "announcement_ru": null,
@@ -4492,6 +4672,144 @@
     "userdata1": true,
     "sh_preferences": false,
     "userdata2": true,
+    "formmap": false,
+    "faculty_data": false,
+    "extra_info": false,
+    "agreements1": false,
+    "agreements2": false,
+    "agreements3": false,
+    "owner": 1
+  }
+},
+{
+  "model": "akademik.housingparty",
+  "pk": 28,
+  "fields": {
+    "title": "test",
+    "title_pl": "test",
+    "title_en": "test",
+    "title_de": null,
+    "title_fr": null,
+    "title_ru": null,
+    "title_uk": null,
+    "title_es": null,
+    "title_hi": null,
+    "quarter": 1,
+    "date_start": "2019-10-28T07:46:28Z",
+    "date_end": "2019-10-31T07:46:33Z",
+    "comment": "test",
+    "comment_pl": "test",
+    "comment_en": "test",
+    "comment_de": null,
+    "comment_fr": null,
+    "comment_ru": null,
+    "comment_uk": null,
+    "comment_es": null,
+    "comment_hi": null,
+    "announcement": "test",
+    "announcement_pl": "test",
+    "announcement_en": "test",
+    "announcement_de": null,
+    "announcement_fr": null,
+    "announcement_ru": null,
+    "announcement_uk": null,
+    "announcement_es": null,
+    "announcement_hi": null,
+    "userdata1": true,
+    "sh_preferences": true,
+    "userdata2": true,
+    "formmap": true,
+    "faculty_data": true,
+    "extra_info": true,
+    "agreements1": true,
+    "agreements2": false,
+    "agreements3": false,
+    "owner": 1
+  }
+},
+{
+  "model": "akademik.housingparty",
+  "pk": 29,
+  "fields": {
+    "title": "test2",
+    "title_pl": "test2",
+    "title_en": "test2en",
+    "title_de": null,
+    "title_fr": null,
+    "title_ru": null,
+    "title_uk": null,
+    "title_es": null,
+    "title_hi": null,
+    "quarter": 5,
+    "date_start": "2019-10-29T08:08:15Z",
+    "date_end": "2019-11-02T08:08:20Z",
+    "comment": "",
+    "comment_pl": "",
+    "comment_en": "",
+    "comment_de": null,
+    "comment_fr": null,
+    "comment_ru": null,
+    "comment_uk": null,
+    "comment_es": null,
+    "comment_hi": null,
+    "announcement": "",
+    "announcement_pl": "",
+    "announcement_en": "",
+    "announcement_de": null,
+    "announcement_fr": null,
+    "announcement_ru": null,
+    "announcement_uk": null,
+    "announcement_es": null,
+    "announcement_hi": null,
+    "userdata1": true,
+    "sh_preferences": false,
+    "userdata2": false,
+    "formmap": false,
+    "faculty_data": true,
+    "extra_info": false,
+    "agreements1": false,
+    "agreements2": false,
+    "agreements3": false,
+    "owner": 1
+  }
+},
+{
+  "model": "akademik.housingparty",
+  "pk": 30,
+  "fields": {
+    "title": "Akcja Zerowa - Test",
+    "title_pl": "Akcja Zerowa - Test",
+    "title_en": "Test Session  0",
+    "title_de": null,
+    "title_fr": null,
+    "title_ru": null,
+    "title_uk": null,
+    "title_es": null,
+    "title_hi": null,
+    "quarter": 1,
+    "date_start": "2019-11-13T13:08:58Z",
+    "date_end": "2019-11-16T13:09:03Z",
+    "comment": "",
+    "comment_pl": "",
+    "comment_en": "",
+    "comment_de": null,
+    "comment_fr": null,
+    "comment_ru": null,
+    "comment_uk": null,
+    "comment_es": null,
+    "comment_hi": null,
+    "announcement": "",
+    "announcement_pl": "",
+    "announcement_en": "",
+    "announcement_de": null,
+    "announcement_fr": null,
+    "announcement_ru": null,
+    "announcement_uk": null,
+    "announcement_es": null,
+    "announcement_hi": null,
+    "userdata1": true,
+    "sh_preferences": false,
+    "userdata2": false,
     "formmap": false,
     "faculty_data": false,
     "extra_info": false,
