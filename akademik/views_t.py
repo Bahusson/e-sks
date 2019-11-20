@@ -135,7 +135,9 @@ def menustranslate(request):
         return redirect('menustranslate')
     else:
         p_item_objects = p_item.get_droplist(L, 2)
-        print(p_item_objects)
+        p_item_transto_obj = p_item.get_droplist(lang, 2)
+        print("userobjects: ", p_item_transto_obj)
+
         forms = []
         for instance in instancelist:
             form = TMIListForm(instance=instance, upd_fields=p_item_names_lang)
@@ -144,6 +146,7 @@ def menustranslate(request):
          "trans_from_list": p_item_objects,
          "trans_to_list": p_item_names_lang,
          "forms": forms,
+         "trans_to_list_items": p_item_transto_obj,
         }
         pl = PortalLoad(P, L, Pbi, 3, Tmi, Tli)
         context_lazy = pl.lazy_context(skins=S, context=context)

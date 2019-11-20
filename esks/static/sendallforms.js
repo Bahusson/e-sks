@@ -1,14 +1,16 @@
 // Prosta funkcja przerzucająca wartość listy rozwijanej do ukrytego formularza.
-function allformssend()
+function allformssend(num)
 {
-  var x = document.getElementsByClassName("serialform");
-  x.submit()
+  //alert("Hello! I am an alert box!!");
+  var x = document.getElementsByClassName(num);
+  x[0].submit();
 }
 
 $(document).ready(function()
 {
   $('#sendtrans').click(function()
  {
-  allformssend()
-  });
+  allformssend('serialform0');
+  allformssend('serialform1');
+ });
 });

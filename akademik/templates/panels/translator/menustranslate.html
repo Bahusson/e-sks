@@ -23,14 +23,14 @@
 
 {% block body %}
   <!--Ten kawałek tłumaczy: Po lewej z języka, po prawej na język.-->
-{% for form in forms %}
-  <form class="serialform" method="post">
+{% for trans_to_list_item in trans_to_list_items %}
+  <form name="serialform{{forloop.counter0}}" class="serialform{{forloop.counter0}}" method="post">
     {% csrf_token %}
     {% with forloop.counter0 as x %}
-     <p>{{ trans_from_list|lookup:x }} : {{ form|lookup:trans_to_list }}</p>
+     <p>{{ trans_from_list|lookup:x }} :<input type="text" name="{{ trans_to_list }}" value="{{ trans_to_list_item }}" maxlength="200" id="id_{{ trans_to_list }}{{ forloop.counter0 }}"></p>
     {% endwith %}
   </form>
-{% endfor %}
+    {% endfor %}
 <button id="sendtrans">Wyślij</button>
 
 
