@@ -26,8 +26,6 @@
 {% for form in forms %}
   <form class="serialform" method="post">
     {% csrf_token %}
-    {{ form.non_field_errors }}
-    {{ form.errors }}
     {% with forloop.counter0 as x %}
      <p>{{ trans_from_list|lookup:x }} : {{ form|lookup:trans_to_list }}</p>
     {% endwith %}
@@ -41,7 +39,7 @@
 {% block scripts %}
 <script src="{% static "sendallforms.js" %}"></script>
 {% endblock %}
-
+<!--<input type="submit" class="button" name="sendtrans" value="Wyślij"></input>-->
 {% block scripts2 %}
 
 {% endblock %}

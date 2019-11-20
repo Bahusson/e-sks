@@ -106,7 +106,7 @@ def elementstranslate(request):
 @translators_only(login_url='logger')
 def menustranslate(request):
     lang = request.user.language
-    instance = Tmi.objects.get(id=1)
+    # instance = Tmi.objects.get(id=1)
     p_item = PageElement(Tmi)
     instancelist = p_item.listed
     # print(instancelist)
@@ -117,11 +117,14 @@ def menustranslate(request):
         p_item_names_lang.append(item)
     # Monkey filter (obetnij niepotrzebne elementy):
     p_item_names_lang = p_item_names_lang[0]
+    # p_item_names_lang = list(p_item_names_lang)
     print(p_item_names_lang)
     if request.method == 'POST':
         num = 1
         for instance in instancelist:
-            form = TMIListForm(instance=instance, upd_fields=p_item_names_lang)
+            print(instance, p_item_names_lang)
+            form = TMIListForm(
+             request.POST, instance=instance, upd_fields=p_item_names_lang)
             # print(form)
             if form.is_valid():
                 print('form is valid')

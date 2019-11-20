@@ -32,7 +32,7 @@ class TMIListForm(forms.ModelForm):
         super(TMIListForm, self).__init__(*args, **kwargs)
         for field in self.fields.values():
             field.required = False
-        self.upda_fields = upd_fields
+        self.upda_fields = (upd_fields, )
 
     class Meta:
         model = TranslatorMenuItem
