@@ -1,6 +1,6 @@
 # E-SKS (Elektroniczny system kwaterunkowy studentów) - Aplikacja kwaterunkowa dla domów studenckich PW.
 
-Technologie: Python 3.6, Django 2, JavaScript, CSS3 ,Bootstrap 4, HTML5, PostgreSQL.
+Technologie: Python 3.6, Django 2.2, JavaScript, JQuery, CSS3 ,Bootstrap 4, HTML5, PostgreSQL.
 
 adres strony: http://esks.pl/
 
