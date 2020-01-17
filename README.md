@@ -12,46 +12,41 @@ password: Politechnika_1!
 
 funkcjonalności:
 
-- aplikacja jest połączona z bazą danych PostgreSQL.
+- Aplikacja jest oparta na PostgreSQL, oraz na CDN umieszczonym na DigitalOcean.com (programowanie identyczne jak Amazon AWS).
 
-- strona opiera się na serwerze i  CDN umieszczonym na DigitalOcean.com
+- Specjalny middleware wymuszający logowanie na większość serwisu (django-login-required-middleware) - patrz: settings.py.
 
-- zawiera midlleware który wymaga logowania (django-login-required-middleware)
+- Logowanie na różne role i poziomy, wymusza konkretne uprawienia - patrz: esks/special/decorators.py
 
-- logowanie na różne role i poziomy, wymusza konkretne uprawienia.
+- Rozwijane menu językowe po wybraniu języka zmienia ciastko językowe (cookie), które z kolei ustala użytkownikowi jego wersję strony. W przeciwnym wypadku system próbuje ustalić język domyślny z jego języka przeglądarki.
 
-- rozwijane menu językowe
+- Zarządzanie poprzez spersonalizawany panel admina (domyślny panel django pozostawiony jeszcze w celach serwisowych - docelowo do usunięcia).
 
-- zarządzanie poprzez panel admina django.
+- Użytkownik poziomu 2+ może nadawać i odbierać uprawnienia użytkownikom z niższych poziomów.
 
-- z poziomu super-usera można nadawać dowolne stopnie uprawnień.
+- Tłumaczenie strony za pomocą django-model-translation tool.
 
-- dla poprawienia jakości i przejrzystości kodu zostały użyte dekoratory.
+- Oddzielny panel tłumacza (funkcjonalność zapożyczona z oryginalnego SEKS3 i usprawniona podobnie do tłumacza AMARA)
 
-- dzięki django-model translation możliwy jest swobodny wybór języków (domyślny angielski)
+- Dodawanie i zarządzanie akcjami kwaterunkowymi (oś aplikacji) w formie modułowej - użytkownik składa formularze jak klocki lego, co potem jest odzwierciedlone na wszystkich kolejnych widokach.
 
-- panel tłumacza umożliwia tłumaczenie elementów strony.
+- Możliwość zamieszczania ogłoszeń i plików z poziomu użytkownika lvl 2+.
 
-- dodawanie i zarządzanie akcjami kwaterunkowymi.
+- Rozbudowane wielowarstwowe sortowanie akcji kwaterunkowej, oraz użytkowników systemu.
 
-- możliwość zamieszczania ogłoszeń i plików z poziomu admina.
-
-- rozbudowane wielowarstwowe sortowanie akcji kwaterunkowej względem ich statusu/aktualności.
-
-- wyszukiwarka użytkowników z możliwością sortowania.
+- Wyszukiwarka użytkowników z sortowaniem (eksperymentalna)
 
 plany na przyszłość:
 
-- możliwość zmiany skórek
+- Możliwość wgrywania i zmiany skórek. User widzi tylko tę którą sam wybrał (cookie lub atrybut w db). Tryb nocny dla lepszej widoczności.
 
-- intuicyjna mapa akademików z rozbudowanym interaktywnym interfejsem graficznym
+- Intuicyjna mapa akademików z rozbudowanym interaktywnym interfejsem graficznym
 
-- obsługa maili przez postfix
+- Obsługa maili przez postfix lub serwer poczty na rzecz klienta (z rekomendowaniem pierwszego rozwiązania).
 
-- rozbudowany panel tłumacza
+- Cała strona dostępna do tłumaczenia w panelu
+
+(...)
 
 
 Autorzy: Jakub Kozdrowicz & Maciej Fleiszfreser
-
-
-
