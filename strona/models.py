@@ -120,6 +120,8 @@ class PageSkin(models.Model):
      upload_to='skins', blank=True, null=True)
     welcomebanner_small = models.ImageField(
      upload_to='skins', blank=True, null=True)
+    eskslogo_main = models.ImageField(
+     upload_to='skins', blank=True, null=True)
 
     class Meta:
         ordering = ['position']
