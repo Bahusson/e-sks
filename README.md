@@ -2,14 +2,6 @@
 
 Technologie: Python 3.6, Django 2.2, JavaScript, JQuery, CSS3 ,Bootstrap 4, HTML5, PostgreSQL.
 
-adres strony: http://esks.pl/
-
-Dostęp do funkcjonalności z poziomu administratora:
-
-admin: cadmin@pw.edu.pl
-
-password: Politechnika_1!
-
 funkcjonalności:
 
 - Aplikacja jest oparta na PostgreSQL, oraz na CDN umieszczonym na DigitalOcean.com (programowanie identyczne jak Amazon AWS).
