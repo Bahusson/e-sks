@@ -2,7 +2,6 @@
 
 Technology stack: Python 3.6, Django 2.2, JavaScript, JQuery, CSS3 , Bootstrap 4, HTML5, PostgreSQL.
 
-funkcjonalności:
 
 - application is based on PostgreSQL and on CDN located on DigitalOcean.com.
 
