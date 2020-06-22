@@ -23,5 +23,17 @@ Technology stack: Python 3.6, Django 2.2, JavaScript, JQuery, CSS3 , Bootstrap 4
 
 - sorted user search engine
 
+--------------------------------------------------
+
+- aplikacja jest oparta na PostgreSQL, oraz na CDN umieszczonym na DigitalOcean.com
+- specjalny middleware wymuszający logowanie na większość serwisu (djangologin-required-middleware)
+- logowanie na różne role i poziomy, wymusza konkretne uprawienia
+- rozwijane menu językowe po wybraniu języka zmienia ciastko językowe (cookie).
+- zarządzanie poprzez panel admina użytkownik poziomu 2+ może nadawać i odbierać uprawnienia użytkownikom zniższych poziomów.
+- tłumaczenie strony za pomocą djangomodel-translation tool.
+- oddzielny panel tłumacza możliwość zamieszczania ogłoszeń i plików z poziomu użytkownika lvl 2+
+- rozbudowane wielowarstwowe sortowanie akcji kwaterunkowej, oraz użytkowników systemu
+- wyszukiwarka użytkowników z sortowaniem
+
 
 Jakub Kozdrowicz & Maciej Fleiszfreser 2019
