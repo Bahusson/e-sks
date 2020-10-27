@@ -6,7 +6,7 @@ certifi==2019.6.16
 cffi==1.12.3
 chardet==3.0.4
 clyent==1.2.2
-cryptography==2.7
+cryptography==3.2
 decorator==4.4.0
 Django==2.2.13
 django-cuser==2017.3.16
