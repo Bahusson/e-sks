@@ -15,7 +15,7 @@ django-login-required-middleware==0.2
 django-modeltranslation==0.13.3
 django-storages==1.7.2
 docutils==0.15.2
-Jinja2==2.10.1
+Jinja2==2.11.3
 jmespath==0.9.4
 MarkupSafe==1.1.1
 mkl-fft==1.0.12
